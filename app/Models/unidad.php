@@ -9,4 +9,8 @@ class unidad extends Model
 {
     /** @use HasFactory<\Database\Factories\UnidadFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+    ];
 }

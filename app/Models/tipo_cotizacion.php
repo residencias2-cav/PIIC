@@ -9,4 +9,7 @@ class tipo_cotizacion extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoCotizacionFactory> */
     use HasFactory;
+    protected $fillable = [
+        'nombre',
+    ];
 }

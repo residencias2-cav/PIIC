@@ -9,4 +9,8 @@ class estado_pedido extends Model
 {
     /** @use HasFactory<\Database\Factories\EstadoPedidoFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+    ];
 }

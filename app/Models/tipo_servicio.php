@@ -9,4 +9,7 @@ class tipo_servicio extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoServicioFactory> */
     use HasFactory;
+    protected $fillable = [
+        'nombre',
+    ];
 }
