@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tipo_epps', function (Blueprint $table) {
-            $table->id('ID');
+            $table->id( );
             $table->string('Nombre', 50);
             $table->datetime('timestamps');
         });

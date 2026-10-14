@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('gerencias', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('Nombre', 50);
+            $table->string('Code', 50);
+            $table->datetime('timestamps');
         });
     }
 

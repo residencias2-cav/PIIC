@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('Nombre', 50);
+            $table->string('RFC', 50);
+            $table->string('Dom_fiscal', 50);
+            $table->datetime('timestamps');
         });
     }
 

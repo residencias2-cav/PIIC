@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inf_contratos', function (Blueprint $table) {
-            $table->id('ID');
+            $table->id( );
             $table->text('Tipo_Contrato');
             $table->date('Vigencia');
             $table->datetime('timestamps');

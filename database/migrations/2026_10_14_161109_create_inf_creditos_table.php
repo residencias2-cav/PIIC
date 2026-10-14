@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inf_creditos', function (Blueprint $table) {
-            $table->id('ID');
+            $table->id( );
             $table->integer('Monto', 10,3);
             $table->date('Vigencia');
             $table->datetime('timestamps');

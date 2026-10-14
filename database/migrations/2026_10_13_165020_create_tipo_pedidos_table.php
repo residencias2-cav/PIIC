@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('tipo_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('Nombre', 30);
+            $table->datetime('timestamps');
         });
     }
 

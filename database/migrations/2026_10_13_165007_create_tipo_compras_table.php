@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('tipo_compras', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('Nombre', 50);
+            $table->datetime('timestamps');
         });
     }
 
