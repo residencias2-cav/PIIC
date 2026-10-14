@@ -20,9 +20,4 @@ class proyecto extends Model
         'updated_at',
         'created_at',
     ];
-
-    protected $hidden = [
-        'updated_at',
-        'created_at',
-    ];
 }
