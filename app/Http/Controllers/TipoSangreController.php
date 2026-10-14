@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\tipo_sangre;
+=======
+use App\Models\TipoSangre;
+>>>>>>> 1068da9 (Estados nacimientos)
 use Illuminate\Http\Request;
 
 class TipoSangreController extends Controller
@@ -34,7 +38,11 @@ class TipoSangreController extends Controller
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(tipo_sangre $tipo_sangre)
+=======
+    public function show(TipoSangre $tipoSangre)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -42,7 +50,11 @@ class TipoSangreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit(tipo_sangre $tipo_sangre)
+=======
+    public function edit(TipoSangre $tipoSangre)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,7 +62,11 @@ class TipoSangreController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(Request $request, tipo_sangre $tipo_sangre)
+=======
+    public function update(Request $request, TipoSangre $tipoSangre)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -58,7 +74,11 @@ class TipoSangreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+<<<<<<< HEAD
     public function destroy(tipo_sangre $tipo_sangre)
+=======
+    public function destroy(TipoSangre $tipoSangre)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }

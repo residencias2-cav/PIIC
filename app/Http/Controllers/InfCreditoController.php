@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\inf_credito;
+=======
+use App\Models\InfCredito;
+>>>>>>> 1068da9 (Estados nacimientos)
 use Illuminate\Http\Request;
 
 class InfCreditoController extends Controller
@@ -34,7 +38,11 @@ class InfCreditoController extends Controller
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(inf_credito $inf_credito)
+=======
+    public function show(InfCredito $infCredito)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -42,7 +50,11 @@ class InfCreditoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit(inf_credito $inf_credito)
+=======
+    public function edit(InfCredito $infCredito)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,7 +62,11 @@ class InfCreditoController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(Request $request, inf_credito $inf_credito)
+=======
+    public function update(Request $request, InfCredito $infCredito)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -58,7 +74,11 @@ class InfCreditoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+<<<<<<< HEAD
     public function destroy(inf_credito $inf_credito)
+=======
+    public function destroy(InfCredito $infCredito)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\tipo_epp;
+=======
+use App\Models\TipoEpp;
+>>>>>>> 1068da9 (Estados nacimientos)
 use Illuminate\Http\Request;
 
 class TipoEppController extends Controller
@@ -34,7 +38,11 @@ class TipoEppController extends Controller
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(tipo_epp $tipo_epp)
+=======
+    public function show(TipoEpp $tipoEpp)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -42,7 +50,11 @@ class TipoEppController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit(tipo_epp $tipo_epp)
+=======
+    public function edit(TipoEpp $tipoEpp)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,7 +62,11 @@ class TipoEppController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(Request $request, tipo_epp $tipo_epp)
+=======
+    public function update(Request $request, TipoEpp $tipoEpp)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -58,7 +74,11 @@ class TipoEppController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+<<<<<<< HEAD
     public function destroy(tipo_epp $tipo_epp)
+=======
+    public function destroy(TipoEpp $tipoEpp)
+>>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
