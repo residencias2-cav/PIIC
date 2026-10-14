@@ -2,19 +2,6 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
-class LugarNacimientoSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        //
-=======
 use Illuminate\Database\Seeder;
 use App\Models\LugarNacimiento;
 
@@ -62,6 +49,5 @@ class LugarNacimientoSeeder extends Seeder
         foreach ($this->estadosMexicanos as $estado) {
             LugarNacimiento::create(['nombre' => $estado]);
         }
->>>>>>> 1068da9 (Estados nacimientos)
     }
 }
