@@ -10,7 +10,14 @@ class proyecto extends Model
     /** @use HasFactory<\Database\Factories\ProyectoFactory> */
     use HasFactory;
     
+    protected $table = 'proyecto';
+
     protected $fillable = [
-        'nombre',
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 }

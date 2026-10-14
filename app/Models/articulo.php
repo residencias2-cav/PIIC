@@ -10,10 +10,10 @@ class articulo extends Model
     /** @use HasFactory<\Database\Factories\ArticuloFactory> */
     use HasFactory;
 
-    protected $table = 'articulos';
+    protected $table = 'articulo';
 
     protected $fillable = [
-        "nombre",
+        'Nombre',
     ];
 
     protected $hidden = [

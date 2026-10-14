@@ -10,7 +10,14 @@ class ubicacion extends Model
     /** @use HasFactory<\Database\Factories\UbicacionFactory> */
     use HasFactory;
 
+    protected $table = 'ubicacion';
+
     protected $fillable = [
-        'nombre',
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 }

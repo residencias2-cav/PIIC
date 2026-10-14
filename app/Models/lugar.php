@@ -9,4 +9,15 @@ class lugar extends Model
 {
     /** @use HasFactory<\Database\Factories\LugarFactory> */
     use HasFactory;
+
+    protected $table = 'lugar';
+
+    protected $fillable = [
+        'Nombre_Municipio',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

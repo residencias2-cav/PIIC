@@ -9,4 +9,15 @@ class gerencia extends Model
 {
     /** @use HasFactory<\Database\Factories\GerenciaFactory> */
     use HasFactory;
+
+    protected $table = 'gerencia';
+
+    protected $fillable = [
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }
