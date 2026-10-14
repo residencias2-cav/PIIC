@@ -9,4 +9,15 @@ class Articulo extends Model
 {
     /** @use HasFactory<\Database\Factories\ArticuloFactory> */
     use HasFactory;
+
+    protected $table = 'articulo';
+
+    protected $fillable = [
+        "nombre",
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

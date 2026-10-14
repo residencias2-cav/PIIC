@@ -9,4 +9,15 @@ class Contrato extends Model
 {
     /** @use HasFactory<\Database\Factories\ContratoFactory> */
     use HasFactory;
+
+    protected $table = 'contrato';
+
+    protected $fillable = [
+        "nombre",
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }
