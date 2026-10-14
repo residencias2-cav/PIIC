@@ -2,11 +2,19 @@
 
 namespace Database\Factories;
 
+<<<<<<< HEAD
 use App\Models\inf_contrato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<inf_contrato>
+=======
+use App\Models\InfContrato;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<InfContrato>
+>>>>>>> 1068da9 (Estados nacimientos)
  */
 class InfContratoFactory extends Factory
 {

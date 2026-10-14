@@ -2,11 +2,19 @@
 
 namespace Database\Factories;
 
+<<<<<<< HEAD
 use App\Models\lugar_nacimiento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<lugar_nacimiento>
+=======
+use App\Models\LugarNacimiento;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<LugarNacimiento>
+>>>>>>> 1068da9 (Estados nacimientos)
  */
 class LugarNacimientoFactory extends Factory
 {

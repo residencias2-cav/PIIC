@@ -10,8 +10,15 @@ class producto_servicio extends Model
     /** @use HasFactory<\Database\Factories\ProductoServicioFactory> */
     use HasFactory;
 
+    protected $table = 'producto_servicio';
+
     protected $fillable = [
-        'nombre',
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 
     protected $hidden = [
