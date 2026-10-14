@@ -14,9 +14,14 @@ class inf_contrato extends Model
 
     protected $fillable = [
         'Tipo_Contrato',
-        'Vigencia',
     ];
 
+    protected function casts(): array
+{
+    return [
+        'Vigencia' => 'date',
+    ];
+}
     protected $hidden = [
         'updated_at',
         'created_at',

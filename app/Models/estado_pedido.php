@@ -10,7 +10,14 @@ class estado_pedido extends Model
     /** @use HasFactory<\Database\Factories\EstadoPedidoFactory> */
     use HasFactory;
 
+    protected $table = 'estado_pedido';
+
     protected $fillable = [
-        'nombre',
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 }
