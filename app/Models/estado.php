@@ -9,4 +9,15 @@ class estado extends Model
 {
     /** @use HasFactory<\Database\Factories\EstadoFactory> */
     use HasFactory;
+
+    protected $table = 'estado';
+
+    protected $fillable = [
+        'Nombre_estado',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

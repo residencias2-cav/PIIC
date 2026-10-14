@@ -9,8 +9,16 @@ class tipo_servicio extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoServicioFactory> */
     use HasFactory;
+    
+    protected $table = 'tipo_servicio';
+
     protected $fillable = [
-        'nombre',
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 
     protected $hidden = [
