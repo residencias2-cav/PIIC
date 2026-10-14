@@ -13,4 +13,9 @@ class producto_servicio extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

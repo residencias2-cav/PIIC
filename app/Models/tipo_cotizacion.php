@@ -12,4 +12,9 @@ class tipo_cotizacion extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

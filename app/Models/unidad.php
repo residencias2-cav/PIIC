@@ -13,4 +13,9 @@ class unidad extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }
