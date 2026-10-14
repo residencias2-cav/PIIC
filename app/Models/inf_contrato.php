@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class inf_contrato extends Model
+{
+    /** @use HasFactory<\Database\Factories\InfContratoFactory> */
+    use HasFactory;
+}
