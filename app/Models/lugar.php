@@ -11,10 +11,10 @@ class Lugar extends Model
     /** @use HasFactory<\Database\Factories\LugarFactory> */
     use HasFactory;
 
-    protected $table = 'lugar';
+    protected $table = 'lugars';
 
     protected $fillable = [
-        'Nombre_Municipio',
+        'nombre_municipio',
     ];
 
     protected $hidden = [
@@ -26,4 +26,6 @@ class Lugar extends Model
     {
         return $this->hasMany(Cotizacion::class);
     }
+
+    
 }

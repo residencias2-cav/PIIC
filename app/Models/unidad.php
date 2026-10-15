@@ -11,7 +11,7 @@ class Unidad extends Model
     /** @use HasFactory<\Database\Factories\UnidadFactory> */
     use HasFactory;
 
-    protected $table = 'unidad'; /** de medida */
+    protected $table = 'unidads'; /** de medida */
 
     protected $fillable = [
         'nombre',
@@ -24,6 +24,6 @@ class Unidad extends Model
 
     public function unidades()
     {
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(DetallePedido::class);
     }
 }

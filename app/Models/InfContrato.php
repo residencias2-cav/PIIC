@@ -10,20 +10,26 @@ class inf_contrato extends Model
     /** @use HasFactory<\Database\Factories\InfContratoFactory> */
     use HasFactory;
 
-    protected $table = 'inf_contrato';
+    protected $table = 'inf_contratos';
 
     protected $fillable = [
         'Tipo_Contrato',
     ];
 
     protected function casts(): array
-{
-    return [
-        'Vigencia' => 'date',
-    ];
-}
+    {
+        return [
+            'Vigencia' => 'date',
+        ];
+    }
+
     protected $hidden = [
         'updated_at',
         'created_at',
     ];
+
+    public function infContratos()
+    {
+        return $this->hasMany(Proveedor::class);
+    }
 }

@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tipo_Servicio extends Model
+class TipoCompra extends Model
 {
-    /** @use HasFactory<\Database\Factories\TipoServicioFactory> */
+    /** @use HasFactory<\Database\Factories\TipoCompraFactory> */
     use HasFactory;
-    
-    protected $table = 'tipo_servicio';
+
+    protected $table = 'tipo_compras';
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
@@ -22,8 +22,8 @@ class Tipo_Servicio extends Model
         'created_at',
     ];
 
-    public function tipos_servicio()
+    public function pedidos()
     {
-        return $this->hasMany(Pedido_Interno::class);
+        return $this->hasMany(Pedido::class);
     }
 }

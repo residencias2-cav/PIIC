@@ -11,7 +11,7 @@ class Ubicacion extends Model
     /** @use HasFactory<\Database\Factories\UbicacionFactory> */
     use HasFactory;
 
-    protected $table = 'ubicacion';
+    protected $table = 'ubicacions';
 
     protected $fillable = [
         'nombre',

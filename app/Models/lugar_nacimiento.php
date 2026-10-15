@@ -4,20 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class lugar_nacimiento extends Model
+class LugarNacimiento extends Model
 {
     /** @use HasFactory<\Database\Factories\LugarNacimientoFactory> */
     use HasFactory;
 
-    protected $table = 'lugar_nacimiento';
+    protected $table = 'lugar_nacimientos';
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
         'updated_at',
         'created_at',
     ];
+
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class);
+    }
 }
