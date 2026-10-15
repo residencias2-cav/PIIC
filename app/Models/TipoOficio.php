@@ -9,4 +9,15 @@ class TipoOficio extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoOficioFactory> */
     use HasFactory;
+
+    protected $table = 'tipo_oficio';
+
+    protected $fillable = [
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }

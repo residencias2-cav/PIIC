@@ -9,4 +9,15 @@ class TipoEpp extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoEppFactory> */
     use HasFactory;
+
+    protected $table = 'tipo_epp';
+
+    protected $fillable = [
+        'Nombre',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 }
