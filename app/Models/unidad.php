@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class unidad extends Model
+class Unidad extends Model
 {
     /** @use HasFactory<\Database\Factories\UnidadFactory> */
     use HasFactory;
@@ -13,7 +14,7 @@ class unidad extends Model
     protected $table = 'unidad'; /** de medida */
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
@@ -21,8 +22,8 @@ class unidad extends Model
         'created_at',
     ];
 
-    public function unidades_pedidos()
+    public function unidades()
     {
-        return $this->hasMany(pedido::class);
+        return $this->hasMany(Pedido::class);
     }
 }

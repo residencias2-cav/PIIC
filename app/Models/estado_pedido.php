@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class estado_pedido extends Model
+class Estado_Pedido extends Model
 {
     /** @use HasFactory<\Database\Factories\EstadoPedidoFactory> */
     use HasFactory;
@@ -21,8 +22,8 @@ class estado_pedido extends Model
         'created_at',
     ];
 
-    protected $hidden = [
-        'updated_at',
-        'created_at',
-    ];
+    public function estados_pedido()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
 }
