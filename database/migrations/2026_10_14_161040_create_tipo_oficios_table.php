@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipo_oficios', function (Blueprint $table) {
             $table->id( );
-            $table->string('Nombre', 30);
+            $table->string('nombre', 30);
             $table->datetime('timestamps');
         });
     }
