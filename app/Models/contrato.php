@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contrato extends Model
+class contrato extends Model
 {
     /** @use HasFactory<\Database\Factories\ContratoFactory> */
     use HasFactory;
 
-    protected $table = 'Contrato';
+    protected $table = 'contrato';
 
     protected $fillable = [
         "nombre",

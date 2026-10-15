@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\articulo;
-=======
-use App\Models\Articulo;
->>>>>>> 1068da9 (Estados nacimientos)
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -38,11 +34,7 @@ class ArticuloController extends Controller
     /**
      * Display the specified resource.
      */
-<<<<<<< HEAD
     public function show(articulo $articulo)
-=======
-    public function show(Articulo $articulo)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,11 +42,7 @@ class ArticuloController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-<<<<<<< HEAD
     public function edit(articulo $articulo)
-=======
-    public function edit(Articulo $articulo)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -62,11 +50,7 @@ class ArticuloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
     public function update(Request $request, articulo $articulo)
-=======
-    public function update(Request $request, Articulo $articulo)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -74,11 +58,7 @@ class ArticuloController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
     public function destroy(articulo $articulo)
-=======
-    public function destroy(Articulo $articulo)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
