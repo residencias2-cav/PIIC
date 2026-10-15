@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class gerencia extends Model
+class Gerencia extends Model
 {
     /** @use HasFactory<\Database\Factories\GerenciaFactory> */
     use HasFactory;
 
-    protected $table = 'gerencia';
+    protected $table = 'gerencias';
 
     protected $fillable = [
         'Nombre',
