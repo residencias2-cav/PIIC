@@ -10,7 +10,7 @@ class Contrato extends Model
     /** @use HasFactory<\Database\Factories\ContratoFactory> */
     use HasFactory;
 
-    protected $table = 'contrato';
+    protected $table = 'Contrato';
 
     protected $fillable = [
         "nombre",

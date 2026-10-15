@@ -10,7 +10,7 @@ class Articulo extends Model
     /** @use HasFactory<\Database\Factories\ArticuloFactory> */
     use HasFactory;
 
-    protected $table = 'articulo';
+    protected $table = 'Articulo';
 
     protected $fillable = [
         "nombre",
