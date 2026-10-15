@@ -4,20 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class tipo_pedido extends Model
+class TipoPedido extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoPedidoFactory> */
     use HasFactory;
 
-    protected $table = 'tipo_pedido';
+    protected $table = 'tipo_pedidos';
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
         'updated_at',
         'created_at',
     ];
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
 }

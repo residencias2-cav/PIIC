@@ -14,7 +14,7 @@ class Obra extends Model
     protected $table = 'obras';
 
     protected $fillable = [
-        'Nombre_Obra',
+        'nombre_obra',
     ];
 
     protected $hidden = [
@@ -22,10 +22,13 @@ class Obra extends Model
         'created_at',
     ];
 
-    public function obras()
+    public function cotizaciones()
     {
         return $this->hasMany(Cotizacion::class);
     }
 
-
+    public function epp()
+    {
+        return $this->hasMany(Epp::class);
+    }
 }

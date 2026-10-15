@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Estado_Pedido extends Model
+class TipoServicio extends Model
 {
-    /** @use HasFactory<\Database\Factories\EstadoPedidoFactory> */
+    /** @use HasFactory<\Database\Factories\TipoServicioFactory> */
     use HasFactory;
-
-    protected $table = 'estado_pedido';
+    
+    protected $table = 'tipo_servicios';
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
@@ -22,8 +22,8 @@ class Estado_Pedido extends Model
         'created_at',
     ];
 
-    public function estados_pedido()
+    public function tiposServicio()
     {
-        return $this->hasMany(Cotizacion::class);
+        return $this->hasMany(PedidoInterno::class);
     }
 }

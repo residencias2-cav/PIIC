@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Producto_Servicio extends Model
+class ProductoServicio extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductoServicioFactory> */
     use HasFactory;
 
-    protected $table = 'producto_servicio';
+    protected $table = 'producto_servicios';
 
     protected $fillable = [
-        'Nombre',
+        'nombre',
     ];
 
     protected $hidden = [
@@ -22,8 +22,8 @@ class Producto_Servicio extends Model
         'created_at',
     ];
 
-    public function productos_servicios()
+    public function productosServicios()
     {
-        return $this->hasMany(Proveedor_Servicio::class);
+        return $this->hasMany(ProveedorServicio::class);
     }
 }

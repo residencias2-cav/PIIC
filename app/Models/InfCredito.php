@@ -10,7 +10,7 @@ class InfCredito extends Model
     /** @use HasFactory<\Database\Factories\InfCreditoFactory> */
     use HasFactory;
 
-    protected $table = 'inf_credito';
+    protected $table = 'inf_creditos';
 
     protected $fillable = [
         'Monto',
@@ -21,4 +21,9 @@ class InfCredito extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function infCreditos()
+    {
+        return $this->hasMany(Proveedor::class);
+    }
 }

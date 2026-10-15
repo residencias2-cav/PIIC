@@ -10,7 +10,7 @@ class LugarNacimiento extends Model
     /** @use HasFactory<\Database\Factories\LugarNacimientoFactory> */
     use HasFactory;
 
-    protected $table = 'lugar_nacimiento';
+    protected $table = 'lugar_nacimientos';
 
     protected $fillable = [
         'nombre',
@@ -20,4 +20,9 @@ class LugarNacimiento extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function lugaresNacimiento()
+    {
+        return $this->hasMany(Trabajador::class);
+    }
 }
