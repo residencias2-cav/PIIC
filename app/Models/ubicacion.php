@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Models;
-use App\Models\pedido;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ubicacion extends Model
+class Ubicacion extends Model
 {
     /** @use HasFactory<\Database\Factories\UbicacionFactory> */
     use HasFactory;
+
+    protected $table = 'ubicacion';
 
     protected $fillable = [
         'nombre',
@@ -20,8 +22,8 @@ class ubicacion extends Model
         'created_at',
     ];
 
-    public function ubicacion_pedidos()
+    public function ubicaciones()
     {
-        return $this->hasMany(pedido::class);
+        return $this->hasMany(Pedido::class);
     }
 }

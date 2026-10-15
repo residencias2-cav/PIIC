@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class obra extends Model
+class Obra extends Model
 {
     /** @use HasFactory<\Database\Factories\ObraFactory> */
     use HasFactory;
 
-    protected $table = 'obra';
+    protected $table = 'obras';
 
     protected $fillable = [
         'Nombre_Obra',
@@ -20,4 +21,11 @@ class obra extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function obras()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
+
+
 }

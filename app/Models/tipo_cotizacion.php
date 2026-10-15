@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class tipo_cotizacion extends Model
+class Tipo_Cotizacion extends Model
 {
     /** @use HasFactory<\Database\Factories\TipoCotizacionFactory> */
     use HasFactory;
@@ -20,4 +21,9 @@ class tipo_cotizacion extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function tipos_cotizacion()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
 }
