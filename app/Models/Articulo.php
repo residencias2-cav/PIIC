@@ -11,7 +11,11 @@ class Articulo extends Model
     /** @use HasFactory<\Database\Factories\ArticuloFactory> */
     use HasFactory;
 
+<<<<<<< HEAD
+    protected $table = 'articulo';
+=======
     protected $table = 'articulos';
+>>>>>>> 6d823ea603ef9e201874aed258c3412ff9fa991c
 
     protected $fillable = [
         "nombre",
@@ -21,6 +25,8 @@ class Articulo extends Model
         'updated_at',
         'created_at',
     ];
+<<<<<<< HEAD
+=======
 
     public function inventariosEpp()
     {
@@ -41,4 +47,5 @@ class Articulo extends Model
     {
         return $this->hasMany(DatosEppRe::class);
     }
+>>>>>>> 6d823ea603ef9e201874aed258c3412ff9fa991c
 }
