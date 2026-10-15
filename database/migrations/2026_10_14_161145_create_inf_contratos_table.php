@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('inf_contratos', function (Blueprint $table) {
             $table->id( );
-            $table->text('Tipo_Contrato');
-            $table->date('Vigencia');
+            $table->text('tipo_contrato');
+            $table->date('vigencia');
             $table->datetime('timestamps');
         });
     }

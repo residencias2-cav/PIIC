@@ -21,7 +21,6 @@ class TipoOficio extends Model
         'updated_at',
         'created_at',
     ];
-
     public function oficios()
     {
         return $this->hasMany(Oficios::class);
