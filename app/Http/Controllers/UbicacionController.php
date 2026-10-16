@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ubicacion;
+use App\Models\Ubicacion;
 use Illuminate\Http\Request;
 
 class UbicacionController extends Controller
@@ -34,7 +34,7 @@ class UbicacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ubicacion $ubicacion)
+    public function show(Ubicacion $ubicacion)
     {
         //
     }
@@ -42,7 +42,7 @@ class UbicacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ubicacion $ubicacion)
+    public function edit(Ubicacion $ubicacion)
     {
         //
     }
@@ -50,7 +50,7 @@ class UbicacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ubicacion $ubicacion)
+    public function update(Request $request, Ubicacion $ubicacion)
     {
         //
     }
@@ -58,7 +58,7 @@ class UbicacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ubicacion $ubicacion)
+    public function destroy(Ubicacion $ubicacion)
     {
         //
     }

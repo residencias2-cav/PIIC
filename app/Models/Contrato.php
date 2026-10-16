@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Oficios\OficiosProductos;
+use App\Models\Oficios\OficiosRepse;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,11 +26,11 @@ class Contrato extends Model
 
     public function oficiosProducto()
     {
-        return $this->hasMany(OficiosProducto::class);
+        return $this->hasMany(OficiosProductos::class);
     }
 
     public function oficiosRepSe()
     {
-        return $this->hasMany(OficiosRepSe::class);
+        return $this->hasMany(OficiosRepse::class);
     }
 }

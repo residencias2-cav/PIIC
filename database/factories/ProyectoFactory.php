@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\proyecto;
+use App\Models\Proyecto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<proyecto>
+ * @extends Factory<Proyecto>
  */
 class ProyectoFactory extends Factory
 {

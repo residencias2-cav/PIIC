@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipo_cotizacion;
+use App\Models\TipoCotizacion;
 use Illuminate\Http\Request;
 
 class TipoCotizacionController extends Controller
@@ -34,7 +34,7 @@ class TipoCotizacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tipo_cotizacion $tipo_cotizacion)
+    public function show(TipoCotizacion $tipo_cotizacion)
     {
         //
     }
@@ -42,7 +42,7 @@ class TipoCotizacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tipo_cotizacion $tipo_cotizacion)
+    public function edit(TipoCotizacion $tipo_cotizacion)
     {
         //
     }
@@ -50,7 +50,7 @@ class TipoCotizacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tipo_cotizacion $tipo_cotizacion)
+    public function update(Request $request, TipoCotizacion $tipo_cotizacion)
     {
         //
     }
@@ -58,7 +58,7 @@ class TipoCotizacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tipo_cotizacion $tipo_cotizacion)
+    public function destroy(TipoCotizacion $tipo_cotizacion)
     {
         //
     }

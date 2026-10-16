@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\gerencia;
+use App\Models\Gerencia;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<gerencia>
+ * @extends Factory<Gerencia>
  */
 class GerenciaFactory extends Factory
 {

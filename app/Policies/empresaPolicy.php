@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Empresa;
 use App\Models\User;
-use App\Models\empresa;
 use Illuminate\Auth\Access\Response;
 
-class empresaPolicy
+class EmpresaPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class empresaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, empresa $empresa): bool
+    public function view(User $user, Empresa $empresa): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class empresaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, empresa $empresa): bool
+    public function update(User $user, Empresa $empresa): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class empresaPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, empresa $empresa): bool
+    public function delete(User $user, Empresa $empresa): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class empresaPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, empresa $empresa): bool
+    public function restore(User $user, Empresa $empresa): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class empresaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, empresa $empresa): bool
+    public function forceDelete(User $user, Empresa $empresa): bool
     {
         return false;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\articulo;
+use App\Models\Articulo;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -34,7 +34,7 @@ class ArticuloController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(articulo $articulo)
+    public function show(Articulo $articulo)
     {
         //
     }
@@ -42,7 +42,7 @@ class ArticuloController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(articulo $articulo)
+    public function edit(Articulo $articulo)
     {
         //
     }
@@ -50,7 +50,7 @@ class ArticuloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, articulo $articulo)
+    public function update(Request $request, Articulo $articulo)
     {
         //
     }
@@ -58,7 +58,7 @@ class ArticuloController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(articulo $articulo)
+    public function destroy(Articulo $articulo)
     {
         //
     }

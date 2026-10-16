@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Compras\Cotizacion;
+use App\Models\Compras\Pedido;
+use App\Models\Oficios\Mantenimientos;
+use App\Models\Usuarios\Usuario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

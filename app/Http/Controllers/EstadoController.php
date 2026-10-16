@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\estado;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
@@ -34,7 +34,7 @@ class EstadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(estado $estado)
+    public function show(Estado $estado)
     {
         //
     }
@@ -42,7 +42,7 @@ class EstadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(estado $estado)
+    public function edit(Estado $estado)
     {
         //
     }
@@ -50,7 +50,7 @@ class EstadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, estado $estado)
+    public function update(Request $request, Estado $estado)
     {
         //
     }
@@ -58,7 +58,7 @@ class EstadoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(estado $estado)
+    public function destroy(Estado $estado)
     {
         //
     }

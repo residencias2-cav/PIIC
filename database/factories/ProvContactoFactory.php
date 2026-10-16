@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\prov_contacto;
+use App\Models\Proveedores\ProvContacto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<prov_contacto>
+ * @extends Factory<ProvContacto>
  */
 class ProvContactoFactory extends Factory
 {

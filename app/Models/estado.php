@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Epp\DatosEppTr;
+use App\Models\Epp\DatosEppRe;
+use App\Models\Oficios\Oficios;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

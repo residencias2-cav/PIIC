@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\oficios_repse;
+use App\Models\Oficios\OficiosRepse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<oficios_repse>
+ * @extends Factory<OficiosRepse>
  */
 class OficiosRepseFactory extends Factory
 {

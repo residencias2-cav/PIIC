@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\producto_servicio;
+use App\Models\ProductoServicio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<producto_servicio>
+ * @extends Factory<ProductoServicio>
  */
 class ProductoServicioFactory extends Factory
 {

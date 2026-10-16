@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Compras\Pedido;
+use App\Models\Epp\Epp;
+use App\Models\Oficios\OficiosRepse;
+use App\Models\Proveedores\DatosProveedor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -36,7 +40,7 @@ class Empresa extends Model
 
     public function oficiosRepSe(): HasMany
     {
-        return $this->hasMany(OficiosRepSe::class);
+        return $this->hasMany(OficiosRepse::class);
     }
 
     public function pedidos(): HasMany

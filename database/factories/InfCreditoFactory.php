@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\inf_credito;
+use App\Models\InfCredito;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<inf_credito>
+ * @extends Factory<InfCredito>
 =======
 use App\Models\InfCredito;
 use Illuminate\Database\Eloquent\Factories\Factory;

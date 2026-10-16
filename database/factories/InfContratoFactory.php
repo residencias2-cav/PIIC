@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\inf_contrato;
+use App\Models\InfContrato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<inf_contrato>
+ * @extends Factory<InfContrato>
 =======
 use App\Models\InfContrato;
 use Illuminate\Database\Eloquent\Factories\Factory;

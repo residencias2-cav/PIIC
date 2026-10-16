@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Epp\DatosEppNi;
+use App\Models\Epp\DatosEppRc;
+use App\Models\Epp\DatosEppRe;
+use App\Models\Epp\InventarioEpp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

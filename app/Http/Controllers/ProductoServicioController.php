@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\producto_servicio;
+use App\Models\ProductoServicio;
 use Illuminate\Http\Request;
 
 class ProductoServicioController extends Controller
@@ -34,7 +34,7 @@ class ProductoServicioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(producto_servicio $producto_servicio)
+    public function show(ProductoServicio $producto_servicio)
     {
         //
     }
@@ -42,7 +42,7 @@ class ProductoServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(producto_servicio $producto_servicio)
+    public function edit(ProductoServicio $producto_servicio)
     {
         //
     }
@@ -50,7 +50,7 @@ class ProductoServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, producto_servicio $producto_servicio)
+    public function update(Request $request, ProductoServicio $producto_servicio)
     {
         //
     }
@@ -58,7 +58,7 @@ class ProductoServicioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(producto_servicio $producto_servicio)
+    public function destroy(ProductoServicio $producto_servicio)
     {
         //
     }

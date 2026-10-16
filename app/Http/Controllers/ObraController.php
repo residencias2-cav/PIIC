@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\obra;
+use App\Models\Obra;
 use Illuminate\Http\Request;
 
 class ObraController extends Controller
@@ -34,7 +34,7 @@ class ObraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(obra $obra)
+    public function show(Obra $obra)
     {
         //
     }
@@ -42,7 +42,7 @@ class ObraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(obra $obra)
+    public function edit(Obra $obra)
     {
         //
     }
@@ -50,7 +50,7 @@ class ObraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, obra $obra)
+    public function update(Request $request, Obra $obra)
     {
         //
     }
@@ -58,7 +58,7 @@ class ObraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(obra $obra)
+    public function destroy(Obra $obra)
     {
         //
     }

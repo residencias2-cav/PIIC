@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipo_pedido;
+use App\Models\TipoPedido;
 use Illuminate\Http\Request;
 
 class TipoPedidoController extends Controller
@@ -34,7 +34,7 @@ class TipoPedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tipo_pedido $tipo_pedido)
+    public function show(TipoPedido $tipo_pedido)
     {
         //
     }
@@ -42,7 +42,7 @@ class TipoPedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tipo_pedido $tipo_pedido)
+    public function edit(TipoPedido $tipo_pedido)
     {
         //
     }
@@ -50,7 +50,7 @@ class TipoPedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tipo_pedido $tipo_pedido)
+    public function update(Request $request, TipoPedido $tipo_pedido)
     {
         //
     }
@@ -58,7 +58,7 @@ class TipoPedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tipo_pedido $tipo_pedido)
+    public function destroy(TipoPedido $tipo_pedido)
     {
         //
     }

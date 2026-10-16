@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\lugar_nacimiento;
+use App\Models\LugarNacimiento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<lugar_nacimiento>
+ * @extends Factory<LugarNacimiento>
 =======
 use App\Models\LugarNacimiento;
 use Illuminate\Database\Eloquent\Factories\Factory;

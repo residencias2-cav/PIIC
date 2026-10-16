@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Proveedores\Proveedor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class inf_contrato extends Model
+class InfContrato extends Model
 {
     /** @use HasFactory<\Database\Factories\InfContratoFactory> */
     use HasFactory;

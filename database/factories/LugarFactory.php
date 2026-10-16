@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\lugar;
+use App\Models\Lugar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<lugar>
+ * @extends Factory<Lugar>
  */
 class LugarFactory extends Factory
 {

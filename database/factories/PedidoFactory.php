@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\pedido;
+use App\Models\Compras\Pedido;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<pedido>
+ * @extends Factory<Pedido>
  */
 class PedidoFactory extends Factory
 {

@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\tipo_epp;
+use App\Models\TipoEpp;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<tipo_epp>
+ * @extends Factory<TipoEpp>
 =======
 use App\Models\TipoEpp;
 use Illuminate\Database\Eloquent\Factories\Factory;

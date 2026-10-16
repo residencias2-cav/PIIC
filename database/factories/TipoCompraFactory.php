@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\tipo_compra;
+use App\Models\TipoCompra;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<tipo_compra>
+ * @extends Factory<TipoCompra>
  */
 class TipoCompraFactory extends Factory
 {

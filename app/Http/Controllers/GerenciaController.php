@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\gerencia;
+use App\Models\Gerencia;
 use Illuminate\Http\Request;
 
 class GerenciaController extends Controller
@@ -34,7 +34,7 @@ class GerenciaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(gerencia $gerencia)
+    public function show(Gerencia $gerencia)
     {
         //
     }
@@ -42,7 +42,7 @@ class GerenciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(gerencia $gerencia)
+    public function edit(Gerencia $gerencia)
     {
         //
     }
@@ -50,7 +50,7 @@ class GerenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, gerencia $gerencia)
+    public function update(Request $request, Gerencia $gerencia)
     {
         //
     }
@@ -58,7 +58,7 @@ class GerenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(gerencia $gerencia)
+    public function destroy(Gerencia $gerencia)
     {
         //
     }

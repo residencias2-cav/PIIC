@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\folio_compras;
+use App\Models\Compras\FolioCompras;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<folio_compras>
+ * @extends Factory<FolioCompras>
  */
 class FolioComprasFactory extends Factory
 {

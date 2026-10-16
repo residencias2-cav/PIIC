@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Lugar;
 use App\Models\User;
-use App\Models\lugar;
 use Illuminate\Auth\Access\Response;
 
-class lugarPolicy
+class LugarPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class lugarPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, lugar $lugar): bool
+    public function view(User $user, Lugar $lugar): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class lugarPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, lugar $lugar): bool
+    public function update(User $user, Lugar $lugar): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class lugarPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, lugar $lugar): bool
+    public function delete(User $user, Lugar $lugar): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class lugarPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, lugar $lugar): bool
+    public function restore(User $user, Lugar $lugar): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class lugarPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, lugar $lugar): bool
+    public function forceDelete(User $user, Lugar $lugar): bool
     {
         return false;
     }
