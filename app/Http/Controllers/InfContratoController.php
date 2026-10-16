@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
-use App\Models\inf_contrato;
+use App\Models\InfContrato;
 =======
 use App\Models\InfContrato;
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -39,7 +39,7 @@ class InfContratoController extends Controller
      * Display the specified resource.
      */
 <<<<<<< HEAD
-    public function show(inf_contrato $inf_contrato)
+    public function show(InfContrato $inf_contrato)
 =======
     public function show(InfContrato $infContrato)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -51,7 +51,7 @@ class InfContratoController extends Controller
      * Show the form for editing the specified resource.
      */
 <<<<<<< HEAD
-    public function edit(inf_contrato $inf_contrato)
+    public function edit(InfContrato $inf_contrato)
 =======
     public function edit(InfContrato $infContrato)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -63,7 +63,7 @@ class InfContratoController extends Controller
      * Update the specified resource in storage.
      */
 <<<<<<< HEAD
-    public function update(Request $request, inf_contrato $inf_contrato)
+    public function update(Request $request, InfContrato $inf_contrato)
 =======
     public function update(Request $request, InfContrato $infContrato)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -75,7 +75,7 @@ class InfContratoController extends Controller
      * Remove the specified resource from storage.
      */
 <<<<<<< HEAD
-    public function destroy(inf_contrato $inf_contrato)
+    public function destroy(InfContrato $inf_contrato)
 =======
     public function destroy(InfContrato $infContrato)
 >>>>>>> 1068da9 (Estados nacimientos)

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Proveedores;
 
-use App\Models\InformacionBancaria;
+use App\Models\Proveedores\InformacionBancaria;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

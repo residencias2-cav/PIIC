@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,11 @@ class LugarNacimiento extends Model
     ];
 
     public function lugaresNacimiento()
+    {
+        return $this->hasMany(Trabajador::class);
+    }
+
+    public function trabajadores()
     {
         return $this->hasMany(Trabajador::class);
     }

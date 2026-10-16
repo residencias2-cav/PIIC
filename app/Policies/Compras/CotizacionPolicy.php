@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Compras;
 
-use App\Models\Cotizacion;
+use App\Models\Compras\Cotizacion;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

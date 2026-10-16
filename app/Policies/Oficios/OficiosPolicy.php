@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Oficios;
 
-use App\Models\Oficios;
+use App\Models\Oficios\Oficios;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -2,7 +2,7 @@
 
 namespace App\Policies\Oficios;
 
-use App\Models\OficiosProductos;
+use App\Models\Oficios\OficiosProductos;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
-use App\Models\lugar_nacimiento;
+use App\Models\LugarNacimiento;
 =======
 use App\Models\LugarNacimiento;
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -39,7 +39,7 @@ class LugarNacimientoController extends Controller
      * Display the specified resource.
      */
 <<<<<<< HEAD
-    public function show(lugar_nacimiento $lugar_nacimiento)
+    public function show(LugarNacimiento $lugar_nacimiento)
 =======
     public function show(LugarNacimiento $lugarNacimiento)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -51,7 +51,7 @@ class LugarNacimientoController extends Controller
      * Show the form for editing the specified resource.
      */
 <<<<<<< HEAD
-    public function edit(lugar_nacimiento $lugar_nacimiento)
+    public function edit(LugarNacimiento $lugar_nacimiento)
 =======
     public function edit(LugarNacimiento $lugarNacimiento)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -63,7 +63,7 @@ class LugarNacimientoController extends Controller
      * Update the specified resource in storage.
      */
 <<<<<<< HEAD
-    public function update(Request $request, lugar_nacimiento $lugar_nacimiento)
+    public function update(Request $request, LugarNacimiento $lugar_nacimiento)
 =======
     public function update(Request $request, LugarNacimiento $lugarNacimiento)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -75,7 +75,7 @@ class LugarNacimientoController extends Controller
      * Remove the specified resource from storage.
      */
 <<<<<<< HEAD
-    public function destroy(lugar_nacimiento $lugar_nacimiento)
+    public function destroy(LugarNacimiento $lugar_nacimiento)
 =======
     public function destroy(LugarNacimiento $lugarNacimiento)
 >>>>>>> 1068da9 (Estados nacimientos)

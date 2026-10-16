@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\tipo_usuario;
+use App\Models\TipoUsuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<tipo_usuario>
+ * @extends Factory<TipoUsuario>
 =======
 use App\Models\TipoUsuario;
 use Illuminate\Database\Eloquent\Factories\Factory;

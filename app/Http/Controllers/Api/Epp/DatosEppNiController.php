@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datos_epp_ni;
+use App\Models\Epp\DatosEppNi;
 use Illuminate\Http\Request;
 
 class DatosEppNiController extends Controller
@@ -34,7 +34,7 @@ class DatosEppNiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(datos_epp_ni $datos_epp_ni)
+    public function show(DatosEppNi $datos_epp_ni)
     {
         //
     }
@@ -42,7 +42,7 @@ class DatosEppNiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(datos_epp_ni $datos_epp_ni)
+    public function edit(DatosEppNi $datos_epp_ni)
     {
         //
     }
@@ -50,7 +50,7 @@ class DatosEppNiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, datos_epp_ni $datos_epp_ni)
+    public function update(Request $request, DatosEppNi $datos_epp_ni)
     {
         //
     }
@@ -58,7 +58,7 @@ class DatosEppNiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(datos_epp_ni $datos_epp_ni)
+    public function destroy(DatosEppNi $datos_epp_ni)
     {
         //
     }

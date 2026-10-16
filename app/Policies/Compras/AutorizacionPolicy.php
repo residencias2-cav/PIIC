@@ -2,7 +2,7 @@
 
 namespace App\Policies\Compras;
 
-use App\Models\Autorizacion;
+use App\Models\Compras\Autorizacion;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

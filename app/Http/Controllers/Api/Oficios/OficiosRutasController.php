@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oficios_rutas;
+use App\Models\Oficios\OficiosRutas;
 use Illuminate\Http\Request;
 
 class OficiosRutasController extends Controller
@@ -34,7 +34,7 @@ class OficiosRutasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(oficios_rutas $oficios_rutas)
+    public function show(OficiosRutas $oficios_rutas)
     {
         //
     }
@@ -42,7 +42,7 @@ class OficiosRutasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(oficios_rutas $oficios_rutas)
+    public function edit(OficiosRutas $oficios_rutas)
     {
         //
     }
@@ -50,7 +50,7 @@ class OficiosRutasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, oficios_rutas $oficios_rutas)
+    public function update(Request $request, OficiosRutas $oficios_rutas)
     {
         //
     }
@@ -58,7 +58,7 @@ class OficiosRutasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(oficios_rutas $oficios_rutas)
+    public function destroy(OficiosRutas $oficios_rutas)
     {
         //
     }

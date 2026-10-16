@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datos_proveedor;
+use App\Models\Proveedores\DatosProveedor;
 use Illuminate\Http\Request;
 
 class DatosProveedorController extends Controller
@@ -34,7 +34,7 @@ class DatosProveedorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(datos_proveedor $datos_proveedor)
+    public function show(DatosProveedor $datos_proveedor)
     {
         //
     }
@@ -42,7 +42,7 @@ class DatosProveedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(datos_proveedor $datos_proveedor)
+    public function edit(DatosProveedor $datos_proveedor)
     {
         //
     }
@@ -50,7 +50,7 @@ class DatosProveedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, datos_proveedor $datos_proveedor)
+    public function update(Request $request, DatosProveedor $datos_proveedor)
     {
         //
     }
@@ -58,7 +58,7 @@ class DatosProveedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(datos_proveedor $datos_proveedor)
+    public function destroy(DatosProveedor $datos_proveedor)
     {
         //
     }

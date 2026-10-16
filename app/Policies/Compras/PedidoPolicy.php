@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Compras;
 
-use App\Models\Pedido;
+use App\Models\Compras\Pedido;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -2,7 +2,7 @@
 
 namespace App\Policies\Compras;
 
-use App\Models\DatosCotizacion;
+use App\Models\Compras\DatosCotizacion;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

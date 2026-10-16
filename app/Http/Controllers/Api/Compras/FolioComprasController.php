@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\folio_compras;
+use App\Models\Compras\FolioCompras;
 use Illuminate\Http\Request;
 
 class FolioComprasController extends Controller
@@ -34,7 +34,7 @@ class FolioComprasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(folio_compras $folio_compras)
+    public function show(FolioCompras $folio_compras)
     {
         //
     }
@@ -42,7 +42,7 @@ class FolioComprasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(folio_compras $folio_compras)
+    public function edit(FolioCompras $folio_compras)
     {
         //
     }
@@ -50,7 +50,7 @@ class FolioComprasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, folio_compras $folio_compras)
+    public function update(Request $request, FolioCompras $folio_compras)
     {
         //
     }
@@ -58,7 +58,7 @@ class FolioComprasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(folio_compras $folio_compras)
+    public function destroy(FolioCompras $folio_compras)
     {
         //
     }

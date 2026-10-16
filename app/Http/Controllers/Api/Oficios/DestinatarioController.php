@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\destinatario;
+use App\Models\Destinatario;
 use Illuminate\Http\Request;
 
 class DestinatarioController extends Controller
@@ -34,7 +34,7 @@ class DestinatarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(destinatario $destinatario)
+    public function show(Destinatario $destinatario)
     {
         //
     }
@@ -42,7 +42,7 @@ class DestinatarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(destinatario $destinatario)
+    public function edit(Destinatario $destinatario)
     {
         //
     }
@@ -50,7 +50,7 @@ class DestinatarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, destinatario $destinatario)
+    public function update(Request $request, Destinatario $destinatario)
     {
         //
     }
@@ -58,7 +58,7 @@ class DestinatarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(destinatario $destinatario)
+    public function destroy(Destinatario $destinatario)
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oficios;
+use App\Models\Oficios\Oficios;
 use Illuminate\Http\Request;
 
 class OficiosController extends Controller
@@ -34,7 +34,7 @@ class OficiosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(oficios $oficios)
+    public function show(Oficios $oficios)
     {
         //
     }
@@ -42,7 +42,7 @@ class OficiosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(oficios $oficios)
+    public function edit(Oficios $oficios)
     {
         //
     }
@@ -50,7 +50,7 @@ class OficiosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, oficios $oficios)
+    public function update(Request $request, Oficios $oficios)
     {
         //
     }
@@ -58,7 +58,7 @@ class OficiosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(oficios $oficios)
+    public function destroy(Oficios $oficios)
     {
         //
     }

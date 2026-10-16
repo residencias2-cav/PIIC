@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oficios_repse;
+use App\Models\Oficios\OficiosRepse;
 use Illuminate\Http\Request;
 
 class OficiosRepseController extends Controller
@@ -34,7 +34,7 @@ class OficiosRepseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(oficios_repse $oficios_repse)
+    public function show(OficiosRepse $oficios_repse)
     {
         //
     }
@@ -42,7 +42,7 @@ class OficiosRepseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(oficios_repse $oficios_repse)
+    public function edit(OficiosRepse $oficios_repse)
     {
         //
     }
@@ -50,7 +50,7 @@ class OficiosRepseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, oficios_repse $oficios_repse)
+    public function update(Request $request, OficiosRepse $oficios_repse)
     {
         //
     }
@@ -58,7 +58,7 @@ class OficiosRepseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(oficios_repse $oficios_repse)
+    public function destroy(OficiosRepse $oficios_repse)
     {
         //
     }

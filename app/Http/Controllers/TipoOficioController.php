@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
-use App\Models\tipo_oficio;
+use App\Models\TipoOficio;
 =======
 use App\Models\TipoOficio;
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -39,7 +39,7 @@ class TipoOficioController extends Controller
      * Display the specified resource.
      */
 <<<<<<< HEAD
-    public function show(tipo_oficio $tipo_oficio)
+    public function show(TipoOficio $tipo_oficio)
 =======
     public function show(TipoOficio $tipoOficio)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -51,7 +51,7 @@ class TipoOficioController extends Controller
      * Show the form for editing the specified resource.
      */
 <<<<<<< HEAD
-    public function edit(tipo_oficio $tipo_oficio)
+    public function edit(TipoOficio $tipo_oficio)
 =======
     public function edit(TipoOficio $tipoOficio)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -63,7 +63,7 @@ class TipoOficioController extends Controller
      * Update the specified resource in storage.
      */
 <<<<<<< HEAD
-    public function update(Request $request, tipo_oficio $tipo_oficio)
+    public function update(Request $request, TipoOficio $tipo_oficio)
 =======
     public function update(Request $request, TipoOficio $tipoOficio)
 >>>>>>> 1068da9 (Estados nacimientos)
@@ -75,7 +75,7 @@ class TipoOficioController extends Controller
      * Remove the specified resource from storage.
      */
 <<<<<<< HEAD
-    public function destroy(tipo_oficio $tipo_oficio)
+    public function destroy(TipoOficio $tipo_oficio)
 =======
     public function destroy(TipoOficio $tipoOficio)
 >>>>>>> 1068da9 (Estados nacimientos)

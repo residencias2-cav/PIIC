@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\datos_epp_ni;
+use App\Models\Epp\DatosEppNi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<datos_epp_ni>
+ * @extends Factory<DatosEppNi>
  */
 class DatosEppNiFactory extends Factory
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\epp;
+use App\Models\Epp\Epp;
 use Illuminate\Http\Request;
 
 class EppController extends Controller
@@ -34,7 +34,7 @@ class EppController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(epp $epp)
+    public function show(Epp $epp)
     {
         //
     }
@@ -42,7 +42,7 @@ class EppController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(epp $epp)
+    public function edit(Epp $epp)
     {
         //
     }
@@ -50,7 +50,7 @@ class EppController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, epp $epp)
+    public function update(Request $request, Epp $epp)
     {
         //
     }
@@ -58,7 +58,7 @@ class EppController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(epp $epp)
+    public function destroy(Epp $epp)
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\usuarios_proveedores;
+use App\Models\Usuarios\UsuariosProveedores;
 use Illuminate\Http\Request;
 
 class UsuariosProveedoresController extends Controller
@@ -34,7 +34,7 @@ class UsuariosProveedoresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(usuarios_proveedores $usuarios_proveedores)
+    public function show(UsuariosProveedores $usuarios_proveedores)
     {
         //
     }
@@ -42,7 +42,7 @@ class UsuariosProveedoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(usuarios_proveedores $usuarios_proveedores)
+    public function edit(UsuariosProveedores $usuarios_proveedores)
     {
         //
     }
@@ -50,7 +50,7 @@ class UsuariosProveedoresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, usuarios_proveedores $usuarios_proveedores)
+    public function update(Request $request, UsuariosProveedores $usuarios_proveedores)
     {
         //
     }
@@ -58,7 +58,7 @@ class UsuariosProveedoresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(usuarios_proveedores $usuarios_proveedores)
+    public function destroy(UsuariosProveedores $usuarios_proveedores)
     {
         //
     }

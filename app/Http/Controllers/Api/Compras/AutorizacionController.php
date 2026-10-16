@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\autorizacion;
+use App\Models\Compras\Autorizacion;
 use Illuminate\Http\Request;
 
 class AutorizacionController extends Controller
@@ -34,7 +34,7 @@ class AutorizacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(autorizacion $autorizacion)
+    public function show(Autorizacion $autorizacion)
     {
         //
     }
@@ -42,7 +42,7 @@ class AutorizacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(autorizacion $autorizacion)
+    public function edit(Autorizacion $autorizacion)
     {
         //
     }
@@ -50,7 +50,7 @@ class AutorizacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, autorizacion $autorizacion)
+    public function update(Request $request, Autorizacion $autorizacion)
     {
         //
     }
@@ -58,7 +58,7 @@ class AutorizacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(autorizacion $autorizacion)
+    public function destroy(Autorizacion $autorizacion)
     {
         //
     }

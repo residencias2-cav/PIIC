@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Epp;
 
-use App\Models\InventarioEpp;
+use App\Models\Epp\InventarioEpp;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

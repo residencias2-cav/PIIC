@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Usuarios;
 
 use App\Models\User;
-use App\Models\UsuariosProveedores;
+use App\Models\Usuarios\UsuariosProveedores;
 use Illuminate\Auth\Access\Response;
 
 class UsuariosProveedoresPolicy

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Compras;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class autorizacion extends Model
+class Autorizacion extends Model
 {
     /** @use HasFactory<\Database\Factories\AutorizacionFactory> */
     use HasFactory;

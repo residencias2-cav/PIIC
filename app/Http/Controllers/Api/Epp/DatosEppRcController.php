@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datos_epp_rc;
+use App\Models\Epp\DatosEppRc;
 use Illuminate\Http\Request;
 
 class DatosEppRcController extends Controller
@@ -34,7 +34,7 @@ class DatosEppRcController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(datos_epp_rc $datos_epp_rc)
+    public function show(DatosEppRc $datos_epp_rc)
     {
         //
     }
@@ -42,7 +42,7 @@ class DatosEppRcController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(datos_epp_rc $datos_epp_rc)
+    public function edit(DatosEppRc $datos_epp_rc)
     {
         //
     }
@@ -50,7 +50,7 @@ class DatosEppRcController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, datos_epp_rc $datos_epp_rc)
+    public function update(Request $request, DatosEppRc $datos_epp_rc)
     {
         //
     }
@@ -58,7 +58,7 @@ class DatosEppRcController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(datos_epp_rc $datos_epp_rc)
+    public function destroy(DatosEppRc $datos_epp_rc)
     {
         //
     }

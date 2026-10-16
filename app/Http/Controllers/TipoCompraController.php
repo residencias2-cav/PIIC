@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipo_compra;
+use App\Models\TipoCompra;
 use Illuminate\Http\Request;
 
 class TipoCompraController extends Controller
@@ -34,7 +34,7 @@ class TipoCompraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tipo_compra $tipo_compra)
+    public function show(TipoCompra $tipo_compra)
     {
         //
     }
@@ -42,7 +42,7 @@ class TipoCompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tipo_compra $tipo_compra)
+    public function edit(TipoCompra $tipo_compra)
     {
         //
     }
@@ -50,7 +50,7 @@ class TipoCompraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tipo_compra $tipo_compra)
+    public function update(Request $request, TipoCompra $tipo_compra)
     {
         //
     }
@@ -58,7 +58,7 @@ class TipoCompraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tipo_compra $tipo_compra)
+    public function destroy(TipoCompra $tipo_compra)
     {
         //
     }

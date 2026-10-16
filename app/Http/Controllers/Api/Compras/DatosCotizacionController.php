@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datos_cotizacion;
+use App\Models\Compras\DatosCotizacion;
 use Illuminate\Http\Request;
 
 class DatosCotizacionController extends Controller
@@ -34,7 +34,7 @@ class DatosCotizacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(datos_cotizacion $datos_cotizacion)
+    public function show(DatosCotizacion $datos_cotizacion)
     {
         //
     }
@@ -42,7 +42,7 @@ class DatosCotizacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(datos_cotizacion $datos_cotizacion)
+    public function edit(DatosCotizacion $datos_cotizacion)
     {
         //
     }
@@ -50,7 +50,7 @@ class DatosCotizacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, datos_cotizacion $datos_cotizacion)
+    public function update(Request $request, DatosCotizacion $datos_cotizacion)
     {
         //
     }
@@ -58,7 +58,7 @@ class DatosCotizacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(datos_cotizacion $datos_cotizacion)
+    public function destroy(DatosCotizacion $datos_cotizacion)
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventario_epp;
+use App\Models\Epp\InventarioEpp;
 use Illuminate\Http\Request;
 
 class InventarioEppController extends Controller
@@ -34,7 +34,7 @@ class InventarioEppController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(inventario_epp $inventario_epp)
+    public function show(InventarioEpp $inventario_epp)
     {
         //
     }
@@ -42,7 +42,7 @@ class InventarioEppController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(inventario_epp $inventario_epp)
+    public function edit(InventarioEpp $inventario_epp)
     {
         //
     }
@@ -50,7 +50,7 @@ class InventarioEppController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, inventario_epp $inventario_epp)
+    public function update(Request $request, InventarioEpp $inventario_epp)
     {
         //
     }
@@ -58,7 +58,7 @@ class InventarioEppController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(inventario_epp $inventario_epp)
+    public function destroy(InventarioEpp $inventario_epp)
     {
         //
     }

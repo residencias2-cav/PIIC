@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\autorizado_por;
+use App\Models\Compras\AutorizadoPor;
 use Illuminate\Http\Request;
 
 class AutorizadoPorController extends Controller
@@ -34,7 +34,7 @@ class AutorizadoPorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(autorizado_por $autorizado_por)
+    public function show(AutorizadoPor $autorizado_por)
     {
         //
     }
@@ -42,7 +42,7 @@ class AutorizadoPorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(autorizado_por $autorizado_por)
+    public function edit(AutorizadoPor $autorizado_por)
     {
         //
     }
@@ -50,7 +50,7 @@ class AutorizadoPorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, autorizado_por $autorizado_por)
+    public function update(Request $request, AutorizadoPor $autorizado_por)
     {
         //
     }
@@ -58,7 +58,7 @@ class AutorizadoPorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(autorizado_por $autorizado_por)
+    public function destroy(AutorizadoPor $autorizado_por)
     {
         //
     }

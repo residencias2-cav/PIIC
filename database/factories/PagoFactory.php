@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\pago;
+use App\Models\Compras\Pago;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<pago>
+ * @extends Factory<Pago>
  */
 class PagoFactory extends Factory
 {

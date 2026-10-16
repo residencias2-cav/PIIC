@@ -2,7 +2,7 @@
 
 namespace App\Policies\Proveedores;
 
-use App\Models\ProveedorServicio;
+use App\Models\Proveedores\ProveedorServicio;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

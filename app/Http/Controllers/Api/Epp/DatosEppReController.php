@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datos_epp_re;
+use App\Models\Epp\DatosEppRe;
 use Illuminate\Http\Request;
 
 class DatosEppReController extends Controller
@@ -34,7 +34,7 @@ class DatosEppReController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(datos_epp_re $datos_epp_re)
+    public function show(DatosEppRe $datos_epp_re)
     {
         //
     }
@@ -42,7 +42,7 @@ class DatosEppReController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(datos_epp_re $datos_epp_re)
+    public function edit(DatosEppRe $datos_epp_re)
     {
         //
     }
@@ -50,7 +50,7 @@ class DatosEppReController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, datos_epp_re $datos_epp_re)
+    public function update(Request $request, DatosEppRe $datos_epp_re)
     {
         //
     }
@@ -58,7 +58,7 @@ class DatosEppReController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(datos_epp_re $datos_epp_re)
+    public function destroy(DatosEppRe $datos_epp_re)
     {
         //
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Proveedores;
 
-use App\Models\DatosProveedor;
+use App\Models\Proveedores\DatosProveedor;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

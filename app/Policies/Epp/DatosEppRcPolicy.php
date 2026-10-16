@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Epp;
 
-use App\Models\DatosEppRc;
+use App\Models\Epp\DatosEppRc;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\tipo_cotizacion;
+use App\Models\TipoCotizacion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<tipo_cotizacion>
+ * @extends Factory<TipoCotizacion>
  */
 class TipoCotizacionFactory extends Factory
 {

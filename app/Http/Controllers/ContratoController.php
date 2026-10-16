@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contrato;
+use App\Models\Contrato;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
@@ -34,7 +34,7 @@ class ContratoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(contrato $contrato)
+    public function show(Contrato $contrato)
     {
         //
     }
@@ -42,7 +42,7 @@ class ContratoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(contrato $contrato)
+    public function edit(Contrato $contrato)
     {
         //
     }
@@ -50,7 +50,7 @@ class ContratoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, contrato $contrato)
+    public function update(Request $request, Contrato $contrato)
     {
         //
     }
@@ -58,7 +58,7 @@ class ContratoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(contrato $contrato)
+    public function destroy(Contrato $contrato)
     {
         //
     }

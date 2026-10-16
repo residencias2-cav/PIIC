@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oficios_comisiones;
+use App\Models\Oficios\OficiosComisiones;
 use Illuminate\Http\Request;
 
 class OficiosComisionesController extends Controller
@@ -34,7 +34,7 @@ class OficiosComisionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(oficios_comisiones $oficios_comisiones)
+    public function show(OficiosComisiones $oficios_comisiones)
     {
         //
     }
@@ -42,7 +42,7 @@ class OficiosComisionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(oficios_comisiones $oficios_comisiones)
+    public function edit(OficiosComisiones $oficios_comisiones)
     {
         //
     }
@@ -50,7 +50,7 @@ class OficiosComisionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, oficios_comisiones $oficios_comisiones)
+    public function update(Request $request, OficiosComisiones $oficios_comisiones)
     {
         //
     }
@@ -58,7 +58,7 @@ class OficiosComisionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(oficios_comisiones $oficios_comisiones)
+    public function destroy(OficiosComisiones $oficios_comisiones)
     {
         //
     }

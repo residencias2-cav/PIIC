@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\estado;
+use App\Models\Estado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<estado>
+ * @extends Factory<Estado>
  */
 class EstadoFactory extends Factory
 {

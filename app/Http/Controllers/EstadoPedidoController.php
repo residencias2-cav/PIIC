@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\estado_pedido;
+use App\Models\EstadoPedido;
 use Illuminate\Http\Request;
 
 class EstadoPedidoController extends Controller
@@ -34,7 +34,7 @@ class EstadoPedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(estado_pedido $estado_pedido)
+    public function show(EstadoPedido $estadoPedido)
     {
         //
     }
@@ -42,7 +42,7 @@ class EstadoPedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(estado_pedido $estado_pedido)
+    public function edit(EstadoPedido $estadoPedido)
     {
         //
     }
@@ -50,7 +50,7 @@ class EstadoPedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, estado_pedido $estado_pedido)
+    public function update(Request $request, EstadoPedido $estadoPedido)
     {
         //
     }
@@ -58,7 +58,7 @@ class EstadoPedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(estado_pedido $estado_pedido)
+    public function destroy(EstadoPedido $estadoPedido)
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Policies\Proveedores;
 
-use App\Models\ProvContacto;
+use App\Models\Proveedores\ProvContacto;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

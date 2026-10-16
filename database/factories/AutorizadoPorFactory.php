@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\autorizado_por;
+use App\Models\Compras\AutorizadoPor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<autorizado_por>
+ * @extends Factory<AutorizadoPor>
  */
 class AutorizadoPorFactory extends Factory
 {

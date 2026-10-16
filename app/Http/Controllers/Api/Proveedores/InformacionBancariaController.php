@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\informacion_bancaria;
+use App\Models\Proveedores\InformacionBancaria;
 use Illuminate\Http\Request;
 
 class InformacionBancariaController extends Controller
@@ -34,7 +34,7 @@ class InformacionBancariaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(informacion_bancaria $informacion_bancaria)
+    public function show(InformacionBancaria $informacion_bancaria)
     {
         //
     }
@@ -42,7 +42,7 @@ class InformacionBancariaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(informacion_bancaria $informacion_bancaria)
+    public function edit(InformacionBancaria $informacion_bancaria)
     {
         //
     }
@@ -50,7 +50,7 @@ class InformacionBancariaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, informacion_bancaria $informacion_bancaria)
+    public function update(Request $request, InformacionBancaria $informacion_bancaria)
     {
         //
     }
@@ -58,7 +58,7 @@ class InformacionBancariaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(informacion_bancaria $informacion_bancaria)
+    public function destroy(InformacionBancaria $informacion_bancaria)
     {
         //
     }

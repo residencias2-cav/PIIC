@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\informacion_bancaria;
+use App\Models\Proveedores\InformacionBancaria;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<informacion_bancaria>
+ * @extends Factory<InformacionBancaria>
  */
 class InformacionBancariaFactory extends Factory
 {

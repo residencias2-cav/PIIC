@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\pedido_interno;
+use App\Models\Compras\PedidoInterno;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<pedido_interno>
+ * @extends Factory<PedidoInterno>
  */
 class PedidoInternoFactory extends Factory
 {

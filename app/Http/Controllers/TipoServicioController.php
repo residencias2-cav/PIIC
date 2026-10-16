@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipo_servicio;
+use App\Models\TipoServicio;
 use Illuminate\Http\Request;
 
 class TipoServicioController extends Controller
@@ -34,7 +34,7 @@ class TipoServicioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tipo_servicio $tipo_servicio)
+    public function show(TipoServicio $tipo_servicio)
     {
         //
     }
@@ -42,7 +42,7 @@ class TipoServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tipo_servicio $tipo_servicio)
+    public function edit(TipoServicio $tipo_servicio)
     {
         //
     }
@@ -50,7 +50,7 @@ class TipoServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tipo_servicio $tipo_servicio)
+    public function update(Request $request, TipoServicio $tipo_servicio)
     {
         //
     }
@@ -58,7 +58,7 @@ class TipoServicioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tipo_servicio $tipo_servicio)
+    public function destroy(TipoServicio $tipo_servicio)
     {
         //
     }

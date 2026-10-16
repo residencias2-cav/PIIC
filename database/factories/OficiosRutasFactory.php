@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\oficios_rutas;
+use App\Models\Oficios\OficiosRutas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<oficios_rutas>
+ * @extends Factory<OficiosRutas>
  */
 class OficiosRutasFactory extends Factory
 {

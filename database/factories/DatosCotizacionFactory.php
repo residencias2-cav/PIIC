@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\datos_cotizacion;
+use App\Models\Compras\DatosCotizacion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<datos_cotizacion>
+ * @extends Factory<DatosCotizacion>
  */
 class DatosCotizacionFactory extends Factory
 {

@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 <<<<<<< HEAD
-use App\Models\tipo_sangre;
+use App\Models\TipoSangre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<tipo_sangre>
+ * @extends Factory<TipoSangre>
 =======
 use App\Models\TipoSangre;
 use Illuminate\Database\Eloquent\Factories\Factory;

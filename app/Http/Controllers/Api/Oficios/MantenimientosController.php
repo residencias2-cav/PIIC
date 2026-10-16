@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\mantenimientos;
+use App\Models\Oficios\Mantenimientos;
 use Illuminate\Http\Request;
 
 class MantenimientosController extends Controller
@@ -34,7 +34,7 @@ class MantenimientosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(mantenimientos $mantenimientos)
+    public function show(Mantenimientos $mantenimientos)
     {
         //
     }
@@ -42,7 +42,7 @@ class MantenimientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(mantenimientos $mantenimientos)
+    public function edit(Mantenimientos $mantenimientos)
     {
         //
     }
@@ -50,7 +50,7 @@ class MantenimientosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, mantenimientos $mantenimientos)
+    public function update(Request $request, Mantenimientos $mantenimientos)
     {
         //
     }
@@ -58,7 +58,7 @@ class MantenimientosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(mantenimientos $mantenimientos)
+    public function destroy(Mantenimientos $mantenimientos)
     {
         //
     }

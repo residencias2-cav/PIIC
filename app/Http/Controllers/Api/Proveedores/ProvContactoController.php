@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\prov_contacto;
+use App\Models\Proveedores\ProvContacto;
 use Illuminate\Http\Request;
 
 class ProvContactoController extends Controller
@@ -34,7 +34,7 @@ class ProvContactoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(prov_contacto $prov_contacto)
+    public function show(ProvContacto $prov_contacto)
     {
         //
     }
@@ -42,7 +42,7 @@ class ProvContactoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(prov_contacto $prov_contacto)
+    public function edit(ProvContacto $prov_contacto)
     {
         //
     }
@@ -50,7 +50,7 @@ class ProvContactoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, prov_contacto $prov_contacto)
+    public function update(Request $request, ProvContacto $prov_contacto)
     {
         //
     }
@@ -58,7 +58,7 @@ class ProvContactoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(prov_contacto $prov_contacto)
+    public function destroy(ProvContacto $prov_contacto)
     {
         //
     }

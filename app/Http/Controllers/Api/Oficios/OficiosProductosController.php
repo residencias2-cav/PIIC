@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oficios_productos;
+use App\Models\Oficios\OficiosProductos;
 use Illuminate\Http\Request;
 
 class OficiosProductosController extends Controller
@@ -34,7 +34,7 @@ class OficiosProductosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(oficios_productos $oficios_productos)
+    public function show(OficiosProductos $oficios_productos)
     {
         //
     }
@@ -42,7 +42,7 @@ class OficiosProductosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(oficios_productos $oficios_productos)
+    public function edit(OficiosProductos $oficios_productos)
     {
         //
     }
@@ -50,7 +50,7 @@ class OficiosProductosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, oficios_productos $oficios_productos)
+    public function update(Request $request, OficiosProductos $oficios_productos)
     {
         //
     }
@@ -58,7 +58,7 @@ class OficiosProductosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(oficios_productos $oficios_productos)
+    public function destroy(OficiosProductos $oficios_productos)
     {
         //
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Compras;
 
-use App\Models\Pago;
+use App\Models\Compras\Pago;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

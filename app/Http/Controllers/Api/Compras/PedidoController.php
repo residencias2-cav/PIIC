@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pedido;
+use App\Models\Compras\Pedido;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -34,7 +34,7 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(pedido $pedido)
+    public function show(Pedido $pedido)
     {
         //
     }
@@ -42,7 +42,7 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(pedido $pedido)
+    public function edit(Pedido $pedido)
     {
         //
     }
@@ -50,7 +50,7 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, pedido $pedido)
+    public function update(Request $request, Pedido $pedido)
     {
         //
     }
@@ -58,7 +58,7 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pedido $pedido)
+    public function destroy(Pedido $pedido)
     {
         //
     }

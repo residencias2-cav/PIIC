@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pedido_interno;
+use App\Models\Compras\PedidoInterno;
 use Illuminate\Http\Request;
 
 class PedidoInternoController extends Controller
@@ -34,7 +34,7 @@ class PedidoInternoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(pedido_interno $pedido_interno)
+    public function show(PedidoInterno $pedido_interno)
     {
         //
     }
@@ -42,7 +42,7 @@ class PedidoInternoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(pedido_interno $pedido_interno)
+    public function edit(PedidoInterno $pedido_interno)
     {
         //
     }
@@ -50,7 +50,7 @@ class PedidoInternoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, pedido_interno $pedido_interno)
+    public function update(Request $request, PedidoInterno $pedido_interno)
     {
         //
     }
@@ -58,7 +58,7 @@ class PedidoInternoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pedido_interno $pedido_interno)
+    public function destroy(PedidoInterno $pedido_interno)
     {
         //
     }

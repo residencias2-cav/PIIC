@@ -2,7 +2,7 @@
 
 namespace App\Policies\Compras;
 
-use App\Models\FolioCompras;
+use App\Models\Compras\FolioCompras;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

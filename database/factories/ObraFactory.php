@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\obra;
+use App\Models\Obra;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<obra>
+ * @extends Factory<Obra>
  */
 class ObraFactory extends Factory
 {
