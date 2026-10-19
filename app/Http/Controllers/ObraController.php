@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obra;
+use App\Http\Requests\StoreObraRequest;
 use Illuminate\Http\Request;
 
 class ObraController extends Controller
@@ -26,9 +27,11 @@ class ObraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreObraRequest $request)
     {
-        //
+        $obra = Obra::create($request->validated());
+
+        return response()->json($obra, 201);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contrato;
+use App\Http\Requests\StoreContratoRequest;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
@@ -26,9 +27,12 @@ class ContratoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreContratoRequest $request)
     {
-        //
+        
+        $contrato = Contrato::create($request->validated());
+
+        return response()->json($contrato, 201);
     }
 
     /**

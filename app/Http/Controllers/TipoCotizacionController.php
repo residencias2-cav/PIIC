@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoCotizacion;
+use App\Http\Requests\StoreTipoCotizacionRequest;
 use Illuminate\Http\Request;
 
 class TipoCotizacionController extends Controller
@@ -26,9 +27,11 @@ class TipoCotizacionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTipoCotizacionRequest $request)
     {
-        //
+        $tipo_cotizacion = TipoCotizacion::create($request->validated());
+
+        return response()->json($tipo_cotizacion, 201);
     }
 
     /**

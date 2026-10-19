@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ubicacion;
+use App\Http\Requests\StoreUbicacionRequest;
 use Illuminate\Http\Request;
 
 class UbicacionController extends Controller
@@ -26,9 +27,11 @@ class UbicacionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUbicacionRequest $request)
     {
-        //
+        $ubicacion = ubicacion::create($request->validated());
+
+        return response()->json($ubicacion, 201);
     }
 
     /**

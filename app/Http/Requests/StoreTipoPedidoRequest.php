@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store_estado_pedido_Request extends FormRequest
+class StoreTipoPedidoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class Store_estado_pedido_Request extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:30'],
+            'nombre' => ['request', 'string', 'max:30'],
         ];
     }
 }

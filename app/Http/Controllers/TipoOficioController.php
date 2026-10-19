@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\TipoOficio;
-=======
-use App\Models\TipoOficio;
->>>>>>> 1068da9 (Estados nacimientos)
+use App\Http\Requests\StoreTipoOficioRequest;
 use Illuminate\Http\Request;
 
 class TipoOficioController extends Controller
@@ -30,19 +27,18 @@ class TipoOficioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTipoOficioRequest $request)
     {
-        //
+        $tipo_oficio = TipoOficio::create($request->validated());
+
+        return response()->json($tipo_oficio, 201);
     }
 
     /**
      * Display the specified resource.
      */
-<<<<<<< HEAD
+
     public function show(TipoOficio $tipo_oficio)
-=======
-    public function show(TipoOficio $tipoOficio)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,11 +46,8 @@ class TipoOficioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-<<<<<<< HEAD
+
     public function edit(TipoOficio $tipo_oficio)
-=======
-    public function edit(TipoOficio $tipoOficio)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -62,11 +55,8 @@ class TipoOficioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
+
     public function update(Request $request, TipoOficio $tipo_oficio)
-=======
-    public function update(Request $request, TipoOficio $tipoOficio)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -74,11 +64,8 @@ class TipoOficioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
+
     public function destroy(TipoOficio $tipo_oficio)
-=======
-    public function destroy(TipoOficio $tipoOficio)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unidad;
+use App\Http\Requests\StoreUnidadRequest;
 use Illuminate\Http\Request;
 
 class UnidadController extends Controller
@@ -26,9 +27,11 @@ class UnidadController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUnidadRequest $request)
     {
-        //
+        $unidad = Unidad::create($request->validated());
+
+        return response()->json($unidad, 201);
     }
 
     /**
