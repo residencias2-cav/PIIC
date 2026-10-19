@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\TipoUsuario;
-=======
-use App\Models\TipoUsuario;
->>>>>>> 1068da9 (Estados nacimientos)
+use App\Http\Requests\StoreTipoUsuarioRequest;
 use Illuminate\Http\Request;
 
 class TipoUsuarioController extends Controller
@@ -30,19 +27,18 @@ class TipoUsuarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTipoUsuarioRequest $request)
     {
-        //
+        $tipo_usuario = TipoUsuario::create($request->validated());
+
+        return response()->json($tipo_usuario, 201);
     }
 
     /**
      * Display the specified resource.
      */
-<<<<<<< HEAD
+
     public function show(TipoUsuario $tipo_usuario)
-=======
-    public function show(TipoUsuario $tipoUsuario)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,11 +46,8 @@ class TipoUsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-<<<<<<< HEAD
+
     public function edit(TipoUsuario $tipo_usuario)
-=======
-    public function edit(TipoUsuario $tipoUsuario)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -62,11 +55,8 @@ class TipoUsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
+
     public function update(Request $request, TipoUsuario $tipo_usuario)
-=======
-    public function update(Request $request, TipoUsuario $tipoUsuario)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -74,11 +64,8 @@ class TipoUsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
+
     public function destroy(TipoUsuario $tipo_usuario)
-=======
-    public function destroy(TipoUsuario $tipoUsuario)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }

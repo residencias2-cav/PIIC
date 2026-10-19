@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductoServicio;
+use App\Http\Requests\StoreProductoServicioRequest;
 use Illuminate\Http\Request;
 
 class ProductoServicioController extends Controller
@@ -26,9 +27,11 @@ class ProductoServicioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductoServicioRequest $request)
     {
-        //
+        $productoservicio = ProductoServicio::create($request->validated());
+
+        return response()->json($productoservicio, 201);
     }
 
     /**

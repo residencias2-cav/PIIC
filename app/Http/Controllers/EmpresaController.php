@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Http\Requests\StoreEmpresaRequest;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -26,9 +27,11 @@ class EmpresaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(StoreEmpresaRequest $request)
     {
-        //
+        $empresa = Empresa::create($request->validated());
+
+        return response()->json($empresa, 201);
     }
 
     /**

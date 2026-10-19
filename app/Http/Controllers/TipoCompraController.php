@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoCompra;
+use App\Http\Requests\StoreTipoCompraRequest;
+use App\Http\Requests\UpdateTipoCompraRequest;
 use Illuminate\Http\Request;
 
 class TipoCompraController extends Controller
@@ -26,9 +28,11 @@ class TipoCompraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTipoCompraRequest $request)
     {
-        //
+        $tipo_compra = TipoCompra::create($request->validated());
+
+        return response()->json($tipo_compra, 201);
     }
 
     /**

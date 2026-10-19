@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\InfContrato;
-=======
-use App\Models\InfContrato;
->>>>>>> 1068da9 (Estados nacimientos)
+use App\Http\Requests\StoreInfContratoRequest;
 use Illuminate\Http\Request;
 
 class InfContratoController extends Controller
@@ -30,19 +27,17 @@ class InfContratoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInfContratoRequest $request)
     {
-        //
+        $inf_contrato = InfContrato::create($request->validated());
+
+        return response()->json($inf_contrato, 201);
     }
 
     /**
      * Display the specified resource.
      */
-<<<<<<< HEAD
     public function show(InfContrato $inf_contrato)
-=======
-    public function show(InfContrato $infContrato)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -50,11 +45,8 @@ class InfContratoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-<<<<<<< HEAD
+
     public function edit(InfContrato $inf_contrato)
-=======
-    public function edit(InfContrato $infContrato)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -62,11 +54,8 @@ class InfContratoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
+
     public function update(Request $request, InfContrato $inf_contrato)
-=======
-    public function update(Request $request, InfContrato $infContrato)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }
@@ -74,11 +63,8 @@ class InfContratoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
+
     public function destroy(InfContrato $inf_contrato)
-=======
-    public function destroy(InfContrato $infContrato)
->>>>>>> 1068da9 (Estados nacimientos)
     {
         //
     }

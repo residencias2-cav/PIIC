@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lugar;
+use App\Http\Requests\StoreLugarRequest;
 use Illuminate\Http\Request;
 
 class LugarController extends Controller
@@ -26,9 +27,11 @@ class LugarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreLugarRequest $request)
     {
-        //
+        $lugar = Lugar::create($request->validated());
+
+        return response()->json($lugar, 201);
     }
 
     /**
