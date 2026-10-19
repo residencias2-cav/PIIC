@@ -23,7 +23,7 @@ class UpdatearticuloRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:100'],
         ];
     }
 }

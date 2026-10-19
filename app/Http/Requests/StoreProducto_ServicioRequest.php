@@ -23,7 +23,7 @@ class Store_producto_servicio_Request extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:300'],
         ];
     }
 }

@@ -23,7 +23,8 @@ class Storeinf_contratoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'tipo_contrato' => ['required', 'string', 'max:30'],
+            'vigencia' => ['required', 'date'],
         ];
     }
 }

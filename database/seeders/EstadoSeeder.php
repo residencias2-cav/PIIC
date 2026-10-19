@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Estado;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,7 +22,7 @@ class EstadoSeeder extends Seeder
         ]);
 
         Estado::create([
-            'nombre' => 'En_espera',
+            'nombre' => 'En espera',
         ]);
 
         Estado::create([
@@ -31,7 +32,7 @@ class EstadoSeeder extends Seeder
         Estado::create([
             'nombre' => 'Recibido',
         ]);
-        
+
         Estado::create([
             'nombre' => 'Cancelado',
         ]);

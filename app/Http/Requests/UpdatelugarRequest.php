@@ -23,7 +23,7 @@ class UpdatelugarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre_municipio' => ['required', 'string', 'max:100'],
         ];
     }
 }

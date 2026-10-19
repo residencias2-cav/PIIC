@@ -23,7 +23,9 @@ class StoreempresaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:50'],
+            'rfc' => ['required', 'string', 'max:50'],
+            'dom_fiscal' => ['required', 'string', 'max:50'],
         ];
     }
 }

@@ -23,7 +23,7 @@ class Storetipo_sangreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:5'],
         ];
     }
 }

@@ -23,7 +23,7 @@ class StoreTipoOficioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:30'],
         ];
     }
 }

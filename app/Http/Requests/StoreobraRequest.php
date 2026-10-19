@@ -23,7 +23,7 @@ class StoreobraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre_obra' => ['required', 'string', 'max:100'],
         ];
     }
 }
