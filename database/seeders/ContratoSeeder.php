@@ -13,12 +13,6 @@ class ContratoSeeder extends Seeder
      */
     public function run(): void
     {
-        Contrato::create([
-            'nombre' => 'Producto',
-        ]);
-
-        Contrato::create([
-            'nombre' => 'Servicio',
-        ]);
+        //
     }
 }
