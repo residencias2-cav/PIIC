@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('datos_epp_trs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('epp_id')->constrained()->onDelete('cascade');
+            $table->integer('cantidad');
+            $table->text('descripcion');
+            $table->string('codigo', 50);
+            $table->string('marca', 50);
             $table->timestamps();
         });
     }

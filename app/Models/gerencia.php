@@ -28,7 +28,7 @@ class Gerencia extends Model
 
     public function mantenimientos()
     {
-        return $this->hasMany(Mantenimiento::class);
+        return $this->hasMany(Mantenimientos::class);
     }
 
     public function usuarios()

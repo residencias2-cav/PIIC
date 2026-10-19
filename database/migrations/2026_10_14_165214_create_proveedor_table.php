@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('proveedor', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 100);
+            $table->string('razon_social', 100);
+            $table->string('curp', 18);
+            $table->string('rfc', 13);
+            $table->string('area', 30);
+            $table->string('desc_bs', 100);
+            $table->date('vigencia_sat');
+            $table->foreignId('inf_credito');
+            $table->foreignId('inf_contrato');
+            $table->text('inf_impuestos');
+            $table->boolean('registrado');
             $table->timestamps();
         });
     }

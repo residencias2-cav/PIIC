@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('epp', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha');
+            $table->string('folio', 20);
+            $table->foreignId('tipo_epp_id')->constrained()->onDelete('cascade');
+            $table->foreignId('obra_id')->constrained()->onDelete('cascade');       
+            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
+            $table->string('motivo', 150);
+            $table->string('justificacion', 100);
+            $table->string('logistica', 100);
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

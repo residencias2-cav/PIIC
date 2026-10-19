@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha');
+            $table->string('folio', 20);
+            $table->foreignId('tipo_pedido_id')->constrained()->onDelete('cascade');
+            $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
+            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
+            $table->foreignId('proyecto_id')->constrained()->onDelete('cascade');
+            $table->foreignId('ubicacion_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tipo_compra_id')->constrained()->onDelete('cascade');
+            $table->foreignId('estado_id')->constrained()->onDelete('cascade');
+            $table->text('observaciones');
+            $table->integer('monto_credito')->constrained()->onDelete('cascade');
+            $table->integer('monto')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
