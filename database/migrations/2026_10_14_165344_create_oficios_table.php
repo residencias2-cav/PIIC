@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('oficios', function (Blueprint $table) {
             $table->id();
+            $table->string('folio', 50);
+            $table->date('fecha');
+            $table->string('asunto');
+            $table->text('cuerpo');
+            $table->foreignId('tipo_oficio_id')->constrained()->onDelete('cascade');
+            $table->foreignId('estado_id')->constrained()->onDelete('cascade');
+            $table->text('observaciones');
+            $table->text('cargos_grales');
             $table->timestamps();
         });
     }
