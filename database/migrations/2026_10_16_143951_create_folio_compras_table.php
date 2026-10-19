@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('folio_compras', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->date('fecha');
+            $table->string('folio', 20);
+            $table->text('notas_autorizacion');
+            $table->text('observaciones');
+            $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });
     }

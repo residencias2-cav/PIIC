@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pedido_internos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tipo_servicio_id')->constrained()->onDelete('cascade');
+            $table->text('descripcion');
+            $table->date('fecha_devolucion');
+            $table->date('fecha_entrega');
             $table->timestamps();
         });
     }

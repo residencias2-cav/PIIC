@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
+            $table->decimal('precio', 10, 2);
+            $table->decimal('iva', 10, 2);
+            $table->decimal('total', 10, 2);
+            $table->decimal('descuento', 10, 2);
+            $table->decimal('factura', 10, 2);
+            $table->decimal('comision', 10, 2);
             $table->timestamps();
         });
     }

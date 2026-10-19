@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('oficios_comisiones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('oficio_id')->constrained()->onDelete('cascade');
+            $table->integer('dias');
+            $table->text('comision');
+            $table->text('ciudad_destino');
+            $table->dateTime('fecha_hora_inicio');
+            $table->dateTime('fecha_hora_termino');
             $table->timestamps();
         });
     }

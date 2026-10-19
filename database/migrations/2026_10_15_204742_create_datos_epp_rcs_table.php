@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('datos_epp_rcs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('epp_id')->constrained()->onDelete('cascade');
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
+            $table->string('talla', 50);
+            $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });
     }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('proveedor_servicios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('proveedor_id');
+            $table->foreignId('producto_servicio_id');
             $table->timestamps();
         });
     }

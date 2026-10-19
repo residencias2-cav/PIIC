@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('usuarios_proveedores', function (Blueprint $table) {
             $table->id();
+            $table->string('usuario', 80);
+            $table->string('contraseña', 20);
+            $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tipo_usuario_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

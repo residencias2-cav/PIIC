@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
+            $table->string('usuario', 20);
+            $table->foreignId('tipo_usuario_id')->constrained()->onDelete('cascade');
+            $table->boolean('tipos_usuario_ch');
+            $table->string('contraseña_correo', 20);
+            $table->string('twofa_code', 32);
+            $table->datetimes('twofa_expire');
+            $table->integer('twofa_attempts', 11);
             $table->timestamps();
         });
     }

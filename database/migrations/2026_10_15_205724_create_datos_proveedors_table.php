@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('datos_proveedors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
+            $table->string('folio', 11);
+            $table->date('fecha');
+            $table->string('observaciones', 100);
+            $table->string('tiempo_entrega', 50);
+            $table->string('metodo_entrega', 50);
+            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
+            $table->string('correo', 50);
+            $table->string('telefono', 20);
+            $table->text('direccion');
+            $table->string('tipo_contrato', 50);
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('oficios_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->string('firma', 30);
             $table->timestamps();
         });
     }

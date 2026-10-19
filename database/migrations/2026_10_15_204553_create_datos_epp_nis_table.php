@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('datos_epp_nis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('epp_id')->constrained()->onDelete('cascade');
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
+            $table->enum('sup_int', ['superficie', 'interior_mina']);
             $table->timestamps();
         });
     }

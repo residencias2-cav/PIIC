@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('autorizado_pors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->foreignId('epp_id')->constrained()->onDelete('cascade');
+            $table->boolean('proceso_autorizado');
+            $table->date('fecha_autorizacion');
+            $table->text('onservaciones');
             $table->timestamps();
         });
     }
