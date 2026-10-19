@@ -23,7 +23,7 @@ class Storelugar_nacimientoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:150'],
         ];
     }
 }

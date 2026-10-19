@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventario_epp', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('articulo_id');
+            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
             $table->integer('talla');
             $table->integer('existencia');
             $table->timestamps();

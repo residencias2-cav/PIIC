@@ -23,7 +23,7 @@ class Updatetipo_pedidoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['request', 'string', 'max:30'],
         ];
     }
 }

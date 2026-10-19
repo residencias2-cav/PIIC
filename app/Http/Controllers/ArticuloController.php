@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articulo;
+use App\Http\Requests\StoreArticuloRequest;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -26,9 +27,11 @@ class ArticuloController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreArticuloRequest $request)
     {
-        //
+        $articulo = Articulo::create($request->validated());
+
+        return response()->json($articulo, 201);
     }
 
     /**

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inf_creditos', function (Blueprint $table) {
             $table->id( );
-            $table->integer('monto', 10,3);
+            $table->decimal('monto', 10,3);
             $table->date('vigencia');
             $table->datetime('timestamps');
         });

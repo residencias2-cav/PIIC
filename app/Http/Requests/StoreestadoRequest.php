@@ -23,7 +23,7 @@ class StoreestadoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre_estado' => ['required', 'string', 'max:30'],
         ];
     }
 }

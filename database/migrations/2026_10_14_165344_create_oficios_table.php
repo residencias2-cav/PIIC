@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('asunto');
             $table->text('cuerpo');
             $table->foreignId('tipo_oficio_id')->constrained()->onDelete('cascade');
+            $table->foreignId('estado_id')->constrained()->onDelete('cascade');
+            $table->text('observaciones');
+            $table->text('cargos_grales');
             $table->timestamps();
         });
     }

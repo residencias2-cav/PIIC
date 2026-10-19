@@ -23,7 +23,8 @@ class StoregerenciaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'string', 'max:50'],
         ];
     }
 }

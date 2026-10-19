@@ -25,6 +25,8 @@ return new class extends Migration
             $table->text('observaciones');
             $table->integer('monto_credito')->constrained()->onDelete('cascade');
             $table->integer('monto')->constrained()->onDelete('cascade');
+            $table->integer('creayed_by');
+            $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });
     }

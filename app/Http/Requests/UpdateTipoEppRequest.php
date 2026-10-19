@@ -23,7 +23,7 @@ class UpdateTipoEppRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:50'],
         ];
     }
 }

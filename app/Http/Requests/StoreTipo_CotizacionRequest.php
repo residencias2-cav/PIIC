@@ -23,7 +23,7 @@ class Store_tipo_cotizacion_Request extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:100'],
         ];
     }
 }

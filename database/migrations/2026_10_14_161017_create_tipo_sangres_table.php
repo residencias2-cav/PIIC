@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipo_sangres', function (Blueprint $table) {
             $table->id( );
-            $table->string('nombre', 150);
+            $table->string('nombre', 5);
             $table->datetime('timestamps');
         });
     }

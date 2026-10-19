@@ -23,7 +23,8 @@ class StoreInfCreditoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'monto' => ['required', 'numeric', 'decimal:10,3', 'min:0'],
+            'vigencia' => ['required', 'date'],
         ];
     }
 }
