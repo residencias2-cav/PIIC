@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('epp_id')->constrained()->onDelete('cascade');
             $table->boolean('proceso_autorizado');
             $table->date('fecha_autorizacion');
-            $table->text('onservaciones');
+            $table->string('observaciones', 100);;
             $table->timestamps();
         });
     }

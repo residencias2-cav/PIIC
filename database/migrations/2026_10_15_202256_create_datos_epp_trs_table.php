@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('epp_id')->constrained()->onDelete('cascade');
             $table->integer('cantidad');
-            $table->text('descripcion');
+            $table->string('descripcion', 100);
             $table->string('codigo', 50);
             $table->string('marca', 50);
             $table->string('color', 50);

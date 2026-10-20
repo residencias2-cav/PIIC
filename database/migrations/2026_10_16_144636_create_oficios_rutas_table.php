@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('carta_porte', 50);
             $table->boolean('factura');
             $table->integer('no_recoleccion');
-            $table->text('varchar');
+            $table->string('observaciones', 100);
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('partida');
             $table->integer('cantidad');
             $table->foreignId('unidad_id')->constrained()->onDelete('cascade');
-            $table->text('descripcion');
+            $table->string('descripcion', 100);
             $table->tinyText('uso');
             $table->boolean('credito');
             $table->date('fecha_pago');

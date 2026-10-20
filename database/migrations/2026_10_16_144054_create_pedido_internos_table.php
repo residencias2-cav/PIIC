@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipo_servicio_id')->constrained()->onDelete('cascade');
-            $table->text('descripcion');
+            $table->string('descripcion', 100);
             $table->date('fecha_devolucion');
             $table->date('fecha_entrega');
             $table->timestamps();

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreignId('obra_id')->constrained()->onDelete('cascade');
             $table->foreignId('lugar_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipo_cotizacion_id')->constrained()->onDelete('cascade');
-            $table->text('notas');
+            $table->string('notas', 100);
             $table->foreignId('estado_pedido_id')->constrained()->onDelete('cascade');
             $table->integer('created_by');
             $table->timestamps();

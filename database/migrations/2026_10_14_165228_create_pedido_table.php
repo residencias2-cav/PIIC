@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('ubicacion_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipo_compra_id')->constrained()->onDelete('cascade');
             $table->foreignId('estado_id')->constrained()->onDelete('cascade');
-            $table->text('observaciones');
+            $table->string('observaciones', 200);
             $table->integer('monto_credito')->constrained()->onDelete('cascade');
             $table->integer('monto')->constrained()->onDelete('cascade');
             $table->integer('creayed_by');

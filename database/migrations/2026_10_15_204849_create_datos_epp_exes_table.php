@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('codigo', 50);
             $table->string('marca', 50);
             $table->boolean('contrato');
-            $table->text('observaciones');
+            $table->string('observaciones', 100);
             $table->decimal('precio', 10, 2);
             $table->string('adjuntos', 50);
             $table->foreignId('estado_id')->constrained()->onDelete('cascade');
