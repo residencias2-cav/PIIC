@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->date('fecha');
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
+            $table->string('folio', 20);
+            $table->string('lugar', 150);
+            $table->string('descripcion', 150);
+            $table->text('material_necesario');
+            $table->foreignId('autorizado_por_id')->constrained()->onDelete('cascade');
+            $table->boolean('surtido');
             $table->timestamps();
         });
     }

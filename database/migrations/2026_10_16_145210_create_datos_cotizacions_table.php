@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('datos_cotizacions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('cotizacion_id')->constrained()->onDelete('cascade');
+            $table->foreignId('unidad_id')->constrained()->onDelete('cascade');
+            $table->string('descripcion', 150);
+            $table->string('codigo', 150);
+            $table->boolean('entregado');
+            $table->string('fecha_r', 150);
             $table->timestamps();
         });
     }
