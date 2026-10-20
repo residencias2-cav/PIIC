@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('area', 30);
             $table->string('desc_bs', 100);
             $table->date('vigencia_sat');
-            $table->foreignId('inf_credito')->constrained()->onDelete('cascade');
-            $table->foreignId('inf_contrato')->constrained()->onDelete('cascade');
+            $table->foreignId('inf_credito_id')->constrained()->onDelete('cascade');
+            $table->foreignId('inf_contrato_id')->constrained()->onDelete('cascade');
             $table->text('inf_impuestos');
             $table->boolean('registrado');
             $table->timestamps();

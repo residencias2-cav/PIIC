@@ -23,8 +23,8 @@ return new class extends Migration
             $table->foreignId('tipo_compra_id')->constrained()->onDelete('cascade');
             $table->foreignId('estado_id')->constrained()->onDelete('cascade');
             $table->string('observaciones', 200);
-            $table->integer('monto_credito')->constrained()->onDelete('cascade');
-            $table->integer('monto')->constrained()->onDelete('cascade');
+            $table->integer('monto_credito');
+            $table->integer('monto');
             $table->integer('creayed_by');
             $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
