@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('detalle_pedidos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->integer('partida');
+            $table->integer('cantidad');
+            $table->foreignId('unidad_id')->constrained()->onDelete('cascade');
+            $table->text('descripcion');
+            $table->tinyText('uso');
+            $table->boolean('credito');
+            $table->date('fecha_pago');
+            $table->string('codigo');
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }

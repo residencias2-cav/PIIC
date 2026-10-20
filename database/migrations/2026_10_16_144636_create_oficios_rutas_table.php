@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('oficios_rutas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('oficio_id')->constrained()->onDelete('cascade');
+            $table->string('folio_ac', 20);
+            $table->string('ruta', 100);
+            $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
+            $table->enum('tipo', ['aviso ordinario', 'aviso de requisicion', 'solicitud de anticipo']);
+            $table->string('carta_porte', 50);
+            $table->boolean('factura');
+            $table->integer('no_recoleccion');
+            $table->text('varchar');
             $table->timestamps();
         });
     }
