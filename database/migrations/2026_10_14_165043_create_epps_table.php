@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('epp', function (Blueprint $table) {
+        Schema::create('epps', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
             $table->string('folio', 20);

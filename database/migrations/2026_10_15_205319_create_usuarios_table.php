@@ -20,8 +20,8 @@ return new class extends Migration
             $table->boolean('tipos_usuario_ch');
             $table->string('contraseña_correo', 20);
             $table->string('twofa_code', 32);
-            $table->datetime('twofa_expire');
-            $table->integer('twofa_attempts', 11);
+            $table->date('twofa_expire');
+            $table->integer('twofa_attempts');
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventario_epp', function (Blueprint $table) {
+        Schema::create('inventario_epps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
             $table->integer('talla');
