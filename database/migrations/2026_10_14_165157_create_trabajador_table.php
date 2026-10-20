@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('rfc', 13);
             $table->date('fecha_nacimiento');
             $table->foreignId('lugar_nacimiento_id')->constrained()->onDelete('cascade');
-            $table->foreign('tipo_sangre_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tipo_sangre_id')->constrained()->onDelete('cascade');
             $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });

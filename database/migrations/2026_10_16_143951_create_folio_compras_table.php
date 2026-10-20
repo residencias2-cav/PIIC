@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
             $table->date('fecha');
             $table->string('folio', 20);
-            $table->string('notas_autorizacion', 100);;
-            $table->string('observaciones', 100);;
+            $table->string('notas_autorizacion', 100);
+            $table->string('observaciones', 100);
             $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });

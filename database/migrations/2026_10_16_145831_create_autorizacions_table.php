@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('autorizacions', function (Blueprint $table) {
             $table->id();
-            $table->foreign('usuarios_id')->constrained()->onDelete('cascade');
+            $table->foreignId('usuarios_id')->constrained()->onDelete('cascade');
             $table->foreign('pedido_id')->constrained()->onDelete('cascade');
             $table->boolean('proceso_autorizado');
             $table->string('feche_autorizacion', 100);
