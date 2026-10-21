@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('obras', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_obra', 100);
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 

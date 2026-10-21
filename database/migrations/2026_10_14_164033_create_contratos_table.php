@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 

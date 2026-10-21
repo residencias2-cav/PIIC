@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tipo_oficios', function (Blueprint $table) {
             $table->id( );
             $table->string('nombre', 30);
-            $table->datetime('timestamps');
+            $table->timestamps();
+
         });
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lugar_nacimientos', function (Blueprint $table) {
             $table->id( );
             $table->string('nombre', 150);
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 
