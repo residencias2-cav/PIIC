@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Obra;
 use App\Http\Requests\StoreObraRequest;
+use App\Http\Requests\UpdateObraRequest;
 use Illuminate\Http\Request;
 
 class ObraController extends Controller
@@ -13,7 +14,8 @@ class ObraController extends Controller
      */
     public function index()
     {
-        //
+        $obra = Obra::all();
+        return response()->json($obra);
     }
 
     /**
@@ -39,7 +41,7 @@ class ObraController extends Controller
      */
     public function show(Obra $obra)
     {
-        //
+        return response()->json($obra);
     }
 
     /**
@@ -53,9 +55,11 @@ class ObraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Obra $obra)
+    public function update(UpdateObraRequest $request, Obra $obra)
     {
-        //
+        $obra->update($request->validated());
+        
+        return response()->json($obra);
     }
 
     /**
@@ -63,6 +67,8 @@ class ObraController extends Controller
      */
     public function destroy(Obra $obra)
     {
-        //
+        $obra->delete();
+        
+        return response()->json(null, 204);
     }
 }

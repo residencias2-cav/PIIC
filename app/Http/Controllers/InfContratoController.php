@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InfContrato;
 use App\Http\Requests\StoreInfContratoRequest;
+use App\Http\Requests\UpdateInfContratoRequest;
 use Illuminate\Http\Request;
 
 class InfContratoController extends Controller
@@ -13,7 +14,8 @@ class InfContratoController extends Controller
      */
     public function index()
     {
-        //
+        $inf_contrato = InfContrato::all();
+        return response()->json($inf_contrato);
     }
 
     /**
@@ -39,7 +41,7 @@ class InfContratoController extends Controller
      */
     public function show(InfContrato $inf_contrato)
     {
-        //
+        return response()->json($inf_contrato);
     }
 
     /**
@@ -55,9 +57,11 @@ class InfContratoController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, InfContrato $inf_contrato)
+    public function update(UpdateInfContratoRequest $request, InfContrato $inf_contrato)
     {
-        //
+        $inf_contrato->update($request->validated());
+        
+        return response()->json($inf_contrato);
     }
 
     /**
@@ -66,6 +70,8 @@ class InfContratoController extends Controller
 
     public function destroy(InfContrato $inf_contrato)
     {
-        //
+        $inf_contrato->delete();
+        
+        return response()->json(null, 204);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Updatetipo_compraRequest extends FormRequest
+class UpdateInfContratoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,8 @@ class Updatetipo_compraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:50'],
+            'tipo_contrato' => ['required', 'string', 'max:30'],
+            'vigencia' => ['required', 'date'],
         ];
     }
 }

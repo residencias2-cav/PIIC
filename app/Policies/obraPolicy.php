@@ -13,7 +13,7 @@ class ObraPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ObraPolicy
      */
     public function view(User $user, Obra $obra): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ObraPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ObraPolicy
      */
     public function update(User $user, Obra $obra): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ObraPolicy
      */
     public function delete(User $user, Obra $obra): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ObraPolicy
      */
     public function restore(User $user, Obra $obra): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class ObraPolicy
      */
     public function forceDelete(User $user, Obra $obra): bool
     {
-        return false;
+        return true;
     }
 }

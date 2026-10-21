@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gerencia;
 use App\Http\Requests\StoreGerenciaRequest;
+use App\Http\Requests\UpdateGerenciaRequest;
 use Illuminate\Http\Request;
 
 class GerenciaController extends Controller
@@ -13,7 +14,8 @@ class GerenciaController extends Controller
      */
     public function index()
     {
-        //
+        $gerencia = Gerencia::all();
+        return response()->json($gerencia);
     }
 
     /**
@@ -40,7 +42,7 @@ class GerenciaController extends Controller
      */
     public function show(Gerencia $gerencia)
     {
-        //
+        return response()->json($gerencia);
     }
 
     /**
@@ -54,9 +56,11 @@ class GerenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Gerencia $gerencia)
+    public function update(UpdateGerenciaRequest $request, Gerencia $gerencia)
     {
-        //
+        $gerencia->update($request->validated());
+        
+        return response()->json($gerencia);
     }
 
     /**
@@ -64,6 +68,8 @@ class GerenciaController extends Controller
      */
     public function destroy(Gerencia $gerencia)
     {
-        //
+        $gerencia->delete();
+        
+        return response()->json(null, 204);
     }
 }

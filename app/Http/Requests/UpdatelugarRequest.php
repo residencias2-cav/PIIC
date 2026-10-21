@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatelugarRequest extends FormRequest
+class UpdateLugarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

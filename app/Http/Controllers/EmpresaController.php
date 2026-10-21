@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use App\Http\Requests\StoreEmpresaRequest;
+use App\Http\Requests\UpdateEmpresaRequest;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -13,7 +14,8 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
+        $empresa = Empresa::all();
+        return response()->json($empresa);
     }
 
     /**
@@ -39,7 +41,7 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
+        return response()->json($empresa);
     }
 
     /**
@@ -53,9 +55,11 @@ class EmpresaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(UpdateEmpresaRequest $request, Empresa $empresa)
     {
-        //
+        $empresa->update($request->validated());
+        
+        return response()->json($empresa);
     }
 
     /**
@@ -63,6 +67,8 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        $empresa->delete();
+        
+        return response()->json(null, 204);
     }
 }

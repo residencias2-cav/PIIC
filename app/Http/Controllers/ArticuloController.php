@@ -44,8 +44,6 @@ class ArticuloController extends Controller
     {
         $articulo = Articulo::create($request->validated());
 
-        return response()->json($articulo, 201);
-
         return response()->json([
             'status' => true,
             'mesage' => 'Articulo registrado correctamente',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estado;
-use App\Http\Requests\StoreEstadoRequest;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
@@ -27,11 +26,9 @@ class EstadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEstadoRequest $request)
+    public function store(Estado $request)
     {
-        $estado = Estado::create($request->validated());
 
-        return response()->json($estado, 201);
     }
 
     /**
