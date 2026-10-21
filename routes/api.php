@@ -42,6 +42,45 @@ Route::prefix('catalogos')->group(function () {
     Route::apiResource('inf_contrato', InfContratoController::class);
 });
 
+Route::apiResource('estado', EstadoController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_compra', TipoCompraController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_pedido', TipoPedidoController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('unidad', UnidadController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_servicio', TipoServicioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('estado_pedido', EstadoPedidoController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_cotizacion', TipoCotizacionController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('lugar_nacimiento', LugarNacimientoController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('contrato', ContratoController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_sangre', TipoSangreController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_usuario', TipoUsuarioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_oficio', TipoOficioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('tipo_epp', TipoEppController::class)
+    ->only(['index', 'show']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
