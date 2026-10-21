@@ -42,6 +42,45 @@ Route::prefix('catalogos')->group(function () {
     Route::apiResource('inf_contrato', InfContratoController::class);
 });
 
+Route::apiResource('estado', EstadoController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_compra', TipoCompraController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_pedido', TipoPedidoController::class)
+    ->only(['index']);
+
+Route::apiResource('unidad', UnidadController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_servicio', TipoServicioController::class)
+    ->only(['index']);
+
+Route::apiResource('estado_pedido', EstadoPedidoController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_cotizacion', TipoCotizacionController::class)
+    ->only(['index']);
+
+Route::apiResource('lugar_nacimiento', LugarNacimientoController::class)
+    ->only(['index']);
+
+Route::apiResource('contrato', ContratoController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_sangre', TipoSangreController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_usuario', TipoUsuarioController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_oficio', TipoOficioController::class)
+    ->only(['index']);
+
+Route::apiResource('tipo_epp', TipoEppController::class)
+    ->only(['index']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
