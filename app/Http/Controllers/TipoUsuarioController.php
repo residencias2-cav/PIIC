@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoUsuario;
-use App\Http\Requests\StoreTipoUsuarioRequest;
 use Illuminate\Http\Request;
 
 class TipoUsuarioController extends Controller
@@ -27,11 +26,9 @@ class TipoUsuarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTipoUsuarioRequest $request)
+    public function store(TipoUsuario $request)
     {
-        $tipo_usuario = TipoUsuario::create($request->validated());
 
-        return response()->json($tipo_usuario, 201);
     }
 
     /**

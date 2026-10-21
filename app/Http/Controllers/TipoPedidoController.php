@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoPedido;
-use App\Http\Requests\StoreTipoPedidoRequest;
 use Illuminate\Http\Request;
 
 class TipoPedidoController extends Controller
@@ -27,11 +26,9 @@ class TipoPedidoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTipoPedidoRequest $request)
+    public function store(TipoPedido $request)
     {
-        $tipo_pedido = TipoPedido::create($request->validated());
 
-        return response()->json($tipo_pedido, 201);
     }
     /**
      * Display the specified resource.

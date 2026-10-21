@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoOficio;
-use App\Http\Requests\StoreTipoOficioRequest;
 use Illuminate\Http\Request;
 
 class TipoOficioController extends Controller
@@ -27,11 +26,9 @@ class TipoOficioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTipoOficioRequest $request)
+    public function store(TipoOficio $request)
     {
-        $tipo_oficio = TipoOficio::create($request->validated());
 
-        return response()->json($tipo_oficio, 201);
     }
 
     /**

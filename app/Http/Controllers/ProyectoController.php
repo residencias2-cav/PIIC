@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
 use App\Http\Requests\StoreProyectoRequest;
+use App\Http\Requests\UpdateProyectoRequest;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller

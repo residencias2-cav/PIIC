@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoEpp;
-use App\Http\Requests\StoreTipoEppRequest;
 use Illuminate\Http\Request;
 
 class TipoEppController extends Controller
@@ -27,11 +26,9 @@ class TipoEppController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTipoEppRequest $request)
+    public function store(TipoEpp $request)
     {
-        $tipo_epp = TipoEpp::create($request->validated());
 
-        return response()->json($tipo_epp, 201);
     }
 
     /**

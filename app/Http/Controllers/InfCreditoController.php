@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InfCredito;
 use App\Http\Requests\StoreInfCreditoRequest;
+use App\Http\Requests\UpdateInfCreditoRequest;
 use Illuminate\Http\Request;
 
 class InfCreditoController extends Controller

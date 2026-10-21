@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ubicacion;
 use App\Http\Requests\StoreUbicacionRequest;
+use App\Http\Requests\UpdateUbicacionRequest;
 use Illuminate\Http\Request;
 
 class UbicacionController extends Controller

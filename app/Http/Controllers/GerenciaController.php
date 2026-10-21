@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gerencia;
 use App\Http\Requests\StoreGerenciaRequest;
+use App\Http\Requests\UpdateGerenciaRequest;
 use Illuminate\Http\Request;
 
 class GerenciaController extends Controller

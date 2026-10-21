@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\LugarNacimiento;
-use App\Http\Requests\StoreLugarNacimientoRequest;
 use Illuminate\Http\Request;
 
 class LugarNacimientoController extends Controller
@@ -27,11 +26,9 @@ class LugarNacimientoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLugarNacimientoRequest $request)
+    public function store(LugarNacimiento $request)
     {
-        $lugar_nacimiento = LugarNacimiento::create($request->validated());
 
-        return response()->json($lugar_nacimiento, 201);
     }
 
     /**

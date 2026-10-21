@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InfContrato;
 use App\Http\Requests\StoreInfContratoRequest;
+use App\Http\Requests\UpdateInfContratoRequest;
 use Illuminate\Http\Request;
 
 class InfContratoController extends Controller

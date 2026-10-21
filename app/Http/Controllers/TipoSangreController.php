@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoSangre;
-use App\Http\Requests\StoreTipoSangreRequest;
 use Illuminate\Http\Request;
 
 class TipoSangreController extends Controller
@@ -27,11 +26,9 @@ class TipoSangreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTipoSangreRequest $request)
+    public function store(TipoSangre $request)
     {
-        $tipo_sangre = TipoSangre::create($request->validated());
 
-        return response()->json($tipo_sangre, 201);
     }
 
     /**

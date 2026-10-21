@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Update_estado_pedido_Request extends FormRequest
+class UpdateTipoCompraRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class Update_estado_pedido_Request extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:30'],
+            'nombre' => ['required', 'string', 'max:50'],
         ];
     }
 }

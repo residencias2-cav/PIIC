@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Articulo;
 use App\Http\Requests\StoreArticuloRequest;
+use App\Http\Requests\UpdateArticuloRequest;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
