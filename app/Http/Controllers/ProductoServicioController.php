@@ -14,7 +14,8 @@ class ProductoServicioController extends Controller
      */
     public function index()
     {
-        //
+        $producto_servicio = ProductoServicio::all();
+        return response()->json($producto_servicio);
     }
 
     /**
@@ -40,7 +41,7 @@ class ProductoServicioController extends Controller
      */
     public function show(ProductoServicio $producto_servicio)
     {
-        //
+        return response()->json($producto_servicio);
     }
 
     /**
@@ -54,9 +55,11 @@ class ProductoServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductoServicio $producto_servicio)
+    public function update(UpdateProductoServicioRequest $request, ProductoServicio $producto_servicio)
     {
-        //
+        $producto_servicio->update($request->validated());
+        
+        return response()->json($producto_servicio);
     }
 
     /**
@@ -64,6 +67,8 @@ class ProductoServicioController extends Controller
      */
     public function destroy(ProductoServicio $producto_servicio)
     {
-        //
+        $producto_servicio->delete();
+        
+        return response()->json(null, 204);
     }
 }

@@ -14,7 +14,8 @@ class UbicacionController extends Controller
      */
     public function index()
     {
-        //
+        $ubicacion = Ubicacion::all();
+        return response()->json($ubicacion);
     }
 
     /**
@@ -40,7 +41,7 @@ class UbicacionController extends Controller
      */
     public function show(Ubicacion $ubicacion)
     {
-        //
+        return response()->json($ubicacion);
     }
 
     /**
@@ -54,9 +55,11 @@ class UbicacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ubicacion $ubicacion)
+    public function update(UpdateUbicacionRequest $request, Ubicacion $ubicacion)
     {
-        //
+        $ubicacion->update($request->validated());
+        
+        return response()->json($ubicacion);
     }
 
     /**
@@ -64,6 +67,8 @@ class UbicacionController extends Controller
      */
     public function destroy(Ubicacion $ubicacion)
     {
-        //
+        $ubicacion->delete();
+        
+        return response()->json(null, 204);
     }
 }

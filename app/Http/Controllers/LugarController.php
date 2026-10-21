@@ -14,7 +14,8 @@ class LugarController extends Controller
      */
     public function index()
     {
-        //
+        $lugar = Lugar::all();
+        return response()->json($lugar);
     }
 
     /**
@@ -40,7 +41,7 @@ class LugarController extends Controller
      */
     public function show(Lugar $lugar)
     {
-        //
+        return response()->json($lugar);
     }
 
     /**
@@ -54,9 +55,11 @@ class LugarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lugar $lugar)
+    public function update(UpdateLugarRequest $request, Lugar $lugar)
     {
-        //
+        $lugar->update($request->validated());
+        
+        return response()->json($lugar);
     }
 
     /**
@@ -64,6 +67,8 @@ class LugarController extends Controller
      */
     public function destroy(Lugar $lugar)
     {
-        //
+        $lugar->delete();
+        
+        return response()->json(null, 204);
     }
 }

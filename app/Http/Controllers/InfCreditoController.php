@@ -14,7 +14,8 @@ class InfCreditoController extends Controller
      */
     public function index()
     {
-        //
+        $inf_credito = InfCredito::all();
+        return response()->json($inf_credito);
     }
 
     /**
@@ -41,7 +42,7 @@ class InfCreditoController extends Controller
 
     public function show(InfCredito $inf_credito)
     {
-        //
+        return response()->json($inf_credito);
     }
 
     /**
@@ -57,9 +58,11 @@ class InfCreditoController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, InfCredito $inf_credito)
+    public function update(UpdateInfCreditoRequest $request, InfCredito $inf_credito)
     {
-        //
+        $inf_credito->update($request->validated());
+        
+        return response()->json($inf_credito);
     }
 
     /**
@@ -68,6 +71,8 @@ class InfCreditoController extends Controller
 
     public function destroy(InfCredito $inf_credito)
     {
-        //
+        $inf_credito->delete();
+        
+        return response()->json(null, 204);
     }
 }

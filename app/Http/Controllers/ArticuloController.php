@@ -14,7 +14,8 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        //
+        $articulo = Articulo::all();
+        return response()->json($articulo);
     }
 
     /**
@@ -40,7 +41,7 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        return response()->json($articulo);
     }
 
     /**
@@ -54,9 +55,11 @@ class ArticuloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Articulo $articulo)
+    public function update(UpdateArticuloRequest $request, Articulo $articulo)
     {
-        //
+        $articulo->update($request->validated());
+        
+        return response()->json($articulo);
     }
 
     /**
@@ -64,6 +67,8 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        $articulo->delete();
+        
+        return response()->json(null, 204);
     }
 }

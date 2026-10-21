@@ -14,7 +14,8 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyecto = Proyecto::all();
+        return response()->json($proyecto);
     }
 
     /**
@@ -40,7 +41,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        //
+        return response()->json($proyecto);
     }
 
     /**
@@ -54,9 +55,11 @@ class ProyectoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Proyecto $proyecto)
+    public function update(UpdateProyectoRequest $request, Proyecto $proyecto)
     {
-        //
+        $proyecto->update($request->validated());
+        
+        return response()->json($proyecto);
     }
 
     /**
@@ -64,6 +67,8 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        $proyecto->delete();
+        
+        return response()->json(null, 204);
     }
 }

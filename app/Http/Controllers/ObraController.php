@@ -14,7 +14,8 @@ class ObraController extends Controller
      */
     public function index()
     {
-        //
+        $obra = Obra::all();
+        return response()->json($obra);
     }
 
     /**
@@ -40,7 +41,7 @@ class ObraController extends Controller
      */
     public function show(Obra $obra)
     {
-        //
+        return response()->json($obra);
     }
 
     /**
@@ -54,9 +55,11 @@ class ObraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Obra $obra)
+    public function update(UpdateObraRequest $request, Obra $obra)
     {
-        //
+        $obra->update($request->validated());
+        
+        return response()->json($obra);
     }
 
     /**
@@ -64,6 +67,8 @@ class ObraController extends Controller
      */
     public function destroy(Obra $obra)
     {
-        //
+        $obra->delete();
+        
+        return response()->json(null, 204);
     }
 }
