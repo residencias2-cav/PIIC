@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Epp\DatosEppTr;
-use App\Models\Epp\DatosEppRe;
+use App\Models\Epp\{
+    DatosEppTr,
+    DatosEppRe
+    };
 use App\Models\Oficios\Oficios;
+use App\Models\Compras\Pedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
