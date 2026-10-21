@@ -12,7 +12,9 @@ class TipoCompraController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_compra = TipoCompra::all();
+
+    return response()->json($tipo_compra);
     }
 
     /**

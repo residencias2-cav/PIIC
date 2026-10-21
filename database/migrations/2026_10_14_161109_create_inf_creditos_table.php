@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id( );
             $table->decimal('monto', 10,3);
             $table->date('vigencia');
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 

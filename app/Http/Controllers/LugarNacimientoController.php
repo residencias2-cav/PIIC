@@ -12,7 +12,9 @@ class LugarNacimientoController extends Controller
      */
     public function index()
     {
-        //
+        $lugar_nacimiento = LugarNacimiento::all();
+
+    return response()->json($lugar_nacimiento);
     }
 
     /**

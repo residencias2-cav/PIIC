@@ -13,24 +13,6 @@ class InfContratoSeeder extends Seeder
      */
     public function run(): void
     {
-        InfContrato::create([
-            'tipo_contrato' => 'Compra-venta',
-        ]);
-
-        InfContrato::create([
-            'tipo_contrato' => 'Servicios',
-        ]);
-
-        InfContrato::create([
-            'tipo_contrato' => 'REPSE',
-        ]);
-
-        InfContrato::create([
-            'tipo_contrato' => 'Arrendamiento',
-        ]);
-
-        InfContrato::create([
-            'tipo_contrato' => 'N/A',
-        ]);
+        
     }
 }

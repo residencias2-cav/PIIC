@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id( );
             $table->string('tipo_contrato', 30);
             $table->date('vigencia');
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 

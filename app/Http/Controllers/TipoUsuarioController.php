@@ -12,7 +12,9 @@ class TipoUsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_usuario = TipoUsuario::all();
+
+    return response()->json($tipo_usuario);
     }
 
     /**

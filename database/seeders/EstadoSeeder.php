@@ -14,27 +14,27 @@ class EstadoSeeder extends Seeder
     public function run(): void
     {
         Estado::create([
-            'nombre' => 'Autorizado',
+            'nombre_estado' => 'Autorizado',
         ]);
 
         Estado::create([
-            'nombre' => 'Surtido',
+            'nombre_estado' => 'Surtido',
         ]);
 
         Estado::create([
-            'nombre' => 'En espera',
+            'nombre_estado' => 'En espera',
         ]);
 
         Estado::create([
-            'nombre' => 'Enviado',
+            'nombre_estado' => 'Enviado',
         ]);
 
         Estado::create([
-            'nombre' => 'Recibido',
+            'nombre_estado' => 'Recibido',
         ]);
 
         Estado::create([
-            'nombre' => 'Cancelado',
+            'nombre_estado' => 'Cancelado',
         ]);
     }
 }

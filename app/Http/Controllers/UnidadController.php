@@ -12,7 +12,9 @@ class UnidadController extends Controller
      */
     public function index()
     {
-        //
+        $unidad = Unidad::all();
+
+    return response()->json($unidad);
     }
 
     /**

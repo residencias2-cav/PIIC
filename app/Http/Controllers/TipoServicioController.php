@@ -12,7 +12,9 @@ class TipoServicioController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_servicio = TipoServicio::all();
+
+    return response()->json($tipo_servicio);
     }
 
     /**
