@@ -12,7 +12,9 @@ class TipoOficioController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_oficio = TipoOficio::all();
+
+    return response()->json($tipo_oficio);
     }
 
     /**

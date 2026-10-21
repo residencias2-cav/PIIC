@@ -12,7 +12,9 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        //
+        $contrato = Contrato::all();
+
+    return response()->json($contrato);
     }
 
     /**

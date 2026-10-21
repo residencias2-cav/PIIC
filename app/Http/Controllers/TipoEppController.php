@@ -12,7 +12,9 @@ class TipoEppController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_epp = TipoEpp::all();
+
+    return response()->json($tipo_epp);
     }
 
     /**

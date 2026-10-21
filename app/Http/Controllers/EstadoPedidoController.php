@@ -12,7 +12,9 @@ class EstadoPedidoController extends Controller
      */
     public function index()
     {
-        //
+        $estado_pedido = EstadoPedido::all();
+
+    return response()->json($estado_pedido);
     }
 
     /**

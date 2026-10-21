@@ -12,7 +12,9 @@ class TipoCotizacionController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_cotizacion = TipoCotizacion::all();
+
+    return response()->json($tipo_cotizacion);
     }
 
     /**

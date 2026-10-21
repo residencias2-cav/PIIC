@@ -12,7 +12,9 @@ class TipoPedidoController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_pedido = TipoPedido::all();
+
+    return response()->json($tipo_pedido);
     }
 
     /**

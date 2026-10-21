@@ -12,7 +12,9 @@ class TipoSangreController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_sangre = TipoSangre::all();
+
+    return response()->json($tipo_sangre);
     }
 
     /**
