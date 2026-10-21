@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 50);
             $table->string('rfc', 50);
             $table->string('dom_fiscal', 50);
-            $table->datetime('timestamps');
+            $table->timestamps();
         });
     }
 
