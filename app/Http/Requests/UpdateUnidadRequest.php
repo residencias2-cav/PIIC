@@ -12,7 +12,7 @@ class Update_unidad_Request extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
