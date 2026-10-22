@@ -14,13 +14,14 @@ class InfContrato extends Model
     protected $table = 'inf_contratos';
 
     protected $fillable = [
-        'Tipo_Contrato',
+        'tipo_contrato',
+        'vigencia',
     ];
 
     protected function casts(): array
     {
         return [
-            'Vigencia' => 'date',
+            'vigencia' => 'date',
         ];
     }
 

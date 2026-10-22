@@ -19,6 +19,7 @@ class Gerencia extends Model
 
     protected $fillable = [
         'nombre',
+        'code',
     ];
 
     protected $hidden = [

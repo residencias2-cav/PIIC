@@ -8,8 +8,7 @@ use App\Http\Requests\{
     StoreArticuloRequest,
     UpdatearticuloRequest
     };
-
-use App\Models\Ubicacion;
+    
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
