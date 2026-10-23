@@ -22,7 +22,7 @@ class InfCredito extends Model
     {
         return [
             'monto'=> 'decimal:2',
-            'vigencia'=>'date',
+            'vigencia'=> 'date',
         ];
     }
 
