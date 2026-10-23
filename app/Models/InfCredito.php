@@ -14,9 +14,17 @@ class InfCredito extends Model
     protected $table = 'inf_creditos';
 
     protected $fillable = [
-        'Monto',
-        'Vigencia',
+        'monto',
+        'vigencia',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'monto'=> 'decimal:2',
+            'vigencia'=>'date',
+        ];
+    }
 
     protected $hidden = [
         'updated_at',
