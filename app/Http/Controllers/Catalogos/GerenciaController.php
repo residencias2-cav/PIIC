@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Gerencia;
-use App\Http\Requests\StoreGerenciaRequest;
-use App\Http\Requests\UpdateGerenciaRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Gerencia;
+
+use App\Http\Requests\StoreCatalogos\StoreGerenciaRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateGerenciaRequest;
 
 class GerenciaController extends Controller
 {

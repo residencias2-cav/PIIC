@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\TipoSangre;
 use App\Models\User;
+use App\Models\Catalogos\TipoSangre;
 use Illuminate\Auth\Access\Response;
 
 class TipoSangrePolicy

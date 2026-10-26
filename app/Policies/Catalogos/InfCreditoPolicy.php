@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\InfCredito;
+use App\Models\Catalogos\InfCredito;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

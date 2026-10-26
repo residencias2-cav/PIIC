@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Articulo;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Articulo;
 
-use App\Http\Requests\{
-    StoreArticuloRequest,
-    UpdatearticuloRequest
-    };
-    
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCatalogos\StoreArticuloRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateArticuloRequest;
+
 use Illuminate\Http\JsonResponse;
 
 class ArticuloController extends Controller
@@ -74,7 +72,7 @@ class ArticuloController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        UpdatearticuloRequest $request, 
+        UpdateArticuloRequest $request, 
         Articulo $articulo
     ): JsonResponse {
         $articulo -> update(

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\InfContrato;
-use App\Http\Requests\StoreInfContratoRequest;
-use App\Http\Requests\UpdateInfContratoRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\InfContrato;
+
+use App\Http\Requests\StoreCatalogos\StoreInfContratoRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateInfContratoRequest;
 
 class InfContratoController extends Controller
 {

@@ -5,7 +5,7 @@ namespace App\Http\Requests\UpdateCatalogos;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Update_unidad_Request extends FormRequest
+class UpdateUnidadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

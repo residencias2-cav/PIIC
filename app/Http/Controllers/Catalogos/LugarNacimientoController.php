@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\LugarNacimiento;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\LugarNacimiento;
 
 class LugarNacimientoController extends Controller
 {

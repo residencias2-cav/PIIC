@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Proyecto;
-use App\Http\Requests\StoreProyectoRequest;
-use App\Http\Requests\UpdateProyectoRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Proyecto;
+
+use App\Http\Requests\StoreCatalogos\StoreProyectoRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateProyectoRequest;
 
 class ProyectoController extends Controller
 {

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Lugar;
-use App\Http\Requests\StoreLugarRequest;
-use App\Http\Requests\UpdateLugarRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Lugar;
+
+use App\Http\Requests\StoreCatalogos\StoreLugarRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateLugarRequest;
 
 class LugarController extends Controller
 {

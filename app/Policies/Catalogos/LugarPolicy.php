@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\Lugar;
+use App\Models\Catalogos\Lugar;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

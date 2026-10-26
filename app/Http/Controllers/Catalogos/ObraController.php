@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Obra;
-use App\Http\Requests\StoreObraRequest;
-use App\Http\Requests\UpdateObraRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Obra;
+
+use App\Http\Requests\StoreCatalogos\StoreObraRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateObraRequest;
 
 class ObraController extends Controller
 {

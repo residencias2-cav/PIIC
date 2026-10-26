@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\EstadoPedido;
+use App\Models\Catalogos\EstadoPedido;
 use Illuminate\Auth\Access\Response;
 
 class EstadoPedidoPolicy

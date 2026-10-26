@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\InfCredito;
-use App\Http\Requests\StoreInfCreditoRequest;
-use App\Http\Requests\UpdateInfCreditoRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\InfCredito;
+
+use App\Http\Requests\StoreCatalogos\StoreInfCreditoRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateInfCreditoRequest;
 
 class InfCreditoController extends Controller
 {

@@ -1,20 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Catalogos;
 
-<<<<<<< HEAD
 use App\Models\TipoSangre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<TipoSangre>
-=======
-use App\Models\TipoSangre;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<TipoSangre>
->>>>>>> 1068da9 (Estados nacimientos)
  */
 class TipoSangreFactory extends Factory
 {

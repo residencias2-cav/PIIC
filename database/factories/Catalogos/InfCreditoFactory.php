@@ -1,20 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Catalogos;
 
-<<<<<<< HEAD
+
 use App\Models\InfCredito;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<InfCredito>
-=======
-use App\Models\InfCredito;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<InfCredito>
->>>>>>> 1068da9 (Estados nacimientos)
  */
 class InfCreditoFactory extends Factory
 {

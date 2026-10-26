@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\TipoUsuario;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\TipoUsuario;
 
 class TipoUsuarioController extends Controller
 {
@@ -55,7 +55,7 @@ class TipoUsuarioController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, TipoUsuario $tipo_usuario)
+    public function update(TipoUsuario $request, TipoUsuario $tipo_usuario)
     {
         //
     }

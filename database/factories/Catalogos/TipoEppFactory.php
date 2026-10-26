@@ -1,20 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Catalogos;
 
-<<<<<<< HEAD
 use App\Models\TipoEpp;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<TipoEpp>
-=======
-use App\Models\TipoEpp;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<TipoEpp>
->>>>>>> 1068da9 (Estados nacimientos)
  */
 class TipoEppFactory extends Factory
 {

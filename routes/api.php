@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\{
+use App\Http\Controllers\Catalogos\{
     LugarController,
     ObraController,
     GerenciaController,

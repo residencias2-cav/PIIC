@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\InfContrato;
+use App\Models\Catalogos\InfContrato;
 use Illuminate\Auth\Access\Response;
 
 class InfContratoPolicy

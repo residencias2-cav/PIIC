@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Empresa;
-use App\Http\Requests\StoreEmpresaRequest;
-use App\Http\Requests\UpdateEmpresaRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Empresa;
+
+use App\Http\Requests\StoreCatalogos\StoreEmpresaRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateEmpresaRequest;
+
 
 class EmpresaController extends Controller
 {
