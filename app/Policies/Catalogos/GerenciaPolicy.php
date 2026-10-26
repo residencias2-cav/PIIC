@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\Gerencia;
+use App\Models\Catalogos\Gerencia;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

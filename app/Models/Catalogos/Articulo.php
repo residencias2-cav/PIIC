@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Catalogos;
 
 use App\Models\Epp\DatosEppNi;
 use App\Models\Epp\DatosEppRc;

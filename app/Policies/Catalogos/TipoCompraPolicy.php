@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\TipoCompra;
+use App\Models\Catalogos\TipoCompra;
 use Illuminate\Auth\Access\Response;
 
 class TipoCompraPolicy

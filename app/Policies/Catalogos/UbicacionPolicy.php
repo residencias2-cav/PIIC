@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\Ubicacion;
+use App\Models\Catalogos\Ubicacion;
 use Illuminate\Auth\Access\Response;
 
 class UbicacionPolicy

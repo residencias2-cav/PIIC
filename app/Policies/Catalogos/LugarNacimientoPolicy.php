@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\LugarNacimiento;
+use App\Models\Catalogos\LugarNacimiento;
 use Illuminate\Auth\Access\Response;
 
 class LugarNacimientoPolicy

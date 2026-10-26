@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Catalogos;
 
 use App\Models\Usuarios\Usuario;
 use App\Models\Usuarios\UsuariosProveedores;
@@ -30,6 +30,6 @@ class TipoUsuario extends Model
 
     public function usuariosProveedores()
     {
-        return $this->hasMany(UsuarioProveedor::class);
+        return $this->hasMany(UsuariosProveedores::class);
     }
 }

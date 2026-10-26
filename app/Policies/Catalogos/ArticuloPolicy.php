@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\Articulo;
+use App\Models\Catalogos\Articulo;
 use App\Models\User;
 
 class ArticuloPolicy

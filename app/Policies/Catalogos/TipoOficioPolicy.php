@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\TipoOficio;
+use App\Models\Catalogos\TipoOficio;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

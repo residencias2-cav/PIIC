@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\ProductoServicio;
-use App\Http\Requests\StoreProductoServicioRequest;
-use App\Http\Requests\UpdateProductoServicioRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\ProductoServicio;
+
+use App\Http\Requests\StoreCatalogos\StoreProductoServicioRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateProductoServicioRequest;
 
 class ProductoServicioController extends Controller
 {

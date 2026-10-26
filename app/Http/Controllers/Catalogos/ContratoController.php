@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Contrato;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Contrato;
 
 class ContratoController extends Controller
 {

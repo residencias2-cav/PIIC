@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\Proyecto;
+use App\Models\Catalogos\Proyecto;
 use Illuminate\Auth\Access\Response;
 
 class ProyectoPolicy

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
 use App\Models\User;
-use App\Models\TipoServicio;
+use App\Models\Catalogos\TipoServicio;
 use Illuminate\Auth\Access\Response;
 
 class TipoServicioPolicy

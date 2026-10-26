@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Catalogos;
 
-use App\Models\Contrato;
+use App\Models\Catalogos\Contrato;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

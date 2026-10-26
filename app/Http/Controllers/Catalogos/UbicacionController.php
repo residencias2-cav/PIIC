@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Ubicacion;
-use App\Http\Requests\StoreUbicacionRequest;
-use App\Http\Requests\UpdateUbicacionRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Ubicacion;
+
+use App\Http\Requests\StoreCatalogos\StoreUbicacionRequest;
+use App\Http\Requests\UpdateCatalogos\UpdateUbicacionRequest;
 
 class UbicacionController extends Controller
 {
