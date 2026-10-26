@@ -5,10 +5,11 @@ namespace App\Models\Epp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Catalogos\{
-    TipoEpp,
     Obra,
-    empresa
+    TipoEpp,
+    Empresa
     };
+use App\Models\Catalogos\TipoEpp as CatalogosTipoEpp;
 use App\Models\Compras\AutorizadoPor;
 use App\Models\Epp\{
     DatosEppEx,
@@ -17,11 +18,12 @@ use App\Models\Epp\{
     DatosEppTr,
     DatosEppRe
     };
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Epp extends Model
 {
     /** @use HasFactory<\Database\Factories\EppFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "epps";
 
@@ -51,7 +53,7 @@ class Epp extends Model
 
     public function tipoEpp()
     {
-        return $this->belongsTo(TipoPedido::class);
+        return $this->belongsTo(TipoEpp::class);
     }
     
     public function obra()
@@ -87,5 +89,10 @@ class Epp extends Model
     public function datosEppRe()
     {
         return $this->hasMany(DatosEppRe::class);
+    }
+
+    public function autorizadoPor()
+    {
+        return $this->hasOne(AutorizadoPor::class);
     }
 }
