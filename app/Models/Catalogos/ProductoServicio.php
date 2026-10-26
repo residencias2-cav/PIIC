@@ -2,6 +2,7 @@
 
 namespace App\Models\Catalogos;
 
+use App\Models\Proveedores\Proveedor;
 use App\Models\Proveedores\ProveedorServicio;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,6 @@ class ProductoServicio extends Model
 
     public function productosServicios()
     {
-        return $this->hasMany(ProveedorServicio::class);
+        return $this->belongsToMany(Proveedor::class, 'producto_servicio_id', 'proveedor_id');
     }
 }

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('telefono', 20);
             $table->text('direccion');
             $table->string('tipo_contrato', 50);
-            $table->integer('created_by');
             $table->timestamps();
         });
     }

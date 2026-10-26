@@ -15,7 +15,7 @@ use App\Models\Epp\{
     DatosEppEx,
     DatosEppNi,
     DatosEppRe,
-    DatosEppRc,
+    DatosEppRc
 };
 use App\Models\Oficios\{
     Mantenimientos,
@@ -111,6 +111,4 @@ class Trabajador extends Model
     {
         return $this->hasMany(Categoria::class);
     }
-
-    
 }
