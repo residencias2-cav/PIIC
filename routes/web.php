@@ -16,11 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/prueba-gerencia', 'catalogos.gerencia.index');
-Route::view('/prueba-empresa', 'catalogos.empresa.index');
-Route::view('/prueba-proyecto', 'catalogos.proyecto.index');
-Route::view('/prueba-lugar', 'catalogos.lugar.index');
-
 Route::resource('catalogos/articulo', ArticuloController::class)
     ->names('articulo');
 Route::resource('catalogos/empresa', EmpresaController::class)
@@ -39,13 +34,3 @@ Route::resource('catalogos/proyecto', ProyectoController::class)
     ->names('proyecto');
 Route::resource('catalogos/unidad', UnidadController::class)
     ->names('unidad');
-    
-#use App\Models\Catalogos\Gerencia;
-
-#Route::get('/prueba-gerencia', function () {
-
- #   $gerencias = Gerencia::all();
-
-  #  return view('catalogos.gerencia.index', compact('gerencias'));
-
-#});
