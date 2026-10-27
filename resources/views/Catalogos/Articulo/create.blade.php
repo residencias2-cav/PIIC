@@ -4,46 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nuevo artículo</title>
+
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar artículo</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('articulo.store') }}" method="POST">
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        @csrf
+            <div class="catalogo-linea"></div>
 
-        <div>
-            <label for="nombre">
-                Nombre:
-            </label>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Artículo
+                </h1>
 
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value="{{ old('nombre') }}"
-                required
-            >
+                <p class="formulario-descripcion">
+                    Ingresa la información del nuevo artículo.
+                </p>
+            </div>
 
-            @error('nombre')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+        </header>
 
-        <br>
 
-        <button type="submit">
-            Guardar
-        </button>
+        {{-- Formulario --}}
+        <form
+            action="{{ route('articulo.store') }}"
+            method="POST"
+        >
 
-        <a href="{{ route('articulo.index') }}">
-            Cancelar
-        </a>
+            @csrf
 
-    </form>
+
+            {{-- Nombre --}}
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre del artículo
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    placeholder="Ejemplo: Casco"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Acciones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('articulo.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar artículo
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
 

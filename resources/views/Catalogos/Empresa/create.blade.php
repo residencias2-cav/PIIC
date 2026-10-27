@@ -1,80 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nueva empresa</title>
+
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar Empresa</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('empresa.store') }}" method="POST">
-        @csrf
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        <div>
-            <label for="nombre">Nombre:</label>
+            <div class="catalogo-linea"></div>
 
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value="{{ old('nombre') }}"
-                required
-            >
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Empresa
+                </h1>
 
-            @error('nombre')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+                <p class="formulario-descripcion">
+                    Ingresa la información de la nueva empresa.
+                </p>
+            </div>
 
-        <br>
+        </header>
 
-        <div>
-            <label for="rfc">RFC:</label>
 
-            <input
-                type="text"
-                id="rfc"
-                name="rfc"
-                value="{{ old('rfc') }}"
-                required
-            >
+        {{-- Formulario --}}
+        <form
+            action="{{ route('articulo.store') }}"
+            method="POST"
+        >
 
-            @error('rfc')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+            @csrf
 
-        <br>
 
-        <div>
-            <label for="dom_fiscal">Domicilio Fiscal:</label>
+            {{-- Nombre --}}
+            <div class="campo">
 
-            <input
-                type="text"
-                id="dom_fiscal"
-                name="dom_fiscal"
-                value="{{ old('dom_fiscal') }}"
-                required
-            >
+                <label for="nombre">
+                    Nombre de la Empresa
+                </label>
 
-            @error('dom_fiscal')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    placeholder="Ejemplo: Grupo CAVI"
+                    required
+                    autofocus
+                >
 
-        <br>
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
 
-        <button type="submit">
-            Guardar
-        </button>
+            </div>
 
-        <a href="{{ route('empresa.index') }}">
-            Cancelar
-        </a>
-    </form>
+
+            {{-- Acciones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('articulo.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar empresa
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

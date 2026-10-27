@@ -20,6 +20,29 @@ class EmpresaController extends Controller
         return response()->json($empresa);
     }
 
+    public function vistaIndex()
+    {
+        $empresas = Empresa::all();
+
+        return view(
+            'catalogos.empresa.index',
+            compact('empresas')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.empresa.create');
+    }
+
+    public function vistaEdit(Empresa $empresa)
+    {
+        return view(
+            'catalogos.empresa.edit',
+            compact('empresa')
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      */

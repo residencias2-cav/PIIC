@@ -19,6 +19,29 @@ class LugarController extends Controller
         return response()->json($lugar);
     }
 
+    public function vistaIndex()
+    {
+        $lugars = Lugar::all();
+
+        return view(
+            'catalogos.lugar.index',
+            compact('lugars')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.lugar.create');
+    }
+
+    public function vistaEdit(Lugar $lugar)
+    {
+        return view(
+            'catalogos.lugar.edit',
+            compact('lugar')
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      */

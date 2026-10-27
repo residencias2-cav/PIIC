@@ -1,33 +1,117 @@
-<h1>Nueva gerencia</h1>
+<!DOCTYPE html>
+<html lang="es">
 
-<form action="{{ route('gerencia.store') }}" method="POST">
-    @csrf
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <label>Nombre</label>
+    <title>Nueva gerencia</title>
 
-    <input
-        type="text"
-        name="nombre"
-        value="{{ old('nombre') }}"
-    >
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
+</head>
 
-    @error('nombre')
-        <p>{{ $message }}</p>
-    @enderror
+<body>
 
-    <label>Código</label>
+    <main class="formulario-card">
 
-    <input
-        type="text"
-        name="code"
-        value="{{ old('code') }}"
-    >
+        <header class="formulario-header">
 
-    @error('code')
-        <p>{{ $message }}</p>
-    @enderror
+            <div class="catalogo-linea"></div>
 
-    <button type="submit">
-        Guardar
-    </button>
-</form>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Gerencia
+                </h1>
+
+                <p class="formulario-descripcion">
+                    Ingresa la información de la nueva gerencia.
+                </p>
+            </div>
+
+        </header>
+
+
+        <form
+            action="{{ route('gerencia.store') }}"
+            method="POST"
+        >
+
+            @csrf
+
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre de la gerencia
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    maxlength="50"
+                    placeholder="Ejemplo: Recursos Humanos"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="code">
+                    Código
+                </label>
+
+                <input
+                    type="text"
+                    id="code"
+                    name="code"
+                    value="{{ old('code') }}"
+                    maxlength="50"
+                    placeholder="Ejemplo: RH"
+                    required
+                >
+
+                @error('code')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('gerencia.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar gerencia
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

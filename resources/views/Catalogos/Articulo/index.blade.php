@@ -4,73 +4,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Artículos</title>
+
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Catálogo de Artículos</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>
-            {{ session('success') }}
-        </p>
-    @endif
+        {{-- Encabezado --}}
+        <header class="catalogo-header">
 
-    <a href="{{ route('articulo.create') }}">
-        Nuevo artículo
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Catálogo de Artículos
+                    </h1>
 
-        <tbody>
-            @forelse ($articulos as $articulo)
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de los artículos registrados.
+                    </p>
+                </div>
 
-                <tr>
-                    <td>{{ $articulo->id }}</td>
+            </div>
 
-                    <td>{{ $articulo->nombre }}</td>
+            <a
+                href="{{ route('articulo.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo artículo
+            </a>
 
-                    <td>
-                        <a href="{{ route('articulo.edit', $articulo) }}">
-                            Editar
-                        </a>
+        </header>
 
-                        <form
-                            action="{{ route('articulo.destroy', $articulo) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+        {{-- Mensaje de éxito --}}
+        @if (session('success'))
 
-            @empty
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-                <tr>
-                    <td colspan="3">
-                        No hay artículos registrados.
-                    </td>
-                </tr>
+        @endif
 
-            @endforelse
-        </tbody>
-    </table>
+
+        {{-- Tarjeta de la tabla --}}
+        <section class="catalogo-card">
+
+            <div class="tabla-responsive">
+
+                <table class="catalogo-tabla">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($articulos as $articulo)
+
+                            <tr>
+
+                                <td>
+                                    {{ $articulo->id }}
+                                </td>
+
+                                <td>
+                                    {{ $articulo->nombre }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('articulo.edit', $articulo) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+
+                                        <form
+                                            action="{{ route('articulo.destroy', $articulo) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar este artículo?');"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="estado-vacio"
+                                >
+
+                                    <p class="estado-vacio-titulo">
+                                        No hay artículos registrados
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra un artículo para comenzar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 

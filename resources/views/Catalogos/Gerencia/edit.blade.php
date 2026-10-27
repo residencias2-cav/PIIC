@@ -1,26 +1,116 @@
-<h1>Editar gerencia</h1>
+<!DOCTYPE html>
+<html lang="es">
 
-<form action="{{ route('gerencia.update', $gerencia) }}" method="POST">
-    @csrf
-    @method('PUT')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <label>Nombre</label>
+    <title>Editar gerencia</title>
 
-    <input
-        type="text"
-        name="nombre"
-        value="{{ old('nombre', $gerencia->nombre) }}"
-    >
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
+</head>
 
-    <label>Código</label>
+<body>
 
-    <input
-        type="text"
-        name="code"
-        value="{{ old('code', $gerencia->code) }}"
-    >
+    <main class="formulario-card">
 
-    <button type="submit">
-        Actualizar
-    </button>
-</form>
+        <header class="formulario-header">
+
+            <div class="catalogo-linea"></div>
+
+            <div>
+                <h1 class="formulario-titulo">
+                    Editar Gerencia
+                </h1>
+
+                <p class="formulario-descripcion">
+                    Modifica la información de la gerencia seleccionada.
+                </p>
+            </div>
+
+        </header>
+
+
+        <form
+            action="{{ route('gerencia.update', $gerencia) }}"
+            method="POST"
+        >
+
+            @csrf
+            @method('PUT')
+
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre de la gerencia
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre', $gerencia->nombre) }}"
+                    maxlength="50"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="code">
+                    Código
+                </label>
+
+                <input
+                    type="text"
+                    id="code"
+                    name="code"
+                    value="{{ old('code', $gerencia->code) }}"
+                    maxlength="50"
+                    required
+                >
+
+                @error('code')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('gerencia.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Actualizar gerencia
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

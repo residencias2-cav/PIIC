@@ -20,6 +20,29 @@ class ArticuloController extends Controller
         $articulos = Articulo::all();
     }
 
+    public function vistaIndex()
+    {
+        $articulos = Articulo::all();
+
+        return view(
+            'catalogos.articulo.index',
+            compact('articulos')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.articulo.create');
+    }
+
+    public function vistaEdit(Articulo $articulo)
+    {
+        return view(
+            'catalogos.articulo.edit',
+            compact('articulo')
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      */
