@@ -6,10 +6,14 @@ use App\Models\Catalogos\{
     InfContrato,
     InfCredito,
     ProductoServicio
-};
+    };
 use App\Models\Compras\{
     Cotizacion,
     Pago
+    };
+use App\Models\Oficios\{
+    OficiosProductos,
+    OficiosRepse
     };
 use App\Models\Usuarios\UsuariosProveedores;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -86,6 +90,16 @@ class Proveedor extends Model
 
     public function provContacto()
     {
-        return $this->belongsToMany(Cotizacion::class, 'prov_contactos', 'proveedor_id', 'cotizacions_id')->withTimestamps();
+        return $this->belongsToMany(Cotizacion::class, 'prov_contactos', 'proveedor_id', 'cotizacion_id')->withTimestamps();
+    }
+
+    public function oficiosProducto()
+    {
+        return $this->hasMany(OficiosProductos::class);
+    }
+
+    public function oficiosRepSe()
+    {
+        return $this->hasMany(OficiosRepse::class);
     }
 }

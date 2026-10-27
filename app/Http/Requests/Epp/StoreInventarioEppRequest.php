@@ -24,6 +24,17 @@ class StoreInventarioEppRequest extends FormRequest
     {
         return [
             //
+            'articulo_id' => ['required', 'integer', 'exists:articulo, id'],
+            'talla' => ['required', 'integer'],
+            'existencia' => ['required', 'integer'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'articulo_id.required' => 'Debe seleccionar un articulo.',
+            'articulo_id.exists' => 'El articulo no existe.',
         ];
     }
 }
