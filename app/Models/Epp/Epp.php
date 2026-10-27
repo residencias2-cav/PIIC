@@ -33,6 +33,7 @@ class Epp extends Model
         'tipo_epp_id',
         'obra_id',
         'empresa_id',
+        'motivo',
         'justificacion',
         'logistica',
         'created_by',
