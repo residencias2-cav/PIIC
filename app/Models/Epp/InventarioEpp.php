@@ -2,7 +2,7 @@
 
 namespace App\Models\Epp;
 
-use App\Models\Articulo;
+use App\Models\Catalogos\Articulo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
