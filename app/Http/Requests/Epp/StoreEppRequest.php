@@ -59,9 +59,7 @@ class Store_epp_Request extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'folio' => $this->folio
-                ? strtoupper(trim($this->folio))
-                : null,
+            'folio' => $this->folio ? strtoupper(trim($this->folio)): null,
         ]);
     }
 }

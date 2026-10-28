@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('apellido_paterno', 100);
             $table->string('apellido_materno', 100);
             $table->enum('sexo', ['Hombre', 'Mujer']);
-            $table->string('nss', 20);
-            $table->string('curp', 18);
-            $table->string('rfc', 13);
+            $table->string('nss', 20)->unique();
+            $table->string('curp', 18)->unique();
+            $table->string('rfc', 13)->unique();
             $table->date('fecha_nacimiento');
             $table->foreignId('lugar_nacimiento_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipo_sangre_id')->constrained()->onDelete('cascade');

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('razon_social', 100);
-            $table->string('curp', 18);
-            $table->string('rfc', 13);
+            $table->string('curp', 18)->unique();
+            $table->string('rfc', 13)->unique();
             $table->string('area', 30);
             $table->string('desc_bs', 100);
             $table->date('vigencia_sat');

@@ -35,6 +35,12 @@ class StoreInventarioEppRequest extends FormRequest
         return [
             'articulo_id.required' => 'Debe seleccionar un articulo.',
             'articulo_id.exists' => 'El articulo no existe.',
+
+            'talla.required' => 'Debe especificar la talla del articulo',
+            'talla.integer' => 'El valor debe ser numerico',
+
+            'existencia.required' => 'Se debe especificar la cantidad de existencias',
+            'existencia.integer' => 'El valor debe ser numerico',
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('folio', 20);
+            $table->string('folio', 20)->unique();
             $table->foreignId('tipo_pedido_id')->constrained()->onDelete('cascade');
             $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
             $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
