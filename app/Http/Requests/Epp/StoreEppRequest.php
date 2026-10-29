@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store_epp_Request extends FormRequest
+class StoreEppRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

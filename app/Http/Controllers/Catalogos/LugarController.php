@@ -26,20 +26,20 @@ class LugarController extends Controller
         $lugars = Lugar::all();
 
         return view(
-            'catalogos.lugar.index',
+            'Catalogos.Lugar.index',
             compact('lugars')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.lugar.create');
+        return view('Catalogos.Lugar.create');
     }
 
     public function vistaEdit(Lugar $lugar)
     {
         return view(
-            'catalogos.lugar.edit',
+            'Catalogos.Lugar.edit',
             compact('lugar')
         );
     }

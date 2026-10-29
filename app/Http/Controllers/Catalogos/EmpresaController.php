@@ -26,20 +26,20 @@ class EmpresaController extends Controller
         $empresas = Empresa::all();
 
         return view(
-            'catalogos.empresa.index',
+            'Catalogos.Empresa.index',
             compact('empresas')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.empresa.create');
+        return view('Catalogos.Empresa.create');
     }
 
     public function vistaEdit(Empresa $empresa)
     {
         return view(
-            'catalogos.empresa.edit',
+            'Catalogos.Empresa.edit',
             compact('empresa')
         );
     }

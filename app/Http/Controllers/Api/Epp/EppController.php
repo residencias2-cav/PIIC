@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Epp;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEppRequest;
 use App\Models\Epp\Epp;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class EppController extends Controller
@@ -13,22 +16,36 @@ class EppController extends Controller
     public function index()
     {
         //
+        $epp = Epp::all();
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): JsonResponse
     {
         //
+        $epp = Epp::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $epp,
+        ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEppRequest $request)
     {
         //
+        $epp =Epp::create($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'mesage' => 'Epp registrado correctamente',
+            'data' => $epp
+            ], 201);
     }
 
     /**
@@ -37,6 +54,7 @@ class EppController extends Controller
     public function show(Epp $epp)
     {
         //
+
     }
 
     /**

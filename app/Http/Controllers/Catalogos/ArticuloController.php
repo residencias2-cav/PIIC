@@ -10,6 +10,7 @@ use App\Http\Requests\Catalogos\{
     StoreArticuloRequest
 };
 
+
 use Illuminate\Http\JsonResponse;
 
 class ArticuloController extends Controller
@@ -27,20 +28,20 @@ class ArticuloController extends Controller
         $articulos = Articulo::all();
 
         return view(
-            'catalogos.articulo.index',
+            'Catalogos.Articulo.index',
             compact('articulos')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.articulo.create');
+        return view('Catalogos.Articulo.create');
     }
 
     public function vistaEdit(Articulo $articulo)
     {
         return view(
-            'catalogos.articulo.edit',
+            'Catalogos.Articulo.edit',
             compact('articulo')
         );
     }
@@ -48,7 +49,7 @@ class ArticuloController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): JsonResponse
     {
         //
         $articulos = Articulo::all();
@@ -69,7 +70,7 @@ class ArticuloController extends Controller
         return response()->json([
             'status' => true,
             'mesage' => 'Articulo registrado correctamente',
-            'data'=> $articulo
+            'data' => $articulo
             ], 201);
     }
 

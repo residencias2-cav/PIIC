@@ -26,7 +26,7 @@ use App\Http\Controllers\Catalogos\{
     TipoEppController,
     InfContratoController
     };
-
+use App\Http\Controllers\Api\Epp\EppController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('catalogos')->group(function () {
@@ -57,4 +57,8 @@ Route::prefix('catalogos')->group(function () {
     Route::get('/user', function (Request $request) {return $request->user();
 });
 
-})->middleware('auth:sanctum');
+});
+
+Route::prefix('epp')->group(function () {
+    Route::apiResource('epp', EppController::class);
+});
