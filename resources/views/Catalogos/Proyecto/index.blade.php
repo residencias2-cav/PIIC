@@ -4,76 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos</title>
+
+    <title>Artículos</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Catálogo de Proyectos</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+        {{-- Encabezado --}}
+        <header class="catalogo-header">
 
-    <a href="{{ route('proyecto.create') }}">
-        Nuevo proyecto
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Catálogo de Proyectos
+                    </h1>
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de los proyectos registrados.
+                    </p>
+                </div>
 
-        <tbody>
+            </div>
 
-            @forelse ($proyectos as $proyecto)
+            <a
+                href="{{ route('proyecto.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo proyecto
+            </a>
 
-                <tr>
-                    <td>{{ $proyecto->id }}</td>
+        </header>
 
-                    <td>{{ $proyecto->nombre }}</td>
 
-                    <td>
-                        <a href="{{ route('proyecto.edit', $proyecto) }}">
-                            Editar
-                        </a>
+        {{-- Mensaje de éxito --}}
+        @if (session('success'))
 
-                        <form
-                            action="{{ route('proyecto.destroy', $proyecto) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+        @endif
 
-            @empty
 
-                <tr>
-                    <td colspan="3">
-                        No hay proyectos registrados.
-                    </td>
-                </tr>
+        {{-- Tarjeta de la tabla --}}
+        <section class="catalogo-card">
 
-            @endforelse
+            <div class="tabla-responsive">
 
-        </tbody>
+                <table class="catalogo-tabla">
 
-    </table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($proyectos as $proyecto)
+
+                            <tr>
+
+                                <td>
+                                    {{ $proyecto->id }}
+                                </td>
+
+                                <td>
+                                    {{ $proyecto->nombre }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('proyecto.edit', $proyecto) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+
+                                        <form
+                                            action="{{ route('proyecto.destroy', $proyecto) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar este proyecto?');"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="estado-vacio"
+                                >
+
+                                    <p class="estado-vacio-titulo">
+                                        No hay proyectos registrados
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra un proyecto para comenzar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

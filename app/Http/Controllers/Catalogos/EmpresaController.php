@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Empresa;
 
-use App\Http\Requests\StoreCatalogos\StoreEmpresaRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateEmpresaRequest;
-
+use App\Http\Requests\Catalogos\{
+    UpdateEmpresaRequest,
+    StoreEmpresaRequest
+};
 
 class EmpresaController extends Controller
 {

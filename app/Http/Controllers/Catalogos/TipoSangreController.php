@@ -55,7 +55,7 @@ class TipoSangreController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, TipoSangre $tipo_sangre)
+    public function update(TipoSangre $request, TipoSangre $tipo_sangre)
     {
         //
     }

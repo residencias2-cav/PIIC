@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Articulo;
 
-use App\Http\Requests\StoreCatalogos\StoreArticuloRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateArticuloRequest;
+use App\Http\Requests\Catalogos\{
+    UpdateArticuloRequest,
+    StoreArticuloRequest
+};
 
 use Illuminate\Http\JsonResponse;
 

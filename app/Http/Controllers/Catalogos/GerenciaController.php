@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Gerencia;
 
-use App\Http\Requests\StoreCatalogos\StoreGerenciaRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateGerenciaRequest;
+use App\Http\Requests\Catalogos\{
+    UpdateGerenciaRequest,
+    StoreGerenciaRequest
+};
 
 class GerenciaController extends Controller
 {
@@ -17,6 +19,29 @@ class GerenciaController extends Controller
     {
         $gerencia = Gerencia::all();
         return response()->json($gerencia);
+    }
+
+    public function vistaIndex()
+    {
+        $gerencias = Gerencia::all();
+
+        return view(
+            'catalogos.gerencia.index',
+            compact('gerencias')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.gerencia.create');
+    }
+
+    public function vistaEdit(Gerencia $gerencia)
+    {
+        return view(
+            'catalogos.gerencia.edit',
+            compact('gerencia')
+        );
     }
 
     /**

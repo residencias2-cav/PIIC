@@ -4,47 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo proyecto</title>
+
+    <title>Nuevo Proyecto</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar Proyecto</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('proyecto.store') }}" method="POST">
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        @csrf
+            <div class="catalogo-linea"></div>
 
-        <div>
-            <label for="nombre">
-                Nombre:
-            </label>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Proyecto
+                </h1>
 
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value="{{ old('nombre') }}"
-                required
-            >
+                <p class="formulario-descripcion">
+                    Ingresa la información del nuevo proyecto.
+                </p>
+            </div>
 
-            @error('nombre')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+        </header>
 
-        <br>
 
-        <button type="submit">
-            Guardar
-        </button>
+        {{-- Formulario --}}
+        <form
+            action="{{ route('proyecto.store') }}"
+            method="POST"
+        >
 
-        <a href="{{ route('proyecto.index') }}">
-            Cancelar
-        </a>
+            @csrf
 
-    </form>
+
+            {{-- Nombre --}}
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre del proyecto
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    placeholder="Ejemplo: Saucito"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Acciones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('proyecto.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar proyecto
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

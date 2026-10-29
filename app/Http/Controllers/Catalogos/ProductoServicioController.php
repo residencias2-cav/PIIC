@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\ProductoServicio;
 
-use App\Http\Requests\StoreCatalogos\StoreProductoServicioRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateProductoServicioRequest;
+use App\Http\Requests\Catalogos\{
+    UpdateProductoServicioRequest,
+    StoreProductoServicioRequest
+};
 
 class ProductoServicioController extends Controller
 {
@@ -17,6 +19,29 @@ class ProductoServicioController extends Controller
     {
         $producto_servicio = ProductoServicio::all();
         return response()->json($producto_servicio);
+    }
+
+    public function vistaIndex()
+    {
+        $producto_servicios = ProductoServicio::all();
+
+        return view(
+            'catalogos.producto_servicio.index',
+            compact('producto_servicios')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.producto_servicio.create');
+    }
+
+    public function vistaEdit(ProductoServicio $producto_servicio)
+    {
+        return view(
+            'catalogos.producto_servicio.edit',
+            compact('producto_servicio')
+        );
     }
 
     /**

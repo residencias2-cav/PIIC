@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Lugar;
 
-use App\Http\Requests\StoreCatalogos\StoreLugarRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateLugarRequest;
+use App\Http\Requests\Catalogos\{
+    UpdateLugarRequest,
+    StoreLugarRequest
+};
 
 class LugarController extends Controller
 {

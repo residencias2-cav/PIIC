@@ -4,75 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubicaciones</title>
+
+    <title>Artículos</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Catálogo de Ubicaciones</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+        {{-- Encabezado --}}
+        <header class="catalogo-header">
 
-    <a href="{{ route('ubicacion.create') }}">
-        Nueva ubicación
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Catálogo de Ubicaciones
+                    </h1>
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de las ubicaciones registradas.
+                    </p>
+                </div>
 
-        <tbody>
+            </div>
 
-            @forelse ($ubicaciones as $ubicacion)
+            <a
+                href="{{ route('ubicacion.create') }}"
+                class="btn btn-principal"
+            >
+                Nueva ubicación
+            </a>
 
-                <tr>
-                    <td>{{ $ubicacion->id }}</td>
-                    <td>{{ $ubicacion->nombre }}</td>
+        </header>
 
-                    <td>
-                        <a href="{{ route('ubicacion.edit', $ubicacion) }}">
-                            Editar
-                        </a>
 
-                        <form
-                            action="{{ route('ubicacion.destroy', $ubicacion) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
+        {{-- Mensaje de éxito --}}
+        @if (session('success'))
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-            @empty
+        @endif
 
-                <tr>
-                    <td colspan="3">
-                        No hay ubicaciones registradas.
-                    </td>
-                </tr>
 
-            @endforelse
+        {{-- Tarjeta de la tabla --}}
+        <section class="catalogo-card">
 
-        </tbody>
+            <div class="tabla-responsive">
 
-    </table>
+                <table class="catalogo-tabla">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($ubicacions as $ubicacion)
+
+                            <tr>
+
+                                <td>
+                                    {{ $ubicacion->id }}
+                                </td>
+
+                                <td>
+                                    {{ $ubicacion->nombre }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('ubicacion.edit', $ubicacion) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+
+                                        <form
+                                            action="{{ route('ubicación.destroy', $ubicación) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar esta ubicación?');"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="estado-vacio"
+                                >
+
+                                    <p class="estado-vacio-titulo">
+                                        No hay ubicaciones registradas
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra una ubicación para comenzar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

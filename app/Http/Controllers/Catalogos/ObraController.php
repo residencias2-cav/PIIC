@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Obra;
 
-use App\Http\Requests\StoreCatalogos\StoreObraRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateObraRequest;
+use App\Http\Requests\Catalogos\{
+    UpdateObraRequest,
+    StoreObraRequest
+};
 
 class ObraController extends Controller
 {
@@ -17,6 +19,29 @@ class ObraController extends Controller
     {
         $obra = Obra::all();
         return response()->json($obra);
+    }
+
+    public function vistaIndex()
+    {
+        $obras = Obra::all();
+
+        return view(
+            'catalogos.obra.index',
+            compact('obras')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.obra.create');
+    }
+
+    public function vistaEdit(Obra $obra)
+    {
+        return view(
+            'catalogos.obra.edit',
+            compact('obra')
+        );
     }
 
     /**

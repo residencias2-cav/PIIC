@@ -51,7 +51,7 @@ class TipoPedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoPedido $tipo_pedido)
+    public function update(TipoPedido $request, TipoPedido $tipo_pedido)
     {
         //
     }
