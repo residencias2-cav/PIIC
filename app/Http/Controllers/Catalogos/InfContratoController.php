@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\InfContrato;
 
-use App\Http\Requests\StoreCatalogos\StoreInfContratoRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateInfContratoRequest;
+use App\Http\Requests\Catalogos\{
+    StoreInfContratoRequest,
+    UpdateInfContratoRequest
+    };
 
 class InfContratoController extends Controller
 {

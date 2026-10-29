@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Lugar;
 
-use App\Http\Requests\StoreCatalogos\StoreLugarRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateLugarRequest;
+use App\Http\Requests\Catalogos\{
+    StoreLugarRequest,
+    UpdateLugarRequest
+    };
 
 class LugarController extends Controller
 {
@@ -24,20 +26,20 @@ class LugarController extends Controller
         $lugars = Lugar::all();
 
         return view(
-            'catalogos.lugar.index',
+            'Catalogos.Lugar.index',
             compact('lugars')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.lugar.create');
+        return view('Catalogos.Lugar.create');
     }
 
     public function vistaEdit(Lugar $lugar)
     {
         return view(
-            'catalogos.lugar.edit',
+            'Catalogos.Lugar.edit',
             compact('lugar')
         );
     }

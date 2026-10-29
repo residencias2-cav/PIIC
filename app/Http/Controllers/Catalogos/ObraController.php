@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Obra;
 
-use App\Http\Requests\StoreCatalogos\StoreObraRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateObraRequest;
+use App\Http\Requests\Catalogos\{
+    StoreObraRequest,
+    UpdateObraRequest
+    };
 
 class ObraController extends Controller
 {

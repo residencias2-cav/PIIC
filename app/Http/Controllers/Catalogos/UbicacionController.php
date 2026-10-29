@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Ubicacion;
 
-use App\Http\Requests\StoreCatalogos\StoreUbicacionRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateUbicacionRequest;
+use App\Http\Requests\Catalogos\{
+    StoreUbicacionRequest,
+    UpdateUbicacionRequest
+    };
 
 class UbicacionController extends Controller
 {

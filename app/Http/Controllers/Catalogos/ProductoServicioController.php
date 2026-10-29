@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\ProductoServicio;
 
-use App\Http\Requests\StoreCatalogos\StoreProductoServicioRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateProductoServicioRequest;
+use App\Http\Requests\Catalogos\{
+    StoreProductoServicioRequest,
+    UpdateProductoServicioRequest
+    };
 
 class ProductoServicioController extends Controller
 {

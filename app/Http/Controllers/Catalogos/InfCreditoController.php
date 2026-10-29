@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\InfCredito;
 
-use App\Http\Requests\StoreCatalogos\StoreInfCreditoRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateInfCreditoRequest;
+use App\Http\Requests\Catalogos\{
+    StoreInfCreditoRequest,
+    UpdateInfCreditoRequest
+    };
 
 class InfCreditoController extends Controller
 {

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Catalogos;
 use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Empresa;
 
-use App\Http\Requests\StoreCatalogos\StoreEmpresaRequest;
-use App\Http\Requests\UpdateCatalogos\UpdateEmpresaRequest;
+use App\Http\Requests\Catalogos\{
+    StoreEmpresaRequest,
+    UpdateEmpresaRequest
+    };
 
 
 class EmpresaController extends Controller
@@ -25,20 +27,20 @@ class EmpresaController extends Controller
         $empresas = Empresa::all();
 
         return view(
-            'catalogos.empresa.index',
+            'Catalogos.Empresa.index',
             compact('empresas')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.empresa.create');
+        return view('Catalogos.Empresa.create');
     }
 
     public function vistaEdit(Empresa $empresa)
     {
         return view(
-            'catalogos.empresa.edit',
+            'Catalogos.Empresa.edit',
             compact('empresa')
         );
     }

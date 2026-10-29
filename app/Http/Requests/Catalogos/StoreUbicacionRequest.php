@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\StoreCatalogos;
+namespace App\Http\Requests\Catalogos;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
