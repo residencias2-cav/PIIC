@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoCotizacion;
+use App\Models\Catalogos\TipoCotizacion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,32 +13,22 @@ class TipoCotizacionSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoCotizacion::create([
-            'nombre' => 'Hospedaje',
-        ]);
 
-        TipoCotizacion::create([
-            'nombre' => 'Materiales',
-        ]);
+        $tipocotizacion = [
+            'Hospedaje',
+            'Materiales',
+            'Equipos',
+            'Examenes medicos',
+            'Herramientas',
+            'EPP',
+            'Alimentos'
+            ];
 
-        TipoCotizacion::create([
-            'nombre' => 'Equipos',
-        ]);
+        foreach ($tipocotizacion as $nombre) {
+            TipoCotizacion::firstOrCreate([
+                        'nombre' => $nombre
+                        ]);
 
-        TipoCotizacion::create([
-            'nombre' => 'Examenes medicos',
-        ]);
-
-        TipoCotizacion::create([
-            'nombre' => 'Herramientas',
-        ]);
-
-        TipoCotizacion::create([
-            'nombre' => 'EPP',
-        ]);
-
-        TipoCotizacion::create([
-            'nombre' => 'Alimentos',
-        ]);
+        }
     }
 }

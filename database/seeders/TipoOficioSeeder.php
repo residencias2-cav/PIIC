@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoOficio;
+use App\Models\Catalogos\TipoOficio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,20 +13,17 @@ class TipoOficioSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoOficio::create([
-            'nombre' => 'Oficios producto',
-        ]);
+        $tipooficios = [
+            'Oficios producto',
+            'Oficios RepSe',
+            'Oficios rutas',
+            'Oficios comisiones' 
+            ];
 
-        TipoOficio::create([
-            'nombre' => 'Oficios repse',
-        ]);
-
-        TipoOficio::create([
-            'nombre' => 'Oficios rutas',
-        ]);
-
-        TipoOficio::create([
-            'nombre' => 'Oficios comisiones',
-        ]);
+        foreach ($tipooficios as $nombre) {
+                TipoOficio::firstOrCreate([
+                    'nombre' => $nombre
+                ]);
+        }
     }
 }

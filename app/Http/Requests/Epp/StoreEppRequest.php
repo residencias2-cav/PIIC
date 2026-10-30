@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Epp;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,7 +26,7 @@ class StoreEppRequest extends FormRequest
             //
             'fecha' => ['required', 'date'],
             'folio' => ['required', 'string', 'max:20', 'unique:epps,folio'],
-            'tipo_epp_id' => ['required', 'integer', 'exists:tipo_epps, id'],
+            'tipo_epp_id' => ['required', 'integer', 'exists:tipo_epps,id'],
             'obra_id' => ['required', 'integer', 'exists:obras,id'],
             'empresa_id' => ['required', 'integer', 'exists:empresas,id'],
             'motivo' => ['required', 'string', 'max:150'],

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoCompra;
+use App\Models\Catalogos\TipoCompra;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,40 +13,23 @@ class TipoCompraSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoCompra::create([
-            'nombre' => 'General',
-        ]);
+        $tipocompras = [
+            'General',
+            'Agencias',
+            'Toner',
+            'Papeleria',
+            'Examenes medicos',
+            'Productos',
+            'Epp',
+            'Insumos',
+            'Productos de limpieza'
+        ];
 
-        TipoCompra::create([
-            'nombre' => 'Agencias',
-        ]);
+        foreach ($tipocompras as $nombre) {
+                TipoCompra::firstOrCreate([
+                    'nombre' => $nombre
+                ]);
 
-        TipoCompra::create([
-            'nombre' => 'Toner',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'Papeleria',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'Examenes medicos',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'Productos',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'EPP',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'Insumos',
-        ]);
-
-        TipoCompra::create([
-            'nombre' => 'Productos de limpieza',
-        ]);
+        }
     }
 }

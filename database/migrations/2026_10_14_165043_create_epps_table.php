@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('justificacion', 100);
             $table->string('logistica', 100);
             $table->integer('created_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoPedido;
+use App\Models\Catalogos\TipoPedido;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,16 +13,16 @@ class TipoPedidoSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoPedido::create([
-            'nombre' => 'Pedido general',
-        ]);
+        $tipopedido = [
+                'Pedido general',
+                'Pedido interno',
+                'Pedido almacen'
+            ];
 
-        TipoPedido::create([
-            'nombre' => 'Pedido interno',
-        ]);
-
-        TipoPedido::create([
-            'nombre' => 'Pedido almacen',
-        ]);
+        foreach ($tipopedido as $nombre) {
+                TipoPedido::firstOrCreate([
+                    'nombre' => $nombre
+                ]);
+        }
     }
 }

@@ -12,7 +12,7 @@ class TipoEpp extends Model
     /** @use HasFactory<\Database\Factories\TipoEppFactory> */
     use HasFactory;
 
-    protected $table = 'epps';
+    protected $table = 'tipo_epps';
 
     protected $fillable = [
         'nombre'

@@ -9,7 +9,6 @@ use App\Models\Catalogos\{
     TipoEpp,
     Empresa
     };
-use App\Models\Catalogos\TipoEpp as CatalogosTipoEpp;
 use App\Models\Compras\AutorizadoPor;
 use App\Models\Epp\{
     DatosEppEx,

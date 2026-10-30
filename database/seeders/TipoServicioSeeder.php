@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoServicio;
+use App\Models\Catalogos\TipoServicio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,20 +13,17 @@ class TipoServicioSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoServicio::create([
-            'nombre' => 'Mantenimientos',
-        ]);
+        $tiposervicio = [
+                'Mantenimientos',
+                'Maquinaria',
+                'Vehiculo(s)',
+                'Transporte especial'
+            ];
 
-        TipoServicio::create([
-            'nombre' => 'Maquinaria',
-        ]);
-
-        TipoServicio::create([
-            'nombre' => 'Vehiculo(s)',
-        ]);
-
-        TipoServicio::create([
-            'nombre' => 'Transporte especial',
-        ]);
+        foreach ($tiposervicio as $nombre) {
+                TipoServicio::firstOrCreate([
+                    'nombre' => $nombre
+                ]);
+        }
     }
 }

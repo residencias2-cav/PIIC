@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TipoSangre;
+use App\Models\Catalogos\TipoSangre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,36 +13,22 @@ class TipoSangreSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoSangre::create([
-            'nombre' => 'A+',
-        ]);
 
-        TipoSangre::create([
-            'nombre' => 'A-',
-        ]);
+    $tiposangre = [
+        'A+',
+        'A-',
+        'B+',
+        'B-',
+        'AB+',
+        'AB-',
+        'O+',
+        'O-'
+        ];
 
-        TipoSangre::create([
-            'nombre' => 'B+',
-        ]);
-
-        TipoSangre::create([
-            'nombre' => 'B-',
-        ]);
-
-        TipoSangre::create([
-            'nombre' => 'AB+',
-        ]);
-
-        TipoSangre::create([
-            'nombre' => 'AB-',
-        ]);
-
-        TipoSangre::create([
-            'nombre' => 'O+',
-        ]);
-
-        TipoSangre::create([
-            'nombre' => 'O-',
-        ]);
+        foreach ($tiposangre as $nombre) {
+                TipoSangre::firstOrCreate([
+                    'nombre' => $nombre
+                ]);
+        }
     }
 }

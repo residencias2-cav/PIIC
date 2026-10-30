@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\Epp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEppRequest;
+use App\Http\Requests\Epp\{
+    StoreEppRequest,
+    UpdateDatosEppTrRequest
+    };
 use App\Models\Epp\Epp;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -51,10 +54,13 @@ class EppController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Epp $epp)
+    public function show(Epp $epp): JsonResponse
     {
         //
-
+        return response()-> json([
+            'status' => true,
+            'data' => $epp
+        ], 200);
     }
 
     /**
