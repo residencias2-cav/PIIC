@@ -4,49 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva obra</title>
+
+    <title>Nueva Obra</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar Obra</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('obra.store') }}" method="POST">
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        @csrf
+            <div class="catalogo-linea"></div>
 
-        <div>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Obra
+                </h1>
 
-            <label for="nombre_obra">
-                Nombre de la obra:
-            </label>
+                <p class="formulario-descripcion">
+                    Ingresa la información de la nueva obra.
+                </p>
+            </div>
 
-            <input
-                type="text"
-                id="nombre_obra"
-                name="nombre_obra"
-                value="{{ old('nombre_obra') }}"
-                required
-            >
+        </header>
 
-            @error('nombre_obra')
-                <p>{{ $message }}</p>
-            @enderror
 
-        </div>
+        {{-- Formulario --}}
+        <form
+            action="{{ route('obra.store') }}"
+            method="POST"
+        >
 
-        <br>
+            @csrf
 
-        <button type="submit">
-            Guardar
-        </button>
 
-        <a href="{{ route('obra.index') }}">
-            Cancelar
-        </a>
+            {{-- Nombre --}}
+            <div class="campo">
 
-    </form>
+                <label for="nombre">
+                    Nombre de la obra
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    placeholder="Ejemplo: Proyecto San Julian"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Acciones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('obra.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar obra
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

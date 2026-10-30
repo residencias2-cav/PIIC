@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\InfCredito;
 
 use App\Http\Requests\Catalogos\{
-    StoreInfCreditoRequest,
-    UpdateInfCreditoRequest
-    };
+    UpdateInfCreditoRequest,
+    StoreInfCreditoRequest
+};
 
 class InfCreditoController extends Controller
 {
@@ -19,6 +19,29 @@ class InfCreditoController extends Controller
     {
         $inf_credito = InfCredito::all();
         return response()->json($inf_credito);
+    }
+
+    public function vistaIndex()
+    {
+        $inf_creditos = InfCredito::all();
+
+        return view(
+            'catalogos.inf_credito.index',
+            compact('inf_creditos')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.inf_credito.create');
+    }
+
+    public function vistaEdit(InfCredito $inf_credito)
+    {
+        return view(
+            'catalogos.inf_credito.edit',
+            compact('inf_credito')
+        );
     }
 
     /**

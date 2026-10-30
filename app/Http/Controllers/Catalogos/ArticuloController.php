@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Articulo;
 
 use App\Http\Requests\Catalogos\{
-    StoreArticuloRequest,
-    UpdateArticuloRequest
-    };
+    UpdateArticuloRequest,
+    StoreArticuloRequest
+};
+
 
 use Illuminate\Http\JsonResponse;
 

@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\InfContrato;
 
 use App\Http\Requests\Catalogos\{
-    StoreInfContratoRequest,
-    UpdateInfContratoRequest
-    };
+    UpdateInfContratoRequest,
+    StoreInfContratoRequest
+};
 
 class InfContratoController extends Controller
 {
@@ -19,6 +19,29 @@ class InfContratoController extends Controller
     {
         $inf_contrato = InfContrato::all();
         return response()->json($inf_contrato);
+    }
+
+    public function vistaIndex()
+    {
+        $infContratos = InfContrato::all();
+
+        return view(
+            'catalogos.InfContrato.index',
+            compact('infContratos')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.InfContrato.create');
+    }
+
+    public function vistaEdit(InfContrato $infContrato)
+    {
+        return view(
+            'catalogos.InfContrato.edit',
+            compact('infContrato')
+        );
     }
 
     /**

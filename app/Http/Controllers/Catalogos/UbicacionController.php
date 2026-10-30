@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Ubicacion;
 
 use App\Http\Requests\Catalogos\{
-    StoreUbicacionRequest,
-    UpdateUbicacionRequest
-    };
+    UpdateUbicacionRequest,
+    StoreUbicacionRequest
+};
 
 class UbicacionController extends Controller
 {
@@ -19,6 +19,29 @@ class UbicacionController extends Controller
     {
         $ubicacion = Ubicacion::all();
         return response()->json($ubicacion);
+    }
+
+    public function vistaIndex()
+    {
+        $ubicacions = Ubicacion::all();
+
+        return view(
+            'catalogos.ubicacion.index',
+            compact('ubicacions')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.ubicacion.create');
+    }
+
+    public function vistaEdit(Ubicacion $ubicacion)
+    {
+        return view(
+            'catalogos.ubicacion.edit',
+            compact('ubicacion')
+        );
     }
 
     /**
@@ -34,7 +57,7 @@ class UbicacionController extends Controller
      */
     public function store(StoreUbicacionRequest $request)
     {
-        $ubicacion = ubicacion::create($request->validated());
+        $ubicacion = Ubicacion::create($request->validated());
 
         return response()->json($ubicacion, 201);
     }

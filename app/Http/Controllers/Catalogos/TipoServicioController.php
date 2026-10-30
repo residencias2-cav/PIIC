@@ -52,7 +52,7 @@ class TipoServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoServicio $tipo_servicio)
+    public function update(TipoServicio $request, TipoServicio $tipo_servicio)
     {
         //
     }

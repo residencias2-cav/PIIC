@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Lugar;
 
 use App\Http\Requests\Catalogos\{
-    StoreLugarRequest,
-    UpdateLugarRequest
-    };
+    UpdateLugarRequest,
+    StoreLugarRequest
+};
 
 class LugarController extends Controller
 {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nueva gerencia</title>
+    <title>Nueva Gerencia</title>
 
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
@@ -14,6 +14,7 @@
 
     <main class="formulario-card">
 
+        {{-- Encabezado --}}
         <header class="formulario-header">
 
             <div class="catalogo-linea"></div>
@@ -31,6 +32,7 @@
         </header>
 
 
+        {{-- Formulario --}}
         <form
             action="{{ route('gerencia.store') }}"
             method="POST"
@@ -39,6 +41,7 @@
             @csrf
 
 
+            {{-- Nombre --}}
             <div class="campo">
 
                 <label for="nombre">
@@ -50,8 +53,7 @@
                     id="nombre"
                     name="nombre"
                     value="{{ old('nombre') }}"
-                    maxlength="50"
-                    placeholder="Ejemplo: Recursos Humanos"
+                    placeholder="Ejemplo: Gerencia Sistemas"
                     required
                     autofocus
                 >
@@ -65,31 +67,7 @@
             </div>
 
 
-            <div class="campo">
-
-                <label for="code">
-                    Código
-                </label>
-
-                <input
-                    type="text"
-                    id="code"
-                    name="code"
-                    value="{{ old('code') }}"
-                    maxlength="50"
-                    placeholder="Ejemplo: RH"
-                    required
-                >
-
-                @error('code')
-                    <p class="mensaje-error">
-                        {{ $message }}
-                    </p>
-                @enderror
-
-            </div>
-
-
+            {{-- Acciones --}}
             <div class="formulario-acciones">
 
                 <a

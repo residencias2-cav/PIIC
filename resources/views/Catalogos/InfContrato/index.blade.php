@@ -4,82 +4,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Información de Contratos</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Información de Contratos</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+        {{-- Encabezado --}}
+        <header class="catalogo-header">
 
-    <a href="{{ route('inf_contrato.create') }}">
-        Nuevo contrato
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Información de Contratos
+                    </h1>
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tipo de contrato</th>
-                <th>Vigencia</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de los contratos registrados.
+                    </p>
+                </div>
 
-        <tbody>
+            </div>
 
-            @forelse ($infContratos as $infContrato)
+            <a
+                href="{{ route('inf_contrato.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo contrato
+            </a>
 
-                <tr>
-                    <td>{{ $infContrato->id }}</td>
+        </header>
 
-                    <td>{{ $infContrato->tipo_contrato }}</td>
 
-                    <td>{{ $infContrato->vigencia }}</td>
+        {{-- Mensaje de éxito --}}
+        @if (session('success'))
 
-                    <td>
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-                        <a href="{{ route('inf_contrato.edit', $infContrato) }}">
-                            Editar
-                        </a>
+        @endif
 
-                        <form
-                            action="{{ route('inf_contrato.destroy', $infContrato) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
+        {{-- Tarjeta de la tabla --}}
+        <section class="catalogo-card">
 
-                        </form>
+            <div class="tabla-responsive">
 
-                    </td>
-                </tr>
+                <table class="catalogo-tabla">
 
-            @empty
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo de contrato</th>
+                            <th>Vigencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-                <tr>
-                    <td colspan="4">
-                        No hay contratos registrados.
-                    </td>
-                </tr>
+                    <tbody>
 
-            @endforelse
+                        @forelse ($infContratos as $infContrato)
 
-        </tbody>
+                            <tr>
 
-    </table>
+                                <td>
+                                    {{ $infContrato->id }}
+                                </td>
+
+                                <td>
+                                    {{ $infContrato->tipo_contrato }}
+                                </td>
+
+                                <td>
+                                    {{ $infContrato->vigencia }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('inf_contrato.edit', $infContrato) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+
+                                        <form
+                                            action="{{ route('inf_contrato.destroy', $infContrato) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar este contrato?');"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="estado-vacio"
+                                >
+
+                                    <p class="estado-vacio-titulo">
+                                        No hay contratos registrados
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra un contrato para comenzar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

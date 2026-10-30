@@ -55,7 +55,7 @@ class TipoOficioController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, TipoOficio $tipo_oficio)
+    public function update(TipoOficio $request, TipoOficio $tipo_oficio)
     {
         //
     }

@@ -52,7 +52,7 @@ class TipoCotizacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoCotizacion $tipo_cotizacion)
+    public function update(TipoCotizacion $request, TipoCotizacion $tipo_cotizacion)
     {
         //
     }

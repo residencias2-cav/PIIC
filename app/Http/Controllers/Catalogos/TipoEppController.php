@@ -55,7 +55,7 @@ class TipoEppController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, TipoEpp $tipo_epp)
+    public function update(TipoEpp $request, TipoEpp $tipo_epp)
     {
         //
     }

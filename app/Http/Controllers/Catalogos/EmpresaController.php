@@ -6,10 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Empresa;
 
 use App\Http\Requests\Catalogos\{
-    StoreEmpresaRequest,
-    UpdateEmpresaRequest
-    };
-
+    UpdateEmpresaRequest,
+    StoreEmpresaRequest
+};
 
 class EmpresaController extends Controller
 {

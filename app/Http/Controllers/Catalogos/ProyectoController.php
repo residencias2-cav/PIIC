@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalogos\Proyecto;
 
 use App\Http\Requests\Catalogos\{
-    StoreProyectoRequest,
-    UpdateProyectoRequest
-    };
+    UpdateProyectoRequest,
+    StoreProyectoRequest
+};
 
 class ProyectoController extends Controller
 {
@@ -19,6 +19,29 @@ class ProyectoController extends Controller
     {
         $proyecto = Proyecto::all();
         return response()->json($proyecto);
+    }
+
+    public function vistaIndex()
+    {
+        $proyectos = Proyecto::all();
+
+        return view(
+            'catalogos.proyecto.index',
+            compact('proyectos')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        return view('catalogos.proyecto.create');
+    }
+
+    public function vistaEdit(Proyecto $proyecto)
+    {
+        return view(
+            'catalogos.proyecto.edit',
+            compact('proyecto')
+        );
     }
 
     /**

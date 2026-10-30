@@ -52,7 +52,7 @@ class UnidadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Unidad $request, Unidad $unidad)
     {
         //
     }
