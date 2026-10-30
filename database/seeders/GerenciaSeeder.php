@@ -13,49 +13,54 @@ class GerenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        Gerencia::create([
-            'nombre' => 'Maquinaria y Transporte',
-            'code' => 'MyT',
-        ]);
+        $gerencia = [
+            [
+                'nombre' => 'Maquinaria y Transporte', 
+                'codigo' => 'MyT'
+            ],
+            [
+                'nombre' => 'Compras', 
+                'codigo' => 'GComp'
+            ],
+            [
+                'nombre' => 'Subdirector', 
+                'codigo' => 'Subdir'
+            ],
+            [
+                'nombre' => 'contabilidad', 
+                'codigo' => 'GCI'
+            ],
+            [
+                'nombre' => 'proyectos y Construcción', 
+                'codigo' => 'GCP'
+            ],
+            [
+                'nombre' => 'Licitaciones y proyectos', 
+                'codigo' => 'GLP'
+            ],
+            [
+                'nombre' => 'Capital Humano', 
+                'codigo' => 'GCHSO'
+            ],
+            [
+                'nombre' => 'Finanzas', 
+                'codigo' => 'GF'
+            ],
+            [
+                'nombre' => 'seguridad', 
+                'codigo' => 'GSST'
+            ]
+        ];
 
-        Gerencia::create([
-            'nombre' => 'Compras',
-            'code' => 'GComp',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Subdirector',
-            'code' => 'Subdir',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Contabilidad',
-            'code' => 'GCI',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Proyectos y Construccion',
-            'code' => 'GPC',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Licitaciones y Proyectos',
-            'code' => 'GLP',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Capital Humano',
-            'code' => 'GCHSO',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Finanzas',
-            'code' => 'GF',
-        ]);
-
-        Gerencia::create([
-            'nombre' => 'Seguridad',
-            'code' => 'GSST',
-        ]);
+        foreach ($gerencia as $geren) {
+            Gerencia::firstOrCreate(
+                [
+                    'nombre' => $geren['nombre'],
+                ],
+                [
+                    'code' => $geren['codigo'],
+                ]
+            );
+        }
     }
 }

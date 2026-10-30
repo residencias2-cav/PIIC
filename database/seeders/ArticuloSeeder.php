@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Articulo;
+use App\Models\Catalogos\Articulo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -11,46 +11,23 @@ class ArticuloSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        Articulo::create([
-            'nombre' => 'Pantalon',
-        ]);
+    public function run(){
+        $articulos = [
+            'Pantalon',
+            'Botas',
+            'Zapatos',
+            'Chaleco',
+            'Casco',
+            'Guantes',
+            'Lentes',
+            'Overol',
+            'Bata',
+        ];
 
-        Articulo::create([
-            'nombre' => 'Camisa',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Botas',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Zapatos',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Chaleco',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Casco',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Guantes',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Lentes',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Overol',
-        ]);
-
-        Articulo::create([
-            'nombre' => 'Bata',
-        ]);
+        foreach ($articulos as $nombre) {
+            Articulo::firstOrCreate([
+                'nombre' => $nombre,
+            ]);
+        }
     }
 }
