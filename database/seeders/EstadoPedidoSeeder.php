@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\EstadoPedido;
+use App\Models\Catalogos\EstadoPedido;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,16 +13,16 @@ class EstadoPedidoSeeder extends Seeder
      */
     public function run(): void
     {
-        EstadoPedido::create([
-            'nombre' => 'Cotizado',
-        ]);
+        $estadop = [
+            'Cotizado',
+            'Enviado',
+            'Revisar notas'
+        ];
 
-        EstadoPedido::create([
-            'nombre' => 'Enviado',
-        ]);
-
-        EstadoPedido::create([
-            'nombre' => 'Revisar notas',
-        ]);
+        foreach ($estadop as $nombre) {
+            EstadoPedido::firstOrCreate([
+                'nombre' => $nombre,
+            ]);
+        }
     }
 }

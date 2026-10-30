@@ -3,11 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\LugarNacimiento;
+use App\Models\Catalogos\LugarNacimiento;
 
 class LugarNacimientoSeeder extends Seeder
 {
-    private $estadosMexicanos = [
+
+    public function run()
+    {
+        $estadosMexicanos = [
         "Aguascalientes",
         "Baja California",
         "Baja California Sur",
@@ -40,14 +43,12 @@ class LugarNacimientoSeeder extends Seeder
         "Veracruz",
         "Yucatán",
         "Zacatecas"
-    ];
+        ];
 
-    public function run()
-    {
-
-
-        foreach ($this->estadosMexicanos as $estado) {
-            LugarNacimiento::create(['nombre' => $estado]);
+    foreach ($estadosMexicanos as $estado) {
+            LugarNacimiento::firstOrCreate([
+                'nombre' => $estado
+            ]);
         }
     }
 }

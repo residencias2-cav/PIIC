@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Estado;
+use App\Models\Catalogos\Estado;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,28 +13,19 @@ class EstadoSeeder extends Seeder
      */
     public function run(): void
     {
-        Estado::create([
-            'nombre_estado' => 'Autorizado',
-        ]);
+        $estado = [
+            'Autorizado',
+            'Surtido',
+            'En espera',
+            'Enviado',
+            'Recibido',
+            'Cancelado',
+        ];
 
-        Estado::create([
-            'nombre_estado' => 'Surtido',
-        ]);
-
-        Estado::create([
-            'nombre_estado' => 'En espera',
-        ]);
-
-        Estado::create([
-            'nombre_estado' => 'Enviado',
-        ]);
-
-        Estado::create([
-            'nombre_estado' => 'Recibido',
-        ]);
-
-        Estado::create([
-            'nombre_estado' => 'Cancelado',
-        ]);
+        foreach ($estado as $nombre) {
+            Estado::firstOrCreate([
+                'nombre_estado' => $nombre,
+            ]);
+        }
     }
 }
