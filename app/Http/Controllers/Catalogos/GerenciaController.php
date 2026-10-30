@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreGerenciaRequest
 };
 
+use Illuminate\Http\Request;
+
 class GerenciaController extends Controller
 {
     /**
@@ -60,7 +62,13 @@ class GerenciaController extends Controller
     {
         $gerencia = Gerencia::create($request->validated());
 
-        return response()->json($gerencia, 201);
+        if ($request->is('api/*')) {
+            return response()->json($gerencia, 201);
+        }
+
+        return redirect()
+            ->route('gerencia.index')
+            ->with('success', 'Gerencia registrada correctamente.');
     }
 
     /**
@@ -85,17 +93,29 @@ class GerenciaController extends Controller
     public function update(UpdateGerenciaRequest $request, Gerencia $gerencia)
     {
         $gerencia->update($request->validated());
-        
-        return response()->json($gerencia);
+
+        if ($request->is('api/*')) {
+            return response()->json($gerencia);
+        }
+
+        return redirect()
+            ->route('gerencia.index')
+            ->with('success', 'Gerencia actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Gerencia $gerencia)
+    public function destroy(Request $request, Gerencia $gerencia)
     {
         $gerencia->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('gerencia.index')
+            ->with('success', 'Gerencia eliminada correctamente.');
     }
 }

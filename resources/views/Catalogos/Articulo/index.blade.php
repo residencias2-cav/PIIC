@@ -23,7 +23,7 @@
 
                 <div>
                     <h1 class="catalogo-titulo">
-                        Catálogo de Artículos
+                        Artículos
                     </h1>
 
                     <p class="catalogo-descripcion">

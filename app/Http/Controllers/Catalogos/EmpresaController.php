@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreEmpresaRequest
 };
 
+use Illuminate\Http\Request;
+
 class EmpresaController extends Controller
 {
     /**
@@ -55,11 +57,18 @@ class EmpresaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-   public function store(StoreEmpresaRequest $request)
+
+    public function store(StoreEmpresaRequest $request)
     {
         $empresa = Empresa::create($request->validated());
 
-        return response()->json($empresa, 201);
+        if ($request->is('api/*')) {
+            return response()->json($empresa, 201);
+        }
+
+        return redirect()
+            ->route('empresa.index')
+            ->with('success', 'Empresa registrada correctamente.');
     }
 
     /**
@@ -84,17 +93,29 @@ class EmpresaController extends Controller
     public function update(UpdateEmpresaRequest $request, Empresa $empresa)
     {
         $empresa->update($request->validated());
-        
-        return response()->json($empresa);
+
+        if ($request->is('api/*')) {
+            return response()->json($empresa);
+        }
+
+        return redirect()
+            ->route('empresa.index')
+            ->with('success', 'Empresa actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Empresa $empresa)
+    public function destroy(Request $request, Empresa $empresa)
     {
         $empresa->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('empresa.index')
+            ->with('success', 'Empresa eliminada correctamente.');
     }
 }

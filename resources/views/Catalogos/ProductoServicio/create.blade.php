@@ -4,47 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nuevo producto o servicio</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar Producto o Servicio</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('producto_servicio.store') }}" method="POST">
+        <header class="formulario-header">
 
-        @csrf
+            <div class="catalogo-linea"></div>
 
-        <div>
-            <label for="nombre">
-                Nombre:
-            </label>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Producto o Servicio
+                </h1>
 
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value="{{ old('nombre') }}"
-                required
-            >
+                <p class="formulario-descripcion">
+                    Ingresa la información del nuevo producto o servicio.
+                </p>
+            </div>
 
-            @error('nombre')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+        </header>
 
-        <br>
 
-        <button type="submit">
-            Guardar
-        </button>
+        <form
+            action="{{ route('producto_servicio.store') }}"
+            method="POST"
+        >
 
-        <a href="{{ route('producto_servicio.index') }}">
-            Cancelar
-        </a>
+            @csrf
 
-    </form>
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value="{{ old('nombre') }}"
+                    placeholder="Ingresa el nombre"
+                    required
+                    autofocus
+                >
+
+                @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('producto_servicio.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar producto o servicio
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

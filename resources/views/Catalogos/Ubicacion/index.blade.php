@@ -23,7 +23,7 @@
 
                 <div>
                     <h1 class="catalogo-titulo">
-                        Catálogo de Ubicaciones
+                        Ubicaciones
                     </h1>
 
                     <p class="catalogo-descripcion">
@@ -95,7 +95,7 @@
 
 
                                         <form
-                                            action="{{ route('ubicación.destroy', $ubicación) }}"
+                                            action="{{ route('ubicacion.destroy', $ubicacion) }}"
                                             method="POST"
                                             onsubmit="return confirm('¿Deseas eliminar esta ubicación?');"
                                         >

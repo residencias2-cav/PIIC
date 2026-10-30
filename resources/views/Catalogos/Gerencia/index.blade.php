@@ -22,7 +22,7 @@
 
                 <div>
                     <h1 class="catalogo-titulo">
-                        Catálogo de Gerencias
+                        Gerencias
                     </h1>
 
                     <p class="catalogo-descripcion">

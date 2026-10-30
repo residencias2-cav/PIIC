@@ -51,7 +51,7 @@ class EstadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Estado $estado)
+    public function update(Estado $request, Estado $estado)
     {
         //
     }

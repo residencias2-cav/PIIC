@@ -23,24 +23,24 @@ class InfCreditoController extends Controller
 
     public function vistaIndex()
     {
-        $inf_creditos = InfCredito::all();
+        $infCreditos = InfCredito::all();
 
         return view(
-            'catalogos.inf_credito.index',
-            compact('inf_creditos')
+            'catalogos.InfCredito.index',
+            compact('infCreditos')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.inf_credito.create');
+        return view('catalogos.InfCredito.create');
     }
 
-    public function vistaEdit(InfCredito $inf_credito)
+    public function vistaEdit(InfCredito $infCredito)
     {
         return view(
-            'catalogos.inf_credito.edit',
-            compact('inf_credito')
+            'catalogos.InfCredito.edit',
+            compact('infCredito')
         );
     }
 

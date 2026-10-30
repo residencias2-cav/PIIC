@@ -4,69 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Editar crédito</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Editar Información de Crédito</h1>
+    <main class="formulario-card">
 
-    <form
-        action="{{ route('inf_credito.update', $infCredito) }}"
-        method="POST"
-    >
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        @csrf
-        @method('PUT')
+            <div class="catalogo-linea"></div>
 
-        <div>
-            <label for="monto">Monto:</label>
+            <div>
+                <h1 class="formulario-titulo">
+                    Editar Información de Crédito
+                </h1>
 
-            <input
-                type="number"
-                id="monto"
-                name="monto"
-                value="{{ old('monto', $infCredito->monto) }}"
-                step="0.001"
-                min="0"
-                required
-            >
+                <p class="formulario-descripcion">
+                    Modifica el monto y la vigencia del crédito seleccionado.
+                </p>
+            </div>
 
-            @error('monto')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+        </header>
 
-        <br>
 
-        <div>
-            <label for="vigencia">Vigencia:</label>
+        {{-- Formulario --}}
+        <form
+            action="{{ route('inf_credito.update', $infCredito) }}"
+            method="POST"
+        >
 
-            <input
-                type="date"
-                id="vigencia"
-                name="vigencia"
-                value="{{ old('vigencia', $infCredito->vigencia) }}"
-                required
-            >
+            @csrf
+            @method('PUT')
 
-            @error('vigencia')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
 
-        <br>
+            {{-- Monto --}}
+            <div class="campo">
 
-        <button type="submit">
-            Actualizar
-        </button>
+                <label for="monto">
+                    Monto
+                </label>
 
-        <a href="{{ route('inf_credito.index') }}">
-            Cancelar
-        </a>
+                <input
+                    type="number"
+                    id="monto"
+                    name="monto"
+                    value="{{ old('monto', $infCredito->monto) }}"
+                    step="0.001"
+                    min="0"
+                    required
+                    autofocus
+                >
 
-    </form>
+                @error('monto')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Vigencia --}}
+            <div class="campo">
+
+                <label for="vigencia">
+                    Vigencia
+                </label>
+
+                <input
+                    type="date"
+                    id="vigencia"
+                    name="vigencia"
+                    value="{{ old('vigencia', $infCredito->vigencia) }}"
+                    required
+                >
+
+                @error('vigencia')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Botones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('inf_credito.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Actualizar crédito
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
 

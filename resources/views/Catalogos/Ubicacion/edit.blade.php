@@ -53,7 +53,7 @@
                     type="text"
                     id="nombre"
                     name="nombre"
-                    value="{{ old('nombre', $articulo->nombre) }}"
+                    value="{{ old('nombre', $ubicacion->nombre) }}"
                     maxlength="255"
                     required
                     autofocus

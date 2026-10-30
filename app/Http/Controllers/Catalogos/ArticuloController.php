@@ -10,6 +10,7 @@ use App\Http\Requests\Catalogos\{
     StoreArticuloRequest
 };
 
+use Illuminate\Http\Request;
 
 use Illuminate\Http\JsonResponse;
 
@@ -63,15 +64,17 @@ class ArticuloController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreArticuloRequest $request): JsonResponse
+    public function store(StoreArticuloRequest $request)
     {
         $articulo = Articulo::create($request->validated());
 
-        return response()->json([
-            'status' => true,
-            'mesage' => 'Articulo registrado correctamente',
-            'data' => $articulo
-            ], 201);
+        if ($request->is('api/*')) {
+            return response()->json($articulo, 201);
+        }
+
+        return redirect()
+            ->route('articulo.index')
+            ->with('success', 'Artículo registrado correctamente.');
     }
 
     /**
@@ -97,33 +100,32 @@ class ArticuloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(
-        UpdateArticuloRequest $request, 
-        Articulo $articulo
-    ): JsonResponse {
-        $articulo -> update(
-            $request->validated()
-        );
+    public function update(UpdateArticuloRequest $request, Articulo $articulo)
+    {
+        $articulo->update($request->validated());
 
-        return response()->json([
-            'status'=>true,
-            'message'=>'Articulo actualizado correctamente',
-            'data'=>$articulo
-        ], 200);
-        //
+        if ($request->is('api/*')) {
+            return response()->json($articulo);
+        }
+
+        return redirect()
+            ->route('articulo.index')
+            ->with('success', 'Artículo actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Articulo $articulo): JsonResponse
+    public function destroy(Request $request, Articulo $articulo)
     {
-        //
         $articulo->delete();
 
-        return response()->json([
-            'status' => true,
-            'message'=>'Articulo eliminado correctamente'
-        ], 200);
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('articulo.index')
+            ->with('success', 'Artículo eliminado correctamente.');
     }
 }

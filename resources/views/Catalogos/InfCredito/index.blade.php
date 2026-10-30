@@ -4,75 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información de Crédito</title>
+
+    <title>Información de Créditos</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Información de Crédito</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+        {{-- Encabezado --}}
+        <header class="catalogo-header">
 
-    <a href="{{ route('inf_credito.create') }}">
-        Nuevo crédito
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Monto</th>
-                <th>Vigencia</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Información de Créditos
+                    </h1>
 
-        <tbody>
-            @forelse ($infCreditos as $infCredito)
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de los créditos registrados.
+                    </p>
+                </div>
 
-                <tr>
-                    <td>{{ $infCredito->id }}</td>
+            </div>
 
-                    <td>{{ $infCredito->monto }}</td>
+            <a
+                href="{{ route('inf_credito.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo crédito
+            </a>
 
-                    <td>{{ $infCredito->vigencia }}</td>
+        </header>
 
-                    <td>
-                        <a href="{{ route('inf_credito.edit', $infCredito) }}">
-                            Editar
-                        </a>
 
-                        <form
-                            action="{{ route('inf_credito.destroy', $infCredito) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
+        {{-- Mensaje de éxito --}}
+        @if (session('success'))
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-            @empty
+        @endif
 
-                <tr>
-                    <td colspan="4">
-                        No hay información de crédito registrada.
-                    </td>
-                </tr>
 
-            @endforelse
-        </tbody>
-    </table>
+        {{-- Tarjeta de la tabla --}}
+        <section class="catalogo-card">
+
+            <div class="tabla-responsive">
+
+                <table class="catalogo-tabla">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Monto</th>
+                            <th>Vigencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($infCreditos as $infCredito)
+
+                            <tr>
+
+                                <td>
+                                    {{ $infCredito->id }}
+                                </td>
+
+                                <td>
+                                    ${{ number_format($infCredito->monto, 3) }}
+                                </td>
+
+                                <td>
+                                    {{ $infCredito->vigencia }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('inf_credito.edit', $infCredito) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+                                        <form
+                                            action="{{ route('inf_credito.destroy', $infCredito) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar este crédito?');"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="estado-vacio"
+                                >
+
+                                    <p class="estado-vacio-titulo">
+                                        No hay créditos registrados
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra un crédito para comenzar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 

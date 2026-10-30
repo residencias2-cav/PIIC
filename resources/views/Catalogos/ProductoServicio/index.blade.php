@@ -4,76 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Productos y Servicios</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Catálogo de Productos y Servicios</h1>
+    <main class="catalogo-contenedor">
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+        <header class="catalogo-header">
 
-    <a href="{{ route('producto_servicio.create') }}">
-        Nuevo producto o servicio
-    </a>
+            <div class="catalogo-header-info">
 
-    <br><br>
+                <div class="catalogo-linea"></div>
 
-    <table border="1" cellpadding="8">
+                <div>
+                    <h1 class="catalogo-titulo">
+                        Productos y Servicios
+                    </h1>
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+                    <p class="catalogo-descripcion">
+                        Consulta y administración de los productos y servicios registrados.
+                    </p>
+                </div>
 
-        <tbody>
+            </div>
 
-            @forelse ($productosServicios as $productoServicio)
+            <a
+                href="{{ route('producto_servicio.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo producto o servicio
+            </a>
 
-                <tr>
-                    <td>{{ $productoServicio->id }}</td>
+        </header>
 
-                    <td>{{ $productoServicio->nombre }}</td>
 
-                    <td>
-                        <a href="{{ route('producto_servicio.edit', $productoServicio) }}">
-                            Editar
-                        </a>
+        @if (session('success'))
 
-                        <form
-                            action="{{ route('producto_servicio.destroy', $productoServicio) }}"
-                            method="POST"
-                            style="display:inline"
-                        >
-                            @csrf
-                            @method('DELETE')
+            <div class="mensaje-exito">
+                {{ session('success') }}
+            </div>
 
-                            <button type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+        @endif
 
-            @empty
 
-                <tr>
-                    <td colspan="3">
-                        No hay productos o servicios registrados.
-                    </td>
-                </tr>
+        <section class="catalogo-card">
 
-            @endforelse
+            <div class="tabla-responsive">
 
-        </tbody>
+                <table class="catalogo-tabla">
 
-    </table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($productoServicios as $productoServicio)
+
+                            <tr>
+
+                                <td>
+                                    {{ $productoServicio->id }}
+                                </td>
+
+                                <td>
+                                    {{ $productoServicio->nombre }}
+                                </td>
+
+                                <td>
+
+                                    <div class="acciones">
+
+                                        <a
+                                            href="{{ route('producto_servicio.edit', $productoServicio) }}"
+                                            class="btn btn-editar"
+                                        >
+                                            Editar
+                                        </a>
+
+                                        <form
+                                            action="{{ route('producto_servicio.destroy', $productoServicio) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('¿Deseas eliminar este producto o servicio?');"
+                                        >
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-eliminar"
+                                            >
+                                                Eliminar
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="estado-vacio"
+                                >
+                                    <p class="estado-vacio-titulo">
+                                        No hay productos o servicios registrados
+                                    </p>
+
+                                    <p class="estado-vacio-texto">
+                                        Registra un producto o servicio para comenzar.
+                                    </p>
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

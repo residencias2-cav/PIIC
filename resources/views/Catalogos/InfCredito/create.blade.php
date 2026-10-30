@@ -4,65 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nuevo crédito</title>
+
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
 
 <body>
 
-    <h1>Registrar Información de Crédito</h1>
+    <main class="formulario-card">
 
-    <form action="{{ route('inf_credito.store') }}" method="POST">
+        {{-- Encabezado --}}
+        <header class="formulario-header">
 
-        @csrf
+            <div class="catalogo-linea"></div>
 
-        <div>
-            <label for="monto">Monto:</label>
+            <div>
+                <h1 class="formulario-titulo">
+                    Registrar Información de Crédito
+                </h1>
 
-            <input
-                type="number"
-                id="monto"
-                name="monto"
-                value="{{ old('monto') }}"
-                step="0.001"
-                min="0"
-                required
-            >
+                <p class="formulario-descripcion">
+                    Ingresa la información del nuevo crédito.
+                </p>
+            </div>
 
-            @error('monto')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+        </header>
 
-        <br>
 
-        <div>
-            <label for="vigencia">Vigencia:</label>
+        {{-- Formulario --}}
+        <form
+            action="{{ route('inf_credito.store') }}"
+            method="POST"
+        >
 
-            <input
-                type="date"
-                id="vigencia"
-                name="vigencia"
-                value="{{ old('vigencia') }}"
-                required
-            >
+            @csrf
 
-            @error('vigencia')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
 
-        <br>
+            {{-- Monto --}}
+            <div class="campo">
 
-        <button type="submit">
-            Guardar
-        </button>
+                <label for="monto">
+                    Monto
+                </label>
 
-        <a href="{{ route('inf_credito.index') }}">
-            Cancelar
-        </a>
+                <input
+                    type="number"
+                    id="monto"
+                    name="monto"
+                    value="{{ old('monto') }}"
+                    placeholder="Ejemplo: 15000.000"
+                    step="0.001"
+                    min="0"
+                    required
+                    autofocus
+                >
 
-    </form>
+                @error('monto')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Vigencia --}}
+            <div class="campo">
+
+                <label for="vigencia">
+                    Vigencia
+                </label>
+
+                <input
+                    type="date"
+                    id="vigencia"
+                    name="vigencia"
+                    value="{{ old('vigencia') }}"
+                    required
+                >
+
+                @error('vigencia')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Acciones --}}
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('inf_credito.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Guardar crédito
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
 

@@ -23,24 +23,24 @@ class ProductoServicioController extends Controller
 
     public function vistaIndex()
     {
-        $producto_servicios = ProductoServicio::all();
+        $productoServicios = ProductoServicio::all();
 
         return view(
-            'catalogos.producto_servicio.index',
-            compact('producto_servicios')
+            'catalogos.ProductoServicio.index',
+            compact('productoServicios')
         );
     }
 
     public function vistaCreate()
     {
-        return view('catalogos.producto_servicio.create');
+        return view('catalogos.ProductoServicio.create');
     }
 
-    public function vistaEdit(ProductoServicio $producto_servicio)
+    public function vistaEdit(ProductoServicio $productoServicio)
     {
         return view(
-            'catalogos.producto_servicio.edit',
-            compact('producto_servicio')
+            'catalogos.ProductoServicio.edit',
+            compact('productoServicio')
         );
     }
 

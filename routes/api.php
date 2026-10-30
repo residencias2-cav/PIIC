@@ -29,7 +29,7 @@ use App\Http\Controllers\Catalogos\{
 use App\Http\Controllers\Api\Epp\EppController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('catalogos')->group(function () {
+Route::prefix('catalogos')->name('api.')->group(function () {
     Route::apiResource('lugar', LugarController::class);
     Route::apiResource('obra', ObraController::class);
     Route::apiResource('gerencia', GerenciaController::class);

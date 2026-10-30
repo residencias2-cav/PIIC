@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreUbicacionRequest
 };
 
+use Illuminate\Http\Request;
+
 class UbicacionController extends Controller
 {
     /**
@@ -59,7 +61,13 @@ class UbicacionController extends Controller
     {
         $ubicacion = Ubicacion::create($request->validated());
 
-        return response()->json($ubicacion, 201);
+        if ($request->is('api/*')) {
+            return response()->json($ubicacion, 201);
+        }
+
+        return redirect()
+            ->route('ubicacion.index')
+            ->with('success', 'Ubicación registrada correctamente.');
     }
 
     /**
@@ -84,17 +92,29 @@ class UbicacionController extends Controller
     public function update(UpdateUbicacionRequest $request, Ubicacion $ubicacion)
     {
         $ubicacion->update($request->validated());
-        
-        return response()->json($ubicacion);
+
+        if ($request->is('api/*')) {
+            return response()->json($ubicacion);
+        }
+
+        return redirect()
+            ->route('ubicacion.index')
+            ->with('success', 'Ubicación actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ubicacion $ubicacion)
+    public function destroy(Request $request, Ubicacion $ubicacion)
     {
         $ubicacion->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('ubicacion.index')
+            ->with('success', 'Ubicación eliminada correctamente.');
     }
 }

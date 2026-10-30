@@ -23,7 +23,7 @@
 
                 <div>
                     <h1 class="catalogo-titulo">
-                        Catálogo de Proyectos
+                        Proyectos
                     </h1>
 
                     <p class="catalogo-descripcion">
