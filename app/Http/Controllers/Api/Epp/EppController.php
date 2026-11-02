@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Epp;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Epp\{
     StoreEppRequest,
-    UpdateDatosEppTrRequest
+    UpdateEppRequest
     };
 use App\Models\Epp\Epp;
 use Illuminate\Http\JsonResponse;
@@ -16,10 +16,12 @@ class EppController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
-        $epp = Epp::all();
+        return response()->json([
+            'data' => Epp::all(),
+        ], 200);
     }
 
     /**
@@ -58,7 +60,6 @@ class EppController extends Controller
     {
         //
         return response()-> json([
-            'status' => true,
             'data' => $epp
         ], 200);
     }
@@ -74,9 +75,16 @@ class EppController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Epp $epp)
+    public function update(UpdateEppRequest $request, Epp $epp):JsonResponse
     {
         //
+        $epp->update($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Epp actualizado correctamente',
+            'data' => $epp
+        ], 200);
     }
 
     /**
@@ -85,5 +93,11 @@ class EppController extends Controller
     public function destroy(Epp $epp)
     {
         //
+        $epp->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Epp eliminado correctamente'
+        ], 200);
     }
 }
