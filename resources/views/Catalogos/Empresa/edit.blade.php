@@ -14,7 +14,6 @@
 
     <main class="formulario-card">
 
-        {{-- Encabezado --}}
         <header class="formulario-header">
 
             <div class="catalogo-linea"></div>
@@ -32,7 +31,6 @@
         </header>
 
 
-        {{-- Formulario --}}
         <form
             action="{{ route('empresa.update', $empresa) }}"
             method="POST"
@@ -54,7 +52,6 @@
                     id="nombre"
                     name="nombre"
                     value="{{ old('nombre', $empresa->nombre) }}"
-                    maxlength="255"
                     required
                     autofocus
                 >
@@ -68,7 +65,116 @@
             </div>
 
 
-            {{-- Botones --}}
+            {{-- RFC --}}
+            <div class="campo">
+
+                <label for="rfc">
+                    RFC
+                </label>
+
+                <input
+                    type="text"
+                    id="rfc"
+                    name="rfc"
+                    value="{{ old('rfc', $empresa->rfc) }}"
+                    maxlength="13"
+                    required
+                >
+
+                @error('rfc')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Domicilio fiscal --}}
+            <div class="campo">
+
+                <label>
+                    Domicilio fiscal
+                </label>
+
+                <div class="domicilio-fiscal">
+
+                    <div>
+
+                        <label for="ciudad">
+                            Ciudad
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ciudad"
+                            name="ciudad"
+                            value="{{ old('ciudad', $ciudad) }}"
+                            required
+                        >
+
+                        @error('ciudad')
+                            <p class="mensaje-error">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="calle">
+                            Calle
+                        </label>
+
+                        <input
+                            type="text"
+                            id="calle"
+                            name="calle"
+                            value="{{ old('calle', $calle) }}"
+                            required
+                        >
+
+                        @error('calle')
+                            <p class="mensaje-error">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="cp">
+                            Código postal
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cp"
+                            name="cp"
+                            value="{{ old('cp', $cp) }}"
+                            maxlength="5"
+                            inputmode="numeric"
+                            required
+                        >
+
+                        @error('cp')
+                            <p class="mensaje-error">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {{-- Acciones --}}
             <div class="formulario-acciones">
 
                 <a

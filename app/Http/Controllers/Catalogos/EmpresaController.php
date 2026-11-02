@@ -40,9 +40,22 @@ class EmpresaController extends Controller
 
     public function vistaEdit(Empresa $empresa)
     {
+        $partes = explode(', ', $empresa->dom_fiscal);
+
+        $calle = $partes[0] ?? '';
+        $ciudad = $partes[1] ?? '';
+        $cp = isset($partes[2])
+            ? str_replace('C.P. ', '', $partes[2])
+            : '';
+
         return view(
             'Catalogos.Empresa.edit',
-            compact('empresa')
+            compact(
+                'empresa',
+                'ciudad',
+                'calle',
+                'cp'
+            )
         );
     }
 
@@ -104,10 +117,22 @@ class EmpresaController extends Controller
      */
     public function update(UpdateEmpresaRequest $request, Empresa $empresa)
     {
-        $empresa->update($request->validated());
+        $datos = $request->validated();
+        
+        $domFiscal = $datos['calle']
+            . ', '
+            . $datos['ciudad']
+            . ', C.P. '
+            . $datos['cp'];
+
+        $empresa->update([
+            'nombre' => $datos['nombre'],
+            'rfc' => $datos['rfc'],
+            'dom_fiscal' => $domFiscal,
+        ]);
 
         if ($request->is('api/*')) {
-            return response()->json($empresa);
+        return response()->json($empresa);
         }
 
         return redirect()
