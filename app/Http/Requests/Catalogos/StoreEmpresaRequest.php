@@ -25,7 +25,10 @@ class StoreEmpresaRequest extends FormRequest
         return [
             'nombre' => ['required', 'string', 'max:50'],
             'rfc' => ['required', 'string', 'max:50'],
-            'dom_fiscal' => ['required', 'string', 'max:50'],
+
+            'ciudad' => ['required', 'string', 'max:100'],
+            'calle' => ['required', 'string', 'max:255'],
+            'cp' => ['required', 'digits:5'],
         ];
     }
 }

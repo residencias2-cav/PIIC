@@ -60,7 +60,19 @@ class EmpresaController extends Controller
 
     public function store(StoreEmpresaRequest $request)
     {
-        $empresa = Empresa::create($request->validated());
+        $datos = $request->validated();
+
+        $domFiscal = $datos['calle']
+            . ', '
+            . $datos['ciudad']
+            . ', C.P. '
+            . $datos['cp'];
+
+        $empresa = Empresa::create([
+            'nombre' => $datos['nombre'],
+            'rfc' => $datos['rfc'],
+            'dom_fiscal' => $domFiscal,
+        ]);
 
         if ($request->is('api/*')) {
             return response()->json($empresa, 201);
