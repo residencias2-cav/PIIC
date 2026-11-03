@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nueva Gerencia</title>
+    <title>Nueva gerencia</title>
 
     <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
 </head>
@@ -25,7 +25,7 @@
                 </h1>
 
                 <p class="formulario-descripcion">
-                    Ingresa la información de la nueva gerencia.
+                    Ingresa el nombre y código de la nueva gerencia.
                 </p>
             </div>
 
@@ -53,12 +53,39 @@
                     id="nombre"
                     name="nombre"
                     value="{{ old('nombre') }}"
-                    placeholder="Ejemplo: Gerencia Sistemas"
+                    placeholder="Ejemplo: Capital Humano"
+                    maxlength="50"
                     required
                     autofocus
                 >
 
                 @error('nombre')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Código --}}
+            <div class="campo">
+
+                <label for="code">
+                    Código
+                </label>
+
+                <input
+                    type="text"
+                    id="code"
+                    name="code"
+                    value="{{ old('code') }}"
+                    placeholder="Ejemplo: GCHSO"
+                    maxlength="50"
+                    required
+                >
+
+                @error('code')
                     <p class="mensaje-error">
                         {{ $message }}
                     </p>

@@ -125,7 +125,6 @@
                                     colspan="3"
                                     class="estado-vacio"
                                 >
-
                                     <p class="estado-vacio-titulo">
                                         No hay lugares registrados
                                     </p>
@@ -133,7 +132,6 @@
                                     <p class="estado-vacio-texto">
                                         Registra un lugar para comenzar.
                                     </p>
-
                                 </td>
 
                             </tr>

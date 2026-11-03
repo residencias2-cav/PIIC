@@ -31,7 +31,6 @@
 
         </header>
 
-
         {{-- Formulario --}}
         <form
             action="{{ route('lugar.store') }}"
@@ -40,32 +39,31 @@
 
             @csrf
 
-
-            {{-- Nombre --}}
+            {{-- Nombre del municipio --}}
             <div class="campo">
 
-                <label for="nombre">
-                    Nombre del lugar
+                <label for="nombre_municipio">
+                    Nombre del Municipio
                 </label>
 
                 <input
                     type="text"
-                    id="nombre"
-                    name="nombre"
-                    value="{{ old('nombre') }}"
+                    id="nombre_municipio"
+                    name="nombre_municipio"
+                    value="{{ old('nombre_municipio') }}"
                     placeholder="Ejemplo: Sombrerete"
+                    maxlength="100"
                     required
                     autofocus
                 >
 
-                @error('nombre')
+                @error('nombre_municipio')
                     <p class="mensaje-error">
                         {{ $message }}
                     </p>
                 @enderror
 
             </div>
-
 
             {{-- Acciones --}}
             <div class="formulario-acciones">

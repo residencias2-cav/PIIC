@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreProyectoRequest
 };
 
+use Illuminate\Http\Request;
+
 class ProyectoController extends Controller
 {
     /**
@@ -59,7 +61,13 @@ class ProyectoController extends Controller
     {
         $proyecto = Proyecto::create($request->validated());
 
-        return response()->json($proyecto, 201);
+        if ($request->is('api/*')) {
+            return response()->json($proyecto, 201);
+        }
+
+        return redirect()
+            ->route('proyecto.index')
+            ->with('success', 'Proyecto registrado correctamente.');
     }
 
     /**
@@ -81,20 +89,32 @@ class ProyectoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProyectoRequest $request, Proyecto $proyecto)
+    public function update(UpdateProyectoRequest $request, Proyecto $proyecto) 
     {
         $proyecto->update($request->validated());
-        
-        return response()->json($proyecto);
+
+        if ($request->is('api/*')) {
+            return response()->json($proyecto);
+        }
+
+        return redirect()
+            ->route('proyecto.index')
+            ->with('success', 'Proyecto actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proyecto $proyecto)
+    public function destroy(Request $request, Proyecto $proyecto)
     {
         $proyecto->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('proyecto.index')
+            ->with('success', 'Proyecto eliminado correctamente.');
     }
 }

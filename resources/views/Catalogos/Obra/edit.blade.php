@@ -42,7 +42,7 @@
             @method('PUT')
 
 
-            {{-- Nombre --}}
+            {{-- Nombre de la obra --}}
             <div class="campo">
 
                 <label for="nombre_obra">
@@ -54,12 +54,12 @@
                     id="nombre_obra"
                     name="nombre_obra"
                     value="{{ old('nombre_obra', $obra->nombre_obra) }}"
-                    maxlength="255"
+                    maxlength="100"
                     required
                     autofocus
                 >
 
-                @error('nombre')
+                @error('nombre_obra')
                     <p class="mensaje-error">
                         {{ $message }}
                     </p>

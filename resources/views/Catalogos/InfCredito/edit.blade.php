@@ -53,11 +53,11 @@
                     type="number"
                     id="monto"
                     name="monto"
-                    value="{{ old('monto', $infCredito->monto) }}"
-                    step="0.001"
+                    value="{{ old('monto') }}"
+                    step="0.01"
                     min="0"
+                    placeholder="Ejemplo: 15000.50"
                     required
-                    autofocus
                 >
 
                 @error('monto')

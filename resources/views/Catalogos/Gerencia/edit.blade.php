@@ -24,7 +24,7 @@
                 </h1>
 
                 <p class="formulario-descripcion">
-                    Modifica la información de la gerencia seleccionada.
+                    Modifica el nombre o código de la gerencia.
                 </p>
             </div>
 

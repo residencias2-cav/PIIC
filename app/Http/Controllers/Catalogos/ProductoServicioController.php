@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreProductoServicioRequest
 };
 
+use Illuminate\Http\Request;
+
 class ProductoServicioController extends Controller
 {
     /**
@@ -57,11 +59,17 @@ class ProductoServicioController extends Controller
      */
     public function store(StoreProductoServicioRequest $request)
     {
-        $productoservicio = ProductoServicio::create($request->validated());
+        $producto_servicio = ProductoServicio::create($request->validated());
 
-        return response()->json($productoservicio, 201);
+        if ($request->is('api/*')) {
+            return response()->json($producto_servicio, 201);
+        }
+
+        return redirect()
+            ->route('producto_servicio.index')
+            ->with('success', 'Producto o Servicio registrado correctamente.');
     }
-
+ 
     /**
      * Display the specified resource.
      */
@@ -81,20 +89,33 @@ class ProductoServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductoServicioRequest $request, ProductoServicio $producto_servicio)
+    public function update(UpdateProductoServicioRequest $request, ProductoServicio $producto_servicio) 
     {
         $producto_servicio->update($request->validated());
-        
-        return response()->json($producto_servicio);
-    }
 
+        if ($request->is('api/*')) {
+            return response()->json($producto_servicio);
+        }
+
+        return redirect()
+            ->route('producto_servicio.index')
+            ->with('success', 'Producto o Servicio actualizado correctamente.');
+    }
+ 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductoServicio $producto_servicio)
+    public function destroy(Request $request, ProductoServicio $producto_servicio)
     {
         $producto_servicio->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('producto_servicio.index')
+            ->with('success', 'Producto o Servicio eliminado correctamente.');
     }
 }
+ 
