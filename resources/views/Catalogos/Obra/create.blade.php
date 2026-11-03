@@ -31,7 +31,6 @@
 
         </header>
 
-
         {{-- Formulario --}}
         <form
             action="{{ route('obra.store') }}"
@@ -40,32 +39,31 @@
 
             @csrf
 
-
-            {{-- Nombre --}}
+            {{-- Nombre de la obra --}}
             <div class="campo">
 
-                <label for="nombre">
+                <label for="nombre_obra">
                     Nombre de la obra
                 </label>
 
                 <input
                     type="text"
-                    id="nombre"
-                    name="nombre"
-                    value="{{ old('nombre') }}"
-                    placeholder="Ejemplo: Proyecto San Julian"
+                    id="nombre_obra"
+                    name="nombre_obra"
+                    value="{{ old('nombre_obra') }}"
+                    placeholder="Ejemplo: Proyecto San Julián"
+                    maxlength="100"
                     required
                     autofocus
                 >
 
-                @error('nombre')
+                @error('nombre_obra')
                     <p class="mensaje-error">
                         {{ $message }}
                     </p>
                 @enderror
 
             </div>
-
 
             {{-- Acciones --}}
             <div class="formulario-acciones">

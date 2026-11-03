@@ -57,11 +57,16 @@ class InfContratoController extends Controller
      */
     public function store(StoreInfContratoRequest $request)
     {
-        $inf_contrato = InfContrato::create($request->validated());
+        $infContrato = InfContrato::create($request->validated());
 
-        return response()->json($inf_contrato, 201);
+        if ($request->is('api/*')) {
+            return response()->json($infContrato, 201);
+        }
+
+        return redirect()
+            ->route('inf_contrato.index')
+            ->with('success', 'Contrato registrado correctamente.');
     }
-
     /**
      * Display the specified resource.
      */

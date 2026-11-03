@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreInfCreditoRequest
 };
 
+use Illuminate\Http\Request;
+
 class InfCreditoController extends Controller
 {
     /**
@@ -57,9 +59,15 @@ class InfCreditoController extends Controller
      */
     public function store(StoreInfCreditoRequest $request)
     {
-        $inf_credito = InfCredito::create($request->validated());
+        $infCredito = InfCredito::create($request->validated());
 
-        return response()->json($inf_credito, 201);
+        if ($request->is('api/*')) {
+            return response()->json($infCredito, 201);
+        }
+
+        return redirect()
+            ->route('inf_credito.index')
+            ->with('success', 'Credito registrado correctamente.');
     }
 
     /**
@@ -84,21 +92,32 @@ class InfCreditoController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(UpdateInfCreditoRequest $request, InfCredito $inf_credito)
-    {
-        $inf_credito->update($request->validated());
-        
-        return response()->json($inf_credito);
+    public function update(UpdateInfCreditoRequest $request, InfCredito $infCredito) {
+        $infCredito->update($request->validated());
+
+        if ($request->is('api/*')) {
+            return response()->json($infCredito);
+        }
+
+        return redirect()
+            ->route('inf_credito.index')
+            ->with('success', 'Crédito actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
 
-    public function destroy(InfCredito $inf_credito)
+    public function destroy(Request $request, InfCredito $infCredito)
     {
-        $inf_credito->delete();
-        
-        return response()->json(null, 204);
+        $infCredito->delete();
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('inf_credito.index')
+            ->with('success', 'Crédito eliminado correctamente.');
     }
 }

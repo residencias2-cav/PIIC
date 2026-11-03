@@ -53,11 +53,10 @@
                     id="monto"
                     name="monto"
                     value="{{ old('monto') }}"
-                    placeholder="Ejemplo: 15000.000"
-                    step="0.001"
+                    step="0.01"
                     min="0"
+                    placeholder="Ejemplo: 15000.50"
                     required
-                    autofocus
                 >
 
                 @error('monto')

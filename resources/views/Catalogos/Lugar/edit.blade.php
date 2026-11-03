@@ -21,7 +21,7 @@
 
             <div>
                 <h1 class="formulario-titulo">
-                    Editar lugar
+                    Editar Lugar
                 </h1>
 
                 <p class="formulario-descripcion">
@@ -42,11 +42,11 @@
             @method('PUT')
 
 
-            {{-- Nombre --}}
+            {{-- Nombre del municipio --}}
             <div class="campo">
 
                 <label for="nombre_municipio">
-                    Nombre del lugar
+                    Nombre del Municipio
                 </label>
 
                 <input
@@ -54,12 +54,12 @@
                     id="nombre_municipio"
                     name="nombre_municipio"
                     value="{{ old('nombre_municipio', $lugar->nombre_municipio) }}"
-                    maxlength="255"
+                    maxlength="100"
                     required
                     autofocus
                 >
 
-                @error('nombre')
+                @error('nombre_municipio')
                     <p class="mensaje-error">
                         {{ $message }}
                     </p>

@@ -10,6 +10,8 @@ use App\Http\Requests\Catalogos\{
     StoreObraRequest
 };
 
+use Illuminate\Http\Request;
+
 class ObraController extends Controller
 {
     /**
@@ -59,7 +61,13 @@ class ObraController extends Controller
     {
         $obra = Obra::create($request->validated());
 
-        return response()->json($obra, 201);
+        if ($request->is('api/*')) {
+            return response()->json($obra, 201);
+        }
+
+        return redirect()
+            ->route('obra.index')
+            ->with('success', 'Obra registrada correctamente.');
     }
 
     /**
@@ -81,20 +89,32 @@ class ObraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateObraRequest $request, Obra $obra)
+    public function update(UpdateObraRequest $request, Obra $obra) 
     {
         $obra->update($request->validated());
-        
-        return response()->json($obra);
+
+        if ($request->is('api/*')) {
+            return response()->json($obra);
+        }
+
+        return redirect()
+            ->route('obra.index')
+            ->with('success', 'Obra actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Obra $obra)
+    public function destroy(Request $request, Obra $obra)
     {
         $obra->delete();
-        
-        return response()->json(null, 204);
+
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('obra.index')
+            ->with('success', 'Obra eliminada correctamente.');
     }
 }

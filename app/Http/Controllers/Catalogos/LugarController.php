@@ -59,7 +59,13 @@ class LugarController extends Controller
     {
         $lugar = Lugar::create($request->validated());
 
-        return response()->json($lugar, 201);
+        if ($request->is('api/*')) {
+            return response()->json($lugar, 201);
+        }
+
+        return redirect()
+            ->route('lugar.index')
+            ->with('success', 'Lugar registrado correctamente.');
     }
 
     /**
@@ -81,11 +87,16 @@ class LugarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLugarRequest $request, Lugar $lugar)
-    {
+    public function update(UpdateLugarRequest $request, Lugar $lugar) {
         $lugar->update($request->validated());
-        
-        return response()->json($lugar);
+
+        if ($request->is('api/*')) {
+            return response()->json($lugar);
+        }
+
+        return redirect()
+            ->route('lugar.index')
+            ->with('success', 'Lugar actualizado correctamente.');
     }
 
     /**
