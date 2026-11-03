@@ -44,7 +44,7 @@ class EppController extends Controller
     public function store(StoreEppRequest $request)
     {
         //
-        $epp =Epp::create($request->validated());
+        $epp = Epp::create($request->validated());
 
         return response()->json([
             'status' => true,

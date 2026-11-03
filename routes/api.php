@@ -26,7 +26,10 @@ use App\Http\Controllers\Catalogos\{
     TipoEppController,
     InfContratoController
     };
-use App\Http\Controllers\Api\Epp\EppController;
+use App\Http\Controllers\Api\Epp\{
+    EppController,
+    InventarioEppController
+    };
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('catalogos')->name('api.')->group(function () {
@@ -61,4 +64,5 @@ Route::prefix('catalogos')->name('api.')->group(function () {
 
 Route::prefix('epp')->group(function () {
     Route::apiResource('epp', EppController::class);
+    Route::apiResource('inventario_epp', InventarioEppController::class);
 });
