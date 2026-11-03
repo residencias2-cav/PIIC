@@ -97,7 +97,7 @@ class EppController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Epp eliminado correctamente'
+            'message' => 'Registro EPP eliminado correctamente'
         ], 200);
     }
 }

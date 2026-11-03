@@ -25,7 +25,6 @@ class UpdateEppRequest extends FormRequest
         return [
             //
             'fecha'=> ['sometimes', 'date'],
-            'folio'=> ['sometimes', 'string', 'max:20', 'unique:epps,folio'],
             'tipo_epp_id'=> ['sometimes', 'integer', 'exists:tipo_epps,id'],
             'obra_id'=> ['sometimes', 'integer', 'exists:obras,id'],
             'empresa_id'=> ['sometimes', 'integer', 'exists:empresas,id'],
