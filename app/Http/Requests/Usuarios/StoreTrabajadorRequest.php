@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Usuarios;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,10 +27,10 @@ class StoreTrabajadorRequest extends FormRequest
         return [
             //
             'nt' => ['required', 'string', 'max:20', 'unique:trabajadors,nt'],
-            'nombre' => ['required'. 'string', 'max:50'],
+            'nombre' => ['required', 'string', 'max:50'],
             'apellido_paterno' => ['required', 'string', 'max:100'],
             'apellido_materno' => ['required', 'string', 'max:100'],
-            'sexo' => ['required', Rule::enum(Sexo::class),],
+            'sexo' => ['required', Rule::enum(Sexo::class)],
             'nss' => ['required', 'string', 'max:20', 'unique:trabajadors,nss'],
             'curp'=> ['required', 'string', 'max:18', 'unique:trabajadors,curp'],
             'rfc' => ['required', 'string', 'max:13', 'unique:trabajadors,rfc'],
