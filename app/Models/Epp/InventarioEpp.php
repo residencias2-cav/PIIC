@@ -22,8 +22,8 @@ class InventarioEpp extends Model
     function casts()
     {
         return [
-            'talla' => 'date',
-            'existencia' => 'date',
+            'talla' => 'integer',
+            'existencia' => 'integer',
         ];
     }
 

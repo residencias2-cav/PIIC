@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Epp;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -12,7 +12,7 @@ class StoreInventarioEppRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreInventarioEppRequest extends FormRequest
     {
         return [
             //
-            'articulo_id' => ['required', 'integer', 'exists:articulo, id'],
+            'articulo_id' => ['required', 'integer', 'exists:articulos,id'],
             'talla' => ['required', 'integer'],
             'existencia' => ['required', 'integer'],
         ];
