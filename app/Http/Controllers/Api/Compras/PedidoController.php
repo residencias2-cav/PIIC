@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras\Pedido;
+use App\Http\Requests\Compras\{
+    StorePedidoRequest,
+    UpdatePedidoRequest
+    };
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -13,6 +17,9 @@ class PedidoController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            'data' => Pedido::all(),
+        ], 200);
     }
 
     /**
@@ -21,14 +28,27 @@ class PedidoController extends Controller
     public function create()
     {
         //
+        $pedido = Pedido::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $pedido,
+        ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePedidoRequest $request)
     {
         //
+        $pedido = Pedido::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Pedido registrado correctamente',
+            'data' => $pedido
+            ], 201);
     }
 
     /**
@@ -37,6 +57,10 @@ class PedidoController extends Controller
     public function show(Pedido $pedido)
     {
         //
+        return response()->json([
+            'status' => true,
+            'data' => $pedido,
+        ], 200);
     }
 
     /**
@@ -50,9 +74,16 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(UpdatePedidoRequest $request, Pedido $pedido)
     {
         //
+        $pedido->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Pedido actualizado correctamente',
+            'data' => $pedido
+            ], 200);
     }
 
     /**
@@ -61,5 +92,11 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido)
     {
         //
+        $pedido->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Pedido eliminado correctamente',
+        ], 200);
     }
 }
