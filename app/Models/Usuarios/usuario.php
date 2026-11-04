@@ -15,4 +15,28 @@ class Usuario extends Model
     {
         return $this->belongsToMany(Oficios::class, 'destinatarios', 'usuario_id', 'destinatario_id');
     }
+
+    public function gerencia()
+    {
+        return $this->belongsTo(\App\Models\Catalogos\Gerencia::class, 'gerencia_id');
+    }
+
+    public function areasPermitidas(): array
+    {
+        $codigoGerencia = $this->gerencia?->code;
+
+        if (!$codigoGerencia) {
+            return [];
+        }
+
+        return config(
+            "areas.{$codigoGerencia}",
+            []
+        );
+    }
+
+    public function puedeAccederArea(string $area): bool
+    {
+        return array_key_exists($area,$this->areasPermitidas());
+    }
 }

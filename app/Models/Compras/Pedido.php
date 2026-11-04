@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+use App\Models\Usuarios\Usuario;
+use Illuminate\Database\Eloquent\Builder;
+
 class Pedido extends Model
 {
     /** @use HasFactory<\Database\Factories\PedidoFactory> */
@@ -128,4 +132,12 @@ class Pedido extends Model
     {
         return $this->hasOne(Categoria::class);
     }
+
+    public function scopeDeGerencia(Builder $query, Usuario $usuario): Builder {
+        return $query->where('gerencia_id', $usuario->gerencia_id);
+    }
+
+    public function scopeCreadosPor(Builder $query, Usuario $usuario): Builder {
+        return $query->where('usuario_id', $usuario->getKey());
+}
 }

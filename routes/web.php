@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::view('/login', 'auth.login')
     ->name('login');
 
+Route::view('/panel', 'auth.panel')
+    ->name('panel');
+
 Route::get('/catalogos/articulo',[ArticuloController::class, 'vistaIndex'])
     ->name('articulo.index');
 Route::get('/catalogos/articulo/create',[ArticuloController::class, 'vistaCreate'])
