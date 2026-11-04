@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/login', 'auth.login')
+    ->name('login');
+
 Route::get('/catalogos/articulo',[ArticuloController::class, 'vistaIndex'])
     ->name('articulo.index');
 Route::get('/catalogos/articulo/create',[ArticuloController::class, 'vistaCreate'])
