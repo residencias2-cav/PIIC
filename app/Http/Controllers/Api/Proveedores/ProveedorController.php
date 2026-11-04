@@ -4,39 +4,64 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedores\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Requests\Proveedores\{
+    StoreProveedorRequest,
+    UpdateProveedorRequest
+    };
 
 class ProveedorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
+        return response()->json([
+            'data' => Proveedor::all(),
+        ], 200);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): JsonResponse
     {
         //
+        $proveedor = Proveedor::all();
+        
+        return response()->json([
+            'status' => true,
+            'data' => $proveedor,
+        ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProveedorRequest $request): JsonResponse
     {
         //
+        $proveedor = Proveedor::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Proveedor registrado correctamente',
+            'data' => $proveedor
+            ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Proveedor $proveedor)
+    public function show(Proveedor $proveedor): JsonResponse
     {
         //
+        return response()->json([
+            'status' => true,
+            'data' => $proveedor,
+        ], 200);
     }
 
     /**
@@ -50,9 +75,16 @@ class ProveedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(UpdateProveedorRequest $request, Proveedor $proveedor)
     {
         //
+        $proveedor->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Proveedor actualizado correctamente',
+            'data' => $proveedor
+        ], 200);
     }
 
     /**
@@ -61,5 +93,11 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor)
     {
         //
+        $proveedor->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Proveedor eliminado correctamente'
+        ], 200);
     }
 }
