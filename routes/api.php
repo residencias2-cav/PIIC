@@ -30,6 +30,9 @@ use App\Http\Controllers\Api\Epp\{
     EppController,
     InventarioEppController
     };
+use App\Http\Controllers\Api\Usuarios\{
+    TrabajadorController
+    };
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('catalogos')->name('api.')->group(function () {
@@ -65,4 +68,8 @@ Route::prefix('catalogos')->name('api.')->group(function () {
 Route::prefix('epp')->group(function () {
     Route::apiResource('epp', EppController::class);
     Route::apiResource('inventario_epp', InventarioEppController::class);
+});
+
+Route::prefix('usuarios')->group(function () {
+    Route::apiResource('trabajador', TrabajadorController::class);
 });
