@@ -24,6 +24,14 @@ class UpdateOficiosRequest extends FormRequest
     {
         return [
             //
+            'folio' => ['required', 'string', 'max:20', 'unique:oficios,folio,'],
+            'fecha' => ['required', 'date'],
+            'asunto' => ['required', 'string', 'max:200'],
+            'cuerpo' => ['required', 'string', 'max:200'],
+            'tipo_oficio_id' => ['required', 'integer', 'exists:tipo_oficios, id'],
+            'estado_id' => ['required', 'integer', 'exists:estados, id'],
+            'observaciones' => ['required', 'string', 'max:200'],
+            'cargos_generales' => ['required', 'string', 'max:150'],
         ];
     }
 }
