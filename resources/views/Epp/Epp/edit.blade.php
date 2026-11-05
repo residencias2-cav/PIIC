@@ -43,15 +43,14 @@
             {{-- Fecha --}}
             <div class="campo">
 
-                <label for="fecha">
+                <label for="fecha_visual">
                     Fecha
                 </label>
 
                 <input
                     type="date"
-                    id="fecha"
-                    name="fecha"
-                    value="{{ old('fecha', $epp->fecha?->format('Y-m-d')) }}"
+                    id="fecha_visual"
+                    value="{{ $epp->fecha?->format('Y-m-d')) }}"
                     required
                 >
 
@@ -67,15 +66,14 @@
             {{-- Folio --}}
             <div class="campo">
 
-                <label for="folio">
+                <label for="folio_visual">
                     Folio
                 </label>
 
                 <input
                     type="text"
-                    id="folio"
-                    name="folio"
-                    value="{{ old('folio', $epp->folio) }}"
+                    id="folio_visual"
+                    value="{{ $epp->folio) }}"
                     required
                 >
 

@@ -42,23 +42,16 @@
             {{-- Fecha --}}
             <div class="campo">
 
-                <label for="fecha">
+                <label for="fecha_visual">
                     Fecha
                 </label>
 
                 <input
                     type="date"
-                    id="fecha"
-                    name="fecha"
-                    value="{{ old('fecha') }}"
-                    required
+                    id="fecha_visual"
+                    value="{{ now()->toDateString() }}"
+                    readonly
                 >
-
-                @error('fecha')
-                    <p class="mensaje-error">
-                        {{ $message }}
-                    </p>
-                @enderror
 
             </div>
 
@@ -66,24 +59,16 @@
             {{-- Folio --}}
             <div class="campo">
 
-                <label for="folio">
+                <label for="folio_visual">
                     Folio
                 </label>
 
                 <input
                     type="text"
-                    id="folio"
-                    name="folio"
-                    value="{{ old('folio') }}"
-                    placeholder="Ejemplo: EPP-001"
-                    required
+                    id="folio_visual"
+                    value="{{ $siguienteFolio }}"
+                    readonly
                 >
-
-                @error('folio')
-                    <p class="mensaje-error">
-                        {{ $message }}
-                    </p>
-                @enderror
 
             </div>
 
@@ -224,6 +209,7 @@
                     name="motivo"
                     value="{{ old('motivo') }}"
                     placeholder="Motivo de la solicitud"
+                    maxlength="150"
                     required
                 >
 
@@ -247,6 +233,7 @@
                     id="justificacion"
                     name="justificacion"
                     rows="4"
+                    maxlength="100"
                     placeholder="Describe la justificación de la solicitud"
                     required
                 >{{ old('justificacion') }}</textarea>
@@ -271,6 +258,7 @@
                     id="logistica"
                     name="logistica"
                     rows="3"
+                    maxlength="100"
                     placeholder="Información de logística"
                     required
                 >{{ old('logistica') }}</textarea>
@@ -284,6 +272,7 @@
             </div>
 
 
+            {{-- Acciones --}}
             <div class="formulario-acciones">
 
                 <a
