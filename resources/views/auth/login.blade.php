@@ -96,7 +96,7 @@
                  ================================================= --}}
 
             <form
-                action="#"
+                action="{{ route('login') }}"
                 method="POST"
                 class="login-form"
             >
@@ -107,8 +107,8 @@
                 {{-- Correo --}}
                 <div class="login-campo">
 
-                    <label for="email">
-                        Correo electrónico
+                    <label for="usuario">
+                        Usuario
                     </label>
 
                     <div class="login-input-wrapper">
@@ -129,19 +129,19 @@
                         </svg>
 
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value="{{ old('email') }}"
-                            placeholder="Ingresa tu correo electrónico"
-                            autocomplete="email"
+                            type="usuario"
+                            id="usuario"
+                            name="usuario"
+                            value="{{ old('usuario') }}"
+                            placeholder="Ingresa tu usuario"
+                            autocomplete="usuario"
                             required
                             autofocus
                         >
 
                     </div>
 
-                    @error('email')
+                    @error('usuario')
                         <p class="login-error">
                             {{ $message }}
                         </p>

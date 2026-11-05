@@ -12,6 +12,7 @@ use App\Http\Controllers\Catalogos\ProductoServicioController;
 use App\Http\Controllers\Catalogos\ProyectoController;
 use App\Http\Controllers\Catalogos\UbicacionController;
 use App\Http\Controllers\Catalogos\GerenciaController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,27 @@ Route::view('/login', 'auth.login')
 
 Route::view('/panel', 'auth.panel')
     ->name('panel');
+Route::middleware('guest')->group(function () {
+    Route::get(
+        '/login',
+        [LoginController::class, 'create']
+    )->name('login');
+    Route::post(
+        '/login',
+        [LoginController::class, 'store']
+    )->name('login.store');
+});
+Route::post(
+    '/logout',
+    [LoginController::class, 'destroy']
+)
+->middleware('auth')
+->name('logout');
+Route::get('/inicio', function () {
+    return view('inicio');
+})
+    ->middleware('auth')
+    ->name('inicio');
 
 Route::get('/catalogos/articulo',[ArticuloController::class, 'vistaIndex'])
     ->name('articulo.index');

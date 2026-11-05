@@ -2,21 +2,20 @@
 
 namespace App\Models\Usuarios;
 
+use App\Models\Catalogos\Gerencia;
+use App\Models\Catalogos\TipoUsuario;
 use App\Models\Oficios\Oficios;
+use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use app\Models\Catalogos\{
-    Gerencia,
-    TipoUsuario
-    };
-use app\Models\Usuarios\Trabajador;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UsuarioFactory> */
     use HasFactory;
+    use Notifiable;
 
-    protected $table = "usuarios";
+    protected $table = 'usuarios';
 
     protected $fillable = [
         'trabajador_id',
@@ -40,6 +39,7 @@ class Usuario extends Model
             'tipo_usuario_id' => 'integer',
             'tipos_usuario_ch' => 'boolean',
             'twofa_attempts' => 'integer',
+            'twofa_expire' => 'datetime',
         ];
     }
 
@@ -57,7 +57,7 @@ class Usuario extends Model
     {
         return $this->belongsTo(Trabajador::class);
     }
-    
+
     public function gerencia()
     {
         return $this->belongsTo(Gerencia::class, 'gerencia_id');
@@ -67,28 +67,35 @@ class Usuario extends Model
     {
         return $this->belongsTo(TipoUsuario::class);
     }
-    
-    public function destinatarios()
+
+    public function getAuthPassword(): string
     {
-        return $this->belongsToMany(Oficios::class, 'destinatarios', 'usuario_id', 'destinatario_id');
+        return $this->contrasena_correo;
     }
 
     public function areasPermitidas(): array
     {
         $codigoGerencia = $this->gerencia?->code;
 
-        if (!$codigoGerencia) {
+        if (! $codigoGerencia) {
             return [];
         }
 
-        return config(
-            "areas.{$codigoGerencia}",
-            []
-        );
+        return config("areas.{$codigoGerencia}", []);
     }
 
     public function puedeAccederArea(string $area): bool
     {
-        return array_key_exists($area,$this->areasPermitidas());
+        return array_key_exists($area, $this->areasPermitidas());
+    }
+
+    public function destinatarios()
+    {
+        return $this->belongsToMany(
+            Oficios::class,
+            'destinatarios',
+            'usuario_id',
+            'oficios_id'
+        );
     }
 }
