@@ -34,9 +34,6 @@ class Usuario extends Authenticatable
     protected function casts(): array
     {
         return [
-            'trabajador_id' => 'integer',
-            'gerencia_id' => 'integer',
-            'tipo_usuario_id' => 'integer',
             'tipos_usuario_ch' => 'boolean',
             'twofa_attempts' => 'integer',
             'twofa_expire' => 'datetime',

@@ -24,6 +24,15 @@ class UpdateDatosEppTrRequest extends FormRequest
     {
         return [
             //
+            'cantidad' => ['sometimes', 'integer', 'min:1'],
+            'descripcion' => ['sometimes', 'string', 'max:100'],
+            'codigo' => ['sometimes', 'string', 'max:100'],
+            'marca' => ['sometimes', 'string', 'max:100'],
+            'color' => ['sometimes', 'string', 'max:100'],
+            'medida' => ['sometimes', 'string', 'max:100'],
+            'clase' => ['sometimes', 'string', 'max:100'],
+            'observaciones' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'estado_id' => ['sometimes', 'integer', 'exists:estados,id'],
         ];
     }
 }
