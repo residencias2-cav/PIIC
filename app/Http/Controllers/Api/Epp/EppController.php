@@ -42,7 +42,7 @@ class EppController extends Controller
             ->get();
 
         return view(
-            'Epp.index',
+            'Epp.Epp.index',
             compact('epps')
         );
     }
@@ -56,7 +56,7 @@ class EppController extends Controller
         $empresas = Empresa::orderBy('nombre')->get();
 
         return view(
-            'Epp.create',
+            'Epp.Epp.create',
             compact(
                 'tiposEpp',
                 'obras',
@@ -74,7 +74,7 @@ class EppController extends Controller
         $empresas = Empresa::orderBy('nombre')->get();
 
         return view(
-            'Epp.edit',
+            'Epp.Epp.edit',
             compact(
                 'epp',
                 'tiposEpp',
