@@ -2,8 +2,10 @@
 
 namespace App\Models\Usuarios;
 
-use App\Models\Oficios\Oficios;
 use App\Models\Catalogos\Gerencia;
+use App\Models\Catalogos\TipoUsuario;
+use App\Models\Oficios\Oficios;
+use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,79 +23,71 @@ class Usuario extends Authenticatable
         'usuario',
         'tipo_usuario_id',
         'tipos_usuario_ch',
-        'contraseña_correo',
-    ];
-
-    protected $hidden = [
-        'contraseña_correo',
+        'contrasena',
+        'correo',
+        'contrasena_correo',
         'twofa_code',
+        'twofa_expire',
+        'twofa_attempts',
     ];
 
     protected function casts(): array
     {
         return [
+            'trabajador_id' => 'integer',
+            'gerencia_id' => 'integer',
+            'tipo_usuario_id' => 'integer',
+            'tipos_usuario_ch' => 'boolean',
+            'twofa_attempts' => 'integer',
             'twofa_expire' => 'datetime',
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Contraseña utilizada por Laravel para autenticación
-    |--------------------------------------------------------------------------
-    */
+    protected $hidden = [
+        'contrasena',
+        'contrasena_correo',
+        'twofa_code',
+        'twofa_expire',
+        'twofa_attempts',
+        'created_at',
+        'updated_at',
+    ];
 
-    public function getAuthPassword(): string
+    public function trabajador()
     {
-        return $this->contraseña_correo;
+        return $this->belongsTo(Trabajador::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Gerencia
-    |--------------------------------------------------------------------------
-    */
 
     public function gerencia()
     {
-        return $this->belongsTo(
-            Gerencia::class,
-            'gerencia_id'
-        );
+        return $this->belongsTo(Gerencia::class, 'gerencia_id');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Áreas permitidas según la gerencia
-    |--------------------------------------------------------------------------
-    */
+    public function tipoUsuario()
+    {
+        return $this->belongsTo(TipoUsuario::class);
+    }
+
+    public function getAuthPassword(): string
+    {
+        return $this->contrasena_correo;
+    }
 
     public function areasPermitidas(): array
     {
         $codigoGerencia = $this->gerencia?->code;
 
-        if (!$codigoGerencia) {
+        if (! $codigoGerencia) {
             return [];
         }
 
-        return config(
-            "areas.{$codigoGerencia}",
-            []
-        );
+        return config("areas.{$codigoGerencia}", []);
     }
 
     public function puedeAccederArea(string $area): bool
     {
-        return array_key_exists(
-            $area,
-            $this->areasPermitidas()
-        );
+        return array_key_exists($area, $this->areasPermitidas());
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Oficios / destinatarios
-    |--------------------------------------------------------------------------
-    */
 
     public function destinatarios()
     {
@@ -101,7 +95,7 @@ class Usuario extends Authenticatable
             Oficios::class,
             'destinatarios',
             'usuario_id',
-            'destinatario_id'
+            'oficios_id'
         );
     }
 }
