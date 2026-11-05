@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Epp;
 use App\Http\Controllers\Controller;
 use App\Models\Epp\DatosEppTr;
 use Illuminate\Http\Request;
+use App\Http\Requests\Epp\{
+    StoreDatosEppTrRequest,
+    UpdateDatosEppTrRequest
+    };
 
 class DatosEppTrController extends Controller
 {
@@ -14,6 +18,10 @@ class DatosEppTrController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            'status' => true,
+            'data' => DatosEppTr::all(),
+        ], 200);
     }
 
     /**
@@ -22,14 +30,27 @@ class DatosEppTrController extends Controller
     public function create()
     {
         //
+        $datosepptr = DatosEppTr::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $datosepptr,
+        ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDatosEppTrRequest $request)
     {
         //
+        $datosepptr = DatosEppTr::create($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos Epp Tr registrado correctamente',
+            'data' => $datosepptr
+            ], 201);
     }
 
     /**
@@ -38,6 +59,10 @@ class DatosEppTrController extends Controller
     public function show(DatosEppTr $datosEppTr)
     {
         //
+        return response()->json([
+            'status' => true,
+            'data' => $datosEppTr,
+        ], 200);
     }
 
     /**
@@ -51,9 +76,16 @@ class DatosEppTrController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatosEppTr $datosEppTr)
+    public function update(UpdateDatosEppTrRequest $request, DatosEppTr $datosEppTr)
     {
         //
+        $datosEppTr->update($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos Epp Tr actualizado correctamente',
+            'data' => $datosEppTr
+            ], 200);
     }
 
     /**
@@ -62,5 +94,11 @@ class DatosEppTrController extends Controller
     public function destroy(DatosEppTr $datosEppTr)
     {
         //
+        $datosEppTr->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos Epp Tr eliminado correctamente',
+        ], 200);
     }
 }

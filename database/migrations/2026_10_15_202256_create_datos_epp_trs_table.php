@@ -16,12 +16,12 @@ return new class extends Migration
             $table->foreignId('epp_id')->constrained()->onDelete('cascade');
             $table->integer('cantidad');
             $table->string('descripcion', 100);
-            $table->string('codigo', 50);
-            $table->string('marca', 50);
-            $table->string('color', 50);
-            $table->string('medida', 50);
-            $table->string('clase', 50);
-            $table->string('observaciones', 50);
+            $table->string('codigo', 100);
+            $table->string('marca', 100);
+            $table->string('color', 100);
+            $table->string('medida', 100);
+            $table->string('clase', 100);
+            $table->string('observaciones', 255);
             $table->foreignId('estado_id')->constrained()->onDelete('cascade');
             $table->date('fecha_estado');
             $table->timestamps();
