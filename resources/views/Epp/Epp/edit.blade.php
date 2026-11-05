@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar solicitud EPP</title>
+
+    <link rel="stylesheet" href="{{ asset('css/catalogos.css') }}">
+</head>
+
+<body>
+
+    <main class="formulario-card">
+
+        <header class="formulario-header">
+
+            <div class="catalogo-linea"></div>
+
+            <div>
+                <h1 class="formulario-titulo">
+                    Editar solicitud EPP
+                </h1>
+
+                <p class="formulario-descripcion">
+                    Modifica la información general de la solicitud.
+                </p>
+            </div>
+
+        </header>
+
+
+        <form
+            action="{{ route('epp.update', $epp) }}"
+            method="POST"
+        >
+
+            @csrf
+            @method('PUT')
+
+
+            {{-- Fecha --}}
+            <div class="campo">
+
+                <label for="fecha">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="fecha"
+                    name="fecha"
+                    value="{{ old('fecha', $epp->fecha?->format('Y-m-d')) }}"
+                    required
+                >
+
+                @error('fecha')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Folio --}}
+            <div class="campo">
+
+                <label for="folio">
+                    Folio
+                </label>
+
+                <input
+                    type="text"
+                    id="folio"
+                    name="folio"
+                    value="{{ old('folio', $epp->folio) }}"
+                    required
+                >
+
+                @error('folio')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Tipo EPP --}}
+            <div class="campo">
+
+                <label for="tipo_epp_id">
+                    Tipo de EPP
+                </label>
+
+                <select
+                    id="tipo_epp_id"
+                    name="tipo_epp_id"
+                    required
+                >
+
+                    <option value="">
+                        Selecciona un tipo
+                    </option>
+
+                    @foreach ($tiposEpp as $tipoEpp)
+
+                        <option
+                            value="{{ $tipoEpp->id }}"
+                            @selected(
+                                old(
+                                    'tipo_epp_id',
+                                    $epp->tipo_epp_id
+                                ) == $tipoEpp->id
+                            )
+                        >
+                            {{ $tipoEpp->nombre }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+                @error('tipo_epp_id')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Obra --}}
+            <div class="campo">
+
+                <label for="obra_id">
+                    Obra
+                </label>
+
+                <select
+                    id="obra_id"
+                    name="obra_id"
+                    required
+                >
+
+                    <option value="">
+                        Selecciona una obra
+                    </option>
+
+                    @foreach ($obras as $obra)
+
+                        <option
+                            value="{{ $obra->id }}"
+                            @selected(
+                                old(
+                                    'obra_id',
+                                    $epp->obra_id
+                                ) == $obra->id
+                            )
+                        >
+                            {{ $obra->nombre_obra }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+                @error('obra_id')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Empresa --}}
+            <div class="campo">
+
+                <label for="empresa_id">
+                    Empresa
+                </label>
+
+                <select
+                    id="empresa_id"
+                    name="empresa_id"
+                    required
+                >
+
+                    <option value="">
+                        Selecciona una empresa
+                    </option>
+
+                    @foreach ($empresas as $empresa)
+
+                        <option
+                            value="{{ $empresa->id }}"
+                            @selected(
+                                old(
+                                    'empresa_id',
+                                    $epp->empresa_id
+                                ) == $empresa->id
+                            )
+                        >
+                            {{ $empresa->nombre }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+                @error('empresa_id')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Motivo --}}
+            <div class="campo">
+
+                <label for="motivo">
+                    Motivo
+                </label>
+
+                <input
+                    type="text"
+                    id="motivo"
+                    name="motivo"
+                    value="{{ old('motivo', $epp->motivo) }}"
+                    required
+                >
+
+                @error('motivo')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Justificación --}}
+            <div class="campo">
+
+                <label for="justificacion">
+                    Justificación
+                </label>
+
+                <textarea
+                    id="justificacion"
+                    name="justificacion"
+                    rows="4"
+                    required
+                >{{ old('justificacion', $epp->justificacion) }}</textarea>
+
+                @error('justificacion')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- Logística --}}
+            <div class="campo">
+
+                <label for="logistica">
+                    Logística
+                </label>
+
+                <textarea
+                    id="logistica"
+                    name="logistica"
+                    rows="3"
+                    required
+                >{{ old('logistica', $epp->logistica) }}</textarea>
+
+                @error('logistica')
+                    <p class="mensaje-error">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            <div class="formulario-acciones">
+
+                <a
+                    href="{{ route('epp.index') }}"
+                    class="btn btn-secundario"
+                >
+                    Cancelar
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-principal"
+                >
+                    Actualizar solicitud
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

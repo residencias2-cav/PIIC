@@ -7,9 +7,16 @@ use App\Http\Requests\Epp\{
     StoreEppRequest,
     UpdateEppRequest
     };
-use App\Models\Epp\Epp;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Models\Epp\Epp;
+
+use App\Models\Catalogos\{
+    TipoEpp,
+    Obra,
+    Empresa
+};
 
 class EppController extends Controller
 {
@@ -22,6 +29,59 @@ class EppController extends Controller
         return response()->json([
             'data' => Epp::all(),
         ], 200);
+    }
+
+    public function vistaIndex()
+    {
+        $epps = Epp::with([
+            'tipoEpp',
+            'obra',
+            'empresa',
+        ])
+            ->latest('fecha')
+            ->get();
+
+        return view(
+            'Epp.Epp.index',
+            compact('epps')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        $tiposEpp = TipoEpp::all();
+
+        $obras = Obra::orderBy('nombre_obra')->get();
+
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        return view(
+            'Epp.Epp.create',
+            compact(
+                'tiposEpp',
+                'obras',
+                'empresas'
+            )
+        );
+    }
+
+    public function vistaEdit(Epp $epp)
+    {
+        $tiposEpp = TipoEpp::all();
+
+        $obras = Obra::orderBy('nombre_obra')->get();
+
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        return view(
+            'Epp.Epp.edit',
+            compact(
+                'epp',
+                'tiposEpp',
+                'obras',
+                'empresas'
+            )
+        );
     }
 
     /**
@@ -43,14 +103,20 @@ class EppController extends Controller
      */
     public function store(StoreEppRequest $request)
     {
-        //
-        $epp = Epp::create($request->validated());
+        $datos = $request->validated();
 
-        return response()->json([
-            'status' => true,
-            'mesage' => 'Epp registrado correctamente',
-            'data' => $epp
-            ], 201);
+        $epp = Epp::create($datos);
+
+        if ($request->is('api/*')) {
+            return response()->json($epp, 201);
+        }
+
+        return redirect()
+            ->route('epp.index')
+            ->with(
+                'success',
+                'Solicitud de EPP registrada correctamente.'
+            );
     }
 
     /**
@@ -75,29 +141,38 @@ class EppController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEppRequest $request, Epp $epp):JsonResponse
+    public function update(UpdateEppRequest $request, Epp $epp) 
     {
-        //
         $epp->update($request->validated());
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Epp actualizado correctamente',
-            'data' => $epp
-        ], 200);
+        if ($request->is('api/*')) {
+            return response()->json($epp);
+        }
+
+        return redirect()
+            ->route('epp.index')
+            ->with(
+                'success',
+                'Solicitud de EPP actualizada correctamente.'
+            );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Epp $epp)
+    public function destroy(Request $request, Epp $epp)
     {
-        //
         $epp->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Registro EPP eliminado correctamente'
-        ], 200);
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('epp.index')
+            ->with(
+                'success',
+                'Solicitud de EPP eliminada correctamente.'
+            );
     }
 }

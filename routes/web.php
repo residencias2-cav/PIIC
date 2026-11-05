@@ -13,16 +13,23 @@ use App\Http\Controllers\Catalogos\ProyectoController;
 use App\Http\Controllers\Catalogos\UbicacionController;
 use App\Http\Controllers\Catalogos\GerenciaController;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\Api\Epp\EppController;
+    /*
+    |--------------
+    | PAGINA PRINCIPAL
+    |--------------
+    */
 Route::get('/', function () {
     return view('welcome');
 });
 
+    /*
+    |--------------
+    | AUTENTICACION
+    |--------------
+    */
 Route::view('/login', 'auth.login')
     ->name('login');
-
-Route::view('/panel', 'auth.panel')
-    ->name('panel');
 Route::middleware('guest')->group(function () {
     Route::get(
         '/login',
@@ -39,12 +46,31 @@ Route::post(
 )
 ->middleware('auth')
 ->name('logout');
+
+    /*
+    |--------------
+    | INICIO
+    |--------------
+    */
 Route::get('/inicio', function () {
     return view('inicio');
 })
     ->middleware('auth')
     ->name('inicio');
 
+    /*
+    |--------------
+    | PANEL
+    |--------------
+    */
+Route::view('/panel', 'auth.panel')
+    ->name('panel');
+
+    /*
+    |--------------
+    | CATÁLOGOS
+    |--------------
+    */
 Route::get('/catalogos/articulo',[ArticuloController::class, 'vistaIndex'])
     ->name('articulo.index');
 Route::get('/catalogos/articulo/create',[ArticuloController::class, 'vistaCreate'])
@@ -181,3 +207,44 @@ Route::put('/catalogos/producto_servicio/{producto_servicio}',[ProductoServicioC
     ->name('producto_servicio.update');
 Route::delete('/catalogos/producto_servicio/{producto_servicio}',[ProductoServicioController::class, 'destroy'])
     ->name('producto_servicio.destroy');
+
+    /*
+    |--------------
+    | COMPRAS
+    |--------------
+    */
+
+    /*
+    |--------------
+    | EPP
+    |--------------
+    */
+Route::get('/epp',[EppController::class, 'vistaIndex'])
+    ->name('epp.index');
+Route::get('/epp/create',[EppController::class, 'vistaCreate'])
+    ->name('epp.create');
+Route::get('/epp/{epp}/edit',[EppController::class, 'vistaEdit'])
+    ->name('epp.edit');
+Route::post('/epp',[EppController::class, 'store'])
+    ->name('epp.store');
+Route::put('/epp/{epp}',[EppController::class, 'update'])
+    ->name('epp.update');
+Route::delete('/epp/{epp}',[EppController::class, 'destroy'])
+    ->name('epp.destroy');
+    /*
+    |--------------
+    | OFICIOS
+    |--------------
+    */
+
+    /*
+    |--------------
+    | PROVEEDORES
+    |--------------
+    */
+
+    /*
+    |--------------
+    | USUARIOS
+    |--------------
+    */
