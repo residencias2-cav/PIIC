@@ -55,12 +55,31 @@ class EppController extends Controller
 
         $empresas = Empresa::orderBy('nombre')->get();
 
+        // Obtener el número más alto utilizado en los folios EPP
+        $ultimoNumero = Epp::withTrashed()
+            ->selectRaw(
+                "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
+            )
+            ->value('ultimo');
+
+        // Si todavía no existen registros, comienza en 1
+        $siguienteNumero = ($ultimoNumero ?? 0) + 1;
+
+        // Generar EPP-001, EPP-002, EPP-003...
+        $siguienteFolio = 'EPP-' . str_pad(
+            $siguienteNumero,
+            3,
+            '0',
+            STR_PAD_LEFT
+        );
+
         return view(
-            'Epp.Epp.create',
-            compact(
+            'epp.epp.create',
+            compact( 
                 'tiposEpp',
                 'obras',
-                'empresas'
+                'empresas',
+                'siguienteFolio'
             )
         );
     }
