@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Epp;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -12,7 +12,7 @@ class UpdateDatosEppReRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return  true;
     }
 
     /**
@@ -24,6 +24,12 @@ class UpdateDatosEppReRequest extends FormRequest
     {
         return [
             //
+            'fecha_ingreso' => ['sometimes', 'date'],
+            'motivo' => ['sometimes', 'string', 'max:100'],
+            'fecha_entrega' => ['sometimes', 'date'],
+            'foto_evidencia' => ['sometimes', 'string', 'max:50'],
+            'observaciones' => ['sometimes', 'string', 'max:100'],
+            'talla' => ['required', 'integer'],
         ];
     }
 }

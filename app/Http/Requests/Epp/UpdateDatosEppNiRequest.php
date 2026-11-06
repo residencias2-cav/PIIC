@@ -12,7 +12,7 @@ class UpdateDatosEppNiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,9 @@ class UpdateDatosEppNiRequest extends FormRequest
     {
         return [
             //
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
+            'articulo_id' => ['sometimes', 'integer', 'articulos,id'],
+            'sup_int' => ['sometimes', 'boolean',]
         ];
     }
 }
