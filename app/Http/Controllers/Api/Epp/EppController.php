@@ -9,6 +9,9 @@ use App\Http\Requests\Epp\{
     };
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\Epp\Epp;
 
@@ -17,6 +20,8 @@ use App\Models\Catalogos\{
     Obra,
     Empresa
 };
+
+use App\Models\Catalogos\Estado;
 
 class EppController extends Controller
 {
@@ -49,6 +54,8 @@ class EppController extends Controller
 
     public function vistaCreate()
     {
+        $estados = Estado::all();
+        
         $tiposEpp = TipoEpp::all();
 
         $obras = Obra::orderBy('nombre_obra')->get();
@@ -79,6 +86,7 @@ class EppController extends Controller
                 'tiposEpp',
                 'obras',
                 'empresas',
+                'estados',
                 'siguienteFolio'
             )
         );
@@ -86,6 +94,8 @@ class EppController extends Controller
 
     public function vistaEdit(Epp $epp)
     {
+        $estados = Estado::all();
+
         $tiposEpp = TipoEpp::all();
 
         $obras = Obra::orderBy('nombre_obra')->get();
@@ -98,7 +108,8 @@ class EppController extends Controller
                 'epp',
                 'tiposEpp',
                 'obras',
-                'empresas'
+                'empresas',
+                'estado',
             )
         );
     }
@@ -124,18 +135,67 @@ class EppController extends Controller
     {
         $datos = $request->validated();
 
-        $epp = Epp::create($datos);
+        return DB::transaction(function () use ($request, $datos) {
 
-        if ($request->is('api/*')) {
-            return response()->json($epp, 201);
-        }
+            $ultimoNumero = Epp::withTrashed()
+                ->selectRaw(
+                    "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
+                )
+                ->value('ultimo');
 
-        return redirect()
-            ->route('epp.index')
-            ->with(
-                'success',
-                'Solicitud de EPP registrada correctamente.'
+            $siguienteNumero = ($ultimoNumero ?? 0) + 1;
+
+            $folio = 'EPP-' . str_pad(
+                $siguienteNumero,
+                3,
+                '0',
+                STR_PAD_LEFT
             );
+
+            $epp = Epp::create([
+                'fecha' => now()->toDateString(),
+                'folio' => $folio,
+                'tipo_epp_id' => $datos['tipo_epp_id'],
+                'obra_id' => $datos['obra_id'],
+                'empresa_id' => $datos['empresa_id'],
+                'motivo' => $datos['motivo'],
+                'justificacion' => $datos['justificacion'],
+                'logistica' => $datos['logistica'],
+
+                // TEMPORAL durante pruebas:
+                'created_by' => Auth::id(),
+            ]);
+
+            foreach ($datos['detalles_tr'] ?? [] as $detalle) {
+
+                $epp->datosEppTr()->create([
+                    'cantidad' => $detalle['cantidad'],
+                    'descripcion' => $detalle['descripcion'],
+                    'codigo' => $detalle['codigo'],
+                    'marca' => $detalle['marca'],
+                    'color' => $detalle['color'],
+                    'medida' => $detalle['medida'],
+                    'clase' => $detalle['clase'],
+                    'observaciones' => $detalle['observaciones'],
+                    'estado_id' => $detalle['estado_id'],
+                    'fecha_estado' => now()->toDateString(),
+                ]);
+            }
+
+            if ($request->is('api/*')) {
+                return response()->json(
+                    $epp->load('datosEppTr'),
+                    201
+                );
+            }
+
+            return redirect()
+                ->route('epp.index')
+                ->with(
+                    'success',
+                    'Solicitud de EPP registrada correctamente.'
+                );
+        });
     }
 
     /**

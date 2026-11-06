@@ -231,6 +231,38 @@ Route::put('/epp/{epp}',[EppController::class, 'update'])
     ->name('epp.update');
 Route::delete('/epp/{epp}',[EppController::class, 'destroy'])
     ->name('epp.destroy');
+
+use App\Http\Controllers\Api\Epp\InventarioEppController;
+
+Route::get(
+    '/epp/inventario',
+    [InventarioEppController::class, 'vistaIndex']
+)->name('inventario_epp.index');
+
+Route::get(
+    '/epp/inventario/create',
+    [InventarioEppController::class, 'vistaCreate']
+)->name('inventario_epp.create');
+
+Route::get(
+    '/epp/inventario/{inventario}/edit',
+    [InventarioEppController::class, 'vistaEdit']
+)->name('inventario_epp.edit');
+
+Route::post(
+    '/epp/inventario',
+    [InventarioEppController::class, 'store']
+)->name('inventario_epp.store');
+
+Route::put(
+    '/epp/inventario/{inventario}',
+    [InventarioEppController::class, 'update']
+)->name('inventario_epp.update');
+
+Route::delete(
+    '/epp/inventario/{inventario}',
+    [InventarioEppController::class, 'destroy']
+)->name('inventario_epp.destroy');
     /*
     |--------------
     | OFICIOS

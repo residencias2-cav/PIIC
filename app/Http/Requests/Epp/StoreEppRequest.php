@@ -33,6 +33,18 @@ class StoreEppRequest extends FormRequest
             'justificacion' => ['required', 'string', 'max:100'],
             'logistica' => ['required', 'string', 'max:100'],
             'created_by' => ['required', 'integer'],
+
+            #DATOS EPPTR
+            'detalles_tr' => ['nullable', 'array',],
+            'detalles_tr.*.cantidad' => ['required','integer','min:1',],
+            'detalles_tr.*.descripcion' => ['required','string','max:100',],
+            'detalles_tr.*.codigo' => ['required','string','max:50',],
+            'detalles_tr.*.marca' => ['required','string','max:50',],
+            'detalles_tr.*.color' => ['required','string','max:50',],
+            'detalles_tr.*.medida' => ['required','string','max:50',],
+            'detalles_tr.*.clase' => ['required','string','max:50',],
+            'detalles_tr.*.observaciones' => ['required','string','max:50',],
+            'detalles_tr.*.estado_id' => ['required','integer','exists:estados,id',],
         ];
     }
 

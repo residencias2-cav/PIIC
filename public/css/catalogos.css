@@ -505,4 +505,113 @@ body {
     .formulario-acciones .btn {
         width: 100%;
     }
+
+    /* =========================================================
+    SECCIONES DE FORMULARIO
+    ========================================================= */
+
+    .formulario-seccion {
+        margin-bottom: 28px;
+    }
+
+    .formulario-seccion-titulo {
+        margin: 0 0 16px;
+        padding-bottom: 10px;
+
+        border-bottom: 1px solid #e2e8f0;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        color: #991b1b;
+    }
+
+    .formulario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+    .formulario-grid .campo {
+        margin-bottom: 0;
+    }
+
+    .campo-bloqueado input {
+        background-color: #f1f5f9;
+        color: #64748b;
+
+        cursor: not-allowed;
+    }
+
+    .campo-ayuda {
+        margin: 6px 0 0;
+
+        font-size: 12px;
+
+        color: #94a3b8;
+    }
+
+    .formulario-acciones-secundarias {
+        display: flex;
+        justify-content: flex-end;
+
+        margin: 18px 0;
+    }
+
+    .elementos-epp {
+        margin-top: 26px;
+    }
+
+    .detalle-epp {
+        margin-top: 30px;
+
+        padding-top: 24px;
+
+        border-top: 1px solid #e2e8f0;
+    }
+
+
+    @media (max-width: 768px) {
+
+        .formulario-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+    /* =========================================================
+    SELECTS
+    ========================================================= */
+
+    .campo select {
+        width: 100%;
+        padding: 12px 14px;
+
+        background-color: #ffffff;
+        color: #1e293b;
+
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+
+        font-size: 14px;
+    }
+
+    .campo select option {
+        background: #ffffff !important;
+        color: #1e293b !important;
+    }
+
+    .campo select option:checked {
+        background: #e5e7eb !important;
+        color: #111827 !important;
+    }
+
+    .campo select:focus {
+        border-color: #991b1b;
+
+        outline: none;
+
+        box-shadow:
+            0 0 0 3px rgba(153, 27, 27, 0.10);
+    }
 }
