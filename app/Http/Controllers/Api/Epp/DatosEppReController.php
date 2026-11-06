@@ -1,7 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Epp;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Epp\{
+    StoreDatosEppReRequest,
+    UpdateDatosEppReRequest
+};
 use App\Models\Epp\DatosEppRe;
 use Illuminate\Http\Request;
 
@@ -13,6 +18,9 @@ class DatosEppReController extends Controller
     public function index()
     {
         //
+        return response() -> json([
+            'data' => DatosEppRe::all()
+        ], 200);
     }
 
     /**
@@ -21,14 +29,26 @@ class DatosEppReController extends Controller
     public function create()
     {
         //
+        $datos_epp_re = DatosEppRe::all();
+        
+        return response()->json([
+            'status' => true,
+            'data' => $datos_epp_re,
+        ]);
     }
-
+        
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDatosEppReRequest $request)
     {
-        //
+        $datos_epp_re = DatosEppRe::create($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos de EPP registrados correctamente',
+            'data' => $datos_epp_re,
+        ], 201);
     }
 
     /**
@@ -37,6 +57,12 @@ class DatosEppReController extends Controller
     public function show(DatosEppRe $datos_epp_re)
     {
         //
+
+
+        return response()->json([
+            'status' => true,
+            'data' => $datos_epp_re,
+        ], 200);
     }
 
     /**
@@ -50,9 +76,15 @@ class DatosEppReController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatosEppRe $datos_epp_re)
+    public function update(UpdateDatosEppReRequest $request, DatosEppRe $datos_epp_re)
     {
-        //
+        $datos_epp_re->update($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos de EPP actualizados correctamente',
+            'data' => $datos_epp_re,
+        ], 200);
     }
 
     /**
@@ -60,6 +92,11 @@ class DatosEppReController extends Controller
      */
     public function destroy(DatosEppRe $datos_epp_re)
     {
-        //
+        $datos_epp_re->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Datos EPP eliminados correctamente',
+        ]);
     }
 }

@@ -28,7 +28,8 @@ use App\Http\Controllers\Catalogos\{
     };
 use App\Http\Controllers\Api\Epp\{
     EppController,
-    InventarioEppController
+    InventarioEppController,
+    DatosEppReController
     };
 use App\Http\Controllers\Api\Usuarios\{
     TrabajadorController
@@ -68,6 +69,7 @@ Route::prefix('catalogos')->name('api.')->group(function () {
 Route::prefix('epp')->group(function () {
     Route::apiResource('epp', EppController::class);
     Route::apiResource('inventario_epp', InventarioEppController::class);
+    Route::apiResource('datos_epp_re', DatosEppReController::class);
 });
 
 Route::prefix('usuarios')->group(function () {
