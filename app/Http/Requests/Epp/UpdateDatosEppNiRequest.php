@@ -27,7 +27,7 @@ class UpdateDatosEppNiRequest extends FormRequest
         return [
             //
             'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
-            'articulo_id' => ['sometimes', 'integer', 'articulos,id'],
+            'articulo_id' => ['sometimes', 'integer', 'exists:articulos,id'],
             'sup_int' => ['sometimes', Rule::sexo(sup_int::class)],
         ];
     }

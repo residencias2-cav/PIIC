@@ -12,7 +12,7 @@ class UpdateDatosEppRcRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,9 @@ class UpdateDatosEppRcRequest extends FormRequest
     {
         return [
             //
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
+            'articulo_id' => ['sometimes', 'integer', 'exists:articulos,id'],
+            'talla' => ['sometimes', 'string', 'max:50'],
         ];
     }
 }

@@ -12,7 +12,7 @@ class UpdateDetallePedidoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,13 @@ class UpdateDetallePedidoRequest extends FormRequest
     {
         return [
             //
+            'cantidad' => ['required', 'integer'],
+            'unidad_id' => ['required', 'integer', 'exists:unidads,id'],
+            'descripcion' => ['required', 'varchar', 'max:155'],
+            'uso' => ['required', 'varchar', 'max:155'],
+            'credito' => ['required', 'boolean'],
+            'fecha_pago' => ['required', 'date'],
+            'codigo' => ['required', 'varchar', 'max:155'],
         ];
     }
 }

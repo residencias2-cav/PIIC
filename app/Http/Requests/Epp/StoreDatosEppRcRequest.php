@@ -12,7 +12,7 @@ class StoreDatosEppRcRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,22 @@ class StoreDatosEppRcRequest extends FormRequest
     {
         return [
             //
+            'epp_id' => ['required', 'integer', 'exists.epps,id'],
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
+            'articulo_id' => ['required', 'integer', 'exists:articulos,id'],
+            'talla' => ['required', 'string', 'max:50'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'trabajador_id.required' => 'Debe seleccionar un trabajador',
+            'trabajador_id.exists' => 'El trabajador seleccionado no existe',
+
+            'articulo_id.required' => 'Debe seleccionar un articulo',
+
+            'talla.required' => 'Debe especificar una talla',
         ];
     }
 }

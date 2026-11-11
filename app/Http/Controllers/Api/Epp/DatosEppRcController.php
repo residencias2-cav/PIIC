@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDatosEppRcRequest;
+use App\Http\Requests\UpdateDatosEppRcRequest;
 use App\Models\Epp\DatosEppRc;
 use Illuminate\Http\Request;
 
@@ -13,6 +15,7 @@ class DatosEppRcController extends Controller
     public function index()
     {
         //
+        $datos_epp_rc = DatosEppRc::all(); 
     }
 
     /**
@@ -21,14 +24,16 @@ class DatosEppRcController extends Controller
     public function create()
     {
         //
+        $datos_epp_rc = DatosEppRc::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDatosEppRcRequest $request)
     {
         //
+        $datos_epp_rc = DatosEppRc::create($request->validated());
     }
 
     /**
@@ -37,6 +42,7 @@ class DatosEppRcController extends Controller
     public function show(DatosEppRc $datos_epp_rc)
     {
         //
+        $datos_epp_rc = DatosEppRc::all();
     }
 
     /**
@@ -50,9 +56,10 @@ class DatosEppRcController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatosEppRc $datos_epp_rc)
+    public function update(UpdateDatosEppRcRequest $request, DatosEppRc $datos_epp_rc)
     {
         //
+        $datos_epp_rc->update($request->validated());
     }
 
     /**
@@ -61,5 +68,6 @@ class DatosEppRcController extends Controller
     public function destroy(DatosEppRc $datos_epp_rc)
     {
         //
+        $datos_epp_rc->delete();
     }
 }
