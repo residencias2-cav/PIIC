@@ -2,20 +2,35 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Catalogos\ArticuloController;
-use App\Http\Controllers\Catalogos\EmpresaController;
-use App\Http\Controllers\Catalogos\InfContratoController;
-use App\Http\Controllers\Catalogos\InfCreditoController;
-use App\Http\Controllers\Catalogos\LugarController;
-use App\Http\Controllers\Catalogos\ObraController;
-use App\Http\Controllers\Catalogos\ProductoServicioController;
-use App\Http\Controllers\Catalogos\ProyectoController;
-use App\Http\Controllers\Catalogos\UbicacionController;
-use App\Http\Controllers\Catalogos\GerenciaController;
+use App\Http\Controllers\Catalogos\{
+    LugarController,
+    ObraController,
+    GerenciaController,
+    EmpresaController,
+    UbicacionController,
+    ProyectoController,
+    ProductoServicioController,
+    ArticuloController,
+    InfCreditoController,
+    InfContratoController
+    };
+use App\Http\Controllers\Api\Epp\{
+    EppController,
+    InventarioEppController,
+    };
+use App\Http\Controllers\Api\Usuarios\{
+    TrabajadorController,
+    };
+use App\Http\Controllers\Api\Proveedores\{
+    ProveedorController,
+    };
+use App\Http\Controllers\Api\Compras\{
+    PedidoController,
+    };
+use App\Http\Controllers\Api\Oficios\{
+    OficiosController,
+    };
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Api\Epp\EppController;
-use App\Http\Controllers\Api\Epp\InventarioEppController;
-use App\Http\Controllers\Api\Usuarios\TrabajadorController;
     /*
     |--------------
     | PAGINA PRINCIPAL
@@ -215,7 +230,18 @@ Route::delete('/catalogos/producto_servicio/{producto_servicio}',[ProductoServic
     | COMPRAS
     |--------------
     */
-
+Route::get('/pedidos',[PedidoController::class, 'vistaIndex'])
+    ->name('pedido.index');
+Route::get('/pedidos/create',[PedidoController::class, 'vistaCreate'])
+    ->name('pedido.create');
+Route::get('/pedidos/{pedido}/edit',[PedidoController::class, 'vistaEdit'])
+    ->name('pedido.edit');
+Route::post('/pedidos',[PedidoController::class, 'store'])
+    ->name('pedido.store');
+Route::put('/pedidos/{proveedor}',[PedidoController::class, 'update'])
+    ->name('pedido.update');
+Route::delete('/pedidos/{proveedor}',[PedidoController::class, 'destroy'])
+    ->name('pedido.destroy');
     /*
     |--------------
     | EPP
@@ -251,13 +277,35 @@ Route::delete('/epp/inventario/{inventario}',[InventarioEppController::class, 'd
     | OFICIOS
     |--------------
     */
-
+Route::get('/oficios',[OficiosController::class, 'vistaIndex'])
+    ->name('oficios.index');
+Route::get('/oficios/create',[OficiosController::class, 'vistaCreate'])
+    ->name('oficios.create');
+Route::get('/oficios/{oficios}/edit',[OficiosController::class, 'vistaEdit'])
+    ->name('oficios.edit');
+Route::post('/oficios',[OficiosController::class, 'store'])
+    ->name('oficios.store');
+Route::put('/oficios/{oficios}',[OficiosController::class, 'update'])
+    ->name('oficios.update');
+Route::delete('/oficios/{oficios}',[OficiosController::class, 'destroy'])
+    ->name('oficios.destroy');
     /*
     |--------------
     | PROVEEDORES
     |--------------
     */
-
+Route::get('/proveedores',[ProveedorController::class, 'vistaIndex'])
+    ->name('proveedor.index');
+Route::get('/proveedores/create',[ProveedorController::class, 'vistaCreate'])
+    ->name('proveedor.create');
+Route::get('/proveedores/{proveedor}/edit',[ProveedorController::class, 'vistaEdit'])
+    ->name('proveedor.edit');
+Route::post('/proveedores',[ProveedorController::class, 'store'])
+    ->name('proveedor.store');
+Route::put('/proveedores/{proveedor}',[ProveedorController::class, 'update'])
+    ->name('proveedor.update');
+Route::delete('/proveedores/{proveedor}',[ProveedorController::class, 'destroy'])
+    ->name('proveedor.destroy');
     /*
     |--------------
     | USUARIOS

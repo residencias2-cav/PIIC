@@ -33,8 +33,8 @@ class UpdateProveedorRequest extends FormRequest
             'area' => ['sometimes', 'string', 'max:30'],
             'desc_bs' => ['sometimes', 'string', 'max:100'],
             'vigencia_sat' => ['sometimes', 'date'],
-            'inf_credito_id' => ['sometimes', 'integer', 'exists:inf_creditito,id'],
-            'inf_contrato_id' => ['sometimes', 'integer', 'exists:inf_contrato,id'],
+            'inf_credito_id' => ['sometimes', 'integer', 'exists:inf_creditos,id'],
+            'inf_contrato_id' => ['sometimes', 'integer', 'exists:inf_contratos,id'],
             'inf_impuestos' => ['sometimes', 'string', 'max:250'],
             'registrado' => ['sometimes', 'boolean'],   
         ];

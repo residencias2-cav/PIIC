@@ -31,8 +31,8 @@ class StoreProveedorRequest extends FormRequest
             'area' => ['required', 'string', 'max:30'],
             'desc_bs' => ['required', 'string', 'max:100'],
             'vigencia_sat' => ['required', 'date'],
-            'inf_credito_id' => ['required', 'int', 'exists:inf_credito,id'],
-            'inf_contrato_id' => ['required', 'int', 'exists:inf_contrato,id'],
+            'inf_credito_id' => ['required', 'int', 'exists:inf_creditos,id'],
+            'inf_contrato_id' => ['required', 'int', 'exists:inf_contratos,id'],
             'inf_impuestos' => ['required', 'string', 'max:250'],
             'registrado' => ['required', 'boolean'],
         ];
@@ -67,11 +67,16 @@ class StoreProveedorRequest extends FormRequest
             ];
     }
 
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'curp' => $this-> curp ? strtoupper(trim($this->folio)): null,
-            'rfc' => $this-> rfc ? strtoupper(trim($this->rfc)): null,
-        ]);   
+            'curp' => $this->curp
+                ? strtoupper(trim($this->curp))
+                : null,
+
+            'rfc' => $this->rfc
+                ? strtoupper(trim($this->rfc))
+                : null,
+        ]);
     }
 }
