@@ -2,6 +2,8 @@
 
 namespace App\Models\Epp;
 
+use App\Models\Catalogos\Estado;
+use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Override;
@@ -46,5 +48,15 @@ class DatosEppEx extends Model
     public function epp()
     {
         $this->belongsTo(Epp::class);
+    }
+
+    public function trabajador()
+    {
+        $this->belongsTo(Trabajador::class);
+    }
+
+    public function estado()
+    {
+        $this->belongsTo(Estado::class);
     }
 }
