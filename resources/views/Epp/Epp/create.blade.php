@@ -408,15 +408,6 @@
             |--------------------------------------------------------------------------
             | Secciones de cada tipo
             |--------------------------------------------------------------------------
-            |
-            | Cada parcial debe utilizar el ID indicado:
-            |
-            | EppEx: seccion-epp-ex
-            | EppTr: seccion-epp-tr
-            | EppRe: seccion-epp-re
-            | EppNi: seccion-epp-ni
-            | EppRc: seccion-epp-rc
-            |
             */
 
             const seccionesEpp = {
