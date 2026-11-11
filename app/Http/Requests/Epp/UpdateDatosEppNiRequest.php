@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\sup_int;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDatosEppNiRequest extends FormRequest
 {
@@ -26,7 +28,7 @@ class UpdateDatosEppNiRequest extends FormRequest
             //
             'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
             'articulo_id' => ['sometimes', 'integer', 'articulos,id'],
-            'sup_int' => ['sometimes', 'boolean',]
+            'sup_int' => ['sometimes', Rule::sexo(sup_int::class)],
         ];
     }
 }
