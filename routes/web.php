@@ -14,6 +14,8 @@ use App\Http\Controllers\Catalogos\UbicacionController;
 use App\Http\Controllers\Catalogos\GerenciaController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Api\Epp\EppController;
+use App\Http\Controllers\Api\Epp\InventarioEppController;
+use App\Http\Controllers\Api\Usuarios\TrabajadorController;
     /*
     |--------------
     | PAGINA PRINCIPAL
@@ -232,37 +234,18 @@ Route::put('/epp/{epp}',[EppController::class, 'update'])
 Route::delete('/epp/{epp}',[EppController::class, 'destroy'])
     ->name('epp.destroy');
 
-use App\Http\Controllers\Api\Epp\InventarioEppController;
-
-Route::get(
-    '/epp/inventario',
-    [InventarioEppController::class, 'vistaIndex']
-)->name('inventario_epp.index');
-
-Route::get(
-    '/epp/inventario/create',
-    [InventarioEppController::class, 'vistaCreate']
-)->name('inventario_epp.create');
-
-Route::get(
-    '/epp/inventario/{inventario}/edit',
-    [InventarioEppController::class, 'vistaEdit']
-)->name('inventario_epp.edit');
-
-Route::post(
-    '/epp/inventario',
-    [InventarioEppController::class, 'store']
-)->name('inventario_epp.store');
-
-Route::put(
-    '/epp/inventario/{inventario}',
-    [InventarioEppController::class, 'update']
-)->name('inventario_epp.update');
-
-Route::delete(
-    '/epp/inventario/{inventario}',
-    [InventarioEppController::class, 'destroy']
-)->name('inventario_epp.destroy');
+Route::get('/epp/inventario',[InventarioEppController::class, 'vistaIndex'])
+    ->name('inventario_epp.index');
+Route::get('/epp/inventario/create',[InventarioEppController::class, 'vistaCreate'])
+    ->name('inventario_epp.create');
+Route::get('/epp/inventario/{inventario}/edit',[InventarioEppController::class, 'vistaEdit'])
+    ->name('inventario_epp.edit');
+Route::post('/epp/inventario',[InventarioEppController::class, 'store'])
+    ->name('inventario_epp.store');
+Route::put('/epp/inventario/{inventario}',[InventarioEppController::class, 'update'])
+    ->name('inventario_epp.update');
+Route::delete('/epp/inventario/{inventario}',[InventarioEppController::class, 'destroy'])
+    ->name('inventario_epp.destroy');
     /*
     |--------------
     | OFICIOS
@@ -280,3 +263,15 @@ Route::delete(
     | USUARIOS
     |--------------
     */
+Route::get('/trabajadores',[TrabajadorController::class, 'vistaIndex'])
+    ->name('trabajador.index');
+Route::get('/trabajadores/create',[TrabajadorController::class, 'vistaCreate'])
+    ->name('trabajador.create');
+Route::get('/trabajadores/{trabajador}/edit',[TrabajadorController::class, 'vistaEdit'])
+    ->name('trabajador.edit');
+Route::post('/trabajadores',[TrabajadorController::class, 'store'])
+    ->name('trabajador.store');
+Route::put('/trabajadores/{trabajador}',[TrabajadorController::class, 'update'])
+    ->name('trabajador.update');
+Route::delete('/trabajadores/{trabajador}',[TrabajadorController::class, 'destroy'])
+    ->name('trabajador.destroy');

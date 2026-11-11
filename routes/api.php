@@ -66,12 +66,12 @@ Route::prefix('catalogos')->name('api.')->group(function () {
 
 });
 
-Route::prefix('epp')->group(function () {
+Route::prefix('epp')->name('api.')->group(function () {
     Route::apiResource('epp', EppController::class);
     Route::apiResource('inventario_epp', InventarioEppController::class);
     Route::apiResource('datos_epp_re', DatosEppReController::class);
 });
 
-Route::prefix('usuarios')->group(function () {
+Route::prefix('usuarios')->name('api.')->group(function () {
     Route::apiResource('trabajador', TrabajadorController::class);
 });

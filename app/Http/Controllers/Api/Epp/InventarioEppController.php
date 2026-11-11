@@ -10,6 +10,7 @@ use App\Http\Requests\Epp\{
     UpdateInventarioEppRequest
     };
 use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Articulo;
 
 class InventarioEppController extends Controller
 {
@@ -23,6 +24,43 @@ class InventarioEppController extends Controller
             'status' => true,
             'data' => InventarioEpp::all(),
         ], 200);
+    }
+
+    public function vistaIndex()
+    {
+        $inventarios = InventarioEpp::with('articulo')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view(
+            'Epp.InventarioEpp.index',
+            compact('inventarios')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        $articulos = Articulo::orderBy('nombre')
+            ->get();
+
+        return view(
+            'Epp.InventarioEpp.create',
+            compact('articulos')
+        );
+    }
+
+    public function vistaEdit(InventarioEpp $inventario)
+    {
+        $articulos = Articulo::orderBy('nombre')
+            ->get();
+
+        return view(
+            'Epp.InventarioEpp.edit',
+            compact(
+                'inventario',
+                'articulos'
+            )
+        );
     }
 
     /**
@@ -42,16 +80,26 @@ class InventarioEppController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInventarioEppRequest $request): JsonResponse
+    public function store(StoreInventarioEppRequest $request, InventarioEpp $inventario_epp)
     {
-        //
-        $inventario_epp = InventarioEpp::create($request->validated());
+        $inventario_epp = InventarioEpp::create(
+        $request->validated()
+        );
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Inventario de Epp registrado correctamente',
-            'data' => $inventario_epp
+        if ($request->is('api/*')) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Inventario EPP registrado correctamente.',
+                'data' => $inventario_epp,
             ], 201);
+        }
+
+        return redirect()
+            ->route('inventario_epp.index')
+            ->with(
+                'success',
+                'Inventario EPP registrado correctamente.'
+            );
     }
 
     /**
@@ -77,29 +125,47 @@ class InventarioEppController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInventarioEppRequest $request, InventarioEpp $inventario_epp): JsonResponse
+    public function update(UpdateInventarioEppRequest $request,InventarioEpp $inventario) 
     {
-        //
-        $inventario_epp->update($request->validated());
+        $inventario->update(
+            $request->validated()
+        );
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Inventario de Epp actualizado correctamente',
-            'data' => $inventario_epp
-        ], 200);
+        if ($request->is('api/*')) {
+            return response()->json([
+                'status' => true,
+
+                'message' =>
+                    'Inventario EPP actualizado correctamente.',
+
+                'data' => $inventario,
+            ], 200);
+        }
+
+        return redirect()
+            ->route('inventario_epp.index')
+            ->with(
+                'success',
+                'Inventario EPP actualizado correctamente.'
+            );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InventarioEpp $inventario_epp)
+    public function destroy(Request $request,InventarioEpp $inventario) 
     {
-        //
-        $inventario_epp->delete();
+        $inventario->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Articulo del Inventario de Epp eliminado correctamente',
-        ], 200);
+        if ($request->is('api/*')) {
+            return response()->json(null, 204);
+        }
+
+        return redirect()
+            ->route('inventario_epp.index')
+            ->with(
+                'success',
+                'Registro de Inventario EPP eliminado correctamente.'
+            );
     }
 }
