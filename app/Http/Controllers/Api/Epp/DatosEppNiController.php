@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDatosEppNiRequest;
+use App\Http\Requests\UpdateDatosEppNiRequest;
 use App\Models\Epp\DatosEppNi;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class DatosEppNiController extends Controller
@@ -13,6 +16,9 @@ class DatosEppNiController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            'data' => DatosEppNi::all(),
+        ], 200);
     }
 
     /**
@@ -21,14 +27,27 @@ class DatosEppNiController extends Controller
     public function create()
     {
         //
+        $datos_epp_ni = DatosEppNi::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $datos_epp_ni,
+        ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDatosEppNiRequest $request)
     {
         //
+        $datos_epp_ni = DatosEppNi::create($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Dato Epp de nuevo ingreso registrado correctamente',
+            'data' => $datos_epp_ni, 
+        ], 201);
     }
 
     /**
@@ -37,6 +56,10 @@ class DatosEppNiController extends Controller
     public function show(DatosEppNi $datos_epp_ni)
     {
         //
+        return response()->json([
+            'status' => true,
+            'data' => $datos_epp_ni
+        ], 200);
     }
 
     /**
@@ -50,9 +73,16 @@ class DatosEppNiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatosEppNi $datos_epp_ni)
+    public function update(UpdateDatosEppNiRequest $request, DatosEppNi $datos_epp_ni)
     {
         //
+        $datos_epp_ni ->update($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Dato EPP de nuevo ingreso actualizado exitosamente',
+            'data' => $datos_epp_ni,
+        ], 200);
     }
 
     /**
@@ -61,5 +91,7 @@ class DatosEppNiController extends Controller
     public function destroy(DatosEppNi $datos_epp_ni)
     {
         //
+
+        $datos_epp_ni->delete();
     }
 }
