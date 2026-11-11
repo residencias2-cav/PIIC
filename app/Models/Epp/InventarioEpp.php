@@ -19,7 +19,7 @@ class InventarioEpp extends Model
         'existencia',
     ];
 
-    function casts()
+    protected function casts(): array
     {
         return [
             'talla' => 'integer',
@@ -29,7 +29,7 @@ class InventarioEpp extends Model
 
     protected $hidden = [
         'updated_at',
-        'created at',
+        'created_at',
     ];
 
     public function articulo()
