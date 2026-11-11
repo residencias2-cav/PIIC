@@ -138,6 +138,6 @@ class Pedido extends Model
     }
 
     public function scopeCreadosPor(Builder $query, Usuario $usuario): Builder {
-        return $query->where('usuario_id', $usuario->getKey());
+        return $query->where('created_by', $usuario->getKey());
 }
 }

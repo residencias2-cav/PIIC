@@ -1,25 +1,143 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Compras;
 
+use App\Http\Controllers\Controller;
 use App\Models\Compras\Pedido;
 use App\Http\Requests\Compras\{
     StorePedidoRequest,
     UpdatePedidoRequest
     };
+use App\Models\Catalogos\{
+    Empresa,
+    Estado,
+    Gerencia,
+    Proyecto,
+    TipoCompra,
+    TipoPedido,
+    Ubicacion
+};
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $pedidos = Pedido::with([
+            'tipoPedido',
+            'gerencia',
+            'empresa',
+            'proyecto',
+            'ubicacion',
+            'tipoCompra',
+            'estado',
+        ])
+            ->latest('fecha')
+            ->get();
+
         return response()->json([
-            'data' => Pedido::all(),
+            'status' => true,
+            'data' => $pedidos,
         ], 200);
+    }
+
+    public function vistaIndex()
+    {
+        $pedidos = Pedido::with([
+            'tipoPedido',
+            'gerencia',
+            'empresa',
+            'proyecto',
+            'ubicacion',
+            'tipoCompra',
+            'estado',
+        ])
+            ->latest('fecha')
+            ->get();
+
+        return view(
+            'Compras.Pedido.index',
+            compact('pedidos')
+        );
+    }
+
+    public function vistaCreate()
+    {
+        $tiposPedido = TipoPedido::orderBy('nombre')
+            ->get();
+        $gerencias = Gerencia::orderBy('nombre')
+            ->get();
+        $empresas = Empresa::orderBy('nombre')
+            ->get();
+        $proyectos = Proyecto::orderBy('nombre')
+            ->get();
+        $ubicaciones = Ubicacion::orderBy('nombre')
+            ->get();
+        $tiposCompra = TipoCompra::orderBy('nombre')
+            ->get();
+        $estados = Estado::orderBy('nombre_estado')
+            ->get();
+        $ultimoNumero = Pedido::withTrashed()
+            ->selectRaw(
+                "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
+            )
+            ->value('ultimo');
+        $siguienteNumero = ($ultimoNumero ?? 0) + 1;
+        $siguienteFolio = 'PED-' . str_pad(
+            $siguienteNumero,
+            3,
+            '0',
+            STR_PAD_LEFT
+        );
+        return view(
+            'Compras.Pedido.create',
+            compact(
+                'tiposPedido',
+                'gerencias',
+                'empresas',
+                'proyectos',
+                'ubicaciones',
+                'tiposCompra',
+                'estados',
+                'siguienteFolio'
+            )
+        );
+    }
+
+    public function vistaEdit(Pedido $pedido)
+    {
+        $tiposPedido = TipoPedido::orderBy('nombre')
+            ->get();
+        $gerencias = Gerencia::orderBy('nombre')
+            ->get();
+        $empresas = Empresa::orderBy('nombre')
+            ->get();
+        $proyectos = Proyecto::orderBy('nombre')
+            ->get();
+        $ubicaciones = Ubicacion::orderBy('nombre')
+            ->get();
+        $tiposCompra = TipoCompra::orderBy('nombre')
+            ->get();
+        $estados = Estado::orderBy('nombre_estado')
+            ->get();
+        return view(
+            'Compras.Pedido.edit',
+            compact(
+                'pedido',
+                'tiposPedido',
+                'gerencias',
+                'empresas',
+                'proyectos',
+                'ubicaciones',
+                'tiposCompra',
+                'estados'
+            )
+        );
     }
 
     /**

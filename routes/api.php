@@ -32,7 +32,16 @@ use App\Http\Controllers\Api\Epp\{
     DatosEppReController
     };
 use App\Http\Controllers\Api\Usuarios\{
-    TrabajadorController
+    TrabajadorController,
+    };
+use App\Http\Controllers\Api\Proveedores\{
+    ProveedorController,
+    };
+use App\Http\Controllers\Api\Compras\{
+    PedidoController,
+    };
+use App\Http\Controllers\Api\Oficios\{
+    OficiosController,
     };
 use Illuminate\Support\Facades\Route;
 
@@ -74,4 +83,16 @@ Route::prefix('epp')->name('api.')->group(function () {
 
 Route::prefix('usuarios')->name('api.')->group(function () {
     Route::apiResource('trabajador', TrabajadorController::class);
+});
+
+Route::prefix('proveedores')->name('api.')->group(function () {
+    Route::apiResource('proveedor', ProveedorController::class);
+});
+
+Route::prefix('compras')->name('api.')->group(function () {
+    Route::apiResource('pedido', PedidoController::class);
+});
+
+Route::prefix('oficios')->name('api.')->group(function () {
+    Route::apiResource('oficios', OficiosController::class);
 });
