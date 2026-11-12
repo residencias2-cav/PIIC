@@ -11,6 +11,8 @@ class Cotizacion extends Model
     /** @use HasFactory<\Database\Factories\CotizacionFactory> */
     use HasFactory;
 
+    protected $table = 'cotizacions';
+
     public function provContacto()
     {
         return $this->belongsToMany(Proveedor::class, 'prov_contactos', 'cotizacion_id', 'proveedor_id')->withTimestamps();

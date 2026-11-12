@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Override;
 
 class StoreUsuariosProveedoresRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class StoreUsuariosProveedoresRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +25,23 @@ class StoreUsuariosProveedoresRequest extends FormRequest
     {
         return [
             //
+            'usuario' => ['required', 'string', 'max:80'],
+            'contraseña' => ['required', 'string', 'max:20'],
+            'proveedor_id' => ['required', 'integer', 'exists:proveedor,id'],
+            'tipo_usuario_id' => ['required', 'integer', 'exists:proveedor,id'],
         ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'usuario.required' => 'Se necesita el usuario para ingresar',
+            
+            'contraseña.required' => 'Se necesita la contraseña para ingresar',
+            
+            'proveedor_id.required' => 'No se especifico el proveedor',
+            
+            'tipo_usuario_id.required' => 'No se especifico el tipo de usuario'
+        ]
     }
 }

@@ -24,6 +24,12 @@ class UpdatePagoRequest extends FormRequest
     {
         return [
             //
+            'precio' => ['required', 'numeric', 'decimal:2'],
+            'iva' => ['required', 'numeric', 'decimal:2'],
+            'total' => ['required', 'numeric', 'decimal:2'],
+            'descuento' => ['numeric', 'decimal:2'],
+            'factura' => ['required', 'numeric', 'decimal:2'],
+            'comision' => ['required', 'numeric', 'decimal:2'],
         ];
     }
 }

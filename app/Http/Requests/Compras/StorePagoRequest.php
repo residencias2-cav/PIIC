@@ -12,7 +12,7 @@ class StorePagoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,26 @@ class StorePagoRequest extends FormRequest
     {
         return [
             //
+            'proveedor_id' => ['required', 'integer', 'exists:proveedors,id'],
+            'precio' => ['required', 'numeric', 'decimal:2'],
+            'iva' => ['required', 'numeric', 'decimal:2'],
+            'total' => ['required', 'numeric', 'decimal:2'],
+            'descuento' => ['numeric', 'decimal:2'],
+            'factura' => ['required', 'numeric', 'decimal:2'],
+            'comision' => ['required', 'numeric', 'decimal:2'],
         ];
+    }
+
+    public function messages():array
+    {
+        return [
+            'proveedor_id.required' => 'Se debe especificar un proveedor',  
+            
+            'precio.required' => 'Se debe especificar el precio',  
+            
+            'iva.required' => 'Se debe especificar el iva',  
+            
+            'total.required' => 'Se debe especificar el total'
+            ];
     }
 }
