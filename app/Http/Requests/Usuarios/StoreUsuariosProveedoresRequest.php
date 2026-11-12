@@ -42,6 +42,6 @@ class StoreUsuariosProveedoresRequest extends FormRequest
             'proveedor_id.required' => 'No se especifico el proveedor',
             
             'tipo_usuario_id.required' => 'No se especifico el tipo de usuario'
-        ]
+        ];
     }
 }
