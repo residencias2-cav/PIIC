@@ -12,7 +12,7 @@ class UpdateInformacionBancariaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,11 @@ class UpdateInformacionBancariaRequest extends FormRequest
     {
         return [
             //
+            'nombre_banco' => ['sometimes', 'string', 'max:50'],
+            'nombre_titular' => ['sometimes', 'string', 'max:100'],
+            'cuenta' => ['sometimes', 'string', 'max:11'],
+            'clave' => ['sometimes', 'string', 'max:18'],
+            'proveedor_id' => ['sometimes', 'integer', 'exists:proveedors,id']
         ];
     }
 }

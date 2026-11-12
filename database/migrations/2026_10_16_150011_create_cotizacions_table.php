@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
             $table->string('folio', 20);
-            $table->string('folio_compras', 20);
+            $table->foreignId('folio_compra_id')->constrained()->onDelete('cascade');
             $table->date('fecha_compras');
             $table->date('fecha_solicitud');
             $table->date('fecha_requerido');

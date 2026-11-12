@@ -6,7 +6,6 @@ use App\Models\Catalogos\Estado;
 use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Override;
 
 class DatosEppEx extends Model
 {
