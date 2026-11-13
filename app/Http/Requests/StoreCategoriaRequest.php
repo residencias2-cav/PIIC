@@ -23,7 +23,23 @@ class StoreCategoriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'oficios_id' => ['required', 'integer', 'exists:oficios,id'],
+            'pedido_id' => ['required', 'integer', 'exists:pedidos,id'],
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
+            'firma' => ['required', 'string', 'max:30'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'oficios_id.required' => 'Debe seleccionar un oficio.',
+            'oficios_id.exists' => 'El oficio seleccionado no existe.',
+            'pedido_id.required' => 'Debe seleccionar un pedido.',
+            'pedido_id.exists' => 'El pedido seleccionado no existe.',
+            'trabajador_id.required' => 'Debe seleccionar un trabajador.',
+            'trabajador_id.exists' => 'El trabajador seleccionado no existe.',
+            'firma.required' => 'La firma es obligatoria.',
         ];
     }
 }

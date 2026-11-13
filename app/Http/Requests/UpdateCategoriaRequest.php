@@ -24,6 +24,10 @@ class UpdateCategoriaRequest extends FormRequest
     {
         return [
             //
+            'oficios_id' => ['sometimes', 'integer', 'exists:oficios,id'],
+            'pedido_id' => ['sometimes', 'integer', 'exists:pedidos,id'],
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadors,id'],
+            'firma' => ['sometimes', 'string', 'max:30'],
         ];
     }
 }

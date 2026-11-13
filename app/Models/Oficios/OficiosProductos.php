@@ -12,7 +12,7 @@ class OficiosProductos extends Model
     /** @use HasFactory<\Database\Factories\OficiosProductosFactory> */
     use HasFactory;
 
-    protected $table = 'oficiosproductos';
+    protected $table = 'oficios_productos';
 
     protected $fillable = [
         'oficios_id',
@@ -24,7 +24,7 @@ class OficiosProductos extends Model
         'factura',
         'monto',
         'porcentaje',
-        'modificacion',
+        'notificacion',
         'descuento',
         'saldo_pendiente',
         'proveedor_id',

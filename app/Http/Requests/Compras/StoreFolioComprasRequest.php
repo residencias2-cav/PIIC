@@ -12,7 +12,7 @@ class StoreFolioComprasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,24 @@ class StoreFolioComprasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pedido_id' => ['required', 'integer', 'exists:pedidos,id'],
+            'fecha' => ['required', 'date'],
+            'folio' => ['required', 'string', 'max:20'],
+            'notas_autorizacion' => ['required', 'string', 'max:100'],
+            'observaciones' => ['required', 'string', 'max:100'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'pedido_id.required' => 'Debe seleccionar un pedido.',
+            'pedido_id.exists' => 'El pedido seleccionado no existe.',
+            'fecha.required' => 'La fecha es obligatoria.',
+            'fecha.date' => 'La fecha no tiene un formato válido.',
+            'folio.required' => 'El folio es obligatorio.',
+            'notas_autorizacion.required' => 'Las notas de autorización son obligatorias.',
+            'observaciones.required' => 'Las observaciones son obligatorias.',
         ];
     }
 }

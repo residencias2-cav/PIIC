@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('identificacion_contrato', 50);
-            $table->string('ob_social_cct', 50);
+            $table->string('ob_social_ctt', 50);
             $table->string('ob_social_cts', 50);
             $table->string('repse', 50);
             $table->string('folio_actividad', 20);

@@ -19,6 +19,7 @@ class DatosProveedor extends Model
         'fecha',
         'observaciones',
         'tiempo_entrega',
+        'metodo_entrega',
         'empresa_id',
         'correo',
         'telefono',

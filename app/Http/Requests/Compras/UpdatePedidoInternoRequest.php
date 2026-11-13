@@ -12,7 +12,7 @@ class UpdatePedidoInternoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class UpdatePedidoInternoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pedido_id' => ['sometimes', 'integer', 'exists:pedidos,id'],
+            'tipo_servicio_id' => ['sometimes', 'integer', 'exists:tipo_servicios,id'],
+            'descripcion' => ['sometimes', 'string', 'max:100'],
+            'fecha_devolucion' => ['sometimes', 'date'],
+            'fecha_entrega' => ['sometimes', 'date'],
         ];
     }
 }

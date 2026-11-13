@@ -12,7 +12,7 @@ class UpdateOficiosComisionesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,12 @@ class UpdateOficiosComisionesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'oficio_id' => ['sometimes', 'integer', 'exists:oficios,id'],
+            'dias' => ['sometimes', 'integer'],
+            'comision' => ['sometimes', 'string'],
+            'ciudad_destino' => ['sometimes', 'string'],
+            'fecha_hora_inicio' => ['sometimes', 'date'],
+            'fecha_hora_termino' => ['sometimes', 'date'],
         ];
     }
 }
