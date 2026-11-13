@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Epp;
+namespace App\Http\Controllers\Api\Epp;
 
 use App\Http\Controllers\Controller;
 use App\Models\Epp\DatosEppTr;

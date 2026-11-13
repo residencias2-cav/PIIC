@@ -12,16 +12,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
+use App\Models\Usuarios\Trabajador;
 use App\Models\Epp\Epp;
 
 use App\Models\Catalogos\{
     TipoEpp,
     Obra,
-    Empresa
+    Empresa,
+    Articulos,
+    Estado
 };
-
-use App\Models\Catalogos\Estado;
 
 class EppController extends Controller
 {
@@ -62,6 +62,10 @@ class EppController extends Controller
 
         $empresas = Empresa::orderBy('nombre')->get();
 
+        $trabajadores = Trabajador::orderBy('nombre')->get();
+
+        $articulos = Articulo::orderBy('nombre')->get();
+
         $ultimoNumero = Epp::withTrashed()
             ->selectRaw(
                 "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
@@ -84,6 +88,8 @@ class EppController extends Controller
                 'obras',
                 'empresas',
                 'estados',
+                'trabajadores',
+                'articulos',
                 'siguienteFolio'
             )
         );
@@ -181,7 +187,7 @@ class EppController extends Controller
 
             if ($request->is('api/*')) {
                 return response()->json(
-                    $epp->load('datosEppTr'),
+                    $epp->load(['datosEppTr', 'datosEppNi']),
                     201
                 );
             }

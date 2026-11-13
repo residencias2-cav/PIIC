@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Epp;
 
 use App\Models\Epp\DatosEppEx;
 use Illuminate\Http\Request;
