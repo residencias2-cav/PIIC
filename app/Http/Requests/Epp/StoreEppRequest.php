@@ -45,6 +45,12 @@ class StoreEppRequest extends FormRequest
             'detalles_tr.*.clase' => ['required','string','max:50',],
             'detalles_tr.*.observaciones' => ['required','string','max:50',],
             'detalles_tr.*.estado_id' => ['required','integer','exists:estados,id',],
+
+            #DATOS EPPNI
+            'detalles_ni' => ['nullable', 'array'],
+            'detalles_ni.*.trabajador_id' => ['required','integer','exists:trabajadors,id',],
+            'detalles_ni.*.articulo_id' => ['required','integer','exists:articulos,id',],
+            'detalles_ni.*.sup_int' => ['required','in:superficie,interior_mina',],
         ];
     }
 
