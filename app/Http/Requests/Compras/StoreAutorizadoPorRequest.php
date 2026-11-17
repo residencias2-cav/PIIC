@@ -12,7 +12,7 @@ class StoreAutorizadoPorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,25 @@ class StoreAutorizadoPorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
+            'epp_id' => ['required', 'integer', 'exists:epps,id'],
+            'proceso_autorizado' => ['required', 'boolean'],
+            'fecha_autorizacion' => ['required', 'date'],
+            'observaciones' => ['required', 'string', 'max:100'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'trabajador_id.required' => 'Debe seleccionar un trabajador.',
+            'trabajador_id.exists' => 'El trabajador seleccionado no existe.',
+            'epp_id.required' => 'Debe seleccionar un EPP.',
+            'epp_id.exists' => 'El EPP seleccionado no existe.',
+            'proceso_autorizado.required' => 'Debe indicar si el proceso fue autorizado.',
+            'fecha_autorizacion.required' => 'La fecha de autorización es obligatoria.',
+            'fecha_autorizacion.date' => 'La fecha de autorización no tiene un formato válido.',
+            'observaciones.required' => 'Las observaciones son obligatorias.',
         ];
     }
 }

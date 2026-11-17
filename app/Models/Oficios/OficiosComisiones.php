@@ -13,7 +13,7 @@ class OficiosComisiones extends Model
     protected $table = 'oficios_comisiones';
 
     protected $fillable = [
-        'oficios_id',
+        'oficio_id',
         'dias',
         'comision',
         'ciudad_destino',

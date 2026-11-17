@@ -12,7 +12,7 @@ class UpdateOficiosRutasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,15 @@ class UpdateOficiosRutasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'oficio_id' => ['sometimes', 'integer', 'exists:oficios,id'],
+            'folio_ac' => ['sometimes', 'string', 'max:20'],
+            'ruta' => ['sometimes', 'string', 'max:100'],
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadors,id'],
+            'tipo' => ['sometimes', 'string', 'in:aviso ordinario,aviso de requisicion,solicitud de anticipo'],
+            'carta_porte' => ['sometimes', 'string', 'max:50'],
+            'factura' => ['sometimes', 'boolean'],
+            'no_recoleccion' => ['sometimes', 'integer'],
+            'observaciones' => ['sometimes', 'string', 'max:100'],
         ];
     }
 }

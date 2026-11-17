@@ -14,7 +14,7 @@ class OficiosRutas extends Model
     protected $table = 'oficios_rutas';
     
     protected $fillable = [
-        'oficios_id',
+        'oficio_id',
         'folio_ac',
         'ruta',
         'trabajador_id',

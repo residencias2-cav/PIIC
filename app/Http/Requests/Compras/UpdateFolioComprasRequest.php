@@ -12,7 +12,7 @@ class UpdateFolioComprasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class UpdateFolioComprasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pedido_id' => ['sometimes', 'integer', 'exists:pedidos,id'],
+            'fecha' => ['sometimes', 'date'],
+            'folio' => ['sometimes', 'string', 'max:20'],
+            'notas_autorizacion' => ['sometimes', 'string', 'max:100'],
+            'observaciones' => ['sometimes', 'string', 'max:100'],
         ];
     }
 }

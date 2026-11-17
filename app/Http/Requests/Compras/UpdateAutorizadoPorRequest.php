@@ -12,7 +12,7 @@ class UpdateAutorizadoPorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class UpdateAutorizadoPorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadors,id'],
+            'epp_id' => ['sometimes', 'integer', 'exists:epps,id'],
+            'proceso_autorizado' => ['sometimes', 'boolean'],
+            'fecha_autorizacion' => ['sometimes', 'date'],
+            'observaciones' => ['sometimes', 'string', 'max:100'],
         ];
     }
 }
