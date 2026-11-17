@@ -137,98 +137,98 @@ class EppController extends Controller
      * Store a newly created resource in storage.
      */
     
-public function store(StoreEppRequest $request)
-{
-    $datos = $request->validated();
 
-    return DB::transaction(function () use ($request, $datos) {
+    public function store(StoreEppRequest $request)
+    {
+        $datos = $request->validated();
 
-        $ultimoNumero = Epp::withTrashed()
-            ->selectRaw(
-                "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
-            )
-            ->value('ultimo');
+        return DB::transaction(function () use ($request, $datos) {
 
-        $siguienteNumero = ($ultimoNumero ?? 0) + 1;
+            $ultimoNumero = Epp::withTrashed()
+                ->selectRaw(
+                    "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
+                )
+                ->value('ultimo');
 
-        $folio = 'EPP-' . str_pad(
-            $siguienteNumero,
-            3,
-            '0',
-            STR_PAD_LEFT
-        );
+            $siguienteNumero = ($ultimoNumero ?? 0) + 1;
 
-        // Crear solicitud principal de EPP
-        $epp = Epp::create([
-            'fecha' => now()->toDateString(),
-            'folio' => $folio,
-            'tipo_epp_id' => $datos['tipo_epp_id'],
-            'obra_id' => $datos['obra_id'],
-            'empresa_id' => $datos['empresa_id'],
-            'motivo' => $datos['motivo'],
-            'justificacion' => $datos['justificacion'],
-            'logistica' => $datos['logistica'],
-            'created_by' => Auth::id(),
-        ]);
-
-        // Guardar detalles de EPP TR
-        foreach ($datos['detalles_tr'] ?? [] as $detalle) {
-
-            $epp->datosEppTr()->create([
-                'cantidad' => $detalle['cantidad'],
-                'descripcion' => $detalle['descripcion'],
-                'codigo' => $detalle['codigo'],
-                'marca' => $detalle['marca'],
-                'color' => $detalle['color'],
-                'medida' => $detalle['medida'],
-                'clase' => $detalle['clase'],
-                'observaciones' => $detalle['observaciones'],
-                'estado_id' => $detalle['estado_id'],
-                'fecha_estado' => now()->toDateString(),
-            ]);
-        }
-
-        // Guardar detalles de EPP NI
-        foreach ($datos['detalles_ni'] ?? [] as $detalle) {
-
-            $epp->datosEppNi()->create([
-                'trabajador_id' => $detalle['trabajador_id'],
-                'articulo_id' => $detalle['articulo_id'],
-                'sup_int' => $detalle['sup_int'],
-            ]);
-        }
-
-        // Guardar detalles de EPP RE
-        foreach ($datos['detalles_re'] ?? [] as $detalle) {
-
-            // Obtener la fotografía cargada desde la computadora
-            $foto = $detalle['foto_evidencia'];
-
-            // Generar un nombre único para la fotografía
-            $extension = strtolower($foto->getClientOriginalExtension());
-            $nombreFoto = Str::random(32) . '.' . $extension;
-
-            // Guardar la fotografía en storage/app/public/epp/re
-            $rutaFoto = $foto->storeAs(
-                'epp/re',
-                $nombreFoto,
-                'public'
+            $folio = 'EPP-' . str_pad(
+                $siguienteNumero,
+                3,
+                '0',
+                STR_PAD_LEFT
             );
 
-            // Crear registro de EPP RE
-            $epp->datosEppRe()->create([
-                'trabajador_id' => $detalle['trabajador_id'],
-                'fecha_ingreso' => $detalle['fecha_ingreso'],
-                'motivo' => $detalle['motivo'],
-                'articulo_id' => $detalle['articulo_id'],
-                'fecha_entrega' => $detalle['fecha_entrega'],
-                'foto_evidencia' => $rutaFoto,
-                'observaciones' => $detalle['observaciones'],
-                'talla' => $detalle['talla'],
-                'estado_id' => $detalle['estado_id'],
-                'fecha_estado' => $detalle['fecha_estado'],
+            // Crear solicitud principal de EPP
+            $epp = Epp::create([
+                'fecha' => now()->toDateString(),
+                'folio' => $folio,
+                'tipo_epp_id' => $datos['tipo_epp_id'],
+                'obra_id' => $datos['obra_id'],
+                'empresa_id' => $datos['empresa_id'],
+                'motivo' => $datos['motivo'],
+                'justificacion' => $datos['justificacion'],
+                'logistica' => $datos['logistica'],
+                'created_by' => Auth::id(),
             ]);
 
+            // Guardar detalles de EPP TR
+            foreach ($datos['detalles_tr'] ?? [] as $detalle) {
+
+                $epp->datosEppTr()->create([
+                    'cantidad' => $detalle['cantidad'],
+                    'descripcion' => $detalle['descripcion'],
+                    'codigo' => $detalle['codigo'],
+                    'marca' => $detalle['marca'],
+                    'color' => $detalle['color'],
+                    'medida' => $detalle['medida'],
+                    'clase' => $detalle['clase'],
+                    'observaciones' => $detalle['observaciones'],
+                    'estado_id' => $detalle['estado_id'],
+                    'fecha_estado' => now()->toDateString(),
+                ]);
+            }
+
+            // Guardar detalles de EPP NI
+            foreach ($datos['detalles_ni'] ?? [] as $detalle) {
+
+                $epp->datosEppNi()->create([
+                    'trabajador_id' => $detalle['trabajador_id'],
+                    'articulo_id' => $detalle['articulo_id'],
+                    'sup_int' => $detalle['sup_int'],
+                ]);
+            }
+
+            // Guardar detalles de EPP RE
+            foreach ($datos['detalles_re'] ?? [] as $detalle) {
+
+                $foto = $detalle['foto_evidencia'];
+
+                $extension = strtolower(
+                    $foto->getClientOriginalExtension()
+                );
+
+                $nombreFoto = Str::random(32) . '.' . $extension;
+
+                $rutaFoto = $foto->storeAs(
+                    'epp/re',
+                    $nombreFoto,
+                    'public'
+                );
+
+                $epp->datosEppRe()->create([
+                    'trabajador_id' => $detalle['trabajador_id'],
+                    'fecha_ingreso' => $detalle['fecha_ingreso'],
+                    'motivo' => $detalle['motivo'],
+                    'articulo_id' => $detalle['articulo_id'],
+                    'fecha_entrega' => $detalle['fecha_entrega'],
+                    'foto_evidencia' => $rutaFoto,
+                    'observaciones' => $detalle['observaciones'],
+                    'talla' => $detalle['talla'],
+                    'estado_id' => $detalle['estado_id'],
+                    'fecha_estado' => $detalle['fecha_estado'],
+                ]);
+            }
 
             // Guardar detalles de EPP RC
             foreach ($datos['detalles_rc'] ?? [] as $detalle) {
@@ -240,31 +240,61 @@ public function store(StoreEppRequest $request)
                 ]);
             }
 
-        }
+            // Guardar detalles de EPP EX
+            foreach ($datos['detalles_ex'] ?? [] as $detalle) {
 
-        // Respuesta para solicitudes API
-        if ($request->is('api/*')) {
-            return response()->json(
-                $epp->load([
-                    'datosEppTr',
-                    'datosEppNi',
-                    'datosEppRe',
-                    'datosEppRc',
-                ]),
-                201
-            );
-        }
+                $archivo = $detalle['adjuntos'];
 
-        // Regresar al listado
-        return redirect()
-            ->route('epp.index')
-            ->with(
-                'success',
-                'Solicitud de EPP registrada correctamente.'
-            );
-    });
-}
+                $extension = strtolower(
+                    $archivo->getClientOriginalExtension()
+                );
 
+                $nombreArchivo = Str::random(32) . '.' . $extension;
+
+                $rutaArchivo = $archivo->storeAs(
+                    'epp/ex',
+                    $nombreArchivo,
+                    'public'
+                );
+
+                $epp->datosEppEx()->create([
+                    'trabajador_id' => $detalle['trabajador_id'],
+                    'cantidad' => $detalle['cantidad'],
+                    'equipo' => $detalle['equipo'],
+                    'codigo' => $detalle['codigo'],
+                    'marca' => $detalle['marca'],
+                    'contrato' => $detalle['contrato'],
+                    'observaciones' => $detalle['observaciones'],
+                    'precio' => $detalle['precio'],
+                    'adjuntos' => $rutaArchivo,
+                    'estado_id' => $detalle['estado_id'],
+                    'fecha_estado' => $detalle['fecha_estado'],
+                ]);
+            }
+
+            // Respuesta para solicitudes API
+            if ($request->is('api/*')) {
+                return response()->json(
+                    $epp->load([
+                        'datosEppTr',
+                        'datosEppNi',
+                        'datosEppRe',
+                        'datosEppRc',
+                        'datosEppEx',
+                    ]),
+                    201
+                );
+            }
+
+            // Regresar al listado
+            return redirect()
+                ->route('epp.index')
+                ->with(
+                    'success',
+                    'Solicitud de EPP registrada correctamente.'
+                );
+        });
+    }
 
     /**
      * Display the specified resource.
