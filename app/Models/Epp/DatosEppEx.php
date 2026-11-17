@@ -46,7 +46,7 @@ class DatosEppEx extends Model
 
     public function epp()
     {
-       return $this->belongsTo(Epp::class);
+        return $this->belongsTo(Epp::class);
     }
 
     public function trabajador()

@@ -35,11 +35,11 @@ class Autorizacion extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'usuarios_id');
     }
 
     public function pedido()
     {
-        return $this->hasOne(Pedido::class);
+        return $this->belongsTo(Pedido::class, 'pedidos_id');
     }
 }

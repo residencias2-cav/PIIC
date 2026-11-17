@@ -24,7 +24,7 @@ class UpdateUsuarioRequest extends FormRequest
     {
         return [
             //
-            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadors,id'],
             'gerencia_id' => ['sometimes', 'integer', 'exists:gerencias,id'],
             'usuario' => ['sometimes', 'string', 'max:20', 'unique:usuarios,usuario,' . $this->route('usuario')],
             'tipo_usuario_id' => ['sometimes', 'integer', 'exists:tipo_usuarios,id'],

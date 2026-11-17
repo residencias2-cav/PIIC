@@ -26,7 +26,7 @@ class StoreUsuariosProveedoresRequest extends FormRequest
             //
             'usuario' => ['required', 'string', 'max:80'],
             'contraseña' => ['required', 'string', 'max:20'],
-            'proveedor_id' => ['required', 'integer', 'exists:proveedor,id'],
+            'proveedor_id' => ['required', 'integer', 'exists:proveedors,id'],
             'tipo_usuario_id' => ['required', 'integer', 'exists:tipo_usuarios,id'],
         ];
     }

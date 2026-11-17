@@ -2,9 +2,18 @@
 
 namespace App\Models\Compras;
 
+use App\Models\Catalogos\{
+    EstadoPedido,
+    Gerencia,
+    Lugar,
+    Obra,
+    Proyecto,
+    TipoCotizacion
+};
 use App\Models\Proveedores\Proveedor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Compras\Pedido;
 
 class Cotizacion extends Model
 {
@@ -12,6 +21,85 @@ class Cotizacion extends Model
     use HasFactory;
 
     protected $table = 'cotizacions';
+
+    protected $fillable = [
+        'pedido_id',
+        'fecha',
+        'gerencia_id',
+        'folio',
+        'folio_compras_id',
+        'fecha_solicitud',
+        'fecha_requerido',
+        'fecha_recibido',
+        'proyecto_id',
+        'obra_id',
+        'lugar_id',
+        'tipo_cotizacion_id',
+        'rutas',
+        'estado_pedido_id',
+        'created_by'
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha' => 'datetime',
+            'fecha_solicitud' => 'datetime',
+            'fecha_requerido' => 'datetime',
+            'fecha_recibido' => 'datetime',
+            'created_by' => 'integer',
+        ];
+    }
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public function pedido()
+    {
+        return $this->belongsTo(Pedido::class);
+    }
+
+    public function gerencia()
+    {
+        return $this->belongsTo(Gerencia::class);
+    }
+
+    public function folioCompras()
+    {
+        return $this->belongsTo(FolioCompras::class);
+    }
+
+    public function proyecto()
+    {
+        return $this->belongsTo(Proyecto::class);
+    }
+
+    public function obra()
+    {
+        return $this->belongsTo(Obra::class);
+    }
+
+    public function lugar()
+    {
+        return $this->belongsTo(Lugar::class);
+    }
+
+    public function tipoCotizacion()
+    {
+        return $this->belongsTo(TipoCotizacion::class);
+    }
+
+    public function estadoPedido()
+    {
+        return $this->belongsTo(EstadoPedido::class);
+    }
+
+    public function datosCotizacion()
+    {
+        return $this->hasMany(DatosCotizacion::class);
+    }
 
     public function provContacto()
     {

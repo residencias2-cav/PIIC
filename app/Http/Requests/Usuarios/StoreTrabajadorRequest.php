@@ -26,7 +26,7 @@ class StoreTrabajadorRequest extends FormRequest
     {
         return [
             //
-            'nt' => ['required', 'string', 'max:20', 'unique:trabajadors,nt'],
+            'nt' => ['required', 'string', 'max:15', 'unique:trabajadors,nt'],
             'nombre' => ['required', 'string', 'max:50'],
             'apellido_paterno' => ['required', 'string', 'max:100'],
             'apellido_materno' => ['required', 'string', 'max:100'],

@@ -120,7 +120,7 @@ class Pedido extends Model
 
     public function autorizacion()
     {
-        return $this->hasOne(Autorizacion::class);
+        return $this->hasOne(Autorizacion::class, 'pedidos_id');
     }
 
     public function cotizacion()
