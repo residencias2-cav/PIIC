@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateDatosEppNiRequest;
 use App\Models\Epp\DatosEppNi;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DatosEppNiController extends Controller
 {
