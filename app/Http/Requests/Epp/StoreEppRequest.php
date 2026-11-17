@@ -64,6 +64,12 @@ class StoreEppRequest extends FormRequest
             'detalles_re.*.talla' => ['required', 'integer', 'min:1'],
             'detalles_re.*.estado_id' => ['required', 'integer', 'exists:estados,id'],
             'detalles_re.*.fecha_estado' => ['required', 'date'],
+
+            // DATOS EPP RC
+            'detalles_rc' => ['nullable', 'array'],
+            'detalles_rc.*.trabajador_id' => ['required','integer','exists:trabajadors,id'],
+            'detalles_rc.*.articulo_id' => ['required','integer','exists:articulos,id'],
+            'detalles_rc.*.talla' => ['required','string','max:50'],
         ];
     }
 

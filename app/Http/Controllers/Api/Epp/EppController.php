@@ -228,6 +228,18 @@ public function store(StoreEppRequest $request)
                 'estado_id' => $detalle['estado_id'],
                 'fecha_estado' => $detalle['fecha_estado'],
             ]);
+
+
+            // Guardar detalles de EPP RC
+            foreach ($datos['detalles_rc'] ?? [] as $detalle) {
+
+                $epp->datosEppRc()->create([
+                    'trabajador_id' => $detalle['trabajador_id'],
+                    'articulo_id' => $detalle['articulo_id'],
+                    'talla' => $detalle['talla'],
+                ]);
+            }
+
         }
 
         // Respuesta para solicitudes API
@@ -237,6 +249,7 @@ public function store(StoreEppRequest $request)
                     'datosEppTr',
                     'datosEppNi',
                     'datosEppRe',
+                    'datosEppRc',
                 ]),
                 201
             );
