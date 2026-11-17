@@ -98,7 +98,11 @@
     </div>
 
     <div class="formulario-acciones">
-        <button type="button" id="agregar-re">
+        <button
+            type="button"
+            id="agregar-ni"
+            class="btn btn-principal"
+        >
             Agregar
         </button>
     </div>

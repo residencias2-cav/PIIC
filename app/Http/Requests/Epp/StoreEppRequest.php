@@ -51,6 +51,19 @@ class StoreEppRequest extends FormRequest
             'detalles_ni.*.trabajador_id' => ['required','integer','exists:trabajadors,id',],
             'detalles_ni.*.articulo_id' => ['required','integer','exists:articulos,id',],
             'detalles_ni.*.sup_int' => ['required','in:superficie,interior_mina',],
+
+            // DATOS EPP RE
+            'detalles_re' => ['nullable', 'array'],
+            'detalles_re.*.trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
+            'detalles_re.*.fecha_ingreso' => ['required', 'date'],
+            'detalles_re.*.motivo' => ['required', 'string', 'max:100'],
+            'detalles_re.*.articulo_id' => ['required', 'integer', 'exists:articulos,id'],
+            'detalles_re.*.fecha_entrega' => ['required', 'date'],
+            'detalles_re.*.foto_evidencia' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'detalles_re.*.observaciones' => ['required', 'string', 'max:100'],
+            'detalles_re.*.talla' => ['required', 'integer', 'min:1'],
+            'detalles_re.*.estado_id' => ['required', 'integer', 'exists:estados,id'],
+            'detalles_re.*.fecha_estado' => ['required', 'date'],
         ];
     }
 

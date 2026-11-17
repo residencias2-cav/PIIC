@@ -56,7 +56,11 @@
     </div>
 
     <div class="formulario-acciones">
-        <button type="button" id="agregar-ni">
+        <button
+            type="button"
+            id="agregar-ni"
+            class="btn btn-principal"
+        >
             Agregar
         </button>
     </div>
@@ -146,9 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td>${escaparHtml(articuloTexto)}</td>
             <td>${escaparHtml(supIntTexto)}</td>
             <td>
-                <button type="button" class="eliminar-ni">
-                    Eliminar
-                </button>
+                <button type="button" class="btn btn-principal">Eliminar</button>
             </td>
         `;
 

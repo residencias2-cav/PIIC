@@ -53,6 +53,7 @@
             id="formulario-epp"
             action="{{ route('epp.store') }}"
             method="POST"
+            enctype="multipart/form-data"
         >
 
             @csrf
@@ -84,10 +85,6 @@
                             readonly
                         >
 
-                        <p class="campo-ayuda">
-                            Se asigna automáticamente.
-                        </p>
-
                     </div>
 
 
@@ -104,10 +101,6 @@
                             value="{{ $siguienteFolio }}"
                             readonly
                         >
-
-                        <p class="campo-ayuda">
-                            Se genera automáticamente.
-                        </p>
 
                     </div>
 
