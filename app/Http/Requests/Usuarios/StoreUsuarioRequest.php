@@ -24,7 +24,7 @@ class StoreUsuarioRequest extends FormRequest
     {
         return [
             //
-            'trabajador_id' => ['required', 'integer', 'exists:trabajadores,id'],
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
             'gerencia_id' => ['required', 'integer', 'exists:gerencias,id'],
             'usuario' => ['required', 'string', 'max:20', 'unique:usuarios,usuario'],
             'tipo_usuario_id' => ['required', 'integer', 'exists:tipo_usuarios,id'],

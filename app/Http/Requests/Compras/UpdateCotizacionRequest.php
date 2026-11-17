@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Compras;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -12,7 +12,7 @@ class UpdateCotizacionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,22 @@ class UpdateCotizacionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pedido_id' => ['sometimes', 'integer', 'exists:pedidos,id'],
+            'fecha' => ['sometimes', 'date'],
+            'gerencia_id' => ['sometimes', 'integer', 'exists:gerencias,id'],
+            'folio' => ['sometimes', 'string', 'max:20'],
+            'folio_compra_id' => ['sometimes', 'integer', 'exists:folio_compras,id'],
+            'fecha_compras' => ['sometimes', 'date'],
+            'fecha_solicitud' => ['sometimes', 'date'],
+            'fecha_requerido' => ['sometimes', 'date'],
+            'fecha_recibido' => ['sometimes', 'date'],
+            'proyecto_id' => ['sometimes', 'integer', 'exists:proyectos,id'],
+            'obra_id' => ['sometimes', 'integer', 'exists:obras,id'],
+            'lugar_id' => ['sometimes', 'integer', 'exists:lugars,id'],
+            'tipo_cotizacion_id' => ['sometimes', 'integer', 'exists:tipo_cotizacions,id'],
+            'notas' => ['sometimes', 'string', 'max:100'],
+            'estado_pedido_id' => ['sometimes', 'integer', 'exists:estado_pedidos,id'],
+            'created_by' => ['sometimes', 'integer'],
         ];
     }
 }

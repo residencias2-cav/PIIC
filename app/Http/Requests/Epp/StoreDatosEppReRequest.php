@@ -24,7 +24,7 @@ class StoreDatosEppReRequest extends FormRequest
     {
         return [
             //
-            'trabajador_id' => ['required', 'integer', 'exists:trabajadores,id'],
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
             'epp_id' => ['required', 'integer', 'exists:epps,id'],
             'fecha_ingreso' => ['required', 'date'],
             'motivo' => ['required', 'string', 'max:100'],

@@ -27,7 +27,7 @@ class StoreDatosEppNiRequest extends FormRequest
         return [
             //
             'epp_id' => ['required', 'integer', 'exists:epps,id'],
-            'trabajador_id' => ['required', 'integer', 'exists:trabajadores,id'],
+            'trabajador_id' => ['required', 'integer', 'exists:trabajadors,id'],
             'articulo_id' => ['required', 'integer', 'exists:articulos,id'],
             'sup_int' => ['required', Rule::enum(sup_int::class)],
         ];

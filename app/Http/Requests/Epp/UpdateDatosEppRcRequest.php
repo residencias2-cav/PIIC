@@ -24,7 +24,7 @@ class UpdateDatosEppRcRequest extends FormRequest
     {
         return [
             //
-            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadores,id'],
+            'trabajador_id' => ['sometimes', 'integer', 'exists:trabajadors,id'],
             'articulo_id' => ['sometimes', 'integer', 'exists:articulos,id'],
             'talla' => ['sometimes', 'string', 'max:50'],
         ];

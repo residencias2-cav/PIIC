@@ -12,7 +12,7 @@ class UpdateDatosCotizacionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,12 @@ class UpdateDatosCotizacionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cotizacion_id' => ['sometimes', 'integer', 'exists:cotizacions,id'],
+            'unidad_id' => ['sometimes', 'integer', 'exists:unidads,id'],
+            'descripcion' => ['sometimes', 'string', 'max:150'],
+            'codigo' => ['sometimes', 'string', 'max:150'],
+            'entregado' => ['sometimes', 'boolean'],
+            'fecha_r' => ['sometimes', 'string', 'max:150'],
         ];
     }
 }
