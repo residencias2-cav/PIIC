@@ -185,7 +185,7 @@
                         <input
                             type="password"
                             id="password"
-                            name="password"
+                            name="contrasena"
                             placeholder="Ingresa tu contraseña"
                             autocomplete="current-password"
                             required
@@ -223,7 +223,7 @@
 
                     </div>
 
-                    @error('password')
+                    @error('contrasena')
                         <p class="login-error">
                             {{ $message }}
                         </p>

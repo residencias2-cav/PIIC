@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
             InfCreditoSeeder::class,
             TipoEppSeeder::class,
             InfContratoSeeder::class,
+            TrabajadorSeeder::class,
+            UsuarioSeeder::class,
         ]);
     }
 }

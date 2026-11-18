@@ -24,7 +24,7 @@ class LoginController extends Controller
                     'string',
                 ],
 
-                'password' => [
+                'contrasena' => [
                     'required',
                     'string',
                 ],
@@ -33,7 +33,7 @@ class LoginController extends Controller
                 'usuario.required' =>
                     'El usuario es obligatorio.',
 
-                'password.required' =>
+                'contrasena.required' =>
                     'La contraseña es obligatoria.',
             ]
         );
@@ -46,8 +46,8 @@ class LoginController extends Controller
         if (
             !$usuario ||
             !Hash::check(
-                $datos['password'],
-                $usuario->contraseña_correo
+                $datos['contrasena'],
+                $usuario->contrasena_correo
             )
         ) {
             return back()

@@ -15,6 +15,10 @@ class GerenciaSeeder extends Seeder
     {
         $gerencia = [
             [
+                'nombre' => 'Tecnologias de la informacion',
+                'codigo' => 'GTI'
+            ],
+            [
                 'nombre' => 'Maquinaria y Transporte', 
                 'codigo' => 'MyT'
             ],
