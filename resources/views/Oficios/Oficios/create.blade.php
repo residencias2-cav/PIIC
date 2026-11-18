@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +23,6 @@
         <div class="catalogo-linea"></div>
 
         <div>
-
             <h1 class="formulario-titulo">
                 Registrar oficio
             </h1>
@@ -30,14 +30,11 @@
             <p class="formulario-descripcion">
                 Ingresa la información general del oficio.
             </p>
-
         </div>
 
     </header>
 
-
     @if ($errors->any())
-
         <div class="mensaje-error">
 
             <strong>
@@ -45,29 +42,20 @@
             </strong>
 
             <ul>
-
                 @foreach ($errors->all() as $error)
-
-                    <li>
-                        {{ $error }}
-                    </li>
-
+                    <li>{{ $error }}</li>
                 @endforeach
-
             </ul>
 
         </div>
-
     @endif
 
-
     <form
-        action="{{ route('oficio.store') }}"
+        action="{{ route('oficios.store') }}"
         method="POST"
     >
 
         @csrf
-
 
         {{-- IDENTIFICACIÓN --}}
 
@@ -76,7 +64,6 @@
             <h2 class="formulario-seccion-titulo">
                 Identificación
             </h2>
-
 
             <div class="formulario-grid">
 
@@ -89,16 +76,11 @@
                     <input
                         type="date"
                         id="fecha_visual"
-                        value="{{ now()->toDateString() }}"
+                        value="{{ $fechaInicial }}"
                         readonly
                     >
 
-                    <p class="campo-ayuda">
-                        Se asigna automáticamente.
-                    </p>
-
                 </div>
-
 
                 <div class="campo campo-bloqueado">
 
@@ -113,16 +95,11 @@
                         readonly
                     >
 
-                    <p class="campo-ayuda">
-                        Se genera automáticamente.
-                    </p>
-
                 </div>
 
             </div>
 
         </section>
-
 
         {{-- CLASIFICACIÓN --}}
 
@@ -131,7 +108,6 @@
             <h2 class="formulario-seccion-titulo">
                 Clasificación
             </h2>
-
 
             <div class="formulario-grid">
 
@@ -155,9 +131,7 @@
 
                             <option
                                 value="{{ $tipoOficio->id }}"
-                                @selected(
-                                    old('tipo_oficio_id') == $tipoOficio->id
-                                )
+                                @selected(old('tipo_oficio_id') == $tipoOficio->id)
                             >
                                 {{ $tipoOficio->nombre }}
                             </option>
@@ -167,7 +141,6 @@
                     </select>
 
                 </div>
-
 
                 <div class="campo">
 
@@ -189,9 +162,7 @@
 
                             <option
                                 value="{{ $estado->id }}"
-                                @selected(
-                                    old('estado_id') == $estado->id
-                                )
+                                @selected(old('estado_id') == $estado->id)
                             >
                                 {{ $estado->nombre_estado }}
                             </option>
@@ -206,7 +177,6 @@
 
         </section>
 
-
         {{-- CONTENIDO --}}
 
         <section class="formulario-seccion">
@@ -214,7 +184,6 @@
             <h2 class="formulario-seccion-titulo">
                 Contenido
             </h2>
-
 
             <div class="campo">
 
@@ -232,7 +201,6 @@
                 >
 
             </div>
-
 
             <div class="campo">
 
@@ -252,7 +220,6 @@
 
         </section>
 
-
         {{-- INFORMACIÓN ADICIONAL --}}
 
         <section class="formulario-seccion">
@@ -260,7 +227,6 @@
             <h2 class="formulario-seccion-titulo">
                 Información adicional
             </h2>
-
 
             <div class="campo">
 
@@ -276,7 +242,6 @@
                 >{{ old('observaciones') }}</textarea>
 
             </div>
-
 
             <div class="campo">
 
@@ -295,24 +260,58 @@
 
         </section>
 
+        {{-- DETALLES SEGÚN EL TIPO DE OFICIO --}}
 
-        {{-- 
-            NIVEL 3
+        <div id="detalles-oficio">
 
-            Posteriormente podremos agregar aquí:
+            {{-- REPSE --}}
 
-            @includeIf('Oficios.OficiosProductos._form')
-            @includeIf('Oficios.OficiosRepse._form')
-            @includeIf('Oficios.OficiosRutas._form')
-            @includeIf('Oficios.OficiosComisiones._form')
-            @includeIf('Oficios.Destinatarios._form')
-        --}}
+            <section
+                id="seccion-repse"
+                class="formulario-seccion detalle-oficio"
+                style="display: none;"
+            >
+                @includeIf('Oficios.OficiosRepse._form')
+            </section>
 
+            {{-- PRODUCTOS --}}
+
+            <section
+                id="seccion-productos"
+                class="formulario-seccion detalle-oficio"
+                style="display: none;"
+            >
+                @includeIf('Oficios.OficiosProductos._form')
+            </section>
+
+            {{-- COMISIONES --}}
+
+            <section
+                id="seccion-comisiones"
+                class="formulario-seccion detalle-oficio"
+                style="display: none;"
+            >
+                @includeIf('Oficios.OficiosComisiones._form')
+            </section>
+
+            {{-- RUTAS --}}
+
+            <section
+                id="seccion-rutas"
+                class="formulario-seccion detalle-oficio"
+                style="display: none;"
+            >
+                @includeIf('Oficios.OficiosRutas._form')
+            </section>
+
+        </div>
+
+        {{-- BOTONES --}}
 
         <div class="formulario-acciones">
 
             <a
-                href="{{ route('oficio.index') }}"
+                href="{{ route('oficios.index') }}"
                 class="btn btn-secundario"
             >
                 Cancelar
@@ -331,6 +330,67 @@
 
 </main>
 
-</body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    const selectorTipo = document.getElementById('tipo_oficio_id');
+
+    const secciones = {
+        'Oficios repse': 'seccion-repse',
+        'Oficios productos': 'seccion-productos',
+        'Oficios comisiones': 'seccion-comisiones',
+        'Oficios rutas': 'seccion-rutas'
+    };
+
+    function mostrarDetalle() {
+
+        if (!selectorTipo) {
+            return;
+        }
+
+        const tipoSeleccionado = selectorTipo.options[
+            selectorTipo.selectedIndex
+        ]?.text.trim();
+
+        // Ocultar y deshabilitar todas las secciones.
+        document.querySelectorAll('.detalle-oficio').forEach(function (seccion) {
+
+            seccion.style.display = 'none';
+
+            seccion.querySelectorAll('input, select, textarea').forEach(function (campo) {
+                campo.disabled = true;
+            });
+
+        });
+
+        // Mostrar y habilitar únicamente la sección correspondiente.
+        const idSeccion = secciones[tipoSeleccionado];
+
+        if (idSeccion) {
+
+            const seccionActiva = document.getElementById(idSeccion);
+
+            if (seccionActiva) {
+
+                seccionActiva.style.display = 'block';
+
+                seccionActiva.querySelectorAll('input, select, textarea').forEach(function (campo) {
+                    campo.disabled = false;
+                });
+
+            }
+
+        }
+
+    }
+
+    selectorTipo.addEventListener('change', mostrarDetalle);
+
+    // Mostrar la sección correspondiente al cargar la página.
+    mostrarDetalle();
+
+});
+</script>
+
+</body>
 </html>

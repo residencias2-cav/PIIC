@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('oficios_repses', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_firma');
+            $table->datetime('fecha_firma');
             $table->foreignId('contrato_id')->constrained()->onDelete('cascade');
             $table->foreignId('oficio_id')->constrained()->onDelete('cascade');
             $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
             $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->datetime('fecha_inicio');
+            $table->datetime('fecha_fin');
             $table->string('identificacion_contrato', 50);
             $table->string('ob_social_ctt', 50);
             $table->string('ob_social_cts', 50);

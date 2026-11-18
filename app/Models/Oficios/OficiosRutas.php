@@ -38,7 +38,7 @@ class OficiosRutas extends Model
         'updated_at'
     ];
 
-    public function oficios()
+    public function oficio()
     {
         return $this->belongsTo(Oficios::class);
     }

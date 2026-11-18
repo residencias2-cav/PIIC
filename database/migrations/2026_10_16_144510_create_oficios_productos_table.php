@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('oficios_productos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('oficios_id')->constrained()->onDelete('cascade');
-            $table->date('fecha_firma');
+            $table->datetime('fecha_firma');
             $table->string('nombre_producto', 50);
             $table->decimal('monto_total', 10, 2);
             $table->decimal('iva', 10, 2);

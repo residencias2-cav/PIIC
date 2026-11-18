@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models\Oficios;
 
 use App\Models\Catalogos\Contrato;
@@ -9,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class OficiosProductos extends Model
 {
-    /** @use HasFactory<\Database\Factories\OficiosProductosFactory> */
     use HasFactory;
 
     protected $table = 'oficios_productos';
@@ -28,30 +26,30 @@ class OficiosProductos extends Model
         'descuento',
         'saldo_pendiente',
         'proveedor_id',
-        'contrato_id'
+        'contrato_id',
     ];
 
     protected function casts(): array
     {
         return [
             'fecha_firma' => 'datetime',
-            'monto_total' => 'decimal',
-            'iva' => 'decimal',
-            'monto'=> 'decimal',
-            'porcentaje' => 'decimal',
-            'descuento' => 'decimal',
-            'saldo_pendiente' => 'decimal',
+            'monto_total' => 'decimal:2',
+            'iva' => 'decimal:2',
+            'monto' => 'decimal:2',
+            'porcentaje' => 'decimal:2',
+            'descuento' => 'decimal:2',
+            'saldo_pendiente' => 'decimal:2',
         ];
     }
 
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function oficios()
+    public function oficio()
     {
-        return $this->belongsTo(Oficios::class);
+        return $this->belongsTo(Oficios::class, 'oficios_id');
     }
 
     public function proveedor()

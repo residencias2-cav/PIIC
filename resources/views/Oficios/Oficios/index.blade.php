@@ -39,7 +39,7 @@
 
 
         <a
-            href="{{ route('oficio.create') }}"
+            href="{{ route('oficios.create') }}"
             class="btn btn-principal"
         >
             Nuevo oficio
@@ -113,7 +113,7 @@
 
                                     <a
                                         href="{{ route(
-                                            'oficio.edit',
+                                            'oficios.edit',
                                             $oficio
                                         ) }}"
                                         class="btn btn-editar"
@@ -124,7 +124,7 @@
 
                                     <form
                                         action="{{ route(
-                                            'oficio.destroy',
+                                            'oficios.destroy',
                                             $oficio
                                         ) }}"
                                         method="POST"
