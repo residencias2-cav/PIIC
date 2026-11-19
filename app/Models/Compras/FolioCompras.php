@@ -44,6 +44,6 @@ class FolioCompras extends Model
 
     public function cotizacion()
     {
-        return $this->hasOne(Cotizacion::class);
+        return $this->hasOne(Cotizacion::class, 'folio_compra_id');
     }
 }

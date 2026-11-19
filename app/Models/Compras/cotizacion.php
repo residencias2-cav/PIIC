@@ -1,23 +1,20 @@
 <?php
-
 namespace App\Models\Compras;
 
 use App\Models\Catalogos\{
-    EstadoPedido,
     Gerencia,
-    Lugar,
-    Obra,
     Proyecto,
-    TipoCotizacion
+    TipoCotizacion,
+    EstadoPedido,
+    Lugar,
+    Obra
 };
 use App\Models\Proveedores\Proveedor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Compras\Pedido;
 
 class Cotizacion extends Model
 {
-    /** @use HasFactory<\Database\Factories\CotizacionFactory> */
     use HasFactory;
 
     protected $table = 'cotizacions';
@@ -27,7 +24,8 @@ class Cotizacion extends Model
         'fecha',
         'gerencia_id',
         'folio',
-        'folio_compras_id',
+        'folio_compra_id',
+        'fecha_compras',
         'fecha_solicitud',
         'fecha_requerido',
         'fecha_recibido',
@@ -35,7 +33,7 @@ class Cotizacion extends Model
         'obra_id',
         'lugar_id',
         'tipo_cotizacion_id',
-        'rutas',
+        'notas',
         'estado_pedido_id',
         'created_by'
     ];
@@ -43,10 +41,11 @@ class Cotizacion extends Model
     protected function casts(): array
     {
         return [
-            'fecha' => 'datetime',
-            'fecha_solicitud' => 'datetime',
-            'fecha_requerido' => 'datetime',
-            'fecha_recibido' => 'datetime',
+            'fecha' => 'date',
+            'fecha_compras' => 'date',
+            'fecha_solicitud' => 'date',
+            'fecha_requerido' => 'date',
+            'fecha_recibido' => 'date',
             'created_by' => 'integer',
         ];
     }
@@ -68,7 +67,7 @@ class Cotizacion extends Model
 
     public function folioCompras()
     {
-        return $this->belongsTo(FolioCompras::class);
+        return $this->belongsTo(FolioCompras::class, 'folio_compra_id');
     }
 
     public function proyecto()
@@ -103,6 +102,11 @@ class Cotizacion extends Model
 
     public function provContacto()
     {
-        return $this->belongsToMany(Proveedor::class, 'prov_contactos', 'cotizacion_id', 'proveedor_id')->withTimestamps();
+        return $this->belongsToMany(
+            Proveedor::class,
+            'prov_contactos',
+            'cotizacion_id',
+            'proveedor_id'
+        )->withTimestamps();
     }
 }
