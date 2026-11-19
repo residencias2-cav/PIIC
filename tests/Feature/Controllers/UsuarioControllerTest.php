@@ -8,6 +8,7 @@ use App\Http\Requests\Usuarios\UpdateUsuarioRequest;
 use App\Models\Usuarios\Usuario;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UsuarioControllerTest extends TestCase
@@ -44,6 +45,22 @@ class UsuarioControllerTest extends TestCase
             'usuario' => 'usuario.test',
             'correo' => 'usuario@test.com',
         ]);
+
+        $usuario = Usuario::where('usuario', 'usuario.test')->firstOrFail();
+        $this->assertTrue(Hash::check('secreto123', $usuario->contrasena));
+        $this->assertSame('correo123', $usuario->password);
+    }
+
+    public function test_login_authenticates_with_system_password(): void
+    {
+        $usuario = Usuario::query()->create($this->payload());
+
+        $this->post(route('login.store'), [
+            'usuario' => $usuario->usuario,
+            'contrasena' => 'secreto123',
+        ])->assertRedirect(route('inicio'));
+
+        $this->assertAuthenticatedAs($usuario);
     }
 
     public function test_show_update_and_destroy_user(): void
@@ -129,10 +146,7 @@ class UsuarioControllerTest extends TestCase
             'tipos_usuario_ch' => true,
             'contrasena' => 'secreto123',
             'correo' => 'usuario@test.com',
-            'contrasena_correo' => 'correo123',
-            'twofa_code' => '12345678901234567890123456789012',
-            'twofa_expire' => '2026-12-31',
-            'twofa_attempts' => 0,
+            'password' => 'correo123',
         ];
     }
 }

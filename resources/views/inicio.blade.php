@@ -17,3 +17,8 @@
         Cerrar sesión
     </button>
 </form>
+
+{{--
+{{ auth()->user()->usuario }}
+ {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
+ --}}

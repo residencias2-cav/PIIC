@@ -47,7 +47,7 @@ class LoginController extends Controller
             !$usuario ||
             !Hash::check(
                 $datos['contrasena'],
-                $usuario->contrasena_correo
+                $usuario->contrasena
             )
         ) {
             return back()
@@ -66,7 +66,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()
-            ->route('inicio');
+            ->route('panel');
     }
 
     public function destroy(Request $request)

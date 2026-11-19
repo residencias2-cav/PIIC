@@ -9,11 +9,13 @@ use App\Models\Usuarios\Trabajador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class Usuario extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+    use TwoFactorAuthenticatable;
 
     protected $table = 'usuarios';
 
@@ -25,30 +27,27 @@ class Usuario extends Authenticatable
         'tipos_usuario_ch',
         'contrasena',
         'correo',
-        'contrasena_correo',
-        'twofa_code',
-        'twofa_expire',
-        'twofa_attempts',
+        'password',
+    ];
+
+    protected $hidden = [
+        'contrasena',
+        'password',
+        'rememberToken',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'created_at',
+        'updated_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'tipos_usuario_ch' => 'boolean',
-            'twofa_attempts' => 'integer',
-            'twofa_expire' => 'datetime',
+            'contrasena' => 'hashed',
+            'two_factor_confirmed_at' => 'datetime'
         ];
     }
-
-    protected $hidden = [
-        'contrasena',
-        'contrasena_correo',
-        'twofa_code',
-        'twofa_expire',
-        'twofa_attempts',
-        'created_at',
-        'updated_at',
-    ];
 
     public function trabajador()
     {
@@ -67,7 +66,7 @@ class Usuario extends Authenticatable
 
     public function getAuthPassword(): string
     {
-        return $this->contrasena_correo;
+        return $this->contrasena;
     }
 
     public function areasPermitidas(): array
