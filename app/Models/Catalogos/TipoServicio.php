@@ -1,17 +1,14 @@
 <?php
-
 namespace App\Models\Catalogos;
 
 use App\Models\Compras\PedidoInterno;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TipoServicio extends Model
 {
-    /** @use HasFactory<\Database\Factories\TipoServicioFactory> */
     use HasFactory;
-    
+
     protected $table = 'tipo_servicios';
 
     protected $fillable = [
@@ -23,8 +20,11 @@ class TipoServicio extends Model
         'created_at',
     ];
 
-    public function tiposServicio()
+    public function pedidosInternos()
     {
-        return $this->hasMany(PedidoInterno::class);
+        return $this->hasMany(
+            PedidoInterno::class,
+            'tipo_servicio_id'
+        );
     }
 }

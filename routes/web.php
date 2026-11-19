@@ -238,9 +238,9 @@ Route::get('/pedidos/{pedido}/edit',[PedidoController::class, 'vistaEdit'])
     ->name('pedido.edit');
 Route::post('/pedidos',[PedidoController::class, 'store'])
     ->name('pedido.store');
-Route::put('/pedidos/{proveedor}',[PedidoController::class, 'update'])
+Route::put('/pedidos/{pedido}',[PedidoController::class, 'update'])
     ->name('pedido.update');
-Route::delete('/pedidos/{proveedor}',[PedidoController::class, 'destroy'])
+Route::delete('/pedidos/{pedido}',[PedidoController::class, 'destroy'])
     ->name('pedido.destroy');
     /*
     |--------------
