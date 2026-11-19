@@ -25,7 +25,7 @@ class PedidoInterno extends Model
     {
         return [
             'fecha_devolucion' => 'datetime',
-            'fecha_entrega' => 'dateime'
+            'fecha_entrega' => 'datetime'
         ];
     }
 

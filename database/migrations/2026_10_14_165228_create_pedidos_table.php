@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('observaciones', 200);
             $table->integer('monto_credito');
             $table->integer('monto');
-            $table->integer('creayed_by');
+            $table->integer('created_by');
             $table->softDeletes('deleted_at', $precision = null);
             $table->timestamps();
         });
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedido');
+        Schema::dropIfExists('pedidos');
     }
 };
