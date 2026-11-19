@@ -31,7 +31,7 @@ class UpdateUsuarioRequest extends FormRequest
             'tipos_usuario_ch' => ['sometimes', 'boolean'],
             'contrasena' => ['sometimes', 'string', 'max:20'],
             'correo' => ['sometimes', 'string', 'max:50'],
-            'contrasena_correo' => ['sometimes', 'string', 'max:20'],
+            'password' => ['sometimes', 'string', 'max:255'],
         ];
     }
 }

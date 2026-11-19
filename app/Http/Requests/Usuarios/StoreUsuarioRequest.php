@@ -31,10 +31,7 @@ class StoreUsuarioRequest extends FormRequest
             'tipos_usuario_ch' => ['required', 'boolean'],
             'contrasena' => ['required', 'string', 'max:20'],
             'correo' => ['required', 'string', 'max:50'],
-            'contrasena_correo' => ['required', 'string', 'max:20'],
-            'twofa_code' => ['required', 'string', 'max:32'],
-            'twofa_expire' => ['required', 'date'],
-            'twofa_attempts' => ['required', 'integer'],
+            'password' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -58,7 +55,7 @@ class StoreUsuarioRequest extends FormRequest
             'tipos_usuario_ch.boolean' => 'El valor del tipo de usuario debe ser verdadero o falso.',
 
             'correo.required' => 'El correo es obligatorio.',
-            'contrasena_correo.required' => 'La contraseña del correo es obligatoria.',
+            'password.required' => 'La contraseña del correo es obligatoria.',
 
             'twofa_code.required' => 'El código 2FA es obligatorio.',
             'twofa_attempts.required' => 'El número de intentos del 2FA es obligatorio.',

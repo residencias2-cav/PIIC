@@ -127,10 +127,40 @@
         }
 
         .usuario {
-            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 12px;
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
+        }
+
+        .usuario-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .usuario-info {
+            font-size: 14px;
+            color: #0f172a
+        }
+
+        .usuario-info small {
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .logout-btn {
+            border: 0;
+            border-left: 1px solid #e2e8f0;
+            padding: 7px 10px 7px 14px;
+            background: transparent;
+            color: #991b1b;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         .resumen {
@@ -138,6 +168,11 @@
             grid-template-columns: repeat(4, minmax(150px, 1fr));
             gap: 16px;
             margin-bottom: 26px;
+        }
+
+        .logout-btn:hover {
+            color: #7f1d1d;
+            text-decoration: underline;
         }
 
         .tarjeta {
@@ -390,10 +425,45 @@
             </div>
 
             <div class="usuario">
-                <strong>Usuario de prueba</strong><br>
-                <small>Gerencia: GCHSO</small>
+                <div class="usuario-info">
+                    <strong>
+                        {{ auth()->user()->trabajador?->nombre ?? 'No hay nombre' }}
+                    </strong>
+                    <span style="white-space: nowrap;">
+                        <strong>
+                            {{ auth()->user()->trabajador?->apellido_paterno ?? 'No hay nombre' }}
+                        </strong>
+                        
+                        <strong>
+                            {{ auth()->user()->trabajador?->apellido_materno ?? 'No hay nombre' }}
+                        </strong>
+                    </span>
+                    <small>
+                        {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
+                    </small>
+                </div>
+                
+                <form
+                method="POST"
+                action="{{ route('logout') }}"
+                >
+                @csrf
+                
+                <button
+                type="submit"
+                class="logout-btn"
+                title="Cerrar sesión"
+                >
+                Cerrar sesión
+                </button>
+                </form>
             </div>
 
+            {{--
+            {{ auth()->user()->usuario }}
+            {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
+            --}}
+            
         </header>
 
 

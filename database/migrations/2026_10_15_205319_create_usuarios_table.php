@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('usuario', 20);
             $table->foreignId('tipo_usuario_id')->constrained()->onDelete('cascade');
             $table->boolean('tipos_usuario_ch');
-            $table->string('contrasena', 20);
+            $table->string('contrasena', 255);
             $table->string('correo', 50);
-            $table->string('contrasena_correo', 255);
-            $table->string('twofa_code', 32);
-            $table->date('twofa_expire');
-            $table->integer('twofa_attempts');
-            $table->string('remember_token', 255);
+            $table->string('password', 255)->nullable();
+            $table->rememberToken();
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+            $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->timestamps();
         });
     }

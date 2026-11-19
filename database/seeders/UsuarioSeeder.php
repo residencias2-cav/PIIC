@@ -8,7 +8,6 @@ use App\Models\Usuarios\Trabajador;
 use App\Models\Usuarios\Usuario;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
@@ -49,12 +48,9 @@ class UsuarioSeeder extends Seeder
             'gerencia_id' => $gerencia->id,
             'tipo_usuario_id' => $tipoUsuario->id,
             'tipos_usuario_ch' => false,
-            'contrasena' => 'TEST-ONLY',
+            'contrasena' => $password,
             'correo' => 'amadorantonio169@gmail.com',
-            'contrasena_correo' => Hash::make($password),
-            'twofa_code' => Str::random(32),
-            'twofa_expire' => now()->addDay()->toDateString(),
-            'twofa_attempts' => 0,
+            'password' => 'TEST-ONLY',
         ]);
 
         if (Schema::hasColumn('usuarios', 'remember_token')) {

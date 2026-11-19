@@ -129,12 +129,12 @@
                         </svg>
 
                         <input
-                            type="usuario"
+                            type="text"
                             id="usuario"
                             name="usuario"
                             value="{{ old('usuario') }}"
                             placeholder="Ingresa tu usuario"
-                            autocomplete="usuario"
+                            autocomplete="username"
                             required
                             autofocus
                         >
