@@ -39,6 +39,14 @@ class UpdateCotizacionRequest extends FormRequest
             'notas' => ['sometimes', 'string', 'max:100'],
             'estado_pedido_id' => ['sometimes', 'integer', 'exists:estado_pedidos,id'],
             'created_by' => ['sometimes', 'integer'],
+
+            'datos_cotizacion' => ['sometimes', 'array', 'min:1'],
+            'datos_cotizacion.*.id' => ['sometimes', 'integer', 'exists:datos_cotizacions,id'],
+            'datos_cotizacion.*.unidad_id' => ['required', 'integer', 'exists:unidads,id'],
+            'datos_cotizacion.*.descripcion' => ['required', 'string', 'max:150'],
+            'datos_cotizacion.*.codigo' => ['required', 'string', 'max:150'],
+            'datos_cotizacion.*.entregado' => ['required', 'boolean'],
+            'datos_cotizacion.*.fecha_r' => ['required', 'string', 'max:150'],
         ];
     }
 }

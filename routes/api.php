@@ -39,6 +39,7 @@ use App\Http\Controllers\Api\Proveedores\{
     };
 use App\Http\Controllers\Api\Compras\{
     PedidoController,
+    CotizacionController,
     };
 use App\Http\Controllers\Api\Oficios\{
     OficiosController,
@@ -91,6 +92,7 @@ Route::prefix('proveedores')->name('api.')->group(function () {
 
 Route::prefix('compras')->name('api.')->group(function () {
     Route::apiResource('pedido', PedidoController::class);
+    Route::apiResource('cotizacion', CotizacionController::class);
 });
 
 Route::prefix('oficios')->name('api.')->group(function () {
