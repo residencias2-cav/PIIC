@@ -2,65 +2,213 @@
 
 namespace App\Http\Controllers\Api\Compras;
 
-use App\Models\Compras\Cotizacion;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Compras\StoreCotizacionRequest;
+use App\Http\Requests\Compras\UpdateCotizacionRequest;
+
+use App\Models\Compras\Cotizacion;
+use App\Models\Compras\DatosCotizacion;
+use App\Models\Compras\FolioCompras;
+use App\Models\Compras\Pedido;
+
+use App\Models\Catalogos\{
+    Gerencia,
+    Proyecto,
+    TipoCotizacion,
+    EstadoPedido,
+    Lugar,
+    Obra,
+    Unidad
+};
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CotizacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar todas las cotizaciones.
      */
     public function index()
     {
-        //
+        $cotizaciones = Cotizacion::with([
+            'pedido',
+            'gerencia',
+            'proyecto',
+            'obra',
+            'lugar',
+            'tipoCotizacion',
+            'estadoPedido',
+            'folioCompras',
+            'datosCotizacion.unidad'
+        ])
+        ->orderByDesc('id')
+        ->paginate(10);
+
+        return view('compras.cotizaciones.index', compact('cotizaciones'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar formulario de registro.
      */
     public function create()
     {
-        //
+        $catalogos = $this->cargarCatalogos();
+
+        return view('compras.cotizaciones.create', $catalogos);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar una cotización y sus detalles.
      */
-    public function store(Request $request)
+    public function store(StoreCotizacionRequest $request)
     {
-        //
+        $datos = $request->validated();
+
+        $detalles = $datos['datos_cotizacion'];
+
+        unset($datos['datos_cotizacion']);
+
+        DB::transaction(function () use ($datos, $detalles) {
+
+            $cotizacion = Cotizacion::create($datos);
+
+            foreach ($detalles as $detalle) {
+                $cotizacion->datosCotizacion()->create($detalle);
+            }
+        });
+
+        return redirect()
+            ->route('compras.cotizaciones.index')
+            ->with('success', 'Cotización registrada correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar una cotización.
      */
     public function show(Cotizacion $cotizacion)
     {
-        //
+        $cotizacion->load([
+            'pedido',
+            'gerencia',
+            'proyecto',
+            'obra',
+            'lugar',
+            'tipoCotizacion',
+            'estadoPedido',
+            'folioCompras',
+            'datosCotizacion.unidad'
+        ]);
+
+        return view('compras.cotizaciones.show', compact('cotizacion'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar formulario de edición.
      */
     public function edit(Cotizacion $cotizacion)
     {
-        //
+        $cotizacion->load('datosCotizacion.unidad');
+
+        $catalogos = $this->cargarCatalogos();
+
+        return view(
+            'compras.cotizaciones.edit',
+            array_merge($catalogos, compact('cotizacion'))
+        );
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar cotización y sus detalles.
      */
-    public function update(Request $request, Cotizacion $cotizacion)
-    {
-        //
+    public function update(
+        UpdateCotizacionRequest $request,
+        Cotizacion $cotizacion
+    ) {
+        $datos = $request->validated();
+
+        $detalles = $datos['datos_cotizacion'] ?? null;
+
+        unset($datos['datos_cotizacion']);
+
+        DB::transaction(function () use ($datos, $detalles, $cotizacion) {
+
+            $cotizacion->update($datos);
+
+            if (is_array($detalles)) {
+
+                $idsActualizados = [];
+
+                foreach ($detalles as $detalle) {
+
+                    $id = $detalle['id'] ?? null;
+
+                    unset($detalle['id']);
+
+                    if ($id) {
+                        $registro = $cotizacion->datosCotizacion()
+                            ->where('id', $id)
+                            ->first();
+                    } else {
+                        $registro = null;
+                    }
+
+                    if ($registro) {
+                        $registro->update($detalle);
+                    } else {
+                        $registro = $cotizacion->datosCotizacion()
+                            ->create($detalle);
+                    }
+
+                    $idsActualizados[] = $registro->id;
+                }
+
+                $cotizacion->datosCotizacion()
+                    ->whereNotIn('id', $idsActualizados)
+                    ->delete();
+            }
+        });
+
+        return redirect()
+            ->route('compras.cotizaciones.index')
+            ->with('success', 'Cotización actualizada correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar una cotización.
      */
     public function destroy(Cotizacion $cotizacion)
     {
-        //
+        $cotizacion->delete();
+
+        return redirect()
+            ->route('compras.cotizaciones.index')
+            ->with('success', 'Cotización eliminada correctamente.');
+    }
+
+    /**
+     * Cargar los catálogos necesarios para los formularios.
+     */
+    private function cargarCatalogos(): array
+    {
+        return [
+            'pedidos' => Pedido::orderByDesc('id')->get(),
+
+            'gerencias' => Gerencia::orderBy('nombre')->get(),
+
+            'foliosCompras' => FolioCompras::orderByDesc('id')->get(),
+
+            'proyectos' => Proyecto::orderBy('nombre')->get(),
+
+            'obras' => Obra::orderBy('nombre')->get(),
+
+            'lugares' => Lugar::orderBy('nombre')->get(),
+
+            'tiposCotizacion' => TipoCotizacion::orderBy('nombre')->get(),
+
+            'estadosPedido' => EstadoPedido::orderBy('nombre')->get(),
+
+            'unidades' => Unidad::orderBy('nombre')->get(),
+        ];
     }
 }

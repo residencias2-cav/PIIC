@@ -1277,7 +1277,8 @@
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
-            "time": "2026-11-14T19:58:33+00:00"
+            "time": "2026-11-14T19:58:33+00:00",
+            "published-time": "2026-11-17T15:16:01+00:00"
         },
         {
             "name": "laravel/framework",
@@ -9950,12 +9951,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.11.0"
 }

@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\Proveedores\{
     };
 use App\Http\Controllers\Api\Compras\{
     PedidoController,
+    CotizacionController
     };
 use App\Http\Controllers\Api\Oficios\{
     OficiosController,
@@ -259,6 +260,21 @@ Route::put('/pedidos/{pedido}',[PedidoController::class, 'update'])
     ->name('pedido.update');
 Route::delete('/pedidos/{pedido}',[PedidoController::class, 'destroy'])
     ->name('pedido.destroy');
+
+Route::get('/cotizaciones', [CotizacionController::class, 'index'])
+        ->name('cotizaciones.index');
+Route::get('/cotizaciones/create', [CotizacionController::class, 'create'])
+    ->name('cotizaciones.create');
+Route::post('/cotizaciones', [CotizacionController::class, 'store'])
+    ->name('cotizaciones.store');
+Route::get('/cotizaciones/{cotizacion}', [CotizacionController::class, 'show'])
+    ->name('cotizaciones.show');
+Route::get('/cotizaciones/{cotizacion}/edit', [CotizacionController::class, 'edit'])
+    ->name('cotizaciones.edit');
+Route::put('/cotizaciones/{cotizacion}', [CotizacionController::class, 'update'])
+    ->name('cotizaciones.update');
+Route::delete('/cotizaciones/{cotizacion}', [CotizacionController::class, 'destroy'])
+    ->name('cotizaciones.destroy');
     /*
     |--------------
     | EPP
