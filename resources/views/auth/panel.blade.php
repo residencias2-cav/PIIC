@@ -299,6 +299,38 @@
             font-size: 13px;
         }
 
+        .seguridad-btn {
+            display: inline-flex;
+            align-items: center;
+
+            width: fit-content;
+
+            margin-top: 5px;
+            padding: 5px 9px;
+
+            border: 1px solid #fecaca;
+            border-radius: 7px;
+
+            background: #fef2f2;
+            color: #991b1b;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition:
+                background .15s ease,
+                border-color .15s ease,
+                color .15s ease;
+        }
+
+        .seguridad-btn:hover {
+            background: #991b1b;
+            border-color: #991b1b;
+            color: #ffffff;
+        }
+
         @media (max-width: 950px) {
             .app {
                 grid-template-columns: 210px 1fr;
@@ -441,6 +473,15 @@
                     <small>
                         {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
                     </small>
+
+                    <a 
+                        href="{{ route('seguridad') }}"
+                        class="seguridad-btn"
+                        title="Configurar seguridad y autentucación en dos pasos"
+                    >
+                        Seguridad
+                    </a>
+
                 </div>
                 
                 <form

@@ -45,7 +45,7 @@ Route::get('/', function () {
     | AUTENTICACION
     |--------------
     */
-Route::view('/login', 'auth.login')
+/*Route::view('/login', 'auth.login')
     ->name('login');
 Route::middleware('guest')->group(function () {
     Route::get(
@@ -62,7 +62,7 @@ Route::post(
     [LoginController::class, 'destroy']
 )
 ->middleware('auth')
-->name('logout');
+->name('logout');*/
 
     /*
     |--------------
@@ -80,9 +80,26 @@ Route::get('/inicio', function () {
     | PANEL
     |--------------
     */
-Route::view('/panel', 'auth.panel')
+/*Route::view('/panel', 'auth.panel')
+    ->name('panel');*/
+
+Route::get('/panel', function () {
+    return view('auth.panel');
+})
+    ->middleware('auth')
     ->name('panel');
 
+Route::middleware('auth')->group(function () {
+
+    Route::get('/panel', function () {
+        return view('auth.panel');
+    })->name('panel');
+
+    Route::get('/seguridad', function () {
+        return view('auth.seguridad');
+    })->name('seguridad');
+
+});
     /*
     |--------------
     | CATÁLOGOS

@@ -90,6 +90,48 @@
 
             </header>
 
+            {{-- =================================================
+                DEBUG TEMPORAL DE ERRORES
+                ================================================= --}}
+
+            @if ($errors->any())
+
+                <div
+                    style="
+                        margin-bottom: 20px;
+                        padding: 14px 16px;
+                        background: #fef2f2;
+                        border: 1px solid #fecaca;
+                        border-radius: 8px;
+                        color: #991b1b;
+                        font-size: 14px;
+                    "
+                >
+
+                    <strong>
+                        Errores detectados:
+                    </strong>
+
+                    <ul
+                        style="
+                            margin: 10px 0 0;
+                            padding-left: 20px;
+                        "
+                    >
+
+                        @foreach ($errors->all() as $error)
+
+                            <li>
+                                {{ $error }}
+                            </li>
+
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
+            @endif
 
             {{-- =================================================
                  FORMULARIO
@@ -185,7 +227,7 @@
                         <input
                             type="password"
                             id="password"
-                            name="contrasena"
+                            name="password"
                             placeholder="Ingresa tu contraseña"
                             autocomplete="current-password"
                             required
@@ -223,7 +265,7 @@
 
                     </div>
 
-                    @error('contrasena')
+                    @error('password')
                         <p class="login-error">
                             {{ $message }}
                         </p>

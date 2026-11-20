@@ -64,6 +64,11 @@ class Usuario extends Authenticatable
         return $this->belongsTo(TipoUsuario::class);
     }
 
+    public function getAuthPasswordName(): string
+    {
+        return 'contrasena';
+    }
+
     public function getAuthPassword(): string
     {
         return $this->contrasena;

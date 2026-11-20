@@ -2,45 +2,43 @@
 
 namespace App\Providers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\Usuarios\Usuario;
+
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+
 use Laravel\Fortify\Fortify;
-use App\Models\Usuarios\Usuario;
-use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        Fortify::authenticateUsing(function ($request) {
+        /*
+        |--------------------------------------------------------------------------
+        | Autenticación personalizada
+        |--------------------------------------------------------------------------
+        */
+
+        Fortify::authenticateUsing(function (Request $request) {
+
             $usuario = Usuario::where(
                 'usuario',
-                $request->usuario
+                $request->input('usuario')
             )->first();
 
             if (
                 $usuario &&
                 Hash::check(
-                    $request->contrasena,
+                    $request->input('password'),
                     $usuario->contrasena
                 )
             ) {
@@ -49,6 +47,45 @@ class FortifyServiceProvider extends ServiceProvider
 
             return null;
         });
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Rate Limiter - Login
+        |--------------------------------------------------------------------------
+        */
+
+        RateLimiter::for('login', function (Request $request) {
+
+            $usuario = Str::lower(
+                (string) $request->input('usuario')
+            );
+
+            return Limit::perMinute(5)->by(
+                $usuario.'|'.$request->ip()
+            );
+        });
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Rate Limiter - Two Factor
+        |--------------------------------------------------------------------------
+        */
+
+        RateLimiter::for('two-factor', function (Request $request) {
+
+            return Limit::perMinute(5)->by(
+                (string) $request->session()->get('login.id')
+            );
+        });
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Vistas
+        |--------------------------------------------------------------------------
+        */
 
         Fortify::loginView(function () {
             return view('auth.login');
