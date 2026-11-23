@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Usuarios\{
     };
 use App\Http\Controllers\Api\Proveedores\{
     ProveedorController,
+    ProveedorServicioController,
     };
 use App\Http\Controllers\Api\Compras\{
     PedidoController,
@@ -371,6 +372,19 @@ Route::put('/proveedores/{proveedor}',[ProveedorController::class, 'update'])
     ->name('proveedor.update');
 Route::delete('/proveedores/{proveedor}',[ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
+
+Route::get('/proveedor_servicio',[ProveedorServicioController::class, 'vistaIndex'])
+    ->name('proveedor_servicio.index');
+Route::get('/proveedor_servicio/create',[ProveedorServicioController::class, 'vistaCreate'])
+    ->name('proveedor_servicio.create');
+Route::get('/proveedor_servicio/{proveedor_servicio}/edit',[ProveedorServicioController::class, 'vistaEdit'])
+    ->name('proveedor_servicio.edit');
+Route::post('/proveedor_servicio',[ProveedorServicioController::class, 'store'])
+    ->name('proveedor_servicio.store');
+Route::put('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioController::class, 'update'])
+    ->name('proveedor_servicio.update');
+Route::delete('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioController::class, 'destroy'])
+    ->name('proveedor_servicio.destroy');
     /*
     |--------------
     | USUARIOS
