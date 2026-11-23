@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,123 +12,175 @@
 
 <body>
 
-<main class="formulario-card">
+<main class="catalogo-contenedor">
 
-    <header class="formulario-header">
-        <h1>Gestión de cotizaciones</h1>
-        <p>Consulta y administra las cotizaciones registradas.</p>
+    <header class="catalogo-header">
+
+        <div class="catalogo-header-info">
+
+            <div class="catalogo-linea"></div>
+
+            <div>
+
+                <h1 class="catalogo-titulo">
+                    Cotizaciones
+                </h1>
+
+                <p class="catalogo-descripcion">
+                    Consulta y administra las cotizaciones registradas.
+                </p>
+
+            </div>
+
+        </div>
+
+        <a
+            href="{{ route('cotizaciones.create') }}"
+            class="btn btn-principal"
+        >
+            Nueva cotización
+        </a>
+
     </header>
 
-    @if(session('success'))
-        <div class="alert alert-success">
+    @if (session('success'))
+
+        <div class="mensaje-exito">
             {{ session('success') }}
         </div>
+
     @endif
 
-    <div class="formulario-botones">
-        <a href="{{ route('compras.cotizaciones.create') }}">
-            Registrar cotización
-        </a>
-    </div>
+    <section class="catalogo-card">
 
-    <div class="tabla-contenedor">
+        <div class="tabla-responsive">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Folio</th>
-                    <th>Pedido</th>
-                    <th>Fecha</th>
-                    <th>Gerencia</th>
-                    <th>Proyecto</th>
-                    <th>Estado</th>
-                    <th>Detalles</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
+            <table class="catalogo-tabla">
 
-            <tbody>
-
-                @forelse($cotizaciones as $cotizacion)
+                <thead>
 
                     <tr>
-                        <td>{{ $cotizacion->id }}</td>
-
-                        <td>{{ $cotizacion->folio }}</td>
-
-                        <td>
-                            {{ $cotizacion->pedido_id }}
-                        </td>
-
-                        <td>
-                            {{ $cotizacion->fecha
-                                ? \Carbon\Carbon::parse($cotizacion->fecha)->format('d/m/Y')
-                                : 'Sin fecha' }}
-                        </td>
-
-                        <td>
-                            {{ $cotizacion->gerencia->nombre ?? 'No disponible' }}
-                        </td>
-
-                        <td>
-                            {{ $cotizacion->proyecto->nombre ?? 'No disponible' }}
-                        </td>
-
-                        <td>
-                            {{ $cotizacion->estadoPedido->nombre
-                                ?? $cotizacion->estado_pedido_id }}
-                        </td>
-
-                        <td>
-                            {{ $cotizacion->datosCotizacion->count() }}
-                        </td>
-
-                        <td>
-
-                            <a href="{{ route('compras.cotizaciones.show', $cotizacion->id) }}">
-                                Ver
-                            </a>
-
-                            <a href="{{ route('compras.cotizaciones.edit', $cotizacion->id) }}">
-                                Editar
-                            </a>
-
-                            <form action="{{ route('compras.cotizaciones.destroy', $cotizacion->id) }}"
-                                  method="POST"
-                                  style="display:inline;"
-                                  onsubmit="return confirm('¿Deseas eliminar esta cotización?')">
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit">
-                                    Eliminar
-                                </button>
-
-                            </form>
-
-                        </td>
+                        <th>ID</th>
+                        <th>Folio</th>
+                        <th>Pedido</th>
+                        <th>Fecha</th>
+                        <th>Gerencia</th>
+                        <th>Proyecto</th>
+                        <th>Estado</th>
+                        <th>Detalles</th>
+                        <th>Acciones</th>
                     </tr>
 
-                @empty
+                </thead>
 
-                    <tr>
-                        <td colspan="9">
-                            No hay cotizaciones registradas.
-                        </td>
-                    </tr>
+                <tbody>
 
-                @endforelse
+                    @forelse ($cotizaciones as $cotizacion)
 
-            </tbody>
-        </table>
+                        <tr>
 
-    </div>
+                            <td>
+                                {{ $cotizacion->id }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->folio }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->pedido_id }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->fecha
+                                    ? \Carbon\Carbon::parse($cotizacion->fecha)->format('d/m/Y')
+                                    : 'Sin fecha' }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->gerencia?->nombre ?? 'No disponible' }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->proyecto?->nombre ?? 'No disponible' }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->estadoPedido?->nombre
+                                    ?? $cotizacion->estado_pedido_id }}
+                            </td>
+
+                            <td>
+                                {{ $cotizacion->datosCotizacion->count() }}
+                            </td>
+
+                            <td>
+
+                                <div class="acciones">
+
+                                    <a
+                                        href="{{ route('cotizaciones.edit', $cotizacion) }}"
+                                        class="btn btn-editar"
+                                    >
+                                        Editar
+                                    </a>
+
+                                    <form
+                                        action="{{ route('cotizaciones.destroy', $cotizacion) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('¿Deseas eliminar esta cotización?');"
+                                    >
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-eliminar"
+                                        >
+                                            Eliminar
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @empty
+
+                        <tr>
+
+                            <td colspan="9" class="estado-vacio">
+
+                                <p class="estado-vacio-titulo">
+                                    No hay cotizaciones registradas
+                                </p>
+
+                                <p class="estado-vacio-texto">
+                                    Registra una cotización para comenzar.
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
 
     {{ $cotizaciones->links() }}
 
 </main>
 
 </body>
+
 </html>

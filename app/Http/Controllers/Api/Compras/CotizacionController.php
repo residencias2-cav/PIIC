@@ -45,7 +45,7 @@ class CotizacionController extends Controller
         ->orderByDesc('id')
         ->paginate(10);
 
-        return view('compras.cotizaciones.index', compact('cotizaciones'));
+        return view('compras.cotizacion.index', compact('cotizaciones'));
     }
 
     /**
@@ -55,7 +55,7 @@ class CotizacionController extends Controller
     {
         $catalogos = $this->cargarCatalogos();
 
-        return view('compras.cotizaciones.create', $catalogos);
+        return view('compras.cotizacion.create', $catalogos);
     }
 
     /**
@@ -79,7 +79,7 @@ class CotizacionController extends Controller
         });
 
         return redirect()
-            ->route('compras.cotizaciones.index')
+            ->route('compras.cotizacion.index')
             ->with('success', 'Cotización registrada correctamente.');
     }
 
@@ -100,7 +100,7 @@ class CotizacionController extends Controller
             'datosCotizacion.unidad'
         ]);
 
-        return view('compras.cotizaciones.show', compact('cotizacion'));
+        return view('compras.cotizacion.show', compact('cotizacion'));
     }
 
     /**
@@ -113,7 +113,7 @@ class CotizacionController extends Controller
         $catalogos = $this->cargarCatalogos();
 
         return view(
-            'compras.cotizaciones.edit',
+            'compras.cotizacion.edit',
             array_merge($catalogos, compact('cotizacion'))
         );
     }
@@ -170,7 +170,7 @@ class CotizacionController extends Controller
         });
 
         return redirect()
-            ->route('compras.cotizaciones.index')
+            ->route('compras.cotizacion.index')
             ->with('success', 'Cotización actualizada correctamente.');
     }
 
@@ -182,7 +182,7 @@ class CotizacionController extends Controller
         $cotizacion->delete();
 
         return redirect()
-            ->route('compras.cotizaciones.index')
+            ->route('compras.cotizacion.index')
             ->with('success', 'Cotización eliminada correctamente.');
     }
 
@@ -200,9 +200,9 @@ class CotizacionController extends Controller
 
             'proyectos' => Proyecto::orderBy('nombre')->get(),
 
-            'obras' => Obra::orderBy('nombre')->get(),
+            'obras' => Obra::orderBy('nombre_obra')->get(),
 
-            'lugares' => Lugar::orderBy('nombre')->get(),
+            'lugares' => Lugar::orderBy('nombre_municipio')->get(),
 
             'tiposCotizacion' => TipoCotizacion::orderBy('nombre')->get(),
 
