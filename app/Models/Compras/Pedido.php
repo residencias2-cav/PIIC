@@ -43,6 +43,7 @@ class Pedido extends Model
         'ubicacion_id',
         'tipo_compra_id',
         'estado_id',
+        'estado_solicitud',
         'observaciones',
         'monto_credito',
         'monto',

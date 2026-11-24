@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('ubicacion_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipo_compra_id')->constrained()->onDelete('cascade');
             $table->foreignId('estado_id')->constrained()->onDelete('cascade');
+            $table->enum('estado_solicitud', ['Borrador', 'Rechazado', 'Pendiente de gerencia', 'Autorizado', 'Enviado a Compras' , 'En proceso', 'Atendido']);
             $table->string('observaciones', 200);
             $table->integer('monto_credito');
             $table->integer('monto');
