@@ -162,6 +162,7 @@ return [
     */
 
     'features' => [
+        /*
         Features::resetPasswords(),
         Features::emailVerification(),
         // Features::emailVerification(),
@@ -174,6 +175,7 @@ return [
             'confirm' => true,
             'confirmPassword' => true,
         ]),
+        */
     ],
 
 ];

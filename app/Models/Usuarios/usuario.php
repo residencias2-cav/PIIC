@@ -61,7 +61,7 @@ class Usuario extends Authenticatable
 
     public function tipoUsuario()
     {
-        return $this->belongsTo(TipoUsuario::class);
+        return $this->belongsTo(TipoUsuario::class, 'nombre');
     }
 
     public function getAuthPasswordName(): string
@@ -98,5 +98,50 @@ class Usuario extends Authenticatable
             'usuario_id',
             'oficios_id'
         );
+    }
+
+    public function esAdmin(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'ADMIN';
+    }
+    
+    public function esSubDirector(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Director';
+    }
+    
+    public function esSupervisor(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Supervisor';
+    }
+    
+    public function esGerente(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Gerente';
+    }
+    
+    public function esOperativo(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Operativo';
+    }
+
+    public function esAdministrativo(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Administrativo';
+    }
+    
+    public function esInvitado(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Invitado';
+    }
+    
+    public function esProveedor(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Proveedor';
+    }
+    
+    public function esCompras(): bool
+    {
+        return $this->tipoUsuario?->nombre === 'Compras';
     }
 }

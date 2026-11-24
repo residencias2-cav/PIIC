@@ -14,6 +14,7 @@ class TipoUsuarioSeeder extends Seeder
     public function run(): void
     {
         $tipousuario = [
+                'ADMIN',
                 'Director',
                 'Supervisor',
                 'Gerente',

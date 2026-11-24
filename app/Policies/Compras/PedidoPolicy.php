@@ -4,6 +4,7 @@ namespace App\Policies\Compras;
 
 use App\Models\Compras\Pedido;
 use App\Models\User;
+use App\Models\Usuarios\Usuario;
 use Illuminate\Auth\Access\Response;
 
 class PedidoPolicy
@@ -11,9 +12,13 @@ class PedidoPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Usuario $usuario): bool
     {
-        return false;
+        return $usuario->esSupervisor()
+        || $usuario->esGerente()
+        || $usuario->esCompras()
+        || $usuario->esAlmacen()
+        || $usuario->esConsultaGlobal();
     }
 
     /**
