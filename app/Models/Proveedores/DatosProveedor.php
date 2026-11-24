@@ -4,12 +4,11 @@ namespace App\Models\Proveedores;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Catalogos\Empresa;
 
 class DatosProveedor extends Model
 {
-    /** @use HasFactory<\Database\Factories\DatosProveedorFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'datos_proveedors';
 
@@ -30,7 +29,17 @@ class DatosProveedor extends Model
     protected function casts(): array
     {
         return [
-            'fecha' => 'datetime',
+            'fecha' => 'date',
         ];
+    }
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
     }
 }

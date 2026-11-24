@@ -24,12 +24,15 @@ use App\Http\Controllers\Api\Usuarios\{
 use App\Http\Controllers\Api\Proveedores\{
     ProveedorController,
     ProveedorServicioController,
+    DatosProveedorController,
+    InformacionBancariaController,
     };
 use App\Http\Controllers\Api\Compras\{
     PedidoController,
     CotizacionController,
     AutorizadoPorController,
     FolioComprasController,
+    PagoController,
     };
 use App\Http\Controllers\Api\Oficios\{
     OficiosController,
@@ -308,6 +311,21 @@ Route::put('/folio_compras/{folio_compras}', [FolioComprasController::class, 'up
     ->name('folio_compras.update');
 Route::delete('/folio_compras/{folio_compras}', [FolioComprasController::class, 'destroy'])
     ->name('folio_compras.destroy');
+
+Route::get('/pago', [PagoController::class, 'index'])
+        ->name('pago.index');
+Route::get('/pago/create', [PagoController::class, 'create'])
+    ->name('pago.create');
+Route::post('/pago', [PagoController::class, 'store'])
+    ->name('pago.store');
+Route::get('/pago/{pago}', [PagoController::class, 'show'])
+    ->name('pago.show');
+Route::get('/pago/{pago}/edit', [PagoController::class, 'edit'])
+    ->name('pago.edit');
+Route::put('/pago/{pago}', [PagoController::class, 'update'])
+    ->name('pago.update');
+Route::delete('/pago/{pago}', [PagoController::class, 'destroy'])
+    ->name('pago.destroy');
     /*
     |--------------
     | EPP
@@ -385,6 +403,32 @@ Route::put('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioControll
     ->name('proveedor_servicio.update');
 Route::delete('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioController::class, 'destroy'])
     ->name('proveedor_servicio.destroy');
+
+Route::get('/datos_proveedor',[DatosProveedorController::class, 'vistaIndex'])
+    ->name('datos_proveedor.index');
+Route::get('/datos_proveedor/create',[DatosProveedorController::class, 'vistaCreate'])
+    ->name('datos_proveedor.create');
+Route::get('/datos_proveedor/{datos_proveedor}/edit',[DatosProveedorController::class, 'vistaEdit'])
+    ->name('datos_proveedor.edit');
+Route::post('/datos_proveedor',[DatosProveedorController::class, 'store'])
+    ->name('datos_proveedor.store');
+Route::put('/datos_proveedor/{datos_proveedor}',[DatosProveedorController::class, 'update'])
+    ->name('datos_proveedor.update');
+Route::delete('/datos_proveedor/{datos_proveedor}',[DatosProveedorController::class, 'destroy'])
+    ->name('datos_proveedor.destroy');
+
+Route::get('/informacion_bancaria',[InformacionBancariaController::class, 'vistaIndex'])
+    ->name('informacion_bancaria.index');
+Route::get('/informacion_bancaria/create',[InformacionBancariaController::class, 'vistaCreate'])
+    ->name('informacion_bancaria.create');
+Route::get('/informacion_bancaria/{informacion_bancaria}/edit',[InformacionBancariaController::class, 'vistaEdit'])
+    ->name('informacion_bancaria.edit');
+Route::post('/informacion_bancaria',[InformacionBancariaController::class, 'store'])
+    ->name('informacion_bancaria.store');
+Route::put('/informacion_bancaria/{informacion_bancaria}',[InformacionBancariaController::class, 'update'])
+    ->name('informacion_bancaria.update');
+Route::delete('/informacion_bancaria/{informacion_bancaria}',[InformacionBancariaController::class, 'destroy'])
+    ->name('informacion_bancaria.destroy');
     /*
     |--------------
     | USUARIOS
