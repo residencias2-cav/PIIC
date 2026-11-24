@@ -16,7 +16,15 @@ class EstadoPedidoSeeder extends Seeder
         $estadop = [
             'Cotizado',
             'Enviado',
-            'Revisar notas'
+            'Revisar notas',
+            'Borrador',
+            'Pendiente de gerencia',
+            'Rechazado',
+            'Autorizado',
+            'Enviado a Compras',
+            'En proceso',
+            'Atendido',
+            'Cancelado',
         ];
 
         foreach ($estadop as $nombre) {
