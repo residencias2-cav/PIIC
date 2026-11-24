@@ -23,10 +23,13 @@ use App\Http\Controllers\Api\Usuarios\{
     };
 use App\Http\Controllers\Api\Proveedores\{
     ProveedorController,
+    ProveedorServicioController,
     };
 use App\Http\Controllers\Api\Compras\{
     PedidoController,
-    CotizacionController
+    CotizacionController,
+    AutorizadoPorController,
+    FolioComprasController,
     };
 use App\Http\Controllers\Api\Oficios\{
     OficiosController,
@@ -275,6 +278,36 @@ Route::put('/cotizaciones/{cotizacion}', [CotizacionController::class, 'update']
     ->name('cotizaciones.update');
 Route::delete('/cotizaciones/{cotizacion}', [CotizacionController::class, 'destroy'])
     ->name('cotizaciones.destroy');
+
+Route::get('/autorizado_por', [AutorizadoPorController::class, 'index'])
+        ->name('autorizado_por.index');
+Route::get('/autorizado_por/create', [AutorizadoPorController::class, 'create'])
+    ->name('autorizado_por.create');
+Route::post('/autorizado_por', [AutorizadoPorController::class, 'store'])
+    ->name('autorizado_por.store');
+Route::get('/autorizado_por/{autorizado_por}', [AutorizadoPorController::class, 'show'])
+    ->name('autorizado_por.show');
+Route::get('/autorizado_por/{autorizado_por}/edit', [AutorizadoPorController::class, 'edit'])
+    ->name('autorizado_por.edit');
+Route::put('/autorizado_por/{autorizado_por}', [AutorizadoPorController::class, 'update'])
+    ->name('autorizado_por.update');
+Route::delete('/autorizado_por/{autorizado_por}', [AutorizadoPorController::class, 'destroy'])
+    ->name('autorizado_por.destroy');
+
+Route::get('/folio_compras', [FolioComprasController::class, 'index'])
+        ->name('folio_compras.index');
+Route::get('/folio_compras/create', [FolioComprasController::class, 'create'])
+    ->name('folio_compras.create');
+Route::post('/folio_compras', [FolioComprasController::class, 'store'])
+    ->name('folio_compras.store');
+Route::get('/folio_compras/{folio_compras}', [FolioComprasController::class, 'show'])
+    ->name('folio_compras.show');
+Route::get('/folio_compras/{folio_compras}/edit', [FolioComprasController::class, 'edit'])
+    ->name('folio_compras.edit');
+Route::put('/folio_compras/{folio_compras}', [FolioComprasController::class, 'update'])
+    ->name('folio_compras.update');
+Route::delete('/folio_compras/{folio_compras}', [FolioComprasController::class, 'destroy'])
+    ->name('folio_compras.destroy');
     /*
     |--------------
     | EPP
@@ -339,6 +372,19 @@ Route::put('/proveedores/{proveedor}',[ProveedorController::class, 'update'])
     ->name('proveedor.update');
 Route::delete('/proveedores/{proveedor}',[ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
+
+Route::get('/proveedor_servicio',[ProveedorServicioController::class, 'vistaIndex'])
+    ->name('proveedor_servicio.index');
+Route::get('/proveedor_servicio/create',[ProveedorServicioController::class, 'vistaCreate'])
+    ->name('proveedor_servicio.create');
+Route::get('/proveedor_servicio/{proveedor_servicio}/edit',[ProveedorServicioController::class, 'vistaEdit'])
+    ->name('proveedor_servicio.edit');
+Route::post('/proveedor_servicio',[ProveedorServicioController::class, 'store'])
+    ->name('proveedor_servicio.store');
+Route::put('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioController::class, 'update'])
+    ->name('proveedor_servicio.update');
+Route::delete('/proveedor_servicio/{proveedor_servicio}',[ProveedorServicioController::class, 'destroy'])
+    ->name('proveedor_servicio.destroy');
     /*
     |--------------
     | USUARIOS

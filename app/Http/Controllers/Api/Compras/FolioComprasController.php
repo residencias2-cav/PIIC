@@ -1,65 +1,159 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Compras;
 
+use App\Http\Controllers\Controller;
 use App\Models\Compras\FolioCompras;
+use App\Models\Compras\Pedido;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FolioComprasController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar los folios de compras registrados.
      */
     public function index()
     {
-        //
+        $folioCompras = FolioCompras::with('pedido')
+            ->latest()
+            ->paginate(10);
+
+        return view(
+            'Compras.FolioCompras.index',
+            compact('folioCompras')
+        );
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario para registrar un folio.
      */
     public function create()
     {
-        //
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
+
+        return view(
+            'Compras.FolioCompras.create',
+            compact('pedidos')
+        );
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar un nuevo folio de compra.
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'pedido_id' => [
+                'required',
+                'integer',
+                'exists:pedidos,id'
+            ],
+            'fecha' => [
+                'required',
+                'date'
+            ],
+            'folio' => [
+                'required',
+                'string',
+                'max:20',
+                'unique:folio_compras,folio'
+            ],
+            'notas_autorizacion' => [
+                'required',
+                'string',
+                'max:100'
+            ],
+            'observaciones' => [
+                'required',
+                'string',
+                'max:100'
+            ],
+        ]);
+
+        FolioCompras::create($datos);
+
+        return redirect()
+            ->route('folio_compras.index')
+            ->with('success', 'Folio de compra registrado correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar un folio específico.
      */
-    public function show(FolioCompras $folio_compras)
+    public function show(FolioCompras $folio_compra)
     {
-        //
+        return redirect()->route(
+            'folio_compras.edit',
+            $folio_compra->id
+        );
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar el formulario para editar un folio.
      */
-    public function edit(FolioCompras $folio_compras)
+    public function edit(FolioCompras $folio_compra)
     {
-        //
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
+
+        $folioCompra = $folio_compra;
+
+        return view(
+            'Compras.FolioCompras.edit',
+            compact('folioCompra', 'pedidos')
+        );
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un folio de compra.
      */
-    public function update(Request $request, FolioCompras $folio_compras)
+    public function update(Request $request, FolioCompras $folio_compra)
     {
-        //
+        $datos = $request->validate([
+            'pedido_id' => [
+                'required',
+                'integer',
+                'exists:pedidos,id'
+            ],
+            'fecha' => [
+                'required',
+                'date'
+            ],
+            'folio' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('folio_compras', 'folio')
+                    ->ignore($folio_compra->id)
+            ],
+            'notas_autorizacion' => [
+                'required',
+                'string',
+                'max:100'
+            ],
+            'observaciones' => [
+                'required',
+                'string',
+                'max:100'
+            ],
+        ]);
+
+        $folio_compra->update($datos);
+
+        return redirect()
+            ->route('folio_compras.index')
+            ->with('success', 'Folio de compra actualizado correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un folio de compra.
      */
-    public function destroy(FolioCompras $folio_compras)
+    public function destroy(FolioCompras $folio_compra)
     {
-        //
+        $folio_compra->delete();
+
+        return redirect()
+            ->route('folio_compras.index')
+            ->with('success', 'Folio de compra eliminado correctamente.');
     }
 }
