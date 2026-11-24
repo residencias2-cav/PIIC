@@ -30,7 +30,7 @@
         </div>
     @endif
 
-    <form action="{{ route('proveedor_servicios.update', [
+    <form action="{{ route('proveedor_servicio.update', [
         $proveedorServicio->proveedor_id,
         $proveedorServicio->producto_servicio_id
     ]) }}" method="POST">
@@ -82,7 +82,7 @@
 
         <div class="formulario-acciones">
 
-            <a href="{{ route('proveedor_servicios.index') }}"
+            <a href="{{ route('proveedor_servicio.index') }}"
                class="btn btn-secundario">
                 Cancelar
             </a>

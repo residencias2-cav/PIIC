@@ -30,7 +30,7 @@
         </div>
     @endif
 
-    <form action="{{ route('proveedor_servicios.store') }}" method="POST">
+    <form action="{{ route('proveedor_servicio.store') }}" method="POST">
         @csrf
 
         <section class="formulario-seccion">
@@ -77,7 +77,7 @@
 
         <div class="formulario-acciones">
 
-            <a href="{{ route('proveedor_servicios.index') }}"
+            <a href="{{ route('proveedor_servicio.index') }}"
                class="btn btn-secundario">
                 Cancelar
             </a>

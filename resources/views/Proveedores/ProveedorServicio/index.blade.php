@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <a href="{{ route('proveedor_servicios.create') }}" class="btn btn-principal">
+        <a href="{{ route('proveedor_servicio.create') }}" class="btn btn-principal">
             Nueva relación
         </a>
     </header>
@@ -65,7 +65,7 @@
                             <td>
                                 <div class="acciones">
 
-                                    <a href="{{ route('proveedor_servicios.edit', [
+                                    <a href="{{ route('proveedor_servicio.edit', [
                                         $proveedorServicio->proveedor_id,
                                         $proveedorServicio->producto_servicio_id
                                     ]) }}"
@@ -73,7 +73,7 @@
                                         Editar
                                     </a>
 
-                                    <form action="{{ route('proveedor_servicios.destroy', [
+                                    <form action="{{ route('proveedor_servicio.destroy', [
                                         $proveedorServicio->proveedor_id,
                                         $proveedorServicio->producto_servicio_id
                                     ]) }}"

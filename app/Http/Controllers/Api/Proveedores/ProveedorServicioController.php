@@ -22,7 +22,7 @@ class ProveedorServicioController extends Controller
         ])->paginate(10);
 
         return view(
-            'ProveedorServicios.index',
+            'Proveedores.ProveedorServicio.index',
             compact('proveedorServicios')
         );
     }
@@ -37,7 +37,7 @@ class ProveedorServicioController extends Controller
         $productosServicios = ProductoServicio::orderBy('nombre')->get();
 
         return view(
-            'ProveedorServicios.create',
+            'Proveedores.ProveedorServicio.create',
             compact('proveedores', 'productosServicios')
         );
     }
@@ -51,7 +51,7 @@ class ProveedorServicioController extends Controller
             'proveedor_id' => [
                 'required',
                 'integer',
-                'exists:proveedores,id'
+                'exists:proveedors,id'
             ],
             'producto_servicio_id' => [
                 'required',
@@ -82,7 +82,7 @@ class ProveedorServicioController extends Controller
         ]);
 
         return redirect()
-            ->route('proveedor_servicios.index')
+            ->route('proveedor_servicio.index')
             ->with('success', 'Relación registrada correctamente.');
     }
 
@@ -91,7 +91,7 @@ class ProveedorServicioController extends Controller
      */
     public function show($proveedor_id, $producto_servicio_id)
     {
-        return redirect()->route('proveedor_servicios.edit', [
+        return redirect()->route('proveedor_servicio.edit', [
             $proveedor_id,
             $producto_servicio_id
         ]);
@@ -115,7 +115,7 @@ class ProveedorServicioController extends Controller
         $productosServicios = ProductoServicio::orderBy('nombre')->get();
 
         return view(
-            'ProveedorServicios.edit',
+            'Proveedores.ProveedorServicio.edit',
             compact(
                 'proveedorServicio',
                 'proveedores',
@@ -136,7 +136,7 @@ class ProveedorServicioController extends Controller
             'proveedor_id' => [
                 'required',
                 'integer',
-                'exists:proveedores,id'
+                'exists:proveedors,id'
             ],
             'producto_servicio_id' => [
                 'required',
@@ -182,7 +182,7 @@ class ProveedorServicioController extends Controller
             ]);
 
         return redirect()
-            ->route('proveedor_servicios.index')
+            ->route('proveedor_servicio.index')
             ->with('success', 'Relación actualizada correctamente.');
     }
 
@@ -201,7 +201,7 @@ class ProveedorServicioController extends Controller
         }
 
         return redirect()
-            ->route('proveedor_servicios.index')
+            ->route('proveedor_servicio.index')
             ->with('success', 'Relación eliminada correctamente.');
     }
 }
