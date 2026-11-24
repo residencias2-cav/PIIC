@@ -4,6 +4,7 @@ namespace App\Models\Proveedores;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InformacionBancaria extends Model
 {
@@ -17,15 +18,15 @@ class InformacionBancaria extends Model
         'nombre_titular',
         'cuenta',
         'clave',
-        'proveedor_id'
+        'proveedor_id',
     ];
 
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function proveedor()
+    public function proveedor(): BelongsTo
     {
         return $this->belongsTo(Proveedor::class);
     }

@@ -1,65 +1,102 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Proveedores;
 
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\Empresa;
+use App\Models\Proveedores\Proveedor;
 use App\Models\Proveedores\DatosProveedor;
 use Illuminate\Http\Request;
 
 class DatosProveedorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function vistaIndex()
     {
-        //
+        $datosProveedores = DatosProveedor::with([
+            'proveedor',
+            'empresa'
+        ])->orderByDesc('fecha')->paginate(10);
+
+        return view(
+            'Proveedores.DatosProveedor.index',
+            compact('datosProveedores')
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function vistaCreate()
     {
-        //
+        $proveedores = Proveedor::orderBy('nombre')->get();
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        return view(
+            'Proveedores.DatosProveedor.create',
+            compact('proveedores', 'empresas')
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'proveedor_id' => 'required|exists:proveedors,id',
+            'folio' => 'required|string|max:11',
+            'fecha' => 'required|date',
+            'observaciones' => 'required|string|max:100',
+            'tiempo_entrega' => 'required|string|max:50',
+            'metodo_entrega' => 'required|string|max:50',
+            'empresa_id' => 'required|exists:empresas,id',
+            'correo' => 'required|email|max:50',
+            'telefono' => 'required|string|max:20',
+            'direccion' => 'required|string',
+            'tipo_contrato' => 'required|string|max:50',
+        ]);
+
+        DatosProveedor::create($datos);
+
+        return redirect()
+            ->route('datos_proveedor.index')
+            ->with('success', 'Datos del proveedor registrados correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(DatosProveedor $datos_proveedor)
+    public function vistaEdit(DatosProveedor $datos_proveedor)
     {
-        //
+        $proveedores = Proveedor::orderBy('nombre')->get();
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        return view(
+            'Proveedores.DatosProveedor.edit',
+            compact('datos_proveedor', 'proveedores', 'empresas')
+        );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DatosProveedor $datos_proveedor)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, DatosProveedor $datos_proveedor)
     {
-        //
+        $datos = $request->validate([
+            'proveedor_id' => 'required|exists:proveedors,id',
+            'folio' => 'required|string|max:11',
+            'fecha' => 'required|date',
+            'observaciones' => 'required|string|max:100',
+            'tiempo_entrega' => 'required|string|max:50',
+            'metodo_entrega' => 'required|string|max:50',
+            'empresa_id' => 'required|exists:empresas,id',
+            'correo' => 'required|email|max:50',
+            'telefono' => 'required|string|max:20',
+            'direccion' => 'required|string',
+            'tipo_contrato' => 'required|string|max:50',
+        ]);
+
+        $datos_proveedor->update($datos);
+
+        return redirect()
+            ->route('datos_proveedor.index')
+            ->with('success', 'Datos del proveedor actualizados correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(DatosProveedor $datos_proveedor)
     {
-        //
+        $datos_proveedor->delete();
+
+        return redirect()
+            ->route('datos_proveedor.index')
+            ->with('success', 'Datos del proveedor eliminados correctamente.');
     }
 }
