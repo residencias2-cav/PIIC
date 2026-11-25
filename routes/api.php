@@ -99,4 +99,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('oficios')->name('api.')->group(function () {
         Route::apiResource('oficios', OficiosController::class);
     });
-});
+}
+/*
+        |--------------
+        | Aqui pon las vistas que vayas a probar
+        |--------------
+        */
+);

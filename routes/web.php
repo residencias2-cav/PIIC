@@ -430,4 +430,10 @@ Route::middleware('auth')->group(function () {
         ->name('trabajador.update');
     Route::delete('/trabajadores/{trabajador}',[TrabajadorController::class, 'destroy'])
     ->name('trabajador.destroy');
-});
+}
+/*
+        |--------------
+        | Aqui pon las vistas que vayas a probar
+        |--------------
+        */
+);
