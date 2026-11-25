@@ -46,55 +46,57 @@ use App\Http\Controllers\Api\Oficios\{
     };
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('catalogos')->name('api.')->group(function () {
-    Route::apiResource('lugar', LugarController::class);
-    Route::apiResource('obra', ObraController::class);
-    Route::apiResource('gerencia', GerenciaController::class);
-    Route::apiResource('empresa', EmpresaController::class);
-    Route::apiResource('ubicacion', UbicacionController::class);
-    Route::apiResource('proyecto', ProyectoController::class);
-    Route::apiResource('producto_servicio', ProductoServicioController::class);
-    Route::apiResource('articulo', ArticuloController::class);
-    Route::apiResource('inf_credito', InfCreditoController::class);
-    Route::apiResource('inf_contrato', InfContratoController::class);
-    
-    Route::apiResource('estado', EstadoController::class)->only(['index']);
-    Route::apiResource('tipo_compra', TipoCompraController::class)->only(['index']);
-    Route::apiResource('tipo_pedido', TipoPedidoController::class)->only(['index']);
-    Route::apiResource('unidad', UnidadController::class)->only(['index']);
-    Route::apiResource('tipo_servicio', TipoServicioController::class)->only(['index']);
-    Route::apiResource('estado_pedido', EstadoPedidoController::class)->only(['index']);
-    Route::apiResource('tipo_cotizacion', TipoCotizacionController::class)->only(['index']);
-    Route::apiResource('lugar_nacimiento', LugarNacimientoController::class)->only(['index']);
-    Route::apiResource('contrato', ContratoController::class)->only(['index']);
-    Route::apiResource('tipo_sangre', TipoSangreController::class)->only(['index']);
-    Route::apiResource('tipo_usuario', TipoUsuarioController::class)->only(['index']);
-    Route::apiResource('tipo_oficio', TipoOficioController::class)->only(['index']);
-    Route::apiResource('tipo_epp', TipoEppController::class)->only(['index']);
-    Route::get('/user', function (Request $request) {return $request->user();
-});
+Route::middleware('auth')->group(function () {
+    Route::prefix('catalogos')->name('api.')->group(function () {
+        Route::apiResource('lugar', LugarController::class);
+        Route::apiResource('obra', ObraController::class);
+        Route::apiResource('gerencia', GerenciaController::class);
+        Route::apiResource('empresa', EmpresaController::class);
+        Route::apiResource('ubicacion', UbicacionController::class);
+        Route::apiResource('proyecto', ProyectoController::class);
+        Route::apiResource('producto_servicio', ProductoServicioController::class);
+        Route::apiResource('articulo', ArticuloController::class);
+        Route::apiResource('inf_credito', InfCreditoController::class);
+        Route::apiResource('inf_contrato', InfContratoController::class);
+        
+        Route::apiResource('estado', EstadoController::class)->only(['index']);
+        Route::apiResource('tipo_compra', TipoCompraController::class)->only(['index']);
+        Route::apiResource('tipo_pedido', TipoPedidoController::class)->only(['index']);
+        Route::apiResource('unidad', UnidadController::class)->only(['index']);
+        Route::apiResource('tipo_servicio', TipoServicioController::class)->only(['index']);
+        Route::apiResource('estado_pedido', EstadoPedidoController::class)->only(['index']);
+        Route::apiResource('tipo_cotizacion', TipoCotizacionController::class)->only(['index']);
+        Route::apiResource('lugar_nacimiento', LugarNacimientoController::class)->only(['index']);
+        Route::apiResource('contrato', ContratoController::class)->only(['index']);
+        Route::apiResource('tipo_sangre', TipoSangreController::class)->only(['index']);
+        Route::apiResource('tipo_usuario', TipoUsuarioController::class)->only(['index']);
+        Route::apiResource('tipo_oficio', TipoOficioController::class)->only(['index']);
+        Route::apiResource('tipo_epp', TipoEppController::class)->only(['index']);
+        Route::get('/user', function (Request $request) {return $request->user();
+    });
 
-});
+    });
 
-Route::prefix('epp')->name('api.')->group(function () {
-    Route::apiResource('epp', EppController::class);
-    Route::apiResource('inventario_epp', InventarioEppController::class);
-    Route::apiResource('datos_epp_re', DatosEppReController::class);
-});
+    Route::prefix('epp')->name('api.')->group(function () {
+        Route::apiResource('epp', EppController::class);
+        Route::apiResource('inventario_epp', InventarioEppController::class);
+        Route::apiResource('datos_epp_re', DatosEppReController::class);
+    });
 
-Route::prefix('usuarios')->name('api.')->group(function () {
-    Route::apiResource('trabajador', TrabajadorController::class);
-});
+    Route::prefix('usuarios')->name('api.')->group(function () {
+        Route::apiResource('trabajador', TrabajadorController::class);
+    });
 
-Route::prefix('proveedores')->name('api.')->group(function () {
-    Route::apiResource('proveedor', ProveedorController::class);
-});
+    Route::prefix('proveedores')->name('api.')->group(function () {
+        Route::apiResource('proveedor', ProveedorController::class);
+    });
 
-Route::prefix('compras')->name('api.')->group(function () {
-    Route::apiResource('pedido', PedidoController::class);
-    Route::apiResource('cotizacion', CotizacionController::class);
-});
+    Route::prefix('compras')->name('api.')->group(function () {
+        Route::apiResource('pedido', PedidoController::class);
+        Route::apiResource('cotizacion', CotizacionController::class);
+    });
 
-Route::prefix('oficios')->name('api.')->group(function () {
-    Route::apiResource('oficios', OficiosController::class);
+    Route::prefix('oficios')->name('api.')->group(function () {
+        Route::apiResource('oficios', OficiosController::class);
+    });
 });

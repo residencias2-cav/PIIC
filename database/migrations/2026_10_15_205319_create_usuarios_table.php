@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('trabajador_id')->constrained()->onDelete('cascade');
             $table->foreignId('gerencia_id')->constrained()->onDelete('cascade');
-            $table->string('usuario', 20);
+            $table->string('usuario', 20)->unique();
             $table->foreignId('tipo_usuario_id')->constrained()->onDelete('cascade');
             $table->boolean('tipos_usuario_ch');
             $table->string('contrasena', 255);

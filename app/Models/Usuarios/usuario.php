@@ -33,7 +33,7 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'contrasena',
         'password',
-        'rememberToken',
+        'remember_Token',
         'two_factor_secret',
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
@@ -61,7 +61,7 @@ class Usuario extends Authenticatable
 
     public function tipoUsuario()
     {
-        return $this->belongsTo(TipoUsuario::class, 'nombre');
+        return $this->belongsTo(TipoUsuario::class);
     }
 
     public function getAuthPasswordName(): string

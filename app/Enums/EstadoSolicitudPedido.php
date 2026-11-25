@@ -4,17 +4,17 @@ namespace App\Enums;
 
 enum EstadoSolicitudPedido: string
 {
-    case BORRADOR = 'BORRADOR';
+    case BORRADOR = 'Borrador';
 
-    case PENDIENTE_GERENCIA =
-        'PENDIENTE_GERENCIA';
+    case RECHAZADO = 'Rechazado';
 
-    case RECHAZADO =
-        'RECHAZADO';
+    case PENDIENTE_GERENCIA = 'Pendiente de gerencia';
 
-    case AUTORIZADO =
-        'AUTORIZADO';
+    case AUTORIZADO = 'Autorizado';
 
-    case ENVIADO_COMPRAS =
-        'ENVIADO_COMPRAS';
+    case ENVIADO_COMPRAS = 'Enviado a Compras';
+
+    case EN_PROCESO = 'En proceso';
+
+    case ATENDIDO = 'Atendido';
 }

@@ -1,6 +1,10 @@
 <?php
 namespace App\Http\Controllers\Api\Compras;
 
+use App\Enums\EstadoSolicitudPedido;
+use App\Models\Usuarios\Usuario;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Models\Compras\Pedido;
 use App\Http\Requests\Compras\{
@@ -28,19 +32,29 @@ class PedidoController extends Controller
     /**
      * Mostrar todos los pedidos mediante API.
      */
+    /**
+ * Mostrar pedidos mediante API.
+ */
     public function index(): JsonResponse
     {
-        $pedidos = Pedido::with([
-            'tipoPedido',
-            'gerencia',
-            'empresa',
-            'proyecto',
-            'ubicacion',
-            'tipoCompra',
-            'estado',
-            'pedidosInternos',
-            'detallesPedido',
-        ])
+        Gate::authorize(
+            'viewAny',
+            Pedido::class
+        );
+
+        $pedidos = $this
+            ->consultaPedidosPermitidos()
+            ->with([
+                'tipoPedido',
+                'gerencia',
+                'empresa',
+                'proyecto',
+                'ubicacion',
+                'tipoCompra',
+                'estado',
+                'pedidosInternos',
+                'detallesPedido',
+            ])
             ->latest('fecha')
             ->get();
 
@@ -53,17 +67,27 @@ class PedidoController extends Controller
     /**
      * Mostrar la vista principal de pedidos.
      */
+    /**
+ * Mostrar la vista principal de pedidos.
+ */
     public function vistaIndex()
     {
-        $pedidos = Pedido::with([
-            'tipoPedido',
-            'gerencia',
-            'empresa',
-            'proyecto',
-            'ubicacion',
-            'tipoCompra',
-            'estado',
-        ])
+        Gate::authorize(
+            'viewAny',
+            Pedido::class
+        );
+
+        $pedidos = $this
+            ->consultaPedidosPermitidos()
+            ->with([
+                'tipoPedido',
+                'gerencia',
+                'empresa',
+                'proyecto',
+                'ubicacion',
+                'tipoCompra',
+                'estado',
+            ])
             ->latest('fecha')
             ->get();
 
@@ -78,21 +102,42 @@ class PedidoController extends Controller
      */
     public function vistaCreate()
     {
-        $tiposPedido = TipoPedido::orderBy('nombre')->get();
-        $gerencias = Gerencia::orderBy('nombre')->get();
-        $empresas = Empresa::orderBy('nombre')->get();
-        $proyectos = Proyecto::orderBy('nombre')->get();
-        $ubicaciones = Ubicacion::orderBy('nombre')->get();
-        $tiposCompra = TipoCompra::orderBy('nombre')->get();
-        $estados = Estado::orderBy('nombre_estado')->get();
+        Gate::authorize(
+            'create',
+            Pedido::class
+        );
 
-        // Catálogo de unidades: tabla unidads.
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
+
+        $tiposPedido = TipoPedido::orderBy('nombre')->get();
+
+        /*
+        * Sólo se envía al formulario la gerencia
+        * del usuario autenticado.
+        */
+        $gerencias = Gerencia::whereKey(
+            $usuario->gerencia_id
+        )->get();
+
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        $proyectos = Proyecto::orderBy('nombre')->get();
+
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+
+        $tiposCompra = TipoCompra::orderBy('nombre')->get();
+
+        $estados = Estado::orderBy(
+            'nombre_estado'
+        )->get();
+
         $unidades = Unidad::orderBy('nombre')->get();
 
-        // Catálogo de tipos de servicio.
-        $tiposServicio = TipoServicio::orderBy('nombre')->get();
+        $tiposServicio = TipoServicio::orderBy(
+            'nombre'
+        )->get();
 
-        // Generar siguiente folio.
         $ultimoNumero = Pedido::withTrashed()
             ->selectRaw(
                 "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
@@ -325,5 +370,38 @@ class PedidoController extends Controller
             'status' => true,
             'message' => 'Pedido eliminado correctamente',
         ], 200);
+    }
+
+    /**
+ * Construye la consulta de pedidos visibles
+ * para el usuario autenticado.
+ */
+    private function consultaPedidosPermitidos(): Builder
+    {
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
+
+        $consulta = Pedido::query();
+
+        if ($usuario->esAdmin() || $usuario->esSubDirector()) {
+            return $consulta;
+        }
+
+        if ($usuario->esSupervisor()) {
+            return $consulta->creadosPor($usuario);
+        }
+
+        if ($usuario->esGerente()) {
+            return $consulta->deGerencia($usuario);
+        }
+
+        if ($usuario->esCompras()) {
+            return $consulta->where(
+                'estado_solicitud',
+                EstadoSolicitudPedido::ENVIADO_COMPRAS->value
+            );
+        }
+
+        abort(403, 'No tienes permiso para consultar pedidos.');
     }
 }

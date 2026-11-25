@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Catalogos\TipoUsuario;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TipoUsuarioSeeder extends Seeder
@@ -13,22 +12,25 @@ class TipoUsuarioSeeder extends Seeder
      */
     public function run(): void
     {
-        $tipousuario = [
-                'ADMIN',
-                'Director',
-                'Supervisor',
-                'Gerente',
-                'Operativo',
-                'Administrativo',
-                'Invitado',
-                'Proveedor',
-                'Compras'
-            ];
+        $tiposUsuario = [
+            'ADMIN',
+            'Director',
+            'Supervisor',
+            'Gerente',
+            'Operativo',
+            'Administrativo',
+            'Invitado',
+            'Proveedor',
+            'Compras',
+        ];
 
-        foreach ($tipousuario as $nombre) {
-                TipoUsuario::firstOrCreate([
-                    'nombre' => $nombre
-                ]);
+        foreach ($tiposUsuario as $nombre) {
+            TipoUsuario::updateOrCreate(
+                [
+                    'nombre' => $nombre,
+                ],
+                []
+            );
         }
     }
 }
