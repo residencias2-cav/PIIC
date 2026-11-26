@@ -23,6 +23,11 @@
                 Ingresa la información general del pedido.
             </p>
         </div>
+
+                <a href="{{ route('pedido.index') }}" class="btn btn-eliminar">
+                    ← Regresar a pedidos
+                </a>
+        
     </header>
 
     @if ($errors->any())
@@ -35,6 +40,7 @@
             </ul>
         </div>
     @endif
+    
 
     <form action="{{ route('pedido.store') }}" method="POST">
         @csrf
@@ -636,18 +642,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // ACTUALIZAR TIPO DE PEDIDO
     function actualizarTipoPedido() {
 
-        const opcion = tipoPedido.options[tipoPedido.selectedIndex];
+        const tipoId = tipoPedido.value;
 
-        const nombre = opcion ? opcion.dataset.nombre : '';
+        // ID 1: Pedido general
+        // ID 2: Pedido interno
+        // ID 3: Pedido almacen
 
         configurarSeccion(
             seccionInterno,
-            nombre === 'pedido int'
+            tipoId === '2'
         );
 
         configurarSeccion(
             seccionAlm,
-            nombre === 'pedido alm'
+            tipoId === '3'
         );
 
         actualizarTodosLosCamposOtro();

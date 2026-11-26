@@ -1,357 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Panel de Pedidos | Grupo CAVI</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-        }
-
-        .app {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 255px 1fr;
-        }
-
-        /* MENÚ */
-
-        .sidebar {
-            background: #ffffff;
-            border-right: 1px solid #e2e8f0;
-            padding: 24px 16px;
-        }
-
-        .marca {
-            padding: 5px 12px 24px;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 22px;
-        }
-
-        .marca strong {
-            color: #991b1b;
-            font-size: 17px;
-        }
-
-        .marca p {
-            margin: 5px 0 0;
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        .menu-titulo {
-            margin: 24px 12px 10px;
-            font-size: 11px;
-            font-weight: 800;
-            color: #94a3b8;
-            letter-spacing: .12em;
-        }
-
-        .menu-opcion {
-            display: block;
-            width: 100%;
-            padding: 10px 12px;
-            margin-bottom: 3px;
-
-            border: 0;
-            border-radius: 8px;
-            background: transparent;
-
-            text-align: left;
-            font-size: 14px;
-            color: #475569;
-            cursor: pointer;
-        }
-
-        .menu-opcion:hover,
-        .menu-opcion.activo {
-            background: #fef2f2;
-            color: #991b1b;
-        }
-
-        .submenu {
-            padding-left: 14px;
-            margin-bottom: 12px;
-        }
-
-        .submenu .menu-opcion {
-            font-size: 13px;
-            padding: 8px 12px;
-        }
-
-        .accion {
-            background: #991b1b;
-            color: white;
-            text-align: center;
-            margin-top: 8px;
-        }
-
-        .accion:hover {
-            background: #7f1d1d;
-            color: white;
-        }
-
-        /* CONTENIDO */
-
-        .contenido {
-            padding: 28px 32px 40px;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 28px;
-        }
-
-        .topbar h1 {
-            margin: 0;
-            font-size: 27px;
-        }
-
-        .topbar p {
-            margin: 6px 0 0;
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .usuario {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 10px 12px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-        }
-
-        .usuario-info {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .usuario-info {
-            font-size: 14px;
-            color: #0f172a
-        }
-
-        .usuario-info small {
-            font-size: 14px;
-            color: #0f172a;
-        }
-
-        .logout-btn {
-            border: 0;
-            border-left: 1px solid #e2e8f0;
-            padding: 7px 10px 7px 14px;
-            background: transparent;
-            color: #991b1b;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .resumen {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(150px, 1fr));
-            gap: 16px;
-            margin-bottom: 26px;
-        }
-
-        .logout-btn:hover {
-            color: #7f1d1d;
-            text-decoration: underline;
-        }
-
-        .tarjeta {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(15, 23, 42, .04);
-        }
-
-        .tarjeta .etiqueta {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .tarjeta .numero {
-            margin-top: 8px;
-            font-size: 30px;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .tarjeta.roja {
-            border-top: 3px solid #991b1b;
-        }
-
-        /* ÁREA DINÁMICA */
-
-        .paneles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 18px;
-        }
-
-        .panel {
-            display: none;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .panel.visible {
-            display: block;
-        }
-
-        .panel-header {
-            padding: 18px 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .panel-header h2 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .panel-header p {
-            margin: 5px 0 0;
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .panel-body {
-            padding: 20px;
-        }
-
-        .filtros {
-            display: grid;
-            grid-template-columns: 1fr 160px;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .filtros input,
-        .filtros select {
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            outline: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 11px 9px;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 13px;
-        }
-
-        th {
-            color: #64748b;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .estado {
-            display: inline-block;
-            border-radius: 999px;
-            padding: 5px 9px;
-            font-size: 11px;
-            font-weight: 700;
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .actividad {
-            margin-top: 26px;
-        }
-
-        .actividad h2 {
-            font-size: 18px;
-        }
-
-        .actividad-item {
-            display: grid;
-            grid-template-columns: 140px 1fr 100px;
-            padding: 13px 0;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 13px;
-        }
-
-        .seguridad-btn {
-            display: inline-flex;
-            align-items: center;
-
-            width: fit-content;
-
-            margin-top: 5px;
-            padding: 5px 9px;
-
-            border: 1px solid #fecaca;
-            border-radius: 7px;
-
-            background: #fef2f2;
-            color: #991b1b;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            text-decoration: none;
-
-            transition:
-                background .15s ease,
-                border-color .15s ease,
-                color .15s ease;
-        }
-
-        .seguridad-btn:hover {
-            background: #991b1b;
-            border-color: #991b1b;
-            color: #ffffff;
-        }
-
-        @media (max-width: 950px) {
-            .app {
-                grid-template-columns: 210px 1fr;
-            }
-
-            .resumen {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .paneles {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
 </head>
-
 <body>
 
 <div class="app">
 
+    {{-- MENÚ LATERAL --}}
     <aside class="sidebar">
 
         <div class="marca">
@@ -359,257 +18,261 @@
             <p>Sistema de Pedidos</p>
         </div>
 
-        <button class="menu-opcion activo" data-panel="inicio">
+        <button type="button" class="menu-opcion activo" data-panel="inicio">
             Inicio
         </button>
 
-        <div class="menu-titulo">
-            PEDIDOS
-        </div>
+        <div class="menu-titulo">PEDIDOS</div>
 
-        <button class="menu-opcion" data-panel="general">
+        <button type="button" class="menu-opcion" data-panel="general">
             Pedido General
         </button>
 
         <div class="submenu">
-            <button class="menu-opcion" data-panel="general">
+            <button type="button" class="menu-opcion" data-panel="general">
                 Actuales
             </button>
-
-            <button class="menu-opcion" data-panel="historial-general">
+            <button type="button" class="menu-opcion" data-panel="historial-general">
                 Historial
             </button>
         </div>
 
-
-        <button class="menu-opcion" data-panel="alm">
+        <button type="button" class="menu-opcion" data-panel="alm">
             Pedido ALM
         </button>
 
         <div class="submenu">
-            <button class="menu-opcion" data-panel="alm">
+            <button type="button" class="menu-opcion" data-panel="alm">
                 Actuales
             </button>
-
-            <button class="menu-opcion" data-panel="historial-alm">
+            <button type="button" class="menu-opcion" data-panel="historial-alm">
                 Historial
             </button>
         </div>
 
-
-        <button class="menu-opcion" data-panel="int">
+        <button type="button" class="menu-opcion" data-panel="int">
             Pedido INT
         </button>
 
         <div class="submenu">
-            <button class="menu-opcion" data-panel="int">
+            <button type="button" class="menu-opcion" data-panel="int">
                 Actuales
             </button>
-
-            <button class="menu-opcion" data-panel="historial-int">
+            <button type="button" class="menu-opcion" data-panel="historial-int">
                 Historial
             </button>
         </div>
 
+        <div class="menu-titulo">OFICIOS</div>
 
-        <div class="menu-titulo">
-            OFICIOS
-        </div>
-
-        <button class="menu-opcion" data-panel="oficios-recibidos">
+        <button type="button" class="menu-opcion" data-panel="oficios-recibidos">
             Recibidos
         </button>
 
-        <button class="menu-opcion" data-panel="oficios-enviados">
+        <button type="button" class="menu-opcion" data-panel="oficios-enviados">
             Enviados
         </button>
 
-        <button class="menu-opcion" data-panel="historial-oficios">
+        <button type="button" class="menu-opcion" data-panel="historial-oficios">
             Historial
-        </button>
-
-
-        <div class="menu-titulo">
-            ACCIONES
-        </div>
-
-        <button class="menu-opcion accion">
-            + Nuevo pedido
-        </button>
-
-        <button class="menu-opcion accion">
-            + Nuevo oficio
         </button>
 
     </aside>
 
-
+    {{-- CONTENIDO PRINCIPAL --}}
     <main class="contenido">
 
         <header class="topbar">
 
-            <div>
+            <div class="titulo-panel">
                 <h1>Panel de trabajo</h1>
-
-                <p>
-                    Selecciona una o varias visualizaciones del menú.
-                </p>
+                <p>Consulta y administra la información del sistema.</p>
             </div>
 
             <div class="usuario">
+
                 <div class="usuario-info">
+
                     <strong>
-                        {{ auth()->user()->trabajador?->nombre ?? 'No hay nombre' }}
+                        {{ $usuario->trabajador?->nombre ?? 'Usuario' }}
+                        {{ $usuario->trabajador?->apellido_paterno ?? '' }}
+                        {{ $usuario->trabajador?->apellido_materno ?? '' }}
                     </strong>
-                    <span style="white-space: nowrap;">
-                        <strong>
-                            {{ auth()->user()->trabajador?->apellido_paterno ?? 'No hay nombre' }}
-                        </strong>
-                        
-                        <strong>
-                            {{ auth()->user()->trabajador?->apellido_materno ?? 'No hay nombre' }}
-                        </strong>
-                    </span>
+
                     <small>
-                        {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
+                        {{ $usuario->gerencia?->nombre ?? 'Sin gerencia' }}
                     </small>
 
-                    <a 
-                        href="{{ route('seguridad') }}"
-                        class="seguridad-btn"
-                        title="Configurar seguridad y autentucación en dos pasos"
-                    >
+                    <a href="{{ route('seguridad') }}" class="seguridad-btn">
                         Seguridad
                     </a>
 
                 </div>
-                
-                <form
-                method="POST"
-                action="{{ route('logout') }}"
-                >
-                @csrf
-                
-                <button
-                type="submit"
-                class="logout-btn"
-                title="Cerrar sesión"
-                >
-                Cerrar sesión
-                </button>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button type="submit" class="logout-btn">
+                        Cerrar sesión
+                    </button>
                 </form>
+
             </div>
 
-            {{--
-            {{ auth()->user()->usuario }}
-            {{ auth()->user()->gerencia?->nombre ?? 'Sin gerencia' }}
-            --}}
-            
         </header>
 
+        {{-- INICIO --}}
+        <section id="inicio" class="inicio">
 
-        {{-- =====================================================
-             INICIO
-             ===================================================== --}}
+            {{-- ACCESOS RÁPIDOS DEL SUPERVISOR --}}
+            @if($usuario->esSupervisor())
 
-        <section id="inicio">
+                <section class="tarjeta actividad">
 
+                    <h2>Accesos rápidos</h2>
+
+                    <p>
+                        Desde aquí puedes registrar nuevos documentos y solicitudes.
+                    </p>
+
+                    <div class="acciones-rapidas">
+
+                        <a href="{{ route('pedido.create') }}" class="menu-opcion">
+                            Crear pedido
+                        </a>
+
+                        <a href="{{ route('epp.create') }}" class="menu-opcion">
+                            Crear solicitud de EPP
+                        </a>
+
+                        <a href="{{ route('oficios.create') }}" class="menu-opcion">
+                            Crear oficio
+                        </a>
+
+                    </div>
+
+                    <p>
+                        En el formulario de pedidos podrás seleccionar el tipo:
+                        General, Interno o Almacén.
+                    </p>
+
+                </section>
+
+            @endif
+
+            {{-- RESUMEN DE PEDIDOS --}}
             <div class="resumen">
 
                 <article class="tarjeta roja">
-                    <span class="etiqueta">
-                        Pedido General
-                    </span>
-
-                    <div class="numero">
-                        12
-                    </div>
-
-                    <small>Pedidos activos</small>
+                    <span class="etiqueta">Pedido General</span>
+                    <div class="numero">{{ $pedidosGeneral }}</div>
+                    <small>Pedidos registrados</small>
                 </article>
 
-
                 <article class="tarjeta roja">
-                    <span class="etiqueta">
-                        Pedido ALM
-                    </span>
-
-                    <div class="numero">
-                        7
-                    </div>
-
-                    <small>Pedidos activos</small>
+                    <span class="etiqueta">Pedido ALM</span>
+                    <div class="numero">{{ $pedidosAlm }}</div>
+                    <small>Pedidos registrados</small>
                 </article>
 
-
                 <article class="tarjeta roja">
-                    <span class="etiqueta">
-                        Pedido INT
-                    </span>
-
-                    <div class="numero">
-                        4
-                    </div>
-
-                    <small>Pedidos activos</small>
+                    <span class="etiqueta">Pedido INT</span>
+                    <div class="numero">{{ $pedidosInt }}</div>
+                    <small>Pedidos registrados</small>
                 </article>
 
-
                 <article class="tarjeta roja">
-                    <span class="etiqueta">
-                        Oficios recibidos
-                    </span>
-
-                    <div class="numero">
-                        3
-                    </div>
-
-                    <small>Pendientes</small>
+                    <span class="etiqueta">Total de pedidos</span>
+                    <div class="numero">{{ $totalPedidos }}</div>
+                    <small>Pedidos visibles</small>
                 </article>
 
             </div>
 
-
+            {{-- ACTIVIDAD RECIENTE --}}
             <section class="tarjeta actividad">
 
-                <h2>
-                    Actividad reciente
-                </h2>
+                <h2>Actividad reciente</h2>
 
-                <div class="actividad-item">
-                    <strong>Pedido General</strong>
-                    <span>PG-028</span>
-                    <span class="estado">Pendiente</span>
-                </div>
+                @forelse($actividadReciente as $pedido)
 
-                <div class="actividad-item">
-                    <strong>Pedido ALM</strong>
-                    <span>ALM-015</span>
-                    <span class="estado">Autorizado</span>
-                </div>
+                    <div class="actividad-item">
 
-                <div class="actividad-item">
-                    <strong>Oficio</strong>
-                    <span>OF-041</span>
-                    <span class="estado">Recibido</span>
-                </div>
+                        <strong>
+                            {{ $pedido->tipoPedido?->nombre ?? 'Pedido' }}
+                        </strong>
+
+                        <span>{{ $pedido->folio }}</span>
+
+                        <span class="estado">
+                            {{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}
+                        </span>
+
+                    </div>
+
+                @empty
+
+                    <div class="estado-vacio">
+                        No hay pedidos registrados.
+                    </div>
+
+                @endforelse
 
             </section>
 
+            {{-- NOTIFICACIONES DE AUTORIZACIÓN --}}
+            @if($usuario->esGerente())
+
+                <section class="tarjeta actividad">
+
+                    <h2>Autorizaciones pendientes</h2>
+
+                    @forelse($autorizaciones as $autorizacion)
+
+                        <div class="notificacion">
+
+                            <div>
+                                <strong>
+                                    Pedido:
+                                    {{ $autorizacion->pedido?->folio ?? 'Sin folio' }}
+                                </strong>
+
+                                <p>
+                                    {{ $autorizacion->pedido?->tipoPedido?->nombre ?? 'Pedido' }}
+                                    -
+                                    {{ $autorizacion->pedido?->gerencia?->nombre ?? 'Sin gerencia' }}
+                                </p>
+                            </div>
+
+                            <span class="estado">
+                                Pendiente
+                            </span>
+
+                        </div>
+
+                    @empty
+
+                        <div class="estado-vacio">
+                            No hay autorizaciones pendientes.
+                        </div>
+
+                    @endforelse
+
+                </section>
+
+            @endif
+
         </section>
 
-
-        {{-- =====================================================
-             PANELES SELECCIONABLES
-             ===================================================== --}}
-
+        {{-- PANELES DE PEDIDOS --}}
         <section class="paneles">
 
+            {{-- PEDIDO GENERAL --}}
             <article class="panel" id="general">
 
                 <header class="panel-header">
                     <h2>Pedido General</h2>
-                    <p>Pedidos actuales de la gerencia.</p>
+                    <p>Pedidos generales registrados.</p>
                 </header>
 
                 <div class="panel-body">
@@ -618,154 +281,371 @@
                         <input
                             type="search"
                             placeholder="Buscar pedido..."
+                            data-busqueda="tabla-general"
                         >
-
-                        <select>
-                            <option>Todos</option>
-                            <option>Pendiente</option>
-                            <option>Autorizado</option>
-                        </select>
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Folio</th>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
+                    <div class="tabla-responsive">
+                        <table id="tabla-general">
 
-                        <tbody>
-                            <tr>
-                                <td>PG-028</td>
-                                <td>Material para obra</td>
-                                <td>
-                                    <span class="estado">
-                                        Pendiente
-                                    </span>
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
 
-                            <tr>
-                                <td>PG-027</td>
-                                <td>Equipo de oficina</td>
-                                <td>
-                                    <span class="estado">
-                                        Autorizado
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 1) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+
+                                        <td>
+                                            {{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}
+                                        </td>
+
+                                        <td>
+                                            {{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}
+                                        </td>
+
+                                        <td>
+                                            <span class="estado">
+                                                {{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos generales.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
 
                 </div>
 
             </article>
 
-
+            {{-- HISTORIAL GENERAL --}}
             <article class="panel" id="historial-general">
 
                 <header class="panel-header">
                     <h2>Historial de Pedido General</h2>
-                    <p>Pedidos finalizados o anteriores.</p>
+                    <p>Consulta de pedidos generales registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Historial de ejemplo de Pedido General.
+
+                    <div class="tabla-responsive">
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 1) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+                                        <td>{{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}</td>
+                                        <td>{{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}</td>
+                                        <td>{{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}</td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos generales registrados.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </article>
 
-
+            {{-- PEDIDO ALM --}}
             <article class="panel" id="alm">
 
                 <header class="panel-header">
                     <h2>Pedido ALM</h2>
-                    <p>Pedidos de almacén disponibles.</p>
+                    <p>Pedidos de almacén registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Contenido de Pedido ALM.
+
+                    <div class="filtros">
+                        <input
+                            type="search"
+                            placeholder="Buscar pedido..."
+                            data-busqueda="tabla-alm"
+                        >
+                    </div>
+
+                    <div class="tabla-responsive">
+                        <table id="tabla-alm">
+
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 3) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+                                        <td>{{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}</td>
+                                        <td>{{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}</td>
+                                        <td>{{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}</td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos de almacén.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </article>
 
-
+            {{-- HISTORIAL ALM --}}
             <article class="panel" id="historial-alm">
 
                 <header class="panel-header">
                     <h2>Historial Pedido ALM</h2>
+                    <p>Consulta de pedidos de almacén registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Historial de ALM.
+
+                    <div class="tabla-responsive">
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 3) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+                                        <td>{{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}</td>
+                                        <td>{{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}</td>
+                                        <td>{{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}</td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos de almacén registrados.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </article>
 
-
+            {{-- PEDIDO INT --}}
             <article class="panel" id="int">
 
                 <header class="panel-header">
                     <h2>Pedido INT</h2>
-                    <p>Pedidos internos.</p>
+                    <p>Pedidos internos registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Contenido de Pedido INT.
+
+                    <div class="filtros">
+                        <input
+                            type="search"
+                            placeholder="Buscar pedido..."
+                            data-busqueda="tabla-int"
+                        >
+                    </div>
+
+                    <div class="tabla-responsive">
+                        <table id="tabla-int">
+
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 2) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+                                        <td>{{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}</td>
+                                        <td>{{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}</td>
+                                        <td>{{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}</td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos internos.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </article>
 
-
+            {{-- HISTORIAL INT --}}
             <article class="panel" id="historial-int">
 
                 <header class="panel-header">
                     <h2>Historial Pedido INT</h2>
+                    <p>Consulta de pedidos internos registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Historial de INT.
+
+                    <div class="tabla-responsive">
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Fecha</th>
+                                    <th>Gerencia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse($pedidos->where('tipo_pedido_id', 2) as $pedido)
+
+                                    <tr>
+                                        <td>{{ $pedido->folio }}</td>
+                                        <td>{{ $pedido->fecha?->format('d/m/Y') ?? 'Sin fecha' }}</td>
+                                        <td>{{ $pedido->gerencia?->nombre ?? 'Sin gerencia' }}</td>
+                                        <td>{{ $pedido->estado_solicitud?->value ?? 'Sin estado' }}</td>
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="4" class="sin-registros">
+                                            No hay pedidos internos registrados.
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </article>
 
-
+            {{-- OFICIOS RECIBIDOS --}}
             <article class="panel" id="oficios-recibidos">
 
                 <header class="panel-header">
                     <h2>Oficios recibidos</h2>
+                    <p>Consulta de oficios recibidos.</p>
                 </header>
 
                 <div class="panel-body">
-                    Oficios recibidos aparecerán aquí.
+                    <div class="estado-vacio">
+                        La información de oficios se conectará con su módulo correspondiente.
+                    </div>
                 </div>
 
             </article>
 
-
+            {{-- OFICIOS ENVIADOS --}}
             <article class="panel" id="oficios-enviados">
 
                 <header class="panel-header">
                     <h2>Oficios enviados</h2>
+                    <p>Consulta de oficios enviados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Oficios enviados aparecerán aquí.
+                    <div class="estado-vacio">
+                        La información de oficios se conectará con su módulo correspondiente.
+                    </div>
                 </div>
 
             </article>
 
-
+            {{-- HISTORIAL DE OFICIOS --}}
             <article class="panel" id="historial-oficios">
 
                 <header class="panel-header">
                     <h2>Historial de Oficios</h2>
+                    <p>Consulta de oficios registrados.</p>
                 </header>
 
                 <div class="panel-body">
-                    Historial de oficios aparecerá aquí.
+                    <div class="estado-vacio">
+                        El historial se conectará con el módulo de oficios.
+                    </div>
                 </div>
 
             </article>
@@ -776,63 +656,67 @@
 
 </div>
 
-
+{{-- FUNCIONAMIENTO DEL MENÚ Y BÚSQUEDAS --}}
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 
     const botones = document.querySelectorAll('[data-panel]');
-    const panelInicio = document.getElementById('inicio');
+    const inicio = document.getElementById('inicio');
+    const paneles = document.querySelectorAll('.panel');
 
-    botones.forEach((boton) => {
+    function mostrarPanel(panelId) {
 
-        boton.addEventListener('click', () => {
+        inicio.style.display = panelId === 'inicio' ? 'block' : 'none';
 
-            const panelId = boton.dataset.panel;
+        paneles.forEach(function (panel) {
+            panel.classList.toggle('visible', panel.id === panelId);
+        });
 
-            /*
-             * Inicio funciona distinto:
-             * oculta todos los paneles y muestra
-             * nuevamente el resumen.
-             */
-            if (panelId === 'inicio') {
+        botones.forEach(function (boton) {
+            boton.classList.toggle('activo', boton.dataset.panel === panelId);
+        });
 
-                document
-                    .querySelectorAll('.panel')
-                    .forEach((panel) => {
-                        panel.classList.remove('visible');
-                    });
+    }
 
-                panelInicio.style.display = 'block';
+    botones.forEach(function (boton) {
 
+        boton.addEventListener('click', function () {
+            mostrarPanel(boton.dataset.panel);
+        });
+
+    });
+
+    // Búsqueda de registros en las tablas
+    document.querySelectorAll('[data-busqueda]').forEach(function (input) {
+
+        input.addEventListener('input', function () {
+
+            const tablaId = input.dataset.busqueda;
+            const tabla = document.getElementById(tablaId);
+
+            if (!tabla) {
                 return;
             }
 
+            const texto = input.value.toLowerCase().trim();
 
-            const panel = document.getElementById(panelId);
+            tabla.querySelectorAll('tbody tr').forEach(function (fila) {
 
-            if (!panel) {
-                return;
-            }
+                fila.style.display = fila.textContent.toLowerCase().includes(texto)
+                    ? ''
+                    : 'none';
 
-
-            /*
-             * Al seleccionar cualquier visualización,
-             * ocultamos el resumen inicial.
-             */
-            panelInicio.style.display = 'none';
-
-
-            /*
-             * Permite seleccionar varias visualizaciones
-             * simultáneamente.
-             */
-            panel.classList.toggle('visible');
+            });
 
         });
 
     });
 
+    // Mostrar Inicio al entrar al panel
+    mostrarPanel('inicio');
+
+});
 </script>
 
 </body>
-
 </html>

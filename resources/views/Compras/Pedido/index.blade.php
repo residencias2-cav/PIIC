@@ -37,13 +37,23 @@
 
         </div>
 
+        <div class="acciones">
 
-        <a
-            href="{{ route('pedido.create') }}"
-            class="btn btn-principal"
-        >
-            Nuevo pedido
-        </a>
+            <a
+                href="{{ route('pedido.create') }}"
+                class="btn btn-principal"
+            >
+                Nuevo pedido
+            </a>
+
+            <a
+                href="{{ route('panel') }}"
+                class="btn btn-eliminar"
+            >
+                ← Regresar al panel
+            </a>
+
+        </div>
 
     </header>
 
@@ -122,25 +132,16 @@
                                 <div class="acciones">
 
                                     <a
-                                        href="{{ route(
-                                            'pedido.edit',
-                                            $pedido
-                                        ) }}"
+                                        href="{{ route('pedido.edit', $pedido) }}"
                                         class="btn btn-editar"
                                     >
                                         Editar
                                     </a>
 
-
                                     <form
-                                        action="{{ route(
-                                            'pedido.destroy',
-                                            $pedido
-                                        ) }}"
+                                        action="{{ route('pedido.destroy', $pedido) }}"
                                         method="POST"
-                                        onsubmit="return confirm(
-                                            '¿Deseas eliminar este pedido?'
-                                        );"
+                                        onsubmit="return confirm('¿Deseas eliminar este pedido?');"
                                     >
 
                                         @csrf
@@ -165,10 +166,7 @@
 
                         <tr>
 
-                            <td
-                                colspan="9"
-                                class="estado-vacio"
-                            >
+                            <td colspan="9" class="estado-vacio">
 
                                 <p class="estado-vacio-titulo">
                                     No hay pedidos registrados

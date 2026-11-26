@@ -5,6 +5,7 @@ namespace App\Models\Compras;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Usuarios\Usuario;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Compras\Pedido;
 
 class Autorizacion extends Model
 {

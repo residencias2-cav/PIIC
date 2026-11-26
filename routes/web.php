@@ -40,6 +40,7 @@ use App\Http\Controllers\Api\Oficios\{
     OficiosController,
     MantenimientosController,
     };
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\Auth\LoginController;
     /*
     |--------------
@@ -93,17 +94,16 @@ Route::get('/inicio', function () {
 /*Route::view('/panel', 'auth.panel')
     ->name('panel');*/
 
-Route::get('/panel', function () {
+/*Route::get('/panel', function () {
     return view('auth.panel');
 })
     ->middleware('auth')
-    ->name('panel');
+    ->name('panel');*/
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/panel', function () {
-        return view('auth.panel');
-    })->name('panel');
+    Route::get('/panel', [PanelController::class, 'index'])
+        ->name('panel');
 
     Route::get('/seguridad', function () {
         return view('auth.seguridad');
