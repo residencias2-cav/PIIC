@@ -26,21 +26,20 @@ class Mantenimientos extends Model
         'descripcion',
         'material_necesario',
         'autorizado_por_id',
-        'surtido'
+        'surtido',
     ];
 
     protected function casts(): array
     {
         return [
-            'fecha' => 'datetime',
-            'folio' => 'integer',
-            'surtido' => 'boolean'
+            'fecha' => 'date',
+            'surtido' => 'boolean',
         ];
     }
 
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function pedido()

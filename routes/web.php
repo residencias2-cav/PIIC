@@ -33,9 +33,12 @@ use App\Http\Controllers\Api\Compras\{
     AutorizadoPorController,
     FolioComprasController,
     PagoController,
+    AutorizacionController,
+    DatosCotizacionController,
     };
 use App\Http\Controllers\Api\Oficios\{
     OficiosController,
+    MantenimientosController,
     };
 use App\Http\Controllers\Auth\LoginController;
     /*
@@ -326,6 +329,32 @@ Route::put('/pago/{pago}', [PagoController::class, 'update'])
     ->name('pago.update');
 Route::delete('/pago/{pago}', [PagoController::class, 'destroy'])
     ->name('pago.destroy');
+
+Route::get('/autorizacion',[AutorizacionController::class, 'vistaIndex'])
+    ->name('autorizacion.index');
+Route::get('/autorizacion/create',[AutorizacionController::class, 'vistaCreate'])
+    ->name('autorizacion.create');
+Route::get('/autorizacion/{autorizacion}/edit',[AutorizacionController::class, 'vistaEdit'])
+    ->name('autorizacion.edit');
+Route::post('/autorizacion',[AutorizacionController::class, 'store'])
+    ->name('autorizacion.store');
+Route::put('/autorizacion/{autorizacion}',[AutorizacionController::class, 'update'])
+    ->name('autorizacion.update');
+Route::delete('/autorizacion/{autorizacion}',[AutorizacionController::class, 'destroy'])
+    ->name('autorizacion.destroy');
+
+Route::get('/datos_cotizacion',[DatosCotizacionController::class, 'vistaIndex'])
+    ->name('datos_cotizacion.index');
+Route::get('/datos_cotizacion/create',[DatosCotizacionController::class, 'vistaCreate'])
+    ->name('datos_cotizacion.create');
+Route::get('/datos_cotizacion/{datos_cotizacion}/edit',[DatosCotizacionController::class, 'vistaEdit'])
+    ->name('datos_cotizacion.edit');
+Route::post('/datos_cotizacion',[DatosCotizacionController::class, 'store'])
+    ->name('datos_cotizacion.store');
+Route::put('/datos_cotizacion/{datos_cotizacion}',[DatosCotizacionController::class, 'update'])
+    ->name('datos_cotizacion.update');
+Route::delete('/datos_cotizacion/{datos_cotizacion}',[DatosCotizacionController::class, 'destroy'])
+    ->name('datos_cotizacion.destroy');
     /*
     |--------------
     | EPP
@@ -373,6 +402,19 @@ Route::put('/oficios/{oficios}',[OficiosController::class, 'update'])
     ->name('oficios.update');
 Route::delete('/oficios/{oficios}',[OficiosController::class, 'destroy'])
     ->name('oficios.destroy');
+
+Route::get('/mantenimientos',[MantenimientosController::class, 'vistaIndex'])
+    ->name('mantenimientos.index');
+Route::get('/mantenimientos/create',[MantenimientosController::class, 'vistaCreate'])
+    ->name('mantenimientos.create');
+Route::get('/mantenimientos/{mantenimientos}/edit',[MantenimientosController::class, 'vistaEdit'])
+    ->name('mantenimientos.edit');
+Route::post('/mantenimientos',[MantenimientosController::class, 'store'])
+    ->name('mantenimientos.store');
+Route::put('/mantenimientos/{mantenimientos}',[MantenimientosController::class, 'update'])
+    ->name('mantenimientos.update');
+Route::delete('/mantenimientos/{mantenimientos}',[MantenimientosController::class, 'destroy'])
+    ->name('mantenimientos.destroy');
     /*
     |--------------
     | PROVEEDORES

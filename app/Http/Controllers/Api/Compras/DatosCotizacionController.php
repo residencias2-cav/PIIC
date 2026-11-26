@@ -1,65 +1,92 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Compras;
 
+use App\Http\Controllers\Controller;
 use App\Models\Compras\DatosCotizacion;
+use App\Models\Compras\Cotizacion;
+use App\Models\Catalogos\Unidad;
 use Illuminate\Http\Request;
 
 class DatosCotizacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function vistaIndex()
     {
-        //
+        $datosCotizacion = DatosCotizacion::with([
+            'cotizacion',
+            'unidad'
+        ])
+            ->orderByDesc('id')
+            ->paginate(10);
+
+        return view('Compras.DatosCotizacion.index', compact('datosCotizacion'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function vistaCreate()
     {
-        //
+        $cotizaciones = Cotizacion::orderByDesc('id')->get();
+        $unidades = Unidad::orderBy('nombre')->get();
+
+        return view('Compras.DatosCotizacion.create', compact(
+            'cotizaciones',
+            'unidades'
+        ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'cotizacion_id' => 'required|exists:cotizacions,id',
+            'unidad_id' => 'required|exists:unidads,id',
+            'descripcion' => 'required|string|max:150',
+            'codigo' => 'required|string|max:150',
+            'entregado' => 'required|boolean',
+            'fecha_r' => 'required|string|max:150',
+        ]);
+
+        DatosCotizacion::create($datos);
+
+        return redirect()
+            ->route('datos_cotizacion.index')
+            ->with('success', 'Dato de cotización registrado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(DatosCotizacion $datos_cotizacion)
+    public function vistaEdit(DatosCotizacion $datos_cotizacion)
     {
-        //
+        $cotizaciones = Cotizacion::orderByDesc('id')->get();
+        $unidades = Unidad::orderBy('nombre')->get();
+
+        return view('Compras.DatosCotizacion.edit', compact(
+            'datos_cotizacion',
+            'cotizaciones',
+            'unidades'
+        ));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DatosCotizacion $datos_cotizacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, DatosCotizacion $datos_cotizacion)
     {
-        //
+        $datos = $request->validate([
+            'cotizacion_id' => 'required|exists:cotizacions,id',
+            'unidad_id' => 'required|exists:unidads,id',
+            'descripcion' => 'required|string|max:150',
+            'codigo' => 'required|string|max:150',
+            'entregado' => 'required|boolean',
+            'fecha_r' => 'required|string|max:150',
+        ]);
+
+        $datos_cotizacion->update($datos);
+
+        return redirect()
+            ->route('datos_cotizacion.index')
+            ->with('success', 'Dato de cotización actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(DatosCotizacion $datos_cotizacion)
     {
-        //
+        $datos_cotizacion->delete();
+
+        return redirect()
+            ->route('datos_cotizacion.index')
+            ->with('success', 'Dato de cotización eliminado correctamente.');
     }
 }
