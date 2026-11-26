@@ -1,65 +1,87 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Compras;
 
+use App\Http\Controllers\Controller;
 use App\Models\Compras\Autorizacion;
 use Illuminate\Http\Request;
 
 class AutorizacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function vistaIndex()
     {
-        //
+        $autorizaciones = Autorizacion::with([
+            'usuario.trabajador',
+            'pedido'
+        ])
+            ->where('proceso_autorizado', false)
+            ->orderByDesc('id')
+            ->paginate(10);
+
+        return view('Compras.Autorizacion.index', compact('autorizaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function vistaCreate()
     {
-        //
+        return redirect()->route('autorizacion.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        return redirect()
+            ->route('autorizacion.index')
+            ->with('error', 'Las autorizaciones se generan mediante el proceso de pedidos.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Autorizacion $autorizacion)
+    
+    public function vistaEdit(Autorizacion $autorizacion)
     {
-        //
+        if ($autorizacion->proceso_autorizado) {
+            return redirect()
+                ->route('autorizacion.index')
+                ->with('error', 'Esta autorización ya fue procesada.');
+        }
+
+        $autorizacion->load([
+            'usuario.trabajador',
+            'pedido.tipoPedido',
+            'pedido.gerencia',
+            'pedido.empresa',
+            'pedido.detallesPedido.unidad',
+            'pedido.pedidosInternos.tipoServicio'
+        ]);
+
+        return view('Compras.Autorizacion.edit', compact('autorizacion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Autorizacion $autorizacion)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Autorizacion $autorizacion)
     {
-        //
+        if ($autorizacion->proceso_autorizado) {
+            return redirect()
+                ->route('autorizacion.index')
+                ->with('error', 'Esta autorización ya fue procesada.');
+        }
+
+        $datos = $request->validate([
+            'observaciones' => 'nullable|string|max:150',
+        ]);
+
+        $autorizacion->update([
+            'proceso_autorizado' => true,
+            'fecha_autorizacion' => now()->format('d/m/Y H:i'),
+            'observaciones' => $datos['observaciones'] ?? $autorizacion->observaciones,
+        ]);
+
+        return redirect()
+            ->route('autorizacion.index')
+            ->with('success', 'El pedido fue autorizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Autorizacion $autorizacion)
     {
-        //
+        return redirect()
+            ->route('autorizacion.index')
+            ->with('error', 'No se permite eliminar autorizaciones desde este módulo.');
     }
 }
