@@ -2,6 +2,7 @@
 
 namespace App\Models\Compras;
 
+use App\Enums\EstadoSolicitudPedido;
 use App\Models\Catalogos\{
     Empresa,
     Estado,
@@ -21,8 +22,6 @@ use App\Models\Epp\Categoria;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
 use App\Models\Usuarios\Usuario;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -43,6 +42,7 @@ class Pedido extends Model
         'ubicacion_id',
         'tipo_compra_id',
         'estado_id',
+        'estado_solicitud',
         'observaciones',
         'monto_credito',
         'monto',
@@ -53,7 +53,9 @@ class Pedido extends Model
     {
         return [
             'fecha' => 'date',
+            'estado_solicitud'=>EstadoSolicitudPedido::class,
             'monto_credito' => 'integer',
+            'monto' => 'integer',
             'created_by' => 'integer',
         ];
     }

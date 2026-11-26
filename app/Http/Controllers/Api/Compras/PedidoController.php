@@ -1,6 +1,10 @@
 <?php
 namespace App\Http\Controllers\Api\Compras;
 
+use App\Enums\EstadoSolicitudPedido;
+use App\Models\Usuarios\Usuario;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Models\Compras\Pedido;
 use App\Http\Requests\Compras\{
@@ -28,19 +32,29 @@ class PedidoController extends Controller
     /**
      * Mostrar todos los pedidos mediante API.
      */
+    /**
+ * Mostrar pedidos mediante API.
+ */
     public function index(): JsonResponse
     {
-        $pedidos = Pedido::with([
-            'tipoPedido',
-            'gerencia',
-            'empresa',
-            'proyecto',
-            'ubicacion',
-            'tipoCompra',
-            'estado',
-            'pedidosInternos',
-            'detallesPedido',
-        ])
+        Gate::authorize(
+            'viewAny',
+            Pedido::class
+        );
+
+        $pedidos = $this
+            ->consultaPedidosPermitidos()
+            ->with([
+                'tipoPedido',
+                'gerencia',
+                'empresa',
+                'proyecto',
+                'ubicacion',
+                'tipoCompra',
+                'estado',
+                'pedidosInternos',
+                'detallesPedido',
+            ])
             ->latest('fecha')
             ->get();
 
@@ -53,17 +67,27 @@ class PedidoController extends Controller
     /**
      * Mostrar la vista principal de pedidos.
      */
+    /**
+ * Mostrar la vista principal de pedidos.
+ */
     public function vistaIndex()
     {
-        $pedidos = Pedido::with([
-            'tipoPedido',
-            'gerencia',
-            'empresa',
-            'proyecto',
-            'ubicacion',
-            'tipoCompra',
-            'estado',
-        ])
+        Gate::authorize(
+            'viewAny',
+            Pedido::class
+        );
+
+        $pedidos = $this
+            ->consultaPedidosPermitidos()
+            ->with([
+                'tipoPedido',
+                'gerencia',
+                'empresa',
+                'proyecto',
+                'ubicacion',
+                'tipoCompra',
+                'estado',
+            ])
             ->latest('fecha')
             ->get();
 
@@ -78,21 +102,42 @@ class PedidoController extends Controller
      */
     public function vistaCreate()
     {
-        $tiposPedido = TipoPedido::orderBy('nombre')->get();
-        $gerencias = Gerencia::orderBy('nombre')->get();
-        $empresas = Empresa::orderBy('nombre')->get();
-        $proyectos = Proyecto::orderBy('nombre')->get();
-        $ubicaciones = Ubicacion::orderBy('nombre')->get();
-        $tiposCompra = TipoCompra::orderBy('nombre')->get();
-        $estados = Estado::orderBy('nombre_estado')->get();
+        Gate::authorize(
+            'create',
+            Pedido::class
+        );
 
-        // Catálogo de unidades: tabla unidads.
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
+
+        $tiposPedido = TipoPedido::orderBy('nombre')->get();
+
+        /*
+        * Sólo se envía al formulario la gerencia
+        * del usuario autenticado.
+        */
+        $gerencias = Gerencia::whereKey(
+            $usuario->gerencia_id
+        )->get();
+
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        $proyectos = Proyecto::orderBy('nombre')->get();
+
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+
+        $tiposCompra = TipoCompra::orderBy('nombre')->get();
+
+        $estados = Estado::orderBy(
+            'nombre_estado'
+        )->get();
+
         $unidades = Unidad::orderBy('nombre')->get();
 
-        // Catálogo de tipos de servicio.
-        $tiposServicio = TipoServicio::orderBy('nombre')->get();
+        $tiposServicio = TipoServicio::orderBy(
+            'nombre'
+        )->get();
 
-        // Generar siguiente folio.
         $ultimoNumero = Pedido::withTrashed()
             ->selectRaw(
                 "MAX(CAST(SUBSTRING(folio, 5) AS UNSIGNED)) AS ultimo"
@@ -128,21 +173,51 @@ class PedidoController extends Controller
     /**
      * Mostrar formulario de edición.
      */
+    /**
+ * Mostrar formulario de edición.
+ */
     public function vistaEdit(Pedido $pedido)
     {
-        $tiposPedido = TipoPedido::orderBy('nombre')->get();
-        $gerencias = Gerencia::orderBy('nombre')->get();
-        $empresas = Empresa::orderBy('nombre')->get();
-        $proyectos = Proyecto::orderBy('nombre')->get();
-        $ubicaciones = Ubicacion::orderBy('nombre')->get();
-        $tiposCompra = TipoCompra::orderBy('nombre')->get();
-        $estados = Estado::orderBy('nombre_estado')->get();
+        Gate::authorize(
+            'update',
+            $pedido
+        );
 
-        // Catálogo de unidades: tabla unidads.
+        $tiposPedido = TipoPedido::orderBy('nombre')->get();
+
+        $gerencias = Gerencia::whereKey(
+            Auth::user()->gerencia_id
+        )->get();
+
+        $empresas = Empresa::orderBy('nombre')->get();
+
+        $proyectos = Proyecto::orderBy('nombre')->get();
+
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+
+        $tiposCompra = TipoCompra::orderBy('nombre')->get();
+
+        $estados = Estado::orderBy(
+            'nombre_estado'
+        )->get();
+
         $unidades = Unidad::orderBy('nombre')->get();
 
-        // Catálogo de tipos de servicio.
-        $tiposServicio = TipoServicio::orderBy('nombre')->get();
+        $tiposServicio = TipoServicio::orderBy(
+            'nombre'
+        )->get();
+
+        $pedido->load([
+            'tipoPedido',
+            'gerencia',
+            'empresa',
+            'proyecto',
+            'ubicacion',
+            'tipoCompra',
+            'estado',
+            'pedidosInternos',
+            'detallesPedido',
+        ]);
 
         return view(
             'Compras.Pedido.edit',
@@ -164,13 +239,48 @@ class PedidoController extends Controller
     /**
      * Mostrar los pedidos mediante API.
      */
-    public function create()
+    public function create(): JsonResponse
     {
-        $pedido = Pedido::all();
+        Gate::authorize(
+            'create',
+            Pedido::class
+        );
+
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
 
         return response()->json([
             'status' => true,
-            'data' => $pedido,
+            'data' => [
+                'tipos_pedido' =>
+                    TipoPedido::orderBy('nombre')->get(),
+
+                'gerencia' =>
+                    Gerencia::findOrFail(
+                        $usuario->gerencia_id
+                    ),
+
+                'empresas' =>
+                    Empresa::orderBy('nombre')->get(),
+
+                'proyectos' =>
+                    Proyecto::orderBy('nombre')->get(),
+
+                'ubicaciones' =>
+                    Ubicacion::orderBy('nombre')->get(),
+
+                'tipos_compra' =>
+                    TipoCompra::orderBy('nombre')->get(),
+
+                'estados' =>
+                    Estado::orderBy('nombre_estado')->get(),
+
+                'unidades' =>
+                    Unidad::orderBy('nombre')->get(),
+
+                'tipos_servicio' =>
+                    TipoServicio::orderBy('nombre')->get(),
+            ],
         ], 200);
     }
 
@@ -186,59 +296,66 @@ class PedidoController extends Controller
      * Pedido ALM:
      * Guarda en pedidos y detalle_pedidos.
      */
+    /**
+ * Registrar un pedido.
+ */
     public function store(StorePedidoRequest $request)
     {
-        $pedido = DB::transaction(function () use ($request) {
+        Gate::authorize(
+            'create',
+            Pedido::class
+        );
 
-            // Obtener únicamente los datos validados.
-            $datos = $request->validated();
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
 
-            // Separar los datos del pedido principal.
-            $pedidoInterno = $datos['pedido_interno'] ?? null;
-            $detalles = $datos['detalles'] ?? null;
+        $pedido = DB::transaction(
+            function () use ($request, $usuario) {
 
-            // Evitar que los datos secundarios lleguen
-            // directamente al modelo Pedido.
-            unset(
-                $datos['pedido_interno'],
-                $datos['detalles']
-            );
+                $datos = $request->validated();
 
-            // Registrar quién creó el pedido.
-            $datos['created_by'] = Auth::id();
+                $pedidoInterno =
+                    $datos['pedido_interno'] ?? null;
 
-            // Crear el pedido principal.
-            $pedido = Pedido::create($datos);
+                $detalles =
+                    $datos['detalles'] ?? null;
 
-            // =====================================
-            // GUARDAR PEDIDO INTERNO
-            // =====================================
-
-            if ($pedidoInterno !== null) {
-
-                $pedido->pedidosInternos()->create(
-                    $pedidoInterno
+                unset(
+                    $datos['pedido_interno'],
+                    $datos['detalles']
                 );
-            }
 
-            // =====================================
-            // GUARDAR DETALLES DEL PEDIDO ALM
-            // =====================================
+                /*
+                * Estos datos no se confían al formulario.
+                */
+                $datos['created_by'] = $usuario->id;
 
-            if ($detalles !== null) {
+                $datos['gerencia_id'] =
+                    $usuario->gerencia_id;
 
-                foreach ($detalles as $detalle) {
+                $datos['estado_solicitud'] =
+                    EstadoSolicitudPedido::BORRADOR;
 
-                    $pedido->detallesPedido()->create(
-                        $detalle
+                $pedido = Pedido::create($datos);
+
+                if ($pedidoInterno !== null) {
+                    $pedido->pedidosInternos()->create(
+                        $pedidoInterno
                     );
                 }
+
+                if ($detalles !== null) {
+                    foreach ($detalles as $detalle) {
+                        $pedido->detallesPedido()->create(
+                            $detalle
+                        );
+                    }
+                }
+
+                return $pedido;
             }
+        );
 
-            return $pedido;
-        });
-
-        // Cargar relaciones para la respuesta.
         $pedido->load([
             'tipoPedido',
             'gerencia',
@@ -251,27 +368,36 @@ class PedidoController extends Controller
             'detallesPedido',
         ]);
 
-        // Respuesta para solicitudes API.
         if ($request->expectsJson()) {
-
             return response()->json([
                 'status' => true,
-                'message' => 'Pedido registrado correctamente.',
+                'message' =>
+                    'Pedido registrado correctamente.',
                 'data' => $pedido,
             ], 201);
         }
 
-        // Respuesta para el formulario web.
         return redirect()
             ->route('pedido.index')
-            ->with('success', 'Pedido registrado correctamente.');
+            ->with(
+                'success',
+                'Pedido registrado correctamente.'
+            );
     }
 
     /**
      * Mostrar un pedido específico.
      */
-    public function show(Pedido $pedido)
+    /**
+ * Mostrar un pedido específico.
+ */
+    public function show(Pedido $pedido): JsonResponse
     {
+        Gate::authorize(
+            'view',
+            $pedido
+        );
+
         $pedido->load([
             'tipoPedido',
             'gerencia',
@@ -293,37 +419,141 @@ class PedidoController extends Controller
     /**
      * Mostrar formulario de edición.
      */
-    public function edit(Pedido $pedido)
+    /**
+ * Obtener un pedido para edición mediante API.
+ */
+    public function edit(Pedido $pedido): JsonResponse
     {
-        //
+        Gate::authorize(
+            'update',
+            $pedido
+        );
+
+        return response()->json([
+            'status' => true,
+            'data' => $pedido->load([
+                'tipoPedido',
+                'gerencia',
+                'empresa',
+                'proyecto',
+                'ubicacion',
+                'tipoCompra',
+                'estado',
+                'pedidosInternos',
+                'detallesPedido',
+            ]),
+        ], 200);
     }
 
     /**
      * Actualizar un pedido.
      */
+    /**
+ * Actualizar un pedido.
+ */
     public function update(
         UpdatePedidoRequest $request,
         Pedido $pedido
     ) {
-        $pedido->update($request->all());
+        Gate::authorize(
+            'update',
+            $pedido
+        );
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Pedido actualizado correctamente',
-            'data' => $pedido
-        ], 200);
+        $datos = $request->validated();
+
+        /*
+        * No se permite modificar estos campos
+        * mediante la operación CRUD normal.
+        */
+        unset(
+            $datos['created_by'],
+            $datos['gerencia_id'],
+            $datos['estado_solicitud']
+        );
+
+        $pedido->update($datos);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' =>
+                    'Pedido actualizado correctamente.',
+                'data' => $pedido->fresh(),
+            ], 200);
+        }
+
+        return redirect()
+            ->route('pedido.index')
+            ->with(
+                'success',
+                'Pedido actualizado correctamente.'
+            );
     }
 
     /**
      * Eliminar un pedido.
      */
-    public function destroy(Pedido $pedido)
-    {
+    /**
+ * Eliminar un pedido.
+ */
+    public function destroy(
+        Request $request,
+        Pedido $pedido
+    ) {
+        Gate::authorize(
+            'delete',
+            $pedido
+        );
+
         $pedido->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Pedido eliminado correctamente',
-        ], 200);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => true,
+                'message' =>
+                    'Pedido eliminado correctamente.',
+            ], 200);
+        }
+
+        return redirect()
+            ->route('pedido.index')
+            ->with(
+                'success',
+                'Pedido eliminado correctamente.'
+            );
+    }
+
+    /**
+ * Construye la consulta de pedidos visibles
+ * para el usuario autenticado.
+ */
+    private function consultaPedidosPermitidos(): Builder
+    {
+        /** @var Usuario $usuario */
+        $usuario = Auth::user();
+
+        $consulta = Pedido::query();
+
+        if ($usuario->esAdmin() || $usuario->esSubDirector()) {
+            return $consulta;
+        }
+
+        if ($usuario->esSupervisor()) {
+            return $consulta->creadosPor($usuario);
+        }
+
+        if ($usuario->esGerente()) {
+            return $consulta->deGerencia($usuario);
+        }
+
+        if ($usuario->esCompras()) {
+            return $consulta->where(
+                'estado_solicitud',
+                EstadoSolicitudPedido::ENVIADO_COMPRAS->value
+            );
+        }
+
+        abort(403, 'No tienes permiso para consultar pedidos.');
     }
 }

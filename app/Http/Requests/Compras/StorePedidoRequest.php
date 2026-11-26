@@ -25,8 +25,8 @@ class StorePedidoRequest extends FormRequest
         $nombreTipo = strtolower(trim($tipoPedido?->nombre ?? ''));
 
         // Identificar el tipo de pedido.
-        $esInterno = $nombreTipo === 'pedido int';
-        $esAlm = $nombreTipo === 'pedido alm';
+        $esInterno = $nombreTipo === 'pedido interno';
+        $esAlm = $nombreTipo === 'pedido almacen';
 
         $rules = [
 

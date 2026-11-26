@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('gerencias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
-            $table->string('code', 50);
+            $table->string('code', 50)->unique();
             $table->timestamps();
         });
     }

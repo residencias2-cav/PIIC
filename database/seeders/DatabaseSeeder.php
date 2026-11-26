@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             InfContratoSeeder::class,
             TrabajadorSeeder::class,
             UsuarioSeeder::class,
+            PedidoSeeder::class,
         ]);
     }
 }

@@ -2,16 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Catalogos\Proyecto;
 use Illuminate\Database\Seeder;
 
 class ProyectoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        $proyectos = [
+            'Proyecto PIIC de Prueba',
+            'Construcción Administrativa de Prueba',
+            'Mantenimiento General de Prueba',
+        ];
+
+        foreach ($proyectos as $nombre) {
+            Proyecto::updateOrCreate(
+                [
+                    'nombre' => $nombre,
+                ],
+                []
+            );
+        }
     }
 }

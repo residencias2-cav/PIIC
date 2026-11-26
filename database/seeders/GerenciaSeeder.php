@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Catalogos\Gerencia;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GerenciaSeeder extends Seeder
@@ -13,56 +12,85 @@ class GerenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        $gerencia = [
+        $gerencias = [
             [
-                'nombre' => 'Tecnologias de la informacion',
-                'codigo' => 'GTI'
+                'nombre' => 'Tecnologías de la Información',
+                'code' => 'GTI',
             ],
             [
-                'nombre' => 'Maquinaria y Transporte', 
-                'codigo' => 'MyT'
+                'nombre' => 'Maquinaria y Transporte',
+                'code' => 'MyT',
             ],
             [
-                'nombre' => 'Compras', 
-                'codigo' => 'GComp'
+                'nombre' => 'Compras',
+                'code' => 'GComp',
             ],
             [
-                'nombre' => 'Subdirector', 
-                'codigo' => 'Subdir'
+                'nombre' => 'Subdirección',
+                'code' => 'Subdir',
             ],
             [
-                'nombre' => 'contabilidad', 
-                'codigo' => 'GCI'
+                'nombre' => 'Contabilidad',
+                'code' => 'GCI',
             ],
             [
-                'nombre' => 'proyectos y Construcción', 
-                'codigo' => 'GCP'
+                'nombre' => 'Proyectos y Construcción',
+                'code' => 'GCP',
             ],
             [
-                'nombre' => 'Licitaciones y proyectos', 
-                'codigo' => 'GLP'
+                'nombre' => 'Licitaciones y Proyectos',
+                'code' => 'GLP',
             ],
             [
-                'nombre' => 'Capital Humano', 
-                'codigo' => 'GCHSO'
+                'nombre' => 'Capital Humano',
+                'code' => 'GCHSO',
             ],
             [
-                'nombre' => 'Finanzas', 
-                'codigo' => 'GF'
+                'nombre' => 'Finanzas',
+                'code' => 'GF',
             ],
             [
-                'nombre' => 'seguridad', 
-                'codigo' => 'GSST'
-            ]
+                'nombre' => 'Seguridad',
+                'code' => 'GSST',
+            ],
+
+            /*
+             * Departamentos identificados en el sistema heredado
+             * y todavía no representados directamente arriba.
+             */
+            [
+                'nombre' => 'Concretos',
+                'code' => 'CONCRETOS',
+            ],
+            [
+                'nombre' => 'Dirección Legal y Administrativa',
+                'code' => 'DLyA',
+            ],
+            [
+                'nombre' => 'Dirección de Operaciones y Construcción',
+                'code' => 'DOPACV',
+            ],
+            [
+                'nombre' => 'Gerencia de Construcción y Supervisión',
+                'code' => 'GCSO1',
+            ],
+            [
+                'nombre' => 'Gerencia de Obra Civil',
+                'code' => 'GOC',
+            ],
+            [
+                'nombre' => 'Nóminas',
+                'code' => 'NOMINAS',
+            ],
         ];
 
-        foreach ($gerencia as $geren) {
-            Gerencia::firstOrCreate(
+        foreach ($gerencias as $gerencia) {
+            Gerencia::updateOrCreate(
                 [
-                    'nombre' => $geren['nombre'],
+                    'code' => $gerencia['code'],
                 ],
                 [
-                    'code' => $geren['codigo'],
+                    'nombre' => $gerencia['nombre'],
                 ]
             );
         }
