@@ -38,6 +38,12 @@
             >
                 Nueva solicitud
             </a>
+            <a
+                href="{{ route('panel') }}"
+                class="btn btn-eliminar"
+            >
+                ← Regresar al panel
+            </a>
 
         </header>
 
