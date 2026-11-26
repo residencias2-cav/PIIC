@@ -53,11 +53,6 @@ class GerenciaSeeder extends Seeder
                 'nombre' => 'Seguridad',
                 'code' => 'GSST',
             ],
-
-            /*
-             * Departamentos identificados en el sistema heredado
-             * y todavía no representados directamente arriba.
-             */
             [
                 'nombre' => 'Concretos',
                 'code' => 'CONCRETOS',

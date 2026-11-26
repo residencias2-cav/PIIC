@@ -37,6 +37,7 @@ class Usuario extends Authenticatable
         'two_factor_secret',
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
+        'email_2fa_code_hash',
         'created_at',
         'updated_at',
     ];
@@ -143,5 +144,11 @@ class Usuario extends Authenticatable
     public function esCompras(): bool
     {
         return $this->tipoUsuario?->nombre === 'Compras';
+    }
+
+    public function routeNotificationForMail(
+        mixed $notification = null
+    ): string {
+        return $this->correo;
     }
 }
