@@ -78,21 +78,6 @@ class FortifyServiceProvider extends ServiceProvider
             );
         });
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Rate Limiter - Two Factor
-        |--------------------------------------------------------------------------
-        */
-
-        RateLimiter::for('two-factor', function (Request $request) {
-
-            return Limit::perMinute(5)->by(
-                (string) $request->session()->get('login.id')
-            );
-        });
-
-
         /*
         |--------------------------------------------------------------------------
         | Vistas
@@ -101,10 +86,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             return view('auth.login');
-        });
-
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.two-factor-challenge');
         });
 
         Fortify::confirmPasswordView(function () {
