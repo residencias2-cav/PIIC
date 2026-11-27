@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -336,10 +335,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectorTipo = document.getElementById('tipo_oficio_id');
 
     const secciones = {
-        'Oficios repse': 'seccion-repse',
-        'Oficios productos': 'seccion-productos',
-        'Oficios comisiones': 'seccion-comisiones',
-        'Oficios rutas': 'seccion-rutas'
+        '1': 'seccion-productos',
+        '2': 'seccion-repse',
+        '3': 'seccion-rutas',
+        '4': 'seccion-comisiones'
     };
 
     function mostrarDetalle() {
@@ -348,9 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const tipoSeleccionado = selectorTipo.options[
-            selectorTipo.selectedIndex
-        ]?.text.trim();
+        const tipoId = selectorTipo.value;
 
         // Ocultar y deshabilitar todas las secciones.
         document.querySelectorAll('.detalle-oficio').forEach(function (seccion) {
@@ -359,26 +356,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
             seccion.querySelectorAll('input, select, textarea').forEach(function (campo) {
                 campo.disabled = true;
+                campo.required = false;
             });
 
         });
 
-        // Mostrar y habilitar únicamente la sección correspondiente.
-        const idSeccion = secciones[tipoSeleccionado];
+        // Buscar la sección correspondiente al ID seleccionado.
+        const idSeccion = secciones[tipoId];
 
-        if (idSeccion) {
+        if (!idSeccion) {
+            return;
+        }
 
-            const seccionActiva = document.getElementById(idSeccion);
+        const seccionActiva = document.getElementById(idSeccion);
 
-            if (seccionActiva) {
+        if (seccionActiva) {
 
-                seccionActiva.style.display = 'block';
+            seccionActiva.style.display = 'block';
 
-                seccionActiva.querySelectorAll('input, select, textarea').forEach(function (campo) {
-                    campo.disabled = false;
-                });
+            seccionActiva.querySelectorAll('input, select, textarea').forEach(function (campo) {
 
-            }
+                campo.disabled = false;
+
+                if (campo.dataset.required === 'true') {
+                    campo.required = true;
+                }
+
+            });
 
         }
 
@@ -386,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     selectorTipo.addEventListener('change', mostrarDetalle);
 
-    // Mostrar la sección correspondiente al cargar la página.
+    // Inicializar al cargar la vista.
     mostrarDetalle();
 
 });
