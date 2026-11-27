@@ -6,6 +6,7 @@ use App\Models\Usuarios\Usuario;
 use App\Notifications\CodigoAccesoDosFactores;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Enums\EmailTwoFactorResult;
 
 class EmailTwoFactorService
 {

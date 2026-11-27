@@ -50,6 +50,7 @@ class Usuario extends Authenticatable
             'email_2fa_last_sent_at' => 'datetime',
             'email_2fa_attempts' => 'integer',
             'email_2fa_enabled' => 'boolean',
+            'email_2fa_verified_at' => 'datetime',
         ];
     }
 
